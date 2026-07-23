@@ -1,0 +1,89 @@
+import 'dart:convert';
+
+import 'package:webtrit_phone/extensions/iterable.dart';
+import 'package:webtrit_phone/models/enableble.dart';
+import 'package:webtrit_phone/models/encoding_settings.dart';
+import 'package:webtrit_phone/models/rtp_codec_profile.dart';
+
+mixin EncodingSettingsJsonMapper {
+  EncodingSettings encodingSettingsFromJson(String json) {
+    return encodingSettingsFromMap(jsonDecode(json));
+  }
+
+  String encodingSettingsToJson(EncodingSettings settings) {
+    return jsonEncode(encodingSettingsToMap(settings));
+  }
+
+  EncodingSettings encodingSettingsFromMap(Map<String, dynamic> map) {
+    return EncodingSettings(
+      audioBitrate: map['audioBitrate'] as int?,
+      videoBitrate: map['videoBitrate'] as int?,
+      ptime: map['ptime'] as int?,
+      maxptime: map['maxptime'] as int?,
+      opusSamplingRate: map['opusSamplingRate'] as int?,
+      opusBitrate: map['opusBitrate'] as int?,
+      opusStereo: map['opusStereo'] as bool?,
+      opusDtx: map['opusDtx'] as bool?,
+      audioProfiles: (map['audioProfiles'] as List<dynamic>?)?.map((p) => profileFromMap(p)).nonNulls.toList(),
+      videoProfiles: (map['videoProfiles'] as List<dynamic>?)?.map((p) => profileFromMap(p)).nonNulls.toList(),
+      removeStaticAudioRtpMaps: map['removeStaticAudioRtpMaps'] as bool? ?? false,
+      remapTE8payloadTo101: map['remapTE8payloadTo101'] as bool? ?? false,
+      removeREMBFeedback: map['removeREMBFeedback'] as bool? ?? false,
+      removeTWCCFeedback: map['removeTWCCFeedback'] as bool? ?? false,
+      removeExtmaps: _extmapListFromJson(map['removeExtmaps']),
+    );
+  }
+
+  Map<String, dynamic> encodingSettingsToMap(EncodingSettings settings) {
+    return {
+      'audioBitrate': settings.audioBitrate,
+      'videoBitrate': settings.videoBitrate,
+      'ptime': settings.ptime,
+      'maxptime': settings.maxptime,
+      'opusSamplingRate': settings.opusSamplingRate,
+      'opusBitrate': settings.opusBitrate,
+      'opusStereo': settings.opusStereo,
+      'opusDtx': settings.opusDtx,
+      'audioProfiles': settings.audioProfiles?.map((e) => profileToMap(e)).toList(),
+      'videoProfiles': settings.videoProfiles?.map((e) => profileToMap(e)).toList(),
+      'removeStaticAudioRtpMaps': settings.removeStaticAudioRtpMaps,
+      'remapTE8payloadTo101': settings.remapTE8payloadTo101,
+      'removeREMBFeedback': settings.removeREMBFeedback,
+      'removeTWCCFeedback': settings.removeTWCCFeedback,
+      'removeExtmaps': settings.removeExtmaps.map((e) => e.name).toList(),
+    };
+  }
+
+  List<SdpExtmapType> _extmapListFromJson(dynamic value) {
+    if (value == null) return const [];
+
+    // Migrate from old version
+    if (value is bool) return const [];
+    return (value as List<dynamic>)
+        .map((e) => SdpExtmapType.values.firstWhereOrNull((t) => t.name == e))
+        .nonNulls
+        .toList();
+  }
+
+  // returns null if profile is not recognized, which means it should be ignored
+  Enableble<RTPCodecProfile>? profileFromMap(Map<String, dynamic> map) {
+    final profile = map['profile'];
+    final enabled = map['enabled'];
+
+    /// migration from 1.7.6
+    if (profile == 'cn') return (option: RTPCodecProfile.comfortNoise_8k, enabled: enabled);
+    if (profile == 'telephoneEvent8') return (option: RTPCodecProfile.telephoneEvent_8k, enabled: enabled);
+    if (profile == 'telephoneEvent48') return (option: RTPCodecProfile.telephoneEvent_48k, enabled: enabled);
+    if (profile == 'redAudio') return (option: RTPCodecProfile.redundancy_audio, enabled: enabled);
+    if (profile == 'redVideo') return (option: RTPCodecProfile.redundancy_video, enabled: enabled);
+
+    final option = RTPCodecProfile.values.firstWhereOrNull((p) => p.name == profile);
+    if (option == null) return null;
+
+    return (option: option, enabled: enabled);
+  }
+
+  Map<String, dynamic> profileToMap(Enableble<RTPCodecProfile> param) {
+    return {'profile': param.option.name, 'enabled': param.enabled};
+  }
+}

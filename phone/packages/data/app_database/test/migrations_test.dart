@@ -1,0 +1,440 @@
+import 'package:test/test.dart';
+
+import 'package:drift/drift.dart';
+import 'package:drift_dev/api/migrations_native.dart';
+
+import 'package:app_database/app_database.dart';
+import 'package:app_database/src/migrations/migrations.dart';
+
+// Import the generated schema helper to instantiate databases at old versions.
+import 'package:app_database/src/migrations/generated/schema.dart';
+import 'package:app_database/src/migrations/generated/schema_v18.dart' as v18;
+import 'package:app_database/src/migrations/generated/schema_v19.dart' as v19;
+import 'package:app_database/src/migrations/generated/schema_v20.dart' as v20;
+import 'package:app_database/src/migrations/generated/schema_v22.dart' as v22;
+import 'package:app_database/src/migrations/generated/schema_v23.dart' as v23;
+import 'package:app_database/src/migrations/generated/schema_v24.dart' as v24;
+import 'package:app_database/src/migrations/generated/schema_v25.dart' as v25;
+
+void main() {
+  driftRuntimeOptions.dontWarnAboutMultipleDatabases = true;
+  late SchemaVerifier verifier;
+
+  setUpAll(() {
+    verifier = SchemaVerifier(GeneratedHelper());
+  });
+
+  // Test all possible schema migrations with a simple test that just ensures
+  // the schema is correct after the migration.
+  // More complex tests ensuring data integrity are written below.
+  group('general migration', () {
+    final currentSchema = migrations.schemaVersion;
+
+    for (var oldVersion = 1; oldVersion < currentSchema; oldVersion++) {
+      group('from v$oldVersion', () {
+        for (var targetVersion = oldVersion + 1; targetVersion <= currentSchema; targetVersion++) {
+          test('to v$targetVersion', () async {
+            final connection = await verifier.startAt(oldVersion);
+            final appDatabase = AppDatabase(connection);
+            try {
+              await verifier.migrateAndValidate(appDatabase, targetVersion);
+            } finally {
+              await appDatabase.close();
+            }
+          });
+        }
+      });
+    }
+  });
+
+  group('migration v19 data integrity', () {
+    test('migrates old favorites and creates outbox entries', () async {
+      final schema = await verifier.schemaAt(18);
+      try {
+        final oldDb = v18.DatabaseAtV18(schema.newConnection());
+
+        await oldDb.customStatement(
+          "INSERT INTO contacts (id, source_type, source_id, kind) VALUES (1, 0, 'device_source_1', 0)",
+        );
+        await oldDb.customStatement(
+          "INSERT INTO contacts (id, source_type, source_id, kind) VALUES (2, 1, 'pbx_source_1', 0)",
+        );
+
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (1, '1001', 'Mobile', 1)",
+        );
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (2, '2001', 'Desk', 2)",
+        );
+
+        await oldDb.customStatement('INSERT INTO favorites (id, contact_phone_id, position) VALUES (1, 1, 0)');
+        await oldDb.customStatement('INSERT INTO favorites (id, contact_phone_id, position) VALUES (2, 2, 1)');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 19);
+        await appDatabase.close();
+
+        final checkDb = v19.DatabaseAtV19(schema.newConnection());
+
+        final favoritesV2Rows = await checkDb.customSelect('''
+          SELECT number, source_type, source_id, label, position
+          FROM favorites_v2
+          ORDER BY position ASC
+          ''').get();
+
+        expect(favoritesV2Rows.length, 2);
+        expect(favoritesV2Rows[0].read<String>('number'), '1001');
+        expect(favoritesV2Rows[0].read<String>('source_type'), 'device');
+        expect(favoritesV2Rows[0].read<String>('source_id'), 'device_source_1');
+        expect(favoritesV2Rows[0].read<String>('label'), 'Mobile');
+        expect(favoritesV2Rows[0].read<int>('position'), 0);
+
+        expect(favoritesV2Rows[1].read<String>('number'), '2001');
+        expect(favoritesV2Rows[1].read<String>('source_type'), 'pbx');
+        expect(favoritesV2Rows[1].read<String>('source_id'), 'pbx_source_1');
+        expect(favoritesV2Rows[1].read<String>('label'), 'Desk');
+        expect(favoritesV2Rows[1].read<int>('position'), 1);
+
+        final outboxRows = await checkDb.customSelect('''
+          SELECT number, source_type, action, source_id, label, position, send_attempts, timestamp_usec
+          FROM favorites_outbox
+          ORDER BY position ASC
+          ''').get();
+
+        expect(outboxRows.length, 2);
+
+        expect(outboxRows[0].read<String>('number'), '1001');
+        expect(outboxRows[0].read<String>('source_type'), 'device');
+        expect(outboxRows[0].read<String>('action'), 'upsert');
+        expect(outboxRows[0].read<String>('source_id'), 'device_source_1');
+        expect(outboxRows[0].read<String>('label'), 'Mobile');
+        expect(outboxRows[0].read<int>('position'), 0);
+        expect(outboxRows[0].read<int>('send_attempts'), 0);
+        expect(outboxRows[0].read<int>('timestamp_usec') > 0, isTrue);
+
+        expect(outboxRows[1].read<String>('number'), '2001');
+        expect(outboxRows[1].read<String>('source_type'), 'pbx');
+        expect(outboxRows[1].read<String>('action'), 'upsert');
+        expect(outboxRows[1].read<String>('source_id'), 'pbx_source_1');
+        expect(outboxRows[1].read<String>('label'), 'Desk');
+        expect(outboxRows[1].read<int>('position'), 1);
+        expect(outboxRows[1].read<int>('send_attempts'), 0);
+        expect(outboxRows[1].read<int>('timestamp_usec') > 0, isTrue);
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+  });
+
+  group('migration v20 data integrity', () {
+    test('preserves existing contact_phones rows after constraint change', () async {
+      final schema = await verifier.schemaAt(19);
+      try {
+        final oldDb = v19.DatabaseAtV19(schema.newConnection());
+
+        await oldDb.customStatement(
+          "INSERT INTO contacts (id, source_type, source_id, kind) VALUES (1, 1, 'ext_source_1', 0)",
+        );
+
+        // Insert two phone rows with different numbers (valid in v19: UNIQUE(number, contact_id))
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (1, '16042000001', 'number', 1)",
+        );
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (2, '1601', 'ext', 1)",
+        );
+
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 20);
+        await appDatabase.close();
+
+        final checkDb = v20.DatabaseAtV20(schema.newConnection());
+
+        final rows = await checkDb
+            .customSelect('SELECT number, label FROM contact_phones WHERE contact_id = 1 ORDER BY id ASC')
+            .get();
+
+        expect(rows.length, 2);
+        expect(rows[0].read<String>('number'), '16042000001');
+        expect(rows[0].read<String>('label'), 'number');
+        expect(rows[1].read<String>('number'), '1601');
+        expect(rows[1].read<String>('label'), 'ext');
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+
+    test('favorites FK to contact_phones remains valid after migration', () async {
+      final schema = await verifier.schemaAt(19);
+      try {
+        final oldDb = v19.DatabaseAtV19(schema.newConnection());
+
+        await oldDb.customStatement(
+          "INSERT INTO contacts (id, source_type, source_id, kind) VALUES (1, 1, 'ext_source_1', 0)",
+        );
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (1, '16042000001', 'number', 1)",
+        );
+        await oldDb.customStatement('INSERT INTO favorites (id, contact_phone_id, position) VALUES (1, 1, 0)');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 20);
+        await appDatabase.close();
+
+        final checkDb = v20.DatabaseAtV20(schema.newConnection());
+
+        await checkDb.customStatement('PRAGMA foreign_keys = ON');
+
+        // PRAGMA foreign_key_check returns rows only for violations; empty means all FKs are valid.
+        final violations = await checkDb.customSelect('PRAGMA foreign_key_check(favorites)').get();
+        expect(violations, isEmpty);
+
+        final favoriteRows = await checkDb.customSelect('SELECT id, contact_phone_id FROM favorites').get();
+        expect(favoriteRows.length, 1);
+        expect(favoriteRows[0].read<int>('contact_phone_id'), 1);
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+
+    test('new schema allows same number with different labels for same contact', () async {
+      final schema = await verifier.schemaAt(19);
+      try {
+        final oldDb = v19.DatabaseAtV19(schema.newConnection());
+
+        await oldDb.customStatement(
+          "INSERT INTO contacts (id, source_type, source_id, kind) VALUES (1, 1, 'ext_source_1', 0)",
+        );
+        await oldDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (1, '16042000002', 'number', 1)",
+        );
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 20);
+        await appDatabase.close();
+
+        final checkDb = v20.DatabaseAtV20(schema.newConnection());
+
+        // In v20, same number with different label is allowed (UNIQUE(number, label, contact_id))
+        await checkDb.customStatement(
+          "INSERT INTO contact_phones (id, number, label, contact_id) VALUES (2, '16042000002', 'sms', 1)",
+        );
+
+        final rows = await checkDb
+            .customSelect('SELECT number, label FROM contact_phones WHERE contact_id = 1 ORDER BY id ASC')
+            .get();
+
+        expect(rows.length, 2);
+        expect(rows.any((r) => r.read<String>('label') == 'number'), isTrue);
+        expect(rows.any((r) => r.read<String>('label') == 'sms'), isTrue);
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+  });
+
+  group('migration v23 data integrity', () {
+    test('preserves existing cdrs rows after dropping the redundant UNIQUE', () async {
+      final schema = await verifier.schemaAt(22);
+      try {
+        final oldDb = v22.DatabaseAtV22(schema.newConnection());
+
+        await oldDb.customStatement('''
+          INSERT INTO cdrs (
+            call_id, direction, status, callee, callee_number, caller, caller_number,
+            connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds, recording_id
+          ) VALUES ('call-1', 'incoming', 'accepted', 'Alice', '1001', 'Bob', '2001', 100, 200, 'normal', 60, 'rec-1')
+        ''');
+        await oldDb.customStatement('''
+          INSERT INTO cdrs (
+            call_id, direction, status, callee, caller,
+            connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds
+          ) VALUES ('call-2', 'outgoing', 'missed', 'Carol', 'Dave', 300, 400, 'busy', 0)
+        ''');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 23);
+        await appDatabase.close();
+
+        final checkDb = v23.DatabaseAtV23(schema.newConnection());
+
+        final rows = await checkDb
+            .customSelect('SELECT call_id, status, duration_seconds, recording_id FROM cdrs ORDER BY call_id ASC')
+            .get();
+
+        expect(rows.length, 2);
+        expect(rows[0].read<String>('call_id'), 'call-1');
+        expect(rows[0].read<String>('status'), 'accepted');
+        expect(rows[0].read<int>('duration_seconds'), 60);
+        expect(rows[0].read<String>('recording_id'), 'rec-1');
+        expect(rows[1].read<String>('call_id'), 'call-2');
+        expect(rows[1].read<String?>('recording_id'), null);
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+
+    test('primary key still rejects duplicate call_id after migration', () async {
+      final schema = await verifier.schemaAt(22);
+      try {
+        final oldDb = v22.DatabaseAtV22(schema.newConnection());
+        await oldDb.customStatement('''
+          INSERT INTO cdrs (
+            call_id, direction, status, callee, caller,
+            connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds
+          ) VALUES ('call-1', 'incoming', 'accepted', 'Alice', 'Bob', 100, 200, 'normal', 60)
+        ''');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 23);
+        await appDatabase.close();
+
+        final checkDb = v23.DatabaseAtV23(schema.newConnection());
+
+        await expectLater(
+          checkDb.customStatement('''
+            INSERT INTO cdrs (
+              call_id, direction, status, callee, caller,
+              connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds
+            ) VALUES ('call-1', 'outgoing', 'declined', 'X', 'Y', 1, 2, 'normal', 1)
+          '''),
+          throwsA(anything),
+        );
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+  });
+
+  group('migration v24 data integrity', () {
+    test('preserves dialog_info rows and adds a nullable has_video column', () async {
+      final schema = await verifier.schemaAt(23);
+      try {
+        final oldDb = v23.DatabaseAtV23(schema.newConnection());
+        await oldDb.customStatement('''
+          INSERT INTO dialog_info (
+            id_key, entity_number, state, arrival_version, arrival_time_usec
+          ) VALUES ('dlg-1', '111000333', 'confirmed', '1', 1000)
+        ''');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 24);
+        await appDatabase.close();
+
+        final checkDb = v24.DatabaseAtV24(schema.newConnection());
+        final rows = await checkDb.customSelect('SELECT id_key, has_video FROM dialog_info').get();
+        expect(rows, hasLength(1));
+        expect(rows.single.read<String>('id_key'), 'dlg-1');
+        // The new column exists and is null for rows migrated from v23.
+        // (matcher's `isNull` clashes with drift's SQL `isNull`, so compare to the literal.)
+        expect(rows.single.data['has_video'], null);
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+
+    test('has_video accepts null/0/1 and rejects other values after migration', () async {
+      final schema = await verifier.schemaAt(23);
+      try {
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 24);
+        await appDatabase.close();
+
+        final checkDb = v24.DatabaseAtV24(schema.newConnection());
+
+        // null and 0/1 are allowed by `NULL CHECK (has_video IN (0, 1))`.
+        await checkDb.customStatement('''
+          INSERT INTO dialog_info (id_key, entity_number, state, arrival_version, arrival_time_usec, has_video)
+          VALUES ('dlg-null', '1', 'confirmed', '1', 1, NULL)
+        ''');
+        await checkDb.customStatement('''
+          INSERT INTO dialog_info (id_key, entity_number, state, arrival_version, arrival_time_usec, has_video)
+          VALUES ('dlg-true', '1', 'confirmed', '1', 1, 1)
+        ''');
+
+        // Any other value violates the CHECK constraint.
+        await expectLater(
+          checkDb.customStatement('''
+            INSERT INTO dialog_info (id_key, entity_number, state, arrival_version, arrival_time_usec, has_video)
+            VALUES ('dlg-bad', '1', 'confirmed', '1', 1, 2)
+          '''),
+          throwsA(anything),
+        );
+
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+  });
+
+  group('migration v25 data integrity', () {
+    test('backfills the sync cursor from the newest record when CDRs exist', () async {
+      final schema = await verifier.schemaAt(24);
+      try {
+        final oldDb = v24.DatabaseAtV24(schema.newConnection());
+        await oldDb.customStatement('''
+          INSERT INTO cdrs (call_id, direction, status, callee, callee_number, caller, caller_number,
+            connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds)
+          VALUES ('call-1', 'incoming', 'accepted', '1000', '1000', '2000', '2000', 100, 200, 'normal', 10)
+        ''');
+        await oldDb.customStatement('''
+          INSERT INTO cdrs (call_id, direction, status, callee, callee_number, caller, caller_number,
+            connect_time_usec, disconnect_time_usec, disconnect_reason, duration_seconds)
+          VALUES ('call-2', 'outgoing', 'accepted', '2000', '2000', '1000', '1000', 300, 400, 'normal', 10)
+        ''');
+        await oldDb.close();
+
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 25);
+        await appDatabase.close();
+
+        final checkDb = v25.DatabaseAtV25(schema.newConnection());
+        final rows = await checkDb.customSelect('SELECT id, timestamp_usec FROM cdr_sync_cursors').get();
+        expect(rows.length, 1);
+        expect(rows.single.data['id'], 0);
+        expect(rows.single.data['timestamp_usec'], 300);
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+
+    test('leaves no sync cursor when CDR history is empty', () async {
+      final schema = await verifier.schemaAt(24);
+      try {
+        final appDatabase = AppDatabase(schema.newConnection());
+        await verifier.migrateAndValidate(appDatabase, 25);
+        await appDatabase.close();
+
+        final checkDb = v25.DatabaseAtV25(schema.newConnection());
+        final rows = await checkDb.customSelect('SELECT id FROM cdr_sync_cursors').get();
+        expect(rows, isEmpty);
+        await checkDb.close();
+      } finally {
+        schema.close();
+      }
+    });
+  });
+}

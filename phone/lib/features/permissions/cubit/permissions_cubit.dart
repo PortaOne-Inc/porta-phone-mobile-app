@@ -1,0 +1,184 @@
+import 'package:bloc/bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logging/logging.dart';
+
+import 'package:webtrit_callkeep/webtrit_callkeep.dart';
+
+import 'package:webtrit_phone/data/data.dart';
+
+import '../models/models.dart';
+
+part 'permissions_cubit.freezed.dart';
+
+part 'permissions_state.dart';
+
+final _logger = Logger('PermissionsCubit');
+
+class PermissionsCubit extends Cubit<PermissionsState> {
+  PermissionsCubit({required this.appPermissions, required this.deviceInfo}) : super(const PermissionsState());
+
+  final AppPermissions appPermissions;
+
+  final DeviceInfo deviceInfo;
+
+  /// Verifies the current permission status without triggering a system prompt.
+  ///
+  /// This is primarily used when the app resumes from the background ([AppLifecycleState.resumed]).
+  /// It handles the scenario where a user is sent to system settings to manually grant permissions
+  /// and then returns to the app.
+  ///
+  /// Updates [isPermanentlyDenied] to reflect if permissions are still missing,
+  /// allowing the UI to switch between the "Request" button and the "Open Settings" button.
+  void checkPermissions() async {
+    final isDenied = await appPermissions.isDenied;
+    _logger.info('Is denied: $isDenied');
+
+    final missingSpecialPermissions = await _getDeniedSpecialPermissions();
+    _logger.info('Denied special permissions: $missingSpecialPermissions');
+
+    final manufacturerTip = await _resolveManufacturerTip();
+    _logger.info('Manufacturer tip: $manufacturerTip');
+
+    // checkPermissions() is fire-and-forget on every resume and emits after
+    // several awaits; bail out if the cubit was closed in the meantime.
+    if (isClosed) return;
+
+    emit(
+      state.copyWith(
+        isPermanentlyDenied: isDenied,
+        missingSpecialPermissions: missingSpecialPermissions,
+        manufacturerTip: manufacturerTip,
+      ),
+    );
+  }
+
+  /// Executes the comprehensive permission request sequence:
+  ///
+  /// 1. **Standard Permissions:** Requests core app permissions (excluding specific cases).
+  /// 2. **Firebase:** Initializes and requests notification permissions.
+  /// 3. **Special Permissions:** Identifies denied special permissions (e.g., battery optimization).
+  ///    Since these cannot be requested via a system modal, this triggers UI instructions/settings.
+  /// 4. **Manufacturer Tips:** Resolves specific tips (e.g., for Xiaomi/Samsung) which the user can dismiss.
+  /// 5. **Final Check:** Evaluates [isDenied]. If true (minimum requirements not met),
+  ///    it triggers the UI to prompt the user to open system settings manually.
+  void initiatePermissionFlow() async {
+    _logger.info('Requesting permissions');
+
+    // Set loading state to disable UI interaction and prevent concurrent permission requests.
+    emit(state.copyWith(isRequesting: true));
+
+    try {
+      final requestedPermissions = await appPermissions.request();
+      _logger.info('Permissions requested: ${requestedPermissions.values}');
+
+      await _requestFirebaseMessagingPermission();
+      _logger.info('Firebase messaging permission requested');
+
+      final missingSpecialPermissions = await _getDeniedSpecialPermissions();
+      _logger.info('Denied special permissions: $missingSpecialPermissions');
+
+      final manufacturerTip = await _resolveManufacturerTip();
+      _logger.info('Manufacturer tip: $manufacturerTip');
+
+      final isDenied = await appPermissions.isDenied;
+
+      if (isClosed) return;
+
+      // Emit state at the end to ensure all dependent UI elements are initialized.
+      // If emitted earlier, state listeners might trigger navigation before the widget tree is ready.
+      emit(
+        state.copyWith(
+          initialRequestCompleted: true,
+          isPermanentlyDenied: isDenied,
+          manufacturerTip: manufacturerTip,
+          missingSpecialPermissions: missingSpecialPermissions,
+        ),
+      );
+    } catch (e, st) {
+      _logger.severe('Permission request failed', e, st);
+      if (!isClosed) emit(state.copyWith(failure: e));
+    } finally {
+      // Ensure the loading state is reset whether the request succeeds or fails.
+      if (!isClosed) emit(state.copyWith(isRequesting: false));
+    }
+  }
+
+  /// Resolves manufacturer-specific guidance for reliable lock-screen calls.
+  ///
+  /// On Xiaomi/HyperOS the incoming-call UI cannot cover the lock screen unless
+  /// the OEM "display pop-up windows while running in background" and "show on
+  /// lock screen" capabilities are granted, which the standard Android
+  /// permissions do not cover. The tip is surfaced while either capability is
+  /// missing, so it clears itself once the user enables both and returns to
+  /// the app. A dismissed tip is preserved.
+  Future<ManufacturerTip?> _resolveManufacturerTip() async {
+    final manufacturer = _checkManufacturer();
+    _logger.info('Manufacturer: $manufacturer');
+    if (manufacturer == null) return null;
+
+    final backgroundStartDenied = (await appPermissions.backgroundActivityStartStatus()).isDenied;
+    final showWhenLockedDenied = (await appPermissions.showOnLockscreenStatus()).isDenied;
+    if (!backgroundStartDenied && !showWhenLockedDenied) return null;
+
+    return state.manufacturerTip ?? ManufacturerTip(manufacturer: manufacturer);
+  }
+
+  Future<void> _requestFirebaseMessagingPermission() async {
+    final notificationSettings = await FirebaseMessaging.instance.requestPermission();
+    if (notificationSettings.authorizationStatus == AuthorizationStatus.authorized) {
+      _logger.info('User granted firebase permission');
+    } else if (notificationSettings.authorizationStatus == AuthorizationStatus.provisional) {
+      _logger.info('User granted  firebase provisional permission');
+    } else {
+      _logger.info('User declined or has not accepted firebase permission');
+    }
+  }
+
+  /// Fetches the list of special permissions that are currently denied by the user.
+  /// This is used to identify which specific special permissions need to be requested or have their settings opened.
+  Future<List<CallkeepSpecialPermissions>> _getDeniedSpecialPermissions() async {
+    final specialPermissionsStatuses = await appPermissions.getSpecialPermissionStatuses();
+    return specialPermissionsStatuses.entries.where((entry) => entry.value.isDenied).map((entry) => entry.key).toList();
+  }
+
+  /// Checks the device's manufacturer and maps it to a known [Manufacturer] enum value.
+  /// This is used to provide manufacturer-specific instructions or tips for enabling permissions.
+  /// Returns `null` if the manufacturer is not in the predefined list.
+  Manufacturer? _checkManufacturer() {
+    final manufacturer = deviceInfo.manufacturer.toLowerCase();
+    // Xiaomi sub-brands (Redmi/Poco) report their own manufacturer string but
+    // share the same MIUI/HyperOS lock-screen restriction. Match the same family
+    // the native side (PermissionsHelper.isXiaomiFamily) uses, so guidance shows
+    // on every affected device rather than only the literal "xiaomi".
+    if (manufacturer.contains('xiaomi') || manufacturer.contains('redmi') || manufacturer.contains('poco')) {
+      return Manufacturer.xiaomi;
+    }
+    return Manufacturer.values.asNameMap()[manufacturer];
+  }
+
+  void dismissError() {
+    emit(state.copyWith(failure: null));
+  }
+
+  void dismissManufacturerTip() {
+    emit(state.copyWith(manufacturerTip: state.manufacturerTip?.copyWith(shown: true)));
+  }
+
+  void openAppSettings() {
+    appPermissions.toAppSettings();
+  }
+
+  /// Opens the OEM permissions screen hosting both the "display pop-up windows
+  /// while running in background" and "show on lock screen" toggles
+  /// (Xiaomi/HyperOS), with a native fallback. Both toggles live on the same
+  /// MIUI "Other permissions" screen, so either entry point lands the user
+  /// there.
+  void openManufacturerCallPermissionSettings() {
+    appPermissions.toBackgroundActivityStartSettings();
+  }
+
+  void openAppSpecialPermissionSettings(CallkeepSpecialPermissions permission) {
+    appPermissions.toSpecialPermissionsSetting(permission);
+  }
+}

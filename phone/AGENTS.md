@@ -1,0 +1,75 @@
+# AGENTS.md
+
+WebTrit Phone — Flutter VoIP app, Melos monorepo.
+Flutter 3.44.0 (stable), Android SDK 35.0.1.
+
+## Toolchain
+
+- Flutter version is pinned **only** in `.fvmrc` — single source of truth, read by `fvm` locally and by the `webtrit_phone_builder` CI. When you bump it, update the version mentioned above in the same commit. (Older release branches may still carry the legacy `.github/flutter_version.yaml`; the builder falls back to it there.)
+- Use `fvm flutter ...` / `fvm dart ...` so the pinned SDK is used; a bare `flutter` from `PATH` may be a different version. The `.fvm/` SDK cache is gitignored — run `fvm install` once per machine.
+
+## Build & Test
+
+```bash
+melos bootstrap                                               # install all deps
+melos run analyze                                             # lint all packages
+melos run test                                                # test all packages
+flutter test                                                  # unit/widget (app root)
+dart run build_runner build --delete-conflicting-outputs      # codegen
+dart run bin/create_new_schema_dump_and_test_migration.dart   # after Drift table changes
+```
+
+## Code Standards
+
+- No Cyrillic in source, comments, logs, strings, or keys, except translation values in localization ARB files (`lib/l10n/arb/*.arb`).
+- Comments: no redundant *what* comments that restate the code; comments explain non-obvious *why* (rationale, gotchas, workarounds, links to issues). DartDoc for public APIs.
+- No DI frameworks (`get_it`, `injectable`, Service Locator — forbidden).
+- Single quotes; 120-char line width.
+- Never edit `*.g.dart` / `*.freezed.dart` / `*.gr.dart` — regenerate via `build_runner`.
+- Required named params before optional named params.
+- Callbacks: single-expression only; extract multi-statement logic to a private method.
+- Imports: 6 groups, one blank line between, alphabetical within:
+  1. Dart SDK
+  2. Flutter SDK
+  3. External
+  4. Internal packages
+  5. `package:webtrit_phone/...`
+  6. Relative
+
+## Architecture
+
+```
+lib/        → app (features/, theme/, repositories/, models/, blocs/, l10n/)
+packages/   → shared libs (must NOT import from lib/)
+  webtrit_appearance_theme/  pure Dart theme DTOs
+  data/app_database/         Drift DB + DAOs
+  webtrit_api/               REST client
+  webtrit_signaling/         WebSocket signaling
+  webtrit_callkeep/          native call UI (external repo)
+```
+
+- State: `@freezed` for state; `sealed class + Equatable` for events (never `freezed` on events).
+- BLoC deps via `Provider`/`RepositoryProvider`; never pass `BuildContext` into BLoC/Service.
+  Exception: localized strings needed inside a callback may close over `context.l10n`, but ONLY
+  when the closure is evaluated lazily (after construction). Do NOT call `context.l10n` synchronously
+  inside `BlocProvider.create` — it uses `dependOnInheritedWidgetOfExactType` which throws
+  "Tried to listen to InheritedWidget in a life-cycle that will never be called again" there.
+- DB: DAOs only — never `AppDatabase` directly; Drift-generated classes stay in repo layer.
+- Theme: never raw `Colors.xxx` or `TextStyle` in widgets; `Theme.of(context).extension<T>()`.
+- Widgets: `StatelessWidget` always (not helper methods); dumb widgets in `features/*/view/widgets/`.
+- Tests: `MockClient`/`mocktail` — no real network calls; DB migrations via `SchemaVerifier`.
+- Routing (`auto_route`): the `AppRouter.routes` tree must ALWAYS be complete — never gate route
+  *declarations* on async/runtime values (server capability, login state, feature flags).
+  `routeCollection` is `late final`, built once at router construction (before server `system-info`
+  loads), so any `if (capability) AutoRoute(...)` is frozen with whatever the value was at startup;
+  later navigation to a route omitted then throws `Failed to navigate to <Route>`. Register every
+  variant unconditionally and decide which one to *show* at navigation/build time (e.g.
+  `AutoTabsRouter.routes`, guards, initial-tab resolver). Sibling routes may share a `path`
+  (`recents`) — `RouteCollection` only requires unique route *names*, and tab matching is name-based.
+
+## Documentation
+
+- `docs/features/features.md` indexes the feature docs; the `docs/` root holds cross-cutting / component and app-level docs.
+- Per feature `<name>` (kebab-case): a small one is a single `docs/features/<name>.md`. Split a grown one into `<name>_ux.md` (product/UX: what the user does, screen states, key widgets, in-progress redesign) + `<name>_arch.md` (code/architecture: bloc, events, state machine, flows, isolates, key patterns), and drop the plain `<name>.md` — `features.md` is the index, keep no redundant per-feature index.
+- Cross-cutting components shared by several features live at the `docs/` root (e.g. `signaling_architecture_target.md`), not under features/; feature docs link to them rather than repeat them. Scenario docs (flows + diagrams) keep a descriptive name and live by scope — cross-component ones at the root (e.g. `incoming_call_scenarios.md`).
+- Each doc: start with a one-line summary + a `Last reviewed:` date; describe current behavior first and put unfinished work under a marked "Redesign / in progress" section; link code by relative path (`lib/features/<name>/...`) and sibling docs relatively; update the doc in the same PR that changes the feature. Plain ASCII (repo convention).

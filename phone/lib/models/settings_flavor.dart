@@ -1,0 +1,16 @@
+enum SettingsFlavor {
+  network,
+  language,
+  themeMode,
+  help,
+  terms,
+  about,
+  log,
+  deleteAccount,
+  embedded,
+  mediaSettings,
+  cacheManagement,
+  voicemail,
+  callerId,
+  presence,
+}

@@ -1,0 +1,19 @@
+import '../abstract_events.dart';
+
+class RegisteringEvent extends SessionEvent {
+  RegisteringEvent({super.transaction});
+
+  static const typeValue = 'registering';
+
+  @override
+  Map<String, dynamic> toJson() => sessionBaseJson(typeValue);
+
+  factory RegisteringEvent.fromJson(Map<String, dynamic> json) {
+    final eventTypeValue = json[Event.typeKey];
+    if (eventTypeValue != typeValue) {
+      throw ArgumentError.value(eventTypeValue, Event.typeKey, 'Not equal $typeValue');
+    }
+
+    return RegisteringEvent(transaction: json['transaction']);
+  }
+}

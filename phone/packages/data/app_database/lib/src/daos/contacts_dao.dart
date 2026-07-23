@@ -1,0 +1,340 @@
+import 'package:drift/drift.dart';
+import 'package:app_database/src/app_database.dart';
+
+part 'contacts_dao.g.dart';
+
+class FullContactData {
+  FullContactData({
+    required this.contact,
+    required this.phones,
+    required this.emails,
+    required this.favorites,
+    required this.presenceInfo,
+    required this.dialogInfo,
+    required this.sipSubscriptions,
+  });
+
+  final ContactData contact;
+  final List<ContactPhoneData> phones;
+  final List<ContactEmailData> emails;
+  final List<FavoriteV2Data> favorites;
+  final List<PresenceInfoData> presenceInfo;
+  final List<DialogInfoData> dialogInfo;
+  final List<SipSubscriptionData> sipSubscriptions;
+}
+
+@DriftAccessor(
+  tables: [
+    ContactsTable,
+    ContactPhonesTable,
+    ContactEmailsTable,
+    FavoritesTable,
+    FavoritesV2Table,
+    PresenceInfoTable,
+    DialogInfoTable,
+    SipSubscriptionsTable,
+  ],
+)
+class ContactsDao extends DatabaseAccessor<AppDatabase> with _$ContactsDaoMixin {
+  ContactsDao(super.db);
+
+  SimpleSelectStatement<$ContactsTableTable, ContactData> _selectAllContacts({
+    ContactSourceTypeEnum? sourceType,
+    ContactKindTypeEnum? kind = ContactKindTypeEnum.visible,
+  }) => select(contactsTable)
+    ..where((t) {
+      Expression<bool> predicate = const Constant(true);
+
+      if (sourceType != null) {
+        predicate &= t.sourceType.equals(sourceType.index);
+      }
+
+      if (kind != null) {
+        predicate &= t.kind.equals(kind.index);
+      }
+
+      return predicate;
+    });
+
+  SimpleSelectStatement<$ContactsTableTable, ContactData> _selectBySource(
+    ContactSourceTypeEnum sourceType,
+    String sourceId,
+  ) => (select(contactsTable)..where((t) => t.sourceType.equalsValue(sourceType) & t.sourceId.equals(sourceId)));
+
+  // Returns a subquery that resolves a phone number to a single winning contact ID,
+  // respecting external-over-local source priority.
+  BaseSelectStatement _contactIdSubqueryByPhone(String number) {
+    return selectOnly(contactsTable)
+      ..addColumns([contactsTable.id])
+      ..join([innerJoin(contactPhonesTable, contactPhonesTable.contactId.equalsExp(contactsTable.id))])
+      ..where(contactPhonesTable.number.equals(number))
+      ..orderBy(contactsTable.sourcePriorityOrder())
+      ..limit(1);
+  }
+
+  FullContactData? _gatherSingleContact(List<TypedResult> rows) {
+    if (rows.isEmpty) return null;
+    ContactData contact = rows.first.readTable(contactsTable);
+    List<ContactPhoneData> phones = [];
+    List<ContactEmailData> emails = [];
+    List<FavoriteV2Data> favorites = [];
+    List<PresenceInfoData> presenceInfo = [];
+    List<DialogInfoData> dialogInfo = [];
+    List<SipSubscriptionData> sipSubscriptions = [];
+
+    for (final row in rows) {
+      final phone = row.readTableOrNull(contactPhonesTable);
+      final email = row.readTableOrNull(contactEmailsTable);
+      final favorite = row.readTableOrNull(favoritesV2Table);
+      final presence = row.readTableOrNull(presenceInfoTable);
+      final dialog = row.readTableOrNull(dialogInfoTable);
+      final sipSubscription = row.readTableOrNull(sipSubscriptionsTable);
+
+      if (phone != null && !phones.contains(phone)) phones.add(phone);
+      if (email != null && !emails.contains(email)) emails.add(email);
+      if (favorite != null && !favorites.contains(favorite)) favorites.add(favorite);
+      if (presence != null && !presenceInfo.contains(presence)) presenceInfo.add(presence);
+      if (dialog != null && !dialogInfo.contains(dialog)) dialogInfo.add(dialog);
+      if (sipSubscription != null && !sipSubscriptions.contains(sipSubscription)) sipSubscriptions.add(sipSubscription);
+    }
+
+    return FullContactData(
+      contact: contact,
+      phones: phones,
+      emails: emails,
+      favorites: favorites,
+      presenceInfo: presenceInfo,
+      dialogInfo: dialogInfo,
+      sipSubscriptions: sipSubscriptions,
+    );
+  }
+
+  List<FullContactData> _gatherMultipleContacts(List<TypedResult> rows) {
+    final Map<int, FullContactData> contactMap = {};
+
+    for (final row in rows) {
+      final contact = row.readTable(contactsTable);
+      final phone = row.readTableOrNull(contactPhonesTable);
+      final email = row.readTableOrNull(contactEmailsTable);
+      final favorite = row.readTableOrNull(favoritesV2Table);
+      final presenceInfo = row.readTableOrNull(presenceInfoTable);
+      final dialogInfo = row.readTableOrNull(dialogInfoTable);
+      final sipSubscription = row.readTableOrNull(sipSubscriptionsTable);
+      final contactWithPhonesAndEmails = contactMap.putIfAbsent(
+        contact.id,
+        () => FullContactData(
+          contact: contact,
+          phones: [],
+          emails: [],
+          favorites: [],
+          presenceInfo: [],
+          dialogInfo: [],
+          sipSubscriptions: [],
+        ),
+      );
+
+      if (phone != null && !contactWithPhonesAndEmails.phones.contains(phone)) {
+        contactWithPhonesAndEmails.phones.add(phone);
+      }
+
+      if (email != null && !contactWithPhonesAndEmails.emails.contains(email)) {
+        contactWithPhonesAndEmails.emails.add(email);
+      }
+
+      if (favorite != null && !contactWithPhonesAndEmails.favorites.contains(favorite)) {
+        contactWithPhonesAndEmails.favorites.add(favorite);
+      }
+
+      if (presenceInfo != null && !contactWithPhonesAndEmails.presenceInfo.contains(presenceInfo)) {
+        contactWithPhonesAndEmails.presenceInfo.add(presenceInfo);
+      }
+
+      if (dialogInfo != null && !contactWithPhonesAndEmails.dialogInfo.contains(dialogInfo)) {
+        contactWithPhonesAndEmails.dialogInfo.add(dialogInfo);
+      }
+
+      if (sipSubscription != null && !contactWithPhonesAndEmails.sipSubscriptions.contains(sipSubscription)) {
+        contactWithPhonesAndEmails.sipSubscriptions.add(sipSubscription);
+      }
+    }
+
+    return contactMap.values.toList();
+  }
+
+  JoinedSelectStatement _joinFullData(SimpleSelectStatement select, {bool includeSipSubscriptions = false}) {
+    return select.join([
+      leftOuterJoin(contactPhonesTable, contactPhonesTable.contactId.equalsExp(contactsTable.id)),
+      leftOuterJoin(contactEmailsTable, contactEmailsTable.contactId.equalsExp(contactsTable.id)),
+      leftOuterJoin(
+        favoritesV2Table,
+        favoritesV2Table.number.equalsExp(contactPhonesTable.number) &
+            (favoritesV2Table.sourceType.equalsValue(FavoriteSourceTypeData.pbx) &
+                    contactsTable.sourceType.equalsValue(ContactSourceTypeEnum.external) |
+                favoritesV2Table.sourceType.equalsValue(FavoriteSourceTypeData.device) &
+                    contactsTable.sourceType.equalsValue(ContactSourceTypeEnum.local)),
+      ),
+      leftOuterJoin(presenceInfoTable, presenceInfoTable.number.equalsExp(contactPhonesTable.number)),
+      leftOuterJoin(dialogInfoTable, dialogInfoTable.entityNumber.equalsExp(contactPhonesTable.number)),
+      if (includeSipSubscriptions)
+        leftOuterJoin(sipSubscriptionsTable, sipSubscriptionsTable.number.equalsExp(contactPhonesTable.number)),
+    ]);
+  }
+
+  Future<FullContactData?> getContactByPhoneNumber(String number) {
+    final query = _joinFullData(select(contactsTable))
+      ..where(contactsTable.id.isInQuery(_contactIdSubqueryByPhone(number)));
+    return query.get().then(_gatherSingleContact);
+  }
+
+  Stream<FullContactData?> watchContact(int id, {bool includeSipSubscriptions = false}) {
+    final s = (select(contactsTable)..where((t) => t.id.equals(id)));
+    final query = _joinFullData(s, includeSipSubscriptions: includeSipSubscriptions);
+    return query.watch().map(_gatherSingleContact);
+  }
+
+  Future<FullContactData?> getContactBySource(ContactSourceTypeEnum sourceType, String sourceId) {
+    final query = _joinFullData(_selectBySource(sourceType, sourceId));
+    return query.get().then(_gatherSingleContact);
+  }
+
+  Stream<FullContactData?> watchContactBySource(ContactSourceTypeEnum sourceType, String sourceId) {
+    final query = _joinFullData(_selectBySource(sourceType, sourceId));
+    return query.watch().map(_gatherSingleContact);
+  }
+
+  Stream<FullContactData?> watchContactByPhoneNumber(String number) {
+    final query = _joinFullData(select(contactsTable))
+      ..where(contactsTable.id.isInQuery(_contactIdSubqueryByPhone(number)));
+    return query.watch().map(_gatherSingleContact);
+  }
+
+  Future<FullContactData?> getContactByPhoneMatchedEnding(String number) {
+    final query = _joinFullData(select(contactsTable));
+    query.where(contactPhonesTable.number.regexp('.*${_escapeRegExp(number)}', caseSensitive: false));
+    query.orderBy(contactsTable.sourcePriorityOrder());
+    query.limit(1);
+
+    return query.get().then(_gatherSingleContact);
+  }
+
+  Stream<FullContactData?> watchContactByPhoneMatchedEnding(String number) {
+    final query = _joinFullData(select(contactsTable));
+    query.where(contactPhonesTable.number.regexp('.*${_escapeRegExp(number)}', caseSensitive: false));
+    query.orderBy(contactsTable.sourcePriorityOrder());
+    query.limit(1);
+
+    return query.watch().map((data) => _gatherMultipleContacts(data).firstOrNull);
+  }
+
+  Future<List<FullContactData>> getAllContacts(
+    ContactSourceTypeEnum? sourceType, {
+    ContactKindTypeEnum kind = ContactKindTypeEnum.visible,
+  }) async {
+    final query = _joinFullData(_selectAllContacts(sourceType: sourceType, kind: kind));
+    final rows = await query.get();
+    return _gatherMultipleContacts(rows);
+  }
+
+  Stream<List<FullContactData>> watchAllContacts([
+    Iterable<String>? searchBits,
+    ContactSourceTypeEnum? sourceType,
+    ContactKindTypeEnum kind = ContactKindTypeEnum.visible,
+  ]) {
+    final query = _joinFullData(_selectAllContacts(sourceType: sourceType, kind: kind));
+
+    if (searchBits != null) {
+      query.where(
+        searchBits
+            .map((searchBit) {
+              return [
+                contactsTable.lastName,
+                contactsTable.firstName,
+                contactsTable.aliasName,
+                contactPhonesTable.number,
+                contactEmailsTable.address,
+              ].map((c) => c.regexp('.*${_escapeRegExp(searchBit)}.*', caseSensitive: false)).reduce((v, e) => v | e);
+            })
+            .reduce((v, e) => v | e),
+      );
+    }
+
+    query.orderBy([
+      OrderingTerm(
+        expression: CaseWhenExpression(
+          cases: [
+            CaseWhen(contactsTable.aliasName.isNotNull(), then: contactsTable.aliasName.trim().collate(Collate.noCase)),
+            CaseWhen(
+              contactsTable.firstName.isNotNull() & contactsTable.lastName.isNotNull(),
+              then:
+                  contactsTable.firstName.trim().collate(Collate.noCase) +
+                  const Constant(' ') +
+                  contactsTable.lastName.trim().collate(Collate.noCase),
+            ),
+            CaseWhen(contactsTable.firstName.isNotNull(), then: contactsTable.firstName.trim().collate(Collate.noCase)),
+            CaseWhen(contactsTable.lastName.isNotNull(), then: contactsTable.lastName.trim().collate(Collate.noCase)),
+          ],
+          orElse: contactPhonesTable.number,
+        ),
+      ),
+    ]);
+
+    return query.watch().map(_gatherMultipleContacts);
+  }
+
+  Future<List<FullContactData>> getServiceContacts() async {
+    return getAllContacts(null, kind: ContactKindTypeEnum.service);
+  }
+
+  Future<Set<String>> getContactsSourceIds(ContactSourceTypeEnum sourceType, {ContactKindTypeEnum? kind}) async {
+    final query = selectOnly(contactsTable);
+    query.addColumns([contactsTable.id, contactsTable.sourceId, contactsTable.sourceType]);
+    query.where(contactsTable.sourceType.equals(sourceType.index));
+    if (kind != null) {
+      query.where(contactsTable.kind.equals(kind.index));
+    }
+
+    final rows = await query.get();
+    return rows.map((row) => row.read(contactsTable.sourceId)).nonNulls.toSet();
+  }
+
+  Future<ContactData> insertOnUniqueConflictUpdateContact(Insertable<ContactData> contact) {
+    return into(contactsTable).insertReturning(
+      contact,
+      onConflict: DoUpdate((old) => contact, target: [contactsTable.sourceType, contactsTable.sourceId]),
+    );
+  }
+
+  Future<int> deleteContact(Insertable<ContactData> contact) => delete(contactsTable).delete(contact);
+
+  Future<int> deleteContactBySource(ContactSourceTypeEnum sourceType, String? sourceId) {
+    final query = delete(contactsTable)
+      ..where((t) => t.sourceType.equalsValue(sourceType))
+      ..where((t) => sourceId != null ? t.sourceId.equals(sourceId) : t.sourceId.isNull());
+
+    return query.go();
+  }
+
+  Future<int> deleteContactsWithNullSourceId(ContactSourceTypeEnum sourceType) {
+    return (delete(contactsTable)
+          ..where((t) => t.sourceType.equals(sourceType.index))
+          ..where((t) => t.sourceId.isNull()))
+        .go();
+  }
+
+  Future<void> deleteContactsBySourceList(ContactSourceTypeEnum sourceType, Iterable<String> sourceIds) async {
+    if (sourceIds.isEmpty) return;
+
+    await (delete(contactsTable)
+          ..where((t) => t.sourceType.equalsValue(sourceType))
+          ..where((t) => t.sourceId.isIn(sourceIds)))
+        .go();
+  }
+}
+
+final _regExpMetaChars = RegExp(r'[\\^$.|?*+()[\]{}]');
+
+/// Escapes regular-expression metacharacters so a raw, user-typed search string
+/// can be safely interpolated into the pattern passed to the SQL `REGEXP`
+/// operator (backed by Dart's [RegExp]). Without this, characters such as
+/// `( [ * +` would produce an invalid pattern and break the contacts search.
+String _escapeRegExp(String input) => input.replaceAllMapped(_regExpMetaChars, (match) => '\\${match[0]}');

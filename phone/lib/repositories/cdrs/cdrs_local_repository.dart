@@ -1,0 +1,158 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
+import 'dart:async';
+
+import 'package:app_database/app_database.dart';
+
+import 'package:webtrit_phone/mappers/mappers.dart';
+import 'package:webtrit_phone/models/models.dart';
+
+abstract class CdrsLocalRepository {
+  /// Fetches the history of Call Detail Records (CDRs) from the local database.
+  ///
+  /// [number] - Optional parameter to filter records by phone number.
+  /// [status] - Optional parameter to filter records by call status.
+  /// [direction] - Optional parameter to filter records by call direction.
+  /// [from] - Optional parameter to filter records `from` this date.
+  /// [to] - Optional parameter to filter records `to` this date.
+  /// [limit] - Optional parameter to limit the number of records returned.
+  Future<List<CdrRecord>> getHistory({
+    String? number,
+    String? destination,
+    CdrStatus? status,
+    CallDirection? direction,
+    DateTime? from,
+    DateTime? to,
+    int? limit,
+  });
+
+  /// Inserts or updates a list of Call Detail Records (CDRs) in the local database.
+  /// [cdrs] - List of CDRs to be upserted.
+  /// Returns a Future that completes when the operation is done.
+  Future<void> upsertCdrs(List<CdrRecord> cdrs, {bool silent = false});
+
+  /// Stream of events related to Call Detail Records (CDRs).
+  /// Emits events when CDRs are upserted.
+  Stream<CdrRecordsEvent> get events;
+
+  /// Retrieves the timestamp of the last update made to the Call Detail Records (CDRs).
+  Future<DateTime?> getLastUpdate();
+
+  /// Retrieves the timestamp of the first record in the Call Detail Records (CDRs).
+  Future<DateTime?> getFirstRecordTime();
+
+  /// Time of the last successfully completed remote sync cycle, or null if the
+  /// initial sync has never finished. Its presence distinguishes "synced,
+  /// genuinely empty" from "never synced yet" (still loading).
+  Future<DateTime?> getLastSyncTime();
+
+  /// Marks a remote sync cycle as completed. Emits [CdrsInitialSyncCompleted]
+  /// on [events] when it is the first completed cycle ever recorded.
+  Future<void> markSyncCompleted(DateTime time);
+
+  /// Reports a failed sync cycle. Emits [CdrsInitialSyncFailed] on [events]
+  /// when the initial sync has never completed yet (no-op afterwards);
+  /// persists nothing.
+  Future<void> notifyInitialSyncFailed();
+
+  /// Wipes all Call Detail Records (CDRs) data from the local database.
+  Future<void> wipeData();
+}
+
+class CdrsLocalRepositoryDriftImpl with CdrDriftMapper implements CdrsLocalRepository {
+  CdrsLocalRepositoryDriftImpl(this._appDatabase);
+
+  final AppDatabase _appDatabase;
+  late final _dao = _appDatabase.cdrsDao;
+
+  final StreamController<CdrRecordsEvent> _eventBus = StreamController.broadcast();
+
+  @override
+  Future<void> upsertCdrs(List<CdrRecord> cdrs, {bool silent = false}) async {
+    final driftCdrs = cdrs.map(cdrToDrift).toList();
+    await _dao.upsertCdrs(driftCdrs);
+    if (silent) return;
+    cdrs.forEach((cdr) => _eventBus.add(CdrRecordUpserted(cdr)));
+  }
+
+  @override
+  Future<List<CdrRecord>> getHistory({
+    String? number,
+    String? destination,
+    CdrStatus? status,
+    CallDirection? direction,
+    DateTime? from,
+    DateTime? to,
+    int? limit,
+  }) async {
+    final driftCdrs = await _dao.getHistory(
+      number: number,
+      destination: destination,
+      from: from,
+      to: to,
+      limit: limit,
+      status: status != null ? CdrStatusData.values.byName(status.name) : null,
+      direction: direction != null ? CallDirectionData.values.byName(direction.name) : null,
+    );
+    return driftCdrs.map(cdrFromDrift).toList();
+  }
+
+  @override
+  Future<DateTime?> getLastUpdate() async {
+    return await _dao.getLastUpdate();
+  }
+
+  @override
+  Future<DateTime?> getFirstRecordTime() async {
+    return await _dao.getFirstRecordTime();
+  }
+
+  @override
+  Future<DateTime?> getLastSyncTime() async {
+    return await _dao.getSyncCursor();
+  }
+
+  @override
+  Future<void> markSyncCompleted(DateTime time) async {
+    final previous = await _dao.getSyncCursor();
+    await _dao.setSyncCursor(time);
+    if (previous == null) _eventBus.add(CdrsInitialSyncCompleted());
+  }
+
+  @override
+  Future<void> notifyInitialSyncFailed() async {
+    final cursor = await _dao.getSyncCursor();
+    if (cursor == null) _eventBus.add(CdrsInitialSyncFailed());
+  }
+
+  @override
+  Stream<CdrRecordsEvent> get events => _eventBus.stream;
+
+  @override
+  Future<void> wipeData() async {
+    await _dao.wipeData();
+    _eventBus.add(CdrRecordsWiped());
+  }
+}
+
+class CdrRecordsEvent {}
+
+class CdrRecordUpserted extends CdrRecordsEvent {
+  CdrRecordUpserted(this.cdr);
+
+  final CdrRecord cdr;
+}
+
+/// All locally stored records were deleted (e.g. the call history cache was
+/// cleared); listeners holding records in memory should drop them.
+class CdrRecordsWiped extends CdrRecordsEvent {}
+
+/// Emitted once, when the very first remote sync cycle completes (the sync
+/// cursor transitions from absent to present) - even if it fetched no records.
+class CdrsInitialSyncCompleted extends CdrRecordsEvent {}
+
+/// Emitted when a sync cycle fails (error or offline) while the initial sync
+/// has never completed yet. Nothing is persisted: consumers may resolve their
+/// loading state to empty, and a later successful cycle still emits
+/// [CdrsInitialSyncCompleted] as usual.
+class CdrsInitialSyncFailed extends CdrRecordsEvent {}

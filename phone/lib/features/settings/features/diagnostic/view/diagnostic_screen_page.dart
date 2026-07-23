@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+
+import 'package:webtrit_phone/data/data.dart';
+import 'package:webtrit_phone/features/features.dart';
+import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/utils/ice_checker.dart';
+
+import '../models/models.dart';
+import 'diagnostic_screen.dart';
+
+@RoutePage()
+class DiagnosticScreenPage extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
+  const DiagnosticScreenPage();
+
+  @override
+  Widget build(BuildContext context) {
+    final pushTokensBloc = context.read<PushTokensBloc>();
+    final featureAccess = context.read<FeatureAccess>();
+    final appPermissions = context.read<AppPermissions>();
+    final deviceInfo = context.read<DeviceInfo>();
+
+    final contactTab = featureAccess.bottomMenuConfig.getTabEnabled<ContactsBottomMenuTab>();
+
+    final screenContext = DiagnosticScreenContext(
+      isLocalContactsFeatureEnabled: contactTab?.contactSourceTypes.contains(ContactSourceType.local) ?? false,
+    );
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<DiagnosticCubit>(
+          create: (context) =>
+              DiagnosticCubit(pushTokensBloc: pushTokensBloc, appPermissions: appPermissions, deviceInfo: deviceInfo),
+        ),
+        BlocProvider<NetworkTesterCubit>(
+          create: (context) => NetworkTesterCubit(iceChecker: IceCheckerFlutterWebrtcImpl()),
+        ),
+      ],
+      child: Provider<DiagnosticScreenContext>(create: (context) => screenContext, child: const DiagnosticScreen()),
+    );
+  }
+}

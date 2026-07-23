@@ -1,0 +1,28 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      # NOTE: `formatter.exclude` in analysis_options.yaml is NOT supported by the current
+      # Dart version (unsupported_option warning). Shell-level filtering is used instead
+      # to exclude generated files (*.g.dart, *.freezed.dart, *.gr.dart) from format checks.
+      run: |
+        files=$(echo {staged_files} | tr ' ' '\n' | grep -vE '\.(g|freezed|gr)\.dart$')
+        if [ -n "$files" ]; then
+          dart format --output=none --set-exit-if-changed $files
+        fi
+
+commit-msg:
+  commands:
+    commit-msg-check:
+      run: bash tool/scripts/commit-msg-check.sh {1}
+
+pre-push:
+  parallel: false
+  commands:
+    branch-name-check:
+      run: bash tool/scripts/branch-name-check.sh
+    analyze:
+      run: flutter analyze
+    test:
+      run: flutter test

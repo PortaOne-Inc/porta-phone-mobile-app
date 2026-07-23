@@ -1,0 +1,85 @@
+import 'package:equatable/equatable.dart';
+
+import '../call/call_trigger_config.dart';
+import 'call_pull_video_strategy.dart';
+import '../peer_connection_settings.dart';
+import 'encoding_config.dart';
+
+/// Configuration for call-related features, including encoding,
+/// transfer capabilities, and PeerConnection settings.
+class CallConfig extends Equatable {
+  const CallConfig({
+    required this.capabilities,
+    required this.encoding,
+    required this.peerConnection,
+    required this.triggerConfig,
+  });
+
+  final CallCapabilitiesConfig capabilities;
+  final EncodingConfig encoding;
+  final PeerConnectionSettings peerConnection;
+
+  /// Configuration for how incoming calls are triggered.
+  final CallTriggerConfig triggerConfig;
+
+  @override
+  List<Object?> get props => [capabilities, encoding, peerConnection, triggerConfig];
+}
+
+/// UI-level configuration for call features.
+///
+/// Controls visibility of call-related UI elements (e.g., video toggle, transfer buttons).
+/// Does **not** enforce restrictions at signaling or SDP level.
+///
+/// Note: Incoming video calls or feature negotiation (e.g., via SDP) are not affected.
+/// To apply restrictions on protocol level, integrate with `SDPMunger` or similar logic.
+class CallCapabilitiesConfig extends Equatable {
+  const CallCapabilitiesConfig({
+    this.isVideoCallEnabled = true,
+    this.isAudioToVideoSwitchEnabled = true,
+    this.isBlindTransferEnabled = true,
+    this.isAttendedTransferEnabled = true,
+    this.callPullVideoStrategy = CallPullVideoStrategy.softMute,
+    this.isPeerMessageEnabled = false,
+  });
+
+  /// Whether the UI should show video call functionality.
+  ///
+  /// If `true`, video call features and related UI elements are enabled and visible.
+  final bool isVideoCallEnabled;
+
+  /// Whether the user can switch from an audio call to a video call during an active call.
+  ///
+  /// If `true`, the UI allows transitioning from audio to video.
+  final bool isAudioToVideoSwitchEnabled;
+
+  /// Whether blind transfer is available in the UI.
+  ///
+  /// If `true`, the user can transfer the call to another number without speaking to the recipient beforehand.
+  final bool isBlindTransferEnabled;
+
+  /// Whether attended transfer is available in the UI.
+  ///
+  /// If `true`, the user can talk to the recipient before transferring the call.
+  final bool isAttendedTransferEnabled;
+
+  /// How the pull of a video call is handled (soft-mute by default).
+  final CallPullVideoStrategy callPullVideoStrategy;
+
+  /// Whether the remote core supports the `peer_message` app-to-app side channel.
+  ///
+  /// Gated by the core version: an older core rejects an unknown `peer_message`
+  /// request by tearing down the whole signaling socket (code 4600), so the
+  /// in-call media_state signal must only be sent when this is `true`.
+  final bool isPeerMessageEnabled;
+
+  @override
+  List<Object?> get props => [
+    isVideoCallEnabled,
+    isAudioToVideoSwitchEnabled,
+    isBlindTransferEnabled,
+    isAttendedTransferEnabled,
+    callPullVideoStrategy,
+    isPeerMessageEnabled,
+  ];
+}

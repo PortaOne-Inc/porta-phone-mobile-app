@@ -1,0 +1,311 @@
+{
+  "supported": [
+    {
+      "type": "themeMode",
+      "mode": "system"
+    },
+    {
+      "type": "loggingConfig",
+      "checkIntervalSec": 15
+    },
+    {
+      "type": "hybridPresence"
+    },
+    {
+      "type": "callPull",
+      "__videoStrategy": "How Call Pull handles a video call. Must match a 'CallPullVideoStrategy' enum name: 'softMute' (no backend, default; recvonly video, camera off), 'hideVideo' (excludes video dialogs from the pull list, needs backend has_video), or 'mirror' (pulls a video dialog as a video call with the camera on, needs backend has_video). If omitted or invalid, defaults to 'softMute'.",
+      "videoStrategy": "softMute"
+    }
+  ],
+  "loginConfig": {
+    "signinOrder": ["passwordSignin", "otpSignin", "signup"],
+    "qr": { "enabled": false, "formats": [{ "type": "uri", "schemes": ["csc"] }, { "type": "json" }], "expectedHost": null },
+    "common": {
+      "fullScreenLaunchEmbeddedResourceId": null
+    },
+    "modeSelect": {
+      "greetingL10n": "WebTrit",
+      "actions": [
+        {
+          "enabled": true,
+          "type": "login",
+          "titleL10n": "login_Button_signUpToDemoInstance"
+        },
+        {
+          "enabled": false,
+          "type": "embedded",
+          "embeddedId": "example_embedded_login",
+          "titleL10n": "login_Button_signUpToDemoInstance"
+        },
+        {
+          "enabled": false,
+          "type": "embedded",
+          "embeddedId": "example_embedded_media_query",
+          "titleL10n": "login_Button_signInMediaQueryExample"
+        }
+      ]
+    }
+  },
+  "mainConfig": {
+    "bottomMenu": {
+      "cacheSelectedTab": true,
+      "tabs": [
+        {
+          "enabled": true,
+          "initial": false,
+          "type": "favorites",
+          "titleL10n": "main_BottomNavigationBarItemLabel_favorites",
+          "icon": "0xe5fd"
+        },
+        {
+          "enabled": true,
+          "initial": false,
+          "type": "recents",
+          "titleL10n": "main_BottomNavigationBarItemLabel_recents",
+          "icon": "0xe03a",
+          "supportsCallHistory": true
+        },
+        {
+          "enabled": true,
+          "initial": false,
+          "type": "contacts",
+          "titleL10n": "main_BottomNavigationBarItemLabel_contacts",
+          "icon": "0xee35",
+          "contactSourceTypes": [
+            "local",
+            "external"
+          ]
+        },
+        {
+          "enabled": true,
+          "initial": true,
+          "type": "keypad",
+          "titleL10n": "main_BottomNavigationBarItemLabel_keypad",
+          "icon": "0xe1ce"
+        },
+        {
+          "enabled": true,
+          "initial": false,
+          "type": "messaging",
+          "titleL10n": "main_BottomNavigationBarItemLabel_chats",
+          "icon": "0xe155"
+        },
+        {
+          "enabled": false,
+          "initial": false,
+          "type": "embedded",
+          "titleL10n": "main_BottomNavigationBarItemLabel_embedded",
+          "icon": "0xe2ce",
+          "embeddedResourceId": "example_embedded_payload_data"
+        },
+        {
+          "enabled": false,
+          "initial": false,
+          "type": "embedded",
+          "titleL10n": "main_BottomNavigationBarItemLabel_embedded_spa_example",
+          "icon": "0xe2ce",
+          "embeddedResourceId": "example_embedded_spa"
+        }
+      ]
+    },
+    "systemNotificationsEnabled": true
+  },
+  "settingsConfig": {
+    "sections": [
+      {
+        "titleL10n": "settings_ListViewTileTitle_features",
+        "enabled": true,
+        "items": [
+          {
+            "enabled": true,
+            "type": "voicemail",
+            "titleL10n": "settings_ListViewTileTitle_voicemail",
+            "icon": "0xe6c1"
+          }
+        ]
+      },
+      {
+        "titleL10n": "settings_ListViewTileTitle_settings",
+        "enabled": true,
+        "items": [
+          {
+            "enabled": true,
+            "type": "presence",
+            "titleL10n": "settings_ListViewTileTitle_presence",
+            "icon": "0xf4c8"
+          },
+          {
+            "enabled": true,
+            "type": "network",
+            "titleL10n": "settings_ListViewTileTitle_network",
+            "icon": "0xe424"
+          },
+          {
+            "enabled": true,
+            "type": "mediaSettings",
+            "titleL10n": "settings_ListViewTileTitle_mediaSettings",
+            "icon": "0xf1cf"
+          },
+          {
+            "enabled": true,
+            "type": "callerId",
+            "titleL10n": "settings_ListViewTileTitle_callerId",
+            "icon": "0xf26e"
+          },
+          {
+            "enabled": true,
+            "type": "language",
+            "titleL10n": "settings_ListViewTileTitle_language",
+            "icon": "0xe366"
+          },
+          {
+            "enabled": true,
+            "type": "themeMode",
+            "titleL10n": "settings_ListViewTileTitle_themeMode",
+            "icon": "0xe518"
+          },
+          {
+            "enabled": false,
+            "type": "help",
+            "titleL10n": "settings_ListViewTileTitle_help",
+            "icon": "0xe30b"
+          },
+          {
+            "enabled": true,
+            "type": "terms",
+            "titleL10n": "settings_ListViewTileTitle_termsConditions",
+            "icon": "0xeedf",
+            "embeddedResourceId": "privacy-policy-for-webtrit-app"
+          },
+          {
+            "enabled": true,
+            "type": "about",
+            "titleL10n": "settings_ListViewTileTitle_about",
+            "icon": "0xe140"
+          }
+        ]
+      },
+      {
+        "titleL10n": "settings_ListViewTileTitle_toolbox",
+        "enabled": true,
+        "items": [
+          {
+            "enabled": true,
+            "titleL10n": "settings_ListViewTileTitle_logRecordsConsole",
+            "icon": "0xee79",
+            "type": "log"
+          },
+          {
+            "enabled": true,
+            "type": "cacheManagement",
+            "titleL10n": "settings_ListViewTileTitle_cacheManagement",
+            "icon": "0xe609"
+          },
+          {
+            "enabled": true,
+            "titleL10n": "settings_ListViewTileTitle_accountDelete",
+            "icon": "0xe1bb",
+            "type": "deleteAccount"
+          },
+          {
+            "enabled": false,
+            "titleL10n": "settings_ListViewTileTitle_embedded1",
+            "icon": "0xe3a2",
+            "type": "embedded",
+            "embeddedResourceId": "example_embedded_registration"
+          },
+          {
+            "enabled": false,
+            "titleL10n": "settings_ListViewTileTitle_embedded2",
+            "icon": "0xe3a2",
+            "type": "embedded",
+            "embeddedResourceId": "example_embedded_statistics"
+          }
+        ]
+      },
+      {
+        "titleL10n": "settings_ListViewTileTitle_embedded_section1",
+        "enabled": false,
+        "items": [
+          {
+            "enabled": true,
+            "titleL10n": "settings_ListViewTileTitle_embedded3",
+            "icon": "0xe3a2",
+            "type": "embedded",
+            "embeddedResourceId": "example_embedded_rating"
+          }
+        ]
+      }
+    ]
+  },
+  "callConfig": {
+    "videoEnabled": true,
+    "transfer": {
+      "enableBlindTransfer": true,
+      "enableAttendedTransfer": true
+    },
+    "encoding": {
+      "bypassConfig": false,
+      "__defaultPresetOverride": {
+        "audioBitrate": 56,
+        "videoBitrate": 512,
+        "ptime": 20,
+        "maxptime": 80,
+        "opusSamplingRate": 24000,
+        "opusBitrate": 16,
+        "opusStereo": false,
+        "opusDtx": true,
+        "removeStaticAudioRtpMaps": false,
+        "remapTE8payloadTo101": false,
+        "removeREMBFeedback": false,
+        "removeTWCCFeedback": false
+      }
+    },
+    "peerConnection": {
+      "negotiation": {
+        "includeInactiveVideoInOfferAnswer": false
+      }
+    }
+  },
+  "contacts": {
+    "_list": {},
+    "__list": "Not implemented yet. Configuration for the Contacts List screen.",
+    "_details": {
+      "__details": "Configuration for the Contact Details screen, determining layout and available interactions.",
+      "actions": {
+        "__actions": "Defines the set of interactive actions (buttons or icons) available across different sections of the screen. Strings must match the 'ContactAction' enum names (e.g., 'chat', 'voiceCall', 'videoCall'). Invalid strings are ignored.",
+        "appBar": [
+          "chat"
+        ],
+        "__appBar": "Actions displayed in the top application bar (header). If omitted or null, defaults to ['chat']. Common value: 'chat'.",
+        "phoneTile": [
+          "voiceCall",
+          "videoCall",
+          "sms",
+          "transfer",
+          "callLog",
+          "favorite"
+        ],
+        "__phoneTile": "Actions available specifically on phone number items (e.g., swipe actions or inline buttons). If omitted, defaults to all available actions except 'chat'.",
+        "emailTile": [
+          "sendEmail"
+        ],
+        "__emailTile": "Actions available on email address items. If omitted, defaults to ['sendEmail']."
+      }
+    }
+  },
+  "messaging": {
+    "sms": {},
+    "chats": {
+      "groupChatButtonEnabled": true,
+      "contactInfo": {
+        "showVideoButtonAction": true
+      }
+    }
+  },
+  "localization": {
+    "__enabledLanguages": "Allowlist of language codes (ISO 639-1) exposed by the app. Intersected with the languages the app bundles, so only ones present in both are selectable and used for auto-resolution. Defaults to every bundled language; remove entries to restrict a build (e.g. keep only [\"en\"] to ship English). An empty list also means no restriction (all bundled languages).",
+    "enabledLanguages": ["en", "it", "th", "uk"]
+  }
+}
+

@@ -1,0 +1,4374 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'theme_page_config.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$ThemePageConfig {
+
+ LoginPageConfig get login; AboutPageConfig get about; CallPageConfig get dialing; KeypadPageConfig get keypad; SettingsPageConfig get settings; ContactsPageConfig get contacts; EmbeddedPageConfig get embedded; FavoritesPageConfig get favorites; ConversationsPageConfig get conversations; RecentsPageConfig get recents;
+/// Create a copy of ThemePageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ThemePageConfigCopyWith<ThemePageConfig> get copyWith => _$ThemePageConfigCopyWithImpl<ThemePageConfig>(this as ThemePageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ThemePageConfig&&(identical(other.login, login) || other.login == login)&&(identical(other.about, about) || other.about == about)&&(identical(other.dialing, dialing) || other.dialing == dialing)&&(identical(other.keypad, keypad) || other.keypad == keypad)&&(identical(other.settings, settings) || other.settings == settings)&&(identical(other.contacts, contacts) || other.contacts == contacts)&&(identical(other.embedded, embedded) || other.embedded == embedded)&&(identical(other.favorites, favorites) || other.favorites == favorites)&&(identical(other.conversations, conversations) || other.conversations == conversations)&&(identical(other.recents, recents) || other.recents == recents));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,login,about,dialing,keypad,settings,contacts,embedded,favorites,conversations,recents);
+
+@override
+String toString() {
+  return 'ThemePageConfig(login: $login, about: $about, dialing: $dialing, keypad: $keypad, settings: $settings, contacts: $contacts, embedded: $embedded, favorites: $favorites, conversations: $conversations, recents: $recents)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ThemePageConfigCopyWith<$Res>  {
+  factory $ThemePageConfigCopyWith(ThemePageConfig value, $Res Function(ThemePageConfig) _then) = _$ThemePageConfigCopyWithImpl;
+@useResult
+$Res call({
+ LoginPageConfig login, AboutPageConfig about, CallPageConfig dialing, KeypadPageConfig keypad, SettingsPageConfig settings, ContactsPageConfig contacts, EmbeddedPageConfig embedded, FavoritesPageConfig favorites, ConversationsPageConfig conversations, RecentsPageConfig recents
+});
+
+
+
+
+}
+/// @nodoc
+class _$ThemePageConfigCopyWithImpl<$Res>
+    implements $ThemePageConfigCopyWith<$Res> {
+  _$ThemePageConfigCopyWithImpl(this._self, this._then);
+
+  final ThemePageConfig _self;
+  final $Res Function(ThemePageConfig) _then;
+
+/// Create a copy of ThemePageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? login = null,Object? about = null,Object? dialing = null,Object? keypad = null,Object? settings = null,Object? contacts = null,Object? embedded = null,Object? favorites = null,Object? conversations = null,Object? recents = null,}) {
+  return _then(ThemePageConfig(
+login: null == login ? _self.login : login // ignore: cast_nullable_to_non_nullable
+as LoginPageConfig,about: null == about ? _self.about : about // ignore: cast_nullable_to_non_nullable
+as AboutPageConfig,dialing: null == dialing ? _self.dialing : dialing // ignore: cast_nullable_to_non_nullable
+as CallPageConfig,keypad: null == keypad ? _self.keypad : keypad // ignore: cast_nullable_to_non_nullable
+as KeypadPageConfig,settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
+as SettingsPageConfig,contacts: null == contacts ? _self.contacts : contacts // ignore: cast_nullable_to_non_nullable
+as ContactsPageConfig,embedded: null == embedded ? _self.embedded : embedded // ignore: cast_nullable_to_non_nullable
+as EmbeddedPageConfig,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
+as FavoritesPageConfig,conversations: null == conversations ? _self.conversations : conversations // ignore: cast_nullable_to_non_nullable
+as ConversationsPageConfig,recents: null == recents ? _self.recents : recents // ignore: cast_nullable_to_non_nullable
+as RecentsPageConfig,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ThemePageConfig].
+extension ThemePageConfigPatterns on ThemePageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$ThemeOverrideConfig {
+
+ ThemeModeConfig get mode; bool get applyToAppBar;
+/// Create a copy of ThemeOverrideConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ThemeOverrideConfigCopyWith<ThemeOverrideConfig> get copyWith => _$ThemeOverrideConfigCopyWithImpl<ThemeOverrideConfig>(this as ThemeOverrideConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ThemeOverrideConfig&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.applyToAppBar, applyToAppBar) || other.applyToAppBar == applyToAppBar));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,mode,applyToAppBar);
+
+@override
+String toString() {
+  return 'ThemeOverrideConfig(mode: $mode, applyToAppBar: $applyToAppBar)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ThemeOverrideConfigCopyWith<$Res>  {
+  factory $ThemeOverrideConfigCopyWith(ThemeOverrideConfig value, $Res Function(ThemeOverrideConfig) _then) = _$ThemeOverrideConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeModeConfig mode, bool applyToAppBar
+});
+
+
+
+
+}
+/// @nodoc
+class _$ThemeOverrideConfigCopyWithImpl<$Res>
+    implements $ThemeOverrideConfigCopyWith<$Res> {
+  _$ThemeOverrideConfigCopyWithImpl(this._self, this._then);
+
+  final ThemeOverrideConfig _self;
+  final $Res Function(ThemeOverrideConfig) _then;
+
+/// Create a copy of ThemeOverrideConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mode = null,Object? applyToAppBar = null,}) {
+  return _then(ThemeOverrideConfig(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as ThemeModeConfig,applyToAppBar: null == applyToAppBar ? _self.applyToAppBar : applyToAppBar // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ThemeOverrideConfig].
+extension ThemeOverrideConfigPatterns on ThemeOverrideConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginPageConfig {
+
+ LoginModeSelectPageConfig get modeSelect; LoginSwitchPageConfig get switchPage; LoginOtpSigninPageConfig get otpSignin; LoginPasswordSigninPageConfig get passwordSignin; LoginOtpSigninVerifyScreenPageConfig get otpSigninVerify; LoginSignupVerifyScreenPageConfig get signupVerify;
+/// Create a copy of LoginPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginPageConfigCopyWith<LoginPageConfig> get copyWith => _$LoginPageConfigCopyWithImpl<LoginPageConfig>(this as LoginPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginPageConfig&&(identical(other.modeSelect, modeSelect) || other.modeSelect == modeSelect)&&(identical(other.switchPage, switchPage) || other.switchPage == switchPage)&&(identical(other.otpSignin, otpSignin) || other.otpSignin == otpSignin)&&(identical(other.passwordSignin, passwordSignin) || other.passwordSignin == passwordSignin)&&(identical(other.otpSigninVerify, otpSigninVerify) || other.otpSigninVerify == otpSigninVerify)&&(identical(other.signupVerify, signupVerify) || other.signupVerify == signupVerify));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,modeSelect,switchPage,otpSignin,passwordSignin,otpSigninVerify,signupVerify);
+
+@override
+String toString() {
+  return 'LoginPageConfig(modeSelect: $modeSelect, switchPage: $switchPage, otpSignin: $otpSignin, passwordSignin: $passwordSignin, otpSigninVerify: $otpSigninVerify, signupVerify: $signupVerify)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginPageConfigCopyWith<$Res>  {
+  factory $LoginPageConfigCopyWith(LoginPageConfig value, $Res Function(LoginPageConfig) _then) = _$LoginPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ LoginModeSelectPageConfig modeSelect, LoginSwitchPageConfig switchPage, LoginOtpSigninPageConfig otpSignin, LoginPasswordSigninPageConfig passwordSignin, LoginOtpSigninVerifyScreenPageConfig otpSigninVerify, LoginSignupVerifyScreenPageConfig signupVerify
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginPageConfigCopyWithImpl<$Res>
+    implements $LoginPageConfigCopyWith<$Res> {
+  _$LoginPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginPageConfig _self;
+  final $Res Function(LoginPageConfig) _then;
+
+/// Create a copy of LoginPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? modeSelect = null,Object? switchPage = null,Object? otpSignin = null,Object? passwordSignin = null,Object? otpSigninVerify = null,Object? signupVerify = null,}) {
+  return _then(LoginPageConfig(
+modeSelect: null == modeSelect ? _self.modeSelect : modeSelect // ignore: cast_nullable_to_non_nullable
+as LoginModeSelectPageConfig,switchPage: null == switchPage ? _self.switchPage : switchPage // ignore: cast_nullable_to_non_nullable
+as LoginSwitchPageConfig,otpSignin: null == otpSignin ? _self.otpSignin : otpSignin // ignore: cast_nullable_to_non_nullable
+as LoginOtpSigninPageConfig,passwordSignin: null == passwordSignin ? _self.passwordSignin : passwordSignin // ignore: cast_nullable_to_non_nullable
+as LoginPasswordSigninPageConfig,otpSigninVerify: null == otpSigninVerify ? _self.otpSigninVerify : otpSigninVerify // ignore: cast_nullable_to_non_nullable
+as LoginOtpSigninVerifyScreenPageConfig,signupVerify: null == signupVerify ? _self.signupVerify : signupVerify // ignore: cast_nullable_to_non_nullable
+as LoginSignupVerifyScreenPageConfig,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginPageConfig].
+extension LoginPageConfigPatterns on LoginPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginOtpSigninPageConfig {
+
+ TextFieldConfig? get refTextField;
+/// Create a copy of LoginOtpSigninPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginOtpSigninPageConfigCopyWith<LoginOtpSigninPageConfig> get copyWith => _$LoginOtpSigninPageConfigCopyWithImpl<LoginOtpSigninPageConfig>(this as LoginOtpSigninPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginOtpSigninPageConfig&&(identical(other.refTextField, refTextField) || other.refTextField == refTextField));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,refTextField);
+
+@override
+String toString() {
+  return 'LoginOtpSigninPageConfig(refTextField: $refTextField)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginOtpSigninPageConfigCopyWith<$Res>  {
+  factory $LoginOtpSigninPageConfigCopyWith(LoginOtpSigninPageConfig value, $Res Function(LoginOtpSigninPageConfig) _then) = _$LoginOtpSigninPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ TextFieldConfig? refTextField
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginOtpSigninPageConfigCopyWithImpl<$Res>
+    implements $LoginOtpSigninPageConfigCopyWith<$Res> {
+  _$LoginOtpSigninPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginOtpSigninPageConfig _self;
+  final $Res Function(LoginOtpSigninPageConfig) _then;
+
+/// Create a copy of LoginOtpSigninPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? refTextField = freezed,}) {
+  return _then(LoginOtpSigninPageConfig(
+refTextField: freezed == refTextField ? _self.refTextField : refTextField // ignore: cast_nullable_to_non_nullable
+as TextFieldConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginOtpSigninPageConfig].
+extension LoginOtpSigninPageConfigPatterns on LoginOtpSigninPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginPasswordSigninPageConfig {
+
+ TextFieldConfig? get refTextField; TextFieldConfig? get passwordTextField;
+/// Create a copy of LoginPasswordSigninPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginPasswordSigninPageConfigCopyWith<LoginPasswordSigninPageConfig> get copyWith => _$LoginPasswordSigninPageConfigCopyWithImpl<LoginPasswordSigninPageConfig>(this as LoginPasswordSigninPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginPasswordSigninPageConfig&&(identical(other.refTextField, refTextField) || other.refTextField == refTextField)&&(identical(other.passwordTextField, passwordTextField) || other.passwordTextField == passwordTextField));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,refTextField,passwordTextField);
+
+@override
+String toString() {
+  return 'LoginPasswordSigninPageConfig(refTextField: $refTextField, passwordTextField: $passwordTextField)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginPasswordSigninPageConfigCopyWith<$Res>  {
+  factory $LoginPasswordSigninPageConfigCopyWith(LoginPasswordSigninPageConfig value, $Res Function(LoginPasswordSigninPageConfig) _then) = _$LoginPasswordSigninPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ TextFieldConfig? refTextField, TextFieldConfig? passwordTextField
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginPasswordSigninPageConfigCopyWithImpl<$Res>
+    implements $LoginPasswordSigninPageConfigCopyWith<$Res> {
+  _$LoginPasswordSigninPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginPasswordSigninPageConfig _self;
+  final $Res Function(LoginPasswordSigninPageConfig) _then;
+
+/// Create a copy of LoginPasswordSigninPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? refTextField = freezed,Object? passwordTextField = freezed,}) {
+  return _then(LoginPasswordSigninPageConfig(
+refTextField: freezed == refTextField ? _self.refTextField : refTextField // ignore: cast_nullable_to_non_nullable
+as TextFieldConfig?,passwordTextField: freezed == passwordTextField ? _self.passwordTextField : passwordTextField // ignore: cast_nullable_to_non_nullable
+as TextFieldConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginPasswordSigninPageConfig].
+extension LoginPasswordSigninPageConfigPatterns on LoginPasswordSigninPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginOtpSigninVerifyScreenPageConfig {
+
+ int get countdownRepeatIntervalSeconds;
+/// Create a copy of LoginOtpSigninVerifyScreenPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginOtpSigninVerifyScreenPageConfigCopyWith<LoginOtpSigninVerifyScreenPageConfig> get copyWith => _$LoginOtpSigninVerifyScreenPageConfigCopyWithImpl<LoginOtpSigninVerifyScreenPageConfig>(this as LoginOtpSigninVerifyScreenPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginOtpSigninVerifyScreenPageConfig&&(identical(other.countdownRepeatIntervalSeconds, countdownRepeatIntervalSeconds) || other.countdownRepeatIntervalSeconds == countdownRepeatIntervalSeconds));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,countdownRepeatIntervalSeconds);
+
+@override
+String toString() {
+  return 'LoginOtpSigninVerifyScreenPageConfig(countdownRepeatIntervalSeconds: $countdownRepeatIntervalSeconds)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginOtpSigninVerifyScreenPageConfigCopyWith<$Res>  {
+  factory $LoginOtpSigninVerifyScreenPageConfigCopyWith(LoginOtpSigninVerifyScreenPageConfig value, $Res Function(LoginOtpSigninVerifyScreenPageConfig) _then) = _$LoginOtpSigninVerifyScreenPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ int countdownRepeatIntervalSeconds
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginOtpSigninVerifyScreenPageConfigCopyWithImpl<$Res>
+    implements $LoginOtpSigninVerifyScreenPageConfigCopyWith<$Res> {
+  _$LoginOtpSigninVerifyScreenPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginOtpSigninVerifyScreenPageConfig _self;
+  final $Res Function(LoginOtpSigninVerifyScreenPageConfig) _then;
+
+/// Create a copy of LoginOtpSigninVerifyScreenPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? countdownRepeatIntervalSeconds = null,}) {
+  return _then(LoginOtpSigninVerifyScreenPageConfig(
+countdownRepeatIntervalSeconds: null == countdownRepeatIntervalSeconds ? _self.countdownRepeatIntervalSeconds : countdownRepeatIntervalSeconds // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginOtpSigninVerifyScreenPageConfig].
+extension LoginOtpSigninVerifyScreenPageConfigPatterns on LoginOtpSigninVerifyScreenPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginSignupVerifyScreenPageConfig {
+
+ int get countdownRepeatIntervalSeconds;
+/// Create a copy of LoginSignupVerifyScreenPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginSignupVerifyScreenPageConfigCopyWith<LoginSignupVerifyScreenPageConfig> get copyWith => _$LoginSignupVerifyScreenPageConfigCopyWithImpl<LoginSignupVerifyScreenPageConfig>(this as LoginSignupVerifyScreenPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginSignupVerifyScreenPageConfig&&(identical(other.countdownRepeatIntervalSeconds, countdownRepeatIntervalSeconds) || other.countdownRepeatIntervalSeconds == countdownRepeatIntervalSeconds));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,countdownRepeatIntervalSeconds);
+
+@override
+String toString() {
+  return 'LoginSignupVerifyScreenPageConfig(countdownRepeatIntervalSeconds: $countdownRepeatIntervalSeconds)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginSignupVerifyScreenPageConfigCopyWith<$Res>  {
+  factory $LoginSignupVerifyScreenPageConfigCopyWith(LoginSignupVerifyScreenPageConfig value, $Res Function(LoginSignupVerifyScreenPageConfig) _then) = _$LoginSignupVerifyScreenPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ int countdownRepeatIntervalSeconds
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginSignupVerifyScreenPageConfigCopyWithImpl<$Res>
+    implements $LoginSignupVerifyScreenPageConfigCopyWith<$Res> {
+  _$LoginSignupVerifyScreenPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginSignupVerifyScreenPageConfig _self;
+  final $Res Function(LoginSignupVerifyScreenPageConfig) _then;
+
+/// Create a copy of LoginSignupVerifyScreenPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? countdownRepeatIntervalSeconds = null,}) {
+  return _then(LoginSignupVerifyScreenPageConfig(
+countdownRepeatIntervalSeconds: null == countdownRepeatIntervalSeconds ? _self.countdownRepeatIntervalSeconds : countdownRepeatIntervalSeconds // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginSignupVerifyScreenPageConfig].
+extension LoginSignupVerifyScreenPageConfigPatterns on LoginSignupVerifyScreenPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginModeSelectPageConfig {
+
+ ThemeOverrideConfig get themeOverride; OverlayStyleModel? get systemUiOverlayStyle; ImageSource? get mainLogo; ElevatedButtonStyleType get buttonLoginStyleType; ElevatedButtonStyleType get buttonSignupStyleType; PageBackground? get background; TextStyleConfig? get greetingTextStyle; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of LoginModeSelectPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginModeSelectPageConfigCopyWith<LoginModeSelectPageConfig> get copyWith => _$LoginModeSelectPageConfigCopyWithImpl<LoginModeSelectPageConfig>(this as LoginModeSelectPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginModeSelectPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.systemUiOverlayStyle, systemUiOverlayStyle) || other.systemUiOverlayStyle == systemUiOverlayStyle)&&(identical(other.mainLogo, mainLogo) || other.mainLogo == mainLogo)&&(identical(other.buttonLoginStyleType, buttonLoginStyleType) || other.buttonLoginStyleType == buttonLoginStyleType)&&(identical(other.buttonSignupStyleType, buttonSignupStyleType) || other.buttonSignupStyleType == buttonSignupStyleType)&&(identical(other.background, background) || other.background == background)&&(identical(other.greetingTextStyle, greetingTextStyle) || other.greetingTextStyle == greetingTextStyle)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,systemUiOverlayStyle,mainLogo,buttonLoginStyleType,buttonSignupStyleType,background,greetingTextStyle,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'LoginModeSelectPageConfig(themeOverride: $themeOverride, systemUiOverlayStyle: $systemUiOverlayStyle, mainLogo: $mainLogo, buttonLoginStyleType: $buttonLoginStyleType, buttonSignupStyleType: $buttonSignupStyleType, background: $background, greetingTextStyle: $greetingTextStyle, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginModeSelectPageConfigCopyWith<$Res>  {
+  factory $LoginModeSelectPageConfigCopyWith(LoginModeSelectPageConfig value, $Res Function(LoginModeSelectPageConfig) _then) = _$LoginModeSelectPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, OverlayStyleModel? systemUiOverlayStyle, ImageSource? mainLogo, ElevatedButtonStyleType buttonLoginStyleType, ElevatedButtonStyleType buttonSignupStyleType, PageBackground? background, TextStyleConfig? greetingTextStyle, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginModeSelectPageConfigCopyWithImpl<$Res>
+    implements $LoginModeSelectPageConfigCopyWith<$Res> {
+  _$LoginModeSelectPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginModeSelectPageConfig _self;
+  final $Res Function(LoginModeSelectPageConfig) _then;
+
+/// Create a copy of LoginModeSelectPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? systemUiOverlayStyle = freezed,Object? mainLogo = freezed,Object? buttonLoginStyleType = null,Object? buttonSignupStyleType = null,Object? background = freezed,Object? greetingTextStyle = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(LoginModeSelectPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,systemUiOverlayStyle: freezed == systemUiOverlayStyle ? _self.systemUiOverlayStyle : systemUiOverlayStyle // ignore: cast_nullable_to_non_nullable
+as OverlayStyleModel?,mainLogo: freezed == mainLogo ? _self.mainLogo : mainLogo // ignore: cast_nullable_to_non_nullable
+as ImageSource?,buttonLoginStyleType: null == buttonLoginStyleType ? _self.buttonLoginStyleType : buttonLoginStyleType // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonStyleType,buttonSignupStyleType: null == buttonSignupStyleType ? _self.buttonSignupStyleType : buttonSignupStyleType // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonStyleType,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,greetingTextStyle: freezed == greetingTextStyle ? _self.greetingTextStyle : greetingTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginModeSelectPageConfig].
+extension LoginModeSelectPageConfigPatterns on LoginModeSelectPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$LoginSwitchPageConfig {
+
+ ThemeOverrideConfig get themeOverride; ImageSource? get mainLogo; PageBackground? get background; ButtonStyleConfig? get segmentButtonStyle; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of LoginSwitchPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoginSwitchPageConfigCopyWith<LoginSwitchPageConfig> get copyWith => _$LoginSwitchPageConfigCopyWithImpl<LoginSwitchPageConfig>(this as LoginSwitchPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginSwitchPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.mainLogo, mainLogo) || other.mainLogo == mainLogo)&&(identical(other.background, background) || other.background == background)&&(identical(other.segmentButtonStyle, segmentButtonStyle) || other.segmentButtonStyle == segmentButtonStyle)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,mainLogo,background,segmentButtonStyle,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'LoginSwitchPageConfig(themeOverride: $themeOverride, mainLogo: $mainLogo, background: $background, segmentButtonStyle: $segmentButtonStyle, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $LoginSwitchPageConfigCopyWith<$Res>  {
+  factory $LoginSwitchPageConfigCopyWith(LoginSwitchPageConfig value, $Res Function(LoginSwitchPageConfig) _then) = _$LoginSwitchPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ImageSource? mainLogo, PageBackground? background, ThemeOverrideConfig themeOverride, ButtonStyleConfig? segmentButtonStyle, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$LoginSwitchPageConfigCopyWithImpl<$Res>
+    implements $LoginSwitchPageConfigCopyWith<$Res> {
+  _$LoginSwitchPageConfigCopyWithImpl(this._self, this._then);
+
+  final LoginSwitchPageConfig _self;
+  final $Res Function(LoginSwitchPageConfig) _then;
+
+/// Create a copy of LoginSwitchPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mainLogo = freezed,Object? background = freezed,Object? themeOverride = null,Object? segmentButtonStyle = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(LoginSwitchPageConfig(
+mainLogo: freezed == mainLogo ? _self.mainLogo : mainLogo // ignore: cast_nullable_to_non_nullable
+as ImageSource?,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,segmentButtonStyle: freezed == segmentButtonStyle ? _self.segmentButtonStyle : segmentButtonStyle // ignore: cast_nullable_to_non_nullable
+as ButtonStyleConfig?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [LoginSwitchPageConfig].
+extension LoginSwitchPageConfigPatterns on LoginSwitchPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$AboutPageConfig {
+
+ ImageSource? get mainLogo; Metadata get metadata; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of AboutPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AboutPageConfigCopyWith<AboutPageConfig> get copyWith => _$AboutPageConfigCopyWithImpl<AboutPageConfig>(this as AboutPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AboutPageConfig&&(identical(other.mainLogo, mainLogo) || other.mainLogo == mainLogo)&&(identical(other.metadata, metadata) || other.metadata == metadata)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,mainLogo,metadata,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'AboutPageConfig(mainLogo: $mainLogo, metadata: $metadata, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $AboutPageConfigCopyWith<$Res>  {
+  factory $AboutPageConfigCopyWith(AboutPageConfig value, $Res Function(AboutPageConfig) _then) = _$AboutPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ImageSource? mainLogo, Metadata metadata, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$AboutPageConfigCopyWithImpl<$Res>
+    implements $AboutPageConfigCopyWith<$Res> {
+  _$AboutPageConfigCopyWithImpl(this._self, this._then);
+
+  final AboutPageConfig _self;
+  final $Res Function(AboutPageConfig) _then;
+
+/// Create a copy of AboutPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mainLogo = freezed,Object? metadata = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(AboutPageConfig(
+mainLogo: freezed == mainLogo ? _self.mainLogo : mainLogo // ignore: cast_nullable_to_non_nullable
+as ImageSource?,metadata: null == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as Metadata,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [AboutPageConfig].
+extension AboutPageConfigPatterns on AboutPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$CallPageConfig {
+
+ OverlayStyleModel? get systemUiOverlayStyle; AppBarConfig? get appBarStyle; CallPageInfoConfig? get callInfo; CallPageListConfig? get callList; CallPageHintConfig? get actingOnHint; CallPageActionsConfig? get actions; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of CallPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CallPageConfigCopyWith<CallPageConfig> get copyWith => _$CallPageConfigCopyWithImpl<CallPageConfig>(this as CallPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallPageConfig&&(identical(other.systemUiOverlayStyle, systemUiOverlayStyle) || other.systemUiOverlayStyle == systemUiOverlayStyle)&&(identical(other.appBarStyle, appBarStyle) || other.appBarStyle == appBarStyle)&&(identical(other.callInfo, callInfo) || other.callInfo == callInfo)&&(identical(other.callList, callList) || other.callList == callList)&&(identical(other.actingOnHint, actingOnHint) || other.actingOnHint == actingOnHint)&&(identical(other.actions, actions) || other.actions == actions)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,systemUiOverlayStyle,appBarStyle,callInfo,callList,actingOnHint,actions,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'CallPageConfig(systemUiOverlayStyle: $systemUiOverlayStyle, appBarStyle: $appBarStyle, callInfo: $callInfo, callList: $callList, actingOnHint: $actingOnHint, actions: $actions, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CallPageConfigCopyWith<$Res>  {
+  factory $CallPageConfigCopyWith(CallPageConfig value, $Res Function(CallPageConfig) _then) = _$CallPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ OverlayStyleModel? systemUiOverlayStyle, CallPageInfoConfig? callInfo, CallPageListConfig? callList, CallPageHintConfig? actingOnHint, CallPageActionsConfig? actions, PageBackground? background, AppBarConfig? appBarStyle, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$CallPageConfigCopyWithImpl<$Res>
+    implements $CallPageConfigCopyWith<$Res> {
+  _$CallPageConfigCopyWithImpl(this._self, this._then);
+
+  final CallPageConfig _self;
+  final $Res Function(CallPageConfig) _then;
+
+/// Create a copy of CallPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? systemUiOverlayStyle = freezed,Object? callInfo = freezed,Object? callList = freezed,Object? actingOnHint = freezed,Object? actions = freezed,Object? background = freezed,Object? appBarStyle = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(CallPageConfig(
+systemUiOverlayStyle: freezed == systemUiOverlayStyle ? _self.systemUiOverlayStyle : systemUiOverlayStyle // ignore: cast_nullable_to_non_nullable
+as OverlayStyleModel?,callInfo: freezed == callInfo ? _self.callInfo : callInfo // ignore: cast_nullable_to_non_nullable
+as CallPageInfoConfig?,callList: freezed == callList ? _self.callList : callList // ignore: cast_nullable_to_non_nullable
+as CallPageListConfig?,actingOnHint: freezed == actingOnHint ? _self.actingOnHint : actingOnHint // ignore: cast_nullable_to_non_nullable
+as CallPageHintConfig?,actions: freezed == actions ? _self.actions : actions // ignore: cast_nullable_to_non_nullable
+as CallPageActionsConfig?,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarStyle: freezed == appBarStyle ? _self.appBarStyle : appBarStyle // ignore: cast_nullable_to_non_nullable
+as AppBarConfig?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CallPageConfig].
+extension CallPageConfigPatterns on CallPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$CallPageActionsConfig {
+
+ ElevatedButtonWidgetConfig get callStart; ElevatedButtonWidgetConfig get hangup; ElevatedButtonWidgetConfig get transfer; ElevatedButtonWidgetConfig get camera; ElevatedButtonWidgetConfig get muted; ElevatedButtonWidgetConfig get speaker; ElevatedButtonWidgetConfig get held; ElevatedButtonWidgetConfig get swap; ElevatedButtonWidgetConfig get key; TextStyleConfig? get keypadInputStyle;
+/// Create a copy of CallPageActionsConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CallPageActionsConfigCopyWith<CallPageActionsConfig> get copyWith => _$CallPageActionsConfigCopyWithImpl<CallPageActionsConfig>(this as CallPageActionsConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallPageActionsConfig&&(identical(other.callStart, callStart) || other.callStart == callStart)&&(identical(other.hangup, hangup) || other.hangup == hangup)&&(identical(other.transfer, transfer) || other.transfer == transfer)&&(identical(other.camera, camera) || other.camera == camera)&&(identical(other.muted, muted) || other.muted == muted)&&(identical(other.speaker, speaker) || other.speaker == speaker)&&(identical(other.held, held) || other.held == held)&&(identical(other.swap, swap) || other.swap == swap)&&(identical(other.key, key) || other.key == key)&&(identical(other.keypadInputStyle, keypadInputStyle) || other.keypadInputStyle == keypadInputStyle));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,callStart,hangup,transfer,camera,muted,speaker,held,swap,key,keypadInputStyle);
+
+@override
+String toString() {
+  return 'CallPageActionsConfig(callStart: $callStart, hangup: $hangup, transfer: $transfer, camera: $camera, muted: $muted, speaker: $speaker, held: $held, swap: $swap, key: $key, keypadInputStyle: $keypadInputStyle)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CallPageActionsConfigCopyWith<$Res>  {
+  factory $CallPageActionsConfigCopyWith(CallPageActionsConfig value, $Res Function(CallPageActionsConfig) _then) = _$CallPageActionsConfigCopyWithImpl;
+@useResult
+$Res call({
+ ElevatedButtonWidgetConfig callStart, ElevatedButtonWidgetConfig hangup, ElevatedButtonWidgetConfig transfer, ElevatedButtonWidgetConfig camera, ElevatedButtonWidgetConfig muted, ElevatedButtonWidgetConfig speaker, ElevatedButtonWidgetConfig held, ElevatedButtonWidgetConfig swap, ElevatedButtonWidgetConfig key, TextStyleConfig? keypadInputStyle
+});
+
+
+
+
+}
+/// @nodoc
+class _$CallPageActionsConfigCopyWithImpl<$Res>
+    implements $CallPageActionsConfigCopyWith<$Res> {
+  _$CallPageActionsConfigCopyWithImpl(this._self, this._then);
+
+  final CallPageActionsConfig _self;
+  final $Res Function(CallPageActionsConfig) _then;
+
+/// Create a copy of CallPageActionsConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? callStart = null,Object? hangup = null,Object? transfer = null,Object? camera = null,Object? muted = null,Object? speaker = null,Object? held = null,Object? swap = null,Object? key = null,Object? keypadInputStyle = freezed,}) {
+  return _then(CallPageActionsConfig(
+callStart: null == callStart ? _self.callStart : callStart // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,hangup: null == hangup ? _self.hangup : hangup // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,transfer: null == transfer ? _self.transfer : transfer // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,camera: null == camera ? _self.camera : camera // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,muted: null == muted ? _self.muted : muted // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,speaker: null == speaker ? _self.speaker : speaker // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,held: null == held ? _self.held : held // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,swap: null == swap ? _self.swap : swap // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,key: null == key ? _self.key : key // ignore: cast_nullable_to_non_nullable
+as ElevatedButtonWidgetConfig,keypadInputStyle: freezed == keypadInputStyle ? _self.keypadInputStyle : keypadInputStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CallPageActionsConfig].
+extension CallPageActionsConfigPatterns on CallPageActionsConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$CallPageInfoConfig {
+
+ TextStyleConfig? get usernameTextStyle; TextStyleConfig? get numberTextStyle; TextStyleConfig? get callStatusTextStyle; TextStyleConfig? get processingStatusTextStyle;
+/// Create a copy of CallPageInfoConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CallPageInfoConfigCopyWith<CallPageInfoConfig> get copyWith => _$CallPageInfoConfigCopyWithImpl<CallPageInfoConfig>(this as CallPageInfoConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallPageInfoConfig&&(identical(other.usernameTextStyle, usernameTextStyle) || other.usernameTextStyle == usernameTextStyle)&&(identical(other.numberTextStyle, numberTextStyle) || other.numberTextStyle == numberTextStyle)&&(identical(other.callStatusTextStyle, callStatusTextStyle) || other.callStatusTextStyle == callStatusTextStyle)&&(identical(other.processingStatusTextStyle, processingStatusTextStyle) || other.processingStatusTextStyle == processingStatusTextStyle));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,usernameTextStyle,numberTextStyle,callStatusTextStyle,processingStatusTextStyle);
+
+@override
+String toString() {
+  return 'CallPageInfoConfig(usernameTextStyle: $usernameTextStyle, numberTextStyle: $numberTextStyle, callStatusTextStyle: $callStatusTextStyle, processingStatusTextStyle: $processingStatusTextStyle)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CallPageInfoConfigCopyWith<$Res>  {
+  factory $CallPageInfoConfigCopyWith(CallPageInfoConfig value, $Res Function(CallPageInfoConfig) _then) = _$CallPageInfoConfigCopyWithImpl;
+@useResult
+$Res call({
+ TextStyleConfig? usernameTextStyle, TextStyleConfig? numberTextStyle, TextStyleConfig? callStatusTextStyle, TextStyleConfig? processingStatusTextStyle
+});
+
+
+
+
+}
+/// @nodoc
+class _$CallPageInfoConfigCopyWithImpl<$Res>
+    implements $CallPageInfoConfigCopyWith<$Res> {
+  _$CallPageInfoConfigCopyWithImpl(this._self, this._then);
+
+  final CallPageInfoConfig _self;
+  final $Res Function(CallPageInfoConfig) _then;
+
+/// Create a copy of CallPageInfoConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? usernameTextStyle = freezed,Object? numberTextStyle = freezed,Object? callStatusTextStyle = freezed,Object? processingStatusTextStyle = freezed,}) {
+  return _then(CallPageInfoConfig(
+usernameTextStyle: freezed == usernameTextStyle ? _self.usernameTextStyle : usernameTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,numberTextStyle: freezed == numberTextStyle ? _self.numberTextStyle : numberTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,callStatusTextStyle: freezed == callStatusTextStyle ? _self.callStatusTextStyle : callStatusTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,processingStatusTextStyle: freezed == processingStatusTextStyle ? _self.processingStatusTextStyle : processingStatusTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CallPageInfoConfig].
+extension CallPageInfoConfigPatterns on CallPageInfoConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$CallPageListConfig {
+
+ String? get rowBackgroundColor; String? get rowFocusedBackgroundColor; String? get rowFocusedBorderColor; String? get dotRingingColor; String? get dotOnCallColor; String? get dotHeldColor;
+/// Create a copy of CallPageListConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CallPageListConfigCopyWith<CallPageListConfig> get copyWith => _$CallPageListConfigCopyWithImpl<CallPageListConfig>(this as CallPageListConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallPageListConfig&&(identical(other.rowBackgroundColor, rowBackgroundColor) || other.rowBackgroundColor == rowBackgroundColor)&&(identical(other.rowFocusedBackgroundColor, rowFocusedBackgroundColor) || other.rowFocusedBackgroundColor == rowFocusedBackgroundColor)&&(identical(other.rowFocusedBorderColor, rowFocusedBorderColor) || other.rowFocusedBorderColor == rowFocusedBorderColor)&&(identical(other.dotRingingColor, dotRingingColor) || other.dotRingingColor == dotRingingColor)&&(identical(other.dotOnCallColor, dotOnCallColor) || other.dotOnCallColor == dotOnCallColor)&&(identical(other.dotHeldColor, dotHeldColor) || other.dotHeldColor == dotHeldColor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,rowBackgroundColor,rowFocusedBackgroundColor,rowFocusedBorderColor,dotRingingColor,dotOnCallColor,dotHeldColor);
+
+@override
+String toString() {
+  return 'CallPageListConfig(rowBackgroundColor: $rowBackgroundColor, rowFocusedBackgroundColor: $rowFocusedBackgroundColor, rowFocusedBorderColor: $rowFocusedBorderColor, dotRingingColor: $dotRingingColor, dotOnCallColor: $dotOnCallColor, dotHeldColor: $dotHeldColor)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CallPageListConfigCopyWith<$Res>  {
+  factory $CallPageListConfigCopyWith(CallPageListConfig value, $Res Function(CallPageListConfig) _then) = _$CallPageListConfigCopyWithImpl;
+@useResult
+$Res call({
+ String? rowBackgroundColor, String? rowFocusedBackgroundColor, String? rowFocusedBorderColor, String? dotRingingColor, String? dotOnCallColor, String? dotHeldColor
+});
+
+
+
+
+}
+/// @nodoc
+class _$CallPageListConfigCopyWithImpl<$Res>
+    implements $CallPageListConfigCopyWith<$Res> {
+  _$CallPageListConfigCopyWithImpl(this._self, this._then);
+
+  final CallPageListConfig _self;
+  final $Res Function(CallPageListConfig) _then;
+
+/// Create a copy of CallPageListConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? rowBackgroundColor = freezed,Object? rowFocusedBackgroundColor = freezed,Object? rowFocusedBorderColor = freezed,Object? dotRingingColor = freezed,Object? dotOnCallColor = freezed,Object? dotHeldColor = freezed,}) {
+  return _then(CallPageListConfig(
+rowBackgroundColor: freezed == rowBackgroundColor ? _self.rowBackgroundColor : rowBackgroundColor // ignore: cast_nullable_to_non_nullable
+as String?,rowFocusedBackgroundColor: freezed == rowFocusedBackgroundColor ? _self.rowFocusedBackgroundColor : rowFocusedBackgroundColor // ignore: cast_nullable_to_non_nullable
+as String?,rowFocusedBorderColor: freezed == rowFocusedBorderColor ? _self.rowFocusedBorderColor : rowFocusedBorderColor // ignore: cast_nullable_to_non_nullable
+as String?,dotRingingColor: freezed == dotRingingColor ? _self.dotRingingColor : dotRingingColor // ignore: cast_nullable_to_non_nullable
+as String?,dotOnCallColor: freezed == dotOnCallColor ? _self.dotOnCallColor : dotOnCallColor // ignore: cast_nullable_to_non_nullable
+as String?,dotHeldColor: freezed == dotHeldColor ? _self.dotHeldColor : dotHeldColor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CallPageListConfig].
+extension CallPageListConfigPatterns on CallPageListConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$CallPageHintConfig {
+
+ String? get backgroundColor; String? get affectedNameColor;
+/// Create a copy of CallPageHintConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CallPageHintConfigCopyWith<CallPageHintConfig> get copyWith => _$CallPageHintConfigCopyWithImpl<CallPageHintConfig>(this as CallPageHintConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CallPageHintConfig&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.affectedNameColor, affectedNameColor) || other.affectedNameColor == affectedNameColor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,backgroundColor,affectedNameColor);
+
+@override
+String toString() {
+  return 'CallPageHintConfig(backgroundColor: $backgroundColor, affectedNameColor: $affectedNameColor)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CallPageHintConfigCopyWith<$Res>  {
+  factory $CallPageHintConfigCopyWith(CallPageHintConfig value, $Res Function(CallPageHintConfig) _then) = _$CallPageHintConfigCopyWithImpl;
+@useResult
+$Res call({
+ String? backgroundColor, String? affectedNameColor
+});
+
+
+
+
+}
+/// @nodoc
+class _$CallPageHintConfigCopyWithImpl<$Res>
+    implements $CallPageHintConfigCopyWith<$Res> {
+  _$CallPageHintConfigCopyWithImpl(this._self, this._then);
+
+  final CallPageHintConfig _self;
+  final $Res Function(CallPageHintConfig) _then;
+
+/// Create a copy of CallPageHintConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? backgroundColor = freezed,Object? affectedNameColor = freezed,}) {
+  return _then(CallPageHintConfig(
+backgroundColor: freezed == backgroundColor ? _self.backgroundColor : backgroundColor // ignore: cast_nullable_to_non_nullable
+as String?,affectedNameColor: freezed == affectedNameColor ? _self.affectedNameColor : affectedNameColor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CallPageHintConfig].
+extension CallPageHintConfigPatterns on CallPageHintConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$KeypadPageConfig {
+
+ OverlayStyleModel? get systemUiOverlayStyle; TextFieldConfig? get textField; TextFieldConfig? get contactName; KeypadStyleConfig? get keypad; ActionPadWidgetConfig? get actionpad; PageBackground? get background; ThemeOverrideConfig get themeOverride; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of KeypadPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$KeypadPageConfigCopyWith<KeypadPageConfig> get copyWith => _$KeypadPageConfigCopyWithImpl<KeypadPageConfig>(this as KeypadPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is KeypadPageConfig&&(identical(other.systemUiOverlayStyle, systemUiOverlayStyle) || other.systemUiOverlayStyle == systemUiOverlayStyle)&&(identical(other.textField, textField) || other.textField == textField)&&(identical(other.contactName, contactName) || other.contactName == contactName)&&(identical(other.keypad, keypad) || other.keypad == keypad)&&(identical(other.actionpad, actionpad) || other.actionpad == actionpad)&&(identical(other.background, background) || other.background == background)&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,systemUiOverlayStyle,textField,contactName,keypad,actionpad,background,themeOverride,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'KeypadPageConfig(systemUiOverlayStyle: $systemUiOverlayStyle, textField: $textField, contactName: $contactName, keypad: $keypad, actionpad: $actionpad, background: $background, themeOverride: $themeOverride, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $KeypadPageConfigCopyWith<$Res>  {
+  factory $KeypadPageConfigCopyWith(KeypadPageConfig value, $Res Function(KeypadPageConfig) _then) = _$KeypadPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ OverlayStyleModel? systemUiOverlayStyle, TextFieldConfig? textField, TextFieldConfig? contactName, KeypadStyleConfig? keypad, ActionPadWidgetConfig? actionpad, PageBackground? background, ThemeOverrideConfig themeOverride, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$KeypadPageConfigCopyWithImpl<$Res>
+    implements $KeypadPageConfigCopyWith<$Res> {
+  _$KeypadPageConfigCopyWithImpl(this._self, this._then);
+
+  final KeypadPageConfig _self;
+  final $Res Function(KeypadPageConfig) _then;
+
+/// Create a copy of KeypadPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? systemUiOverlayStyle = freezed,Object? textField = freezed,Object? contactName = freezed,Object? keypad = freezed,Object? actionpad = freezed,Object? background = freezed,Object? themeOverride = null,Object? appBarBlurredSurface = freezed,}) {
+  return _then(KeypadPageConfig(
+systemUiOverlayStyle: freezed == systemUiOverlayStyle ? _self.systemUiOverlayStyle : systemUiOverlayStyle // ignore: cast_nullable_to_non_nullable
+as OverlayStyleModel?,textField: freezed == textField ? _self.textField : textField // ignore: cast_nullable_to_non_nullable
+as TextFieldConfig?,contactName: freezed == contactName ? _self.contactName : contactName // ignore: cast_nullable_to_non_nullable
+as TextFieldConfig?,keypad: freezed == keypad ? _self.keypad : keypad // ignore: cast_nullable_to_non_nullable
+as KeypadStyleConfig?,actionpad: freezed == actionpad ? _self.actionpad : actionpad // ignore: cast_nullable_to_non_nullable
+as ActionPadWidgetConfig?,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [KeypadPageConfig].
+extension KeypadPageConfigPatterns on KeypadPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$ActionPadWidgetConfig {
+
+ ButtonStyleConfig get callStart; ButtonStyleConfig get callTransfer; ButtonStyleConfig get backspacePressed;
+/// Create a copy of ActionPadWidgetConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ActionPadWidgetConfigCopyWith<ActionPadWidgetConfig> get copyWith => _$ActionPadWidgetConfigCopyWithImpl<ActionPadWidgetConfig>(this as ActionPadWidgetConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActionPadWidgetConfig&&(identical(other.callStart, callStart) || other.callStart == callStart)&&(identical(other.callTransfer, callTransfer) || other.callTransfer == callTransfer)&&(identical(other.backspacePressed, backspacePressed) || other.backspacePressed == backspacePressed));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,callStart,callTransfer,backspacePressed);
+
+@override
+String toString() {
+  return 'ActionPadWidgetConfig(callStart: $callStart, callTransfer: $callTransfer, backspacePressed: $backspacePressed)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ActionPadWidgetConfigCopyWith<$Res>  {
+  factory $ActionPadWidgetConfigCopyWith(ActionPadWidgetConfig value, $Res Function(ActionPadWidgetConfig) _then) = _$ActionPadWidgetConfigCopyWithImpl;
+@useResult
+$Res call({
+ ButtonStyleConfig callStart, ButtonStyleConfig callTransfer, ButtonStyleConfig backspacePressed
+});
+
+
+
+
+}
+/// @nodoc
+class _$ActionPadWidgetConfigCopyWithImpl<$Res>
+    implements $ActionPadWidgetConfigCopyWith<$Res> {
+  _$ActionPadWidgetConfigCopyWithImpl(this._self, this._then);
+
+  final ActionPadWidgetConfig _self;
+  final $Res Function(ActionPadWidgetConfig) _then;
+
+/// Create a copy of ActionPadWidgetConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? callStart = null,Object? callTransfer = null,Object? backspacePressed = null,}) {
+  return _then(ActionPadWidgetConfig(
+callStart: null == callStart ? _self.callStart : callStart // ignore: cast_nullable_to_non_nullable
+as ButtonStyleConfig,callTransfer: null == callTransfer ? _self.callTransfer : callTransfer // ignore: cast_nullable_to_non_nullable
+as ButtonStyleConfig,backspacePressed: null == backspacePressed ? _self.backspacePressed : backspacePressed // ignore: cast_nullable_to_non_nullable
+as ButtonStyleConfig,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ActionPadWidgetConfig].
+extension ActionPadWidgetConfigPatterns on ActionPadWidgetConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+mixin _$SettingsPageConfig {
+
+ ThemeOverrideConfig get themeOverride; String? get leadingIconsColor; String? get userIconColor; String? get logoutIconColor; GroupTitleListTileWidgetConfig? get groupTitleListTile; bool get showSeparators; SeparatorStyleConfig? get separator; PageBackground? get background; TextStyleConfig? get itemTextStyle; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of SettingsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SettingsPageConfigCopyWith<SettingsPageConfig> get copyWith => _$SettingsPageConfigCopyWithImpl<SettingsPageConfig>(this as SettingsPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.leadingIconsColor, leadingIconsColor) || other.leadingIconsColor == leadingIconsColor)&&(identical(other.userIconColor, userIconColor) || other.userIconColor == userIconColor)&&(identical(other.logoutIconColor, logoutIconColor) || other.logoutIconColor == logoutIconColor)&&(identical(other.groupTitleListTile, groupTitleListTile) || other.groupTitleListTile == groupTitleListTile)&&(identical(other.showSeparators, showSeparators) || other.showSeparators == showSeparators)&&(identical(other.separator, separator) || other.separator == separator)&&(identical(other.background, background) || other.background == background)&&(identical(other.itemTextStyle, itemTextStyle) || other.itemTextStyle == itemTextStyle)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,leadingIconsColor,userIconColor,logoutIconColor,groupTitleListTile,showSeparators,separator,background,itemTextStyle,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'SettingsPageConfig(themeOverride: $themeOverride, leadingIconsColor: $leadingIconsColor, userIconColor: $userIconColor, logoutIconColor: $logoutIconColor, groupTitleListTile: $groupTitleListTile, showSeparators: $showSeparators, separator: $separator, background: $background, itemTextStyle: $itemTextStyle, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SettingsPageConfigCopyWith<$Res>  {
+  factory $SettingsPageConfigCopyWith(SettingsPageConfig value, $Res Function(SettingsPageConfig) _then) = _$SettingsPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, String? leadingIconsColor, String? userIconColor, String? logoutIconColor, GroupTitleListTileWidgetConfig? groupTitleListTile, bool showSeparators, SeparatorStyleConfig? separator, PageBackground? background, TextStyleConfig? itemTextStyle, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$SettingsPageConfigCopyWithImpl<$Res>
+    implements $SettingsPageConfigCopyWith<$Res> {
+  _$SettingsPageConfigCopyWithImpl(this._self, this._then);
+
+  final SettingsPageConfig _self;
+  final $Res Function(SettingsPageConfig) _then;
+
+/// Create a copy of SettingsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? leadingIconsColor = freezed,Object? userIconColor = freezed,Object? logoutIconColor = freezed,Object? groupTitleListTile = freezed,Object? showSeparators = null,Object? separator = freezed,Object? background = freezed,Object? itemTextStyle = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(SettingsPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,leadingIconsColor: freezed == leadingIconsColor ? _self.leadingIconsColor : leadingIconsColor // ignore: cast_nullable_to_non_nullable
+as String?,userIconColor: freezed == userIconColor ? _self.userIconColor : userIconColor // ignore: cast_nullable_to_non_nullable
+as String?,logoutIconColor: freezed == logoutIconColor ? _self.logoutIconColor : logoutIconColor // ignore: cast_nullable_to_non_nullable
+as String?,groupTitleListTile: freezed == groupTitleListTile ? _self.groupTitleListTile : groupTitleListTile // ignore: cast_nullable_to_non_nullable
+as GroupTitleListTileWidgetConfig?,showSeparators: null == showSeparators ? _self.showSeparators : showSeparators // ignore: cast_nullable_to_non_nullable
+as bool,separator: freezed == separator ? _self.separator : separator // ignore: cast_nullable_to_non_nullable
+as SeparatorStyleConfig?,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,itemTextStyle: freezed == itemTextStyle ? _self.itemTextStyle : itemTextStyle // ignore: cast_nullable_to_non_nullable
+as TextStyleConfig?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SettingsPageConfig].
+extension SettingsPageConfigPatterns on SettingsPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$ContactsPageConfig {
+
+ ThemeOverrideConfig get themeOverride; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of ContactsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ContactsPageConfigCopyWith<ContactsPageConfig> get copyWith => _$ContactsPageConfigCopyWithImpl<ContactsPageConfig>(this as ContactsPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ContactsPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'ContactsPageConfig(themeOverride: $themeOverride, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ContactsPageConfigCopyWith<$Res>  {
+  factory $ContactsPageConfigCopyWith(ContactsPageConfig value, $Res Function(ContactsPageConfig) _then) = _$ContactsPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$ContactsPageConfigCopyWithImpl<$Res>
+    implements $ContactsPageConfigCopyWith<$Res> {
+  _$ContactsPageConfigCopyWithImpl(this._self, this._then);
+
+  final ContactsPageConfig _self;
+  final $Res Function(ContactsPageConfig) _then;
+
+/// Create a copy of ContactsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(ContactsPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ContactsPageConfig].
+extension ContactsPageConfigPatterns on ContactsPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$EmbeddedPageConfig {
+
+ ThemeOverrideConfig get themeOverride; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of EmbeddedPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EmbeddedPageConfigCopyWith<EmbeddedPageConfig> get copyWith => _$EmbeddedPageConfigCopyWithImpl<EmbeddedPageConfig>(this as EmbeddedPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EmbeddedPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'EmbeddedPageConfig(themeOverride: $themeOverride, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EmbeddedPageConfigCopyWith<$Res>  {
+  factory $EmbeddedPageConfigCopyWith(EmbeddedPageConfig value, $Res Function(EmbeddedPageConfig) _then) = _$EmbeddedPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$EmbeddedPageConfigCopyWithImpl<$Res>
+    implements $EmbeddedPageConfigCopyWith<$Res> {
+  _$EmbeddedPageConfigCopyWithImpl(this._self, this._then);
+
+  final EmbeddedPageConfig _self;
+  final $Res Function(EmbeddedPageConfig) _then;
+
+/// Create a copy of EmbeddedPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(EmbeddedPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [EmbeddedPageConfig].
+extension EmbeddedPageConfigPatterns on EmbeddedPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$FavoritesPageConfig {
+
+ ThemeOverrideConfig get themeOverride; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of FavoritesPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FavoritesPageConfigCopyWith<FavoritesPageConfig> get copyWith => _$FavoritesPageConfigCopyWithImpl<FavoritesPageConfig>(this as FavoritesPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FavoritesPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'FavoritesPageConfig(themeOverride: $themeOverride, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $FavoritesPageConfigCopyWith<$Res>  {
+  factory $FavoritesPageConfigCopyWith(FavoritesPageConfig value, $Res Function(FavoritesPageConfig) _then) = _$FavoritesPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$FavoritesPageConfigCopyWithImpl<$Res>
+    implements $FavoritesPageConfigCopyWith<$Res> {
+  _$FavoritesPageConfigCopyWithImpl(this._self, this._then);
+
+  final FavoritesPageConfig _self;
+  final $Res Function(FavoritesPageConfig) _then;
+
+/// Create a copy of FavoritesPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(FavoritesPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [FavoritesPageConfig].
+extension FavoritesPageConfigPatterns on FavoritesPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$ConversationsPageConfig {
+
+ ThemeOverrideConfig get themeOverride; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of ConversationsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ConversationsPageConfigCopyWith<ConversationsPageConfig> get copyWith => _$ConversationsPageConfigCopyWithImpl<ConversationsPageConfig>(this as ConversationsPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConversationsPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'ConversationsPageConfig(themeOverride: $themeOverride, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ConversationsPageConfigCopyWith<$Res>  {
+  factory $ConversationsPageConfigCopyWith(ConversationsPageConfig value, $Res Function(ConversationsPageConfig) _then) = _$ConversationsPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$ConversationsPageConfigCopyWithImpl<$Res>
+    implements $ConversationsPageConfigCopyWith<$Res> {
+  _$ConversationsPageConfigCopyWithImpl(this._self, this._then);
+
+  final ConversationsPageConfig _self;
+  final $Res Function(ConversationsPageConfig) _then;
+
+/// Create a copy of ConversationsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(ConversationsPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ConversationsPageConfig].
+extension ConversationsPageConfigPatterns on ConversationsPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+
+/// @nodoc
+mixin _$RecentsPageConfig {
+
+ ThemeOverrideConfig get themeOverride; PageBackground? get background; BlurredSurfaceConfig? get appBarBlurredSurface;
+/// Create a copy of RecentsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RecentsPageConfigCopyWith<RecentsPageConfig> get copyWith => _$RecentsPageConfigCopyWithImpl<RecentsPageConfig>(this as RecentsPageConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RecentsPageConfig&&(identical(other.themeOverride, themeOverride) || other.themeOverride == themeOverride)&&(identical(other.background, background) || other.background == background)&&(identical(other.appBarBlurredSurface, appBarBlurredSurface) || other.appBarBlurredSurface == appBarBlurredSurface));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,themeOverride,background,appBarBlurredSurface);
+
+@override
+String toString() {
+  return 'RecentsPageConfig(themeOverride: $themeOverride, background: $background, appBarBlurredSurface: $appBarBlurredSurface)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $RecentsPageConfigCopyWith<$Res>  {
+  factory $RecentsPageConfigCopyWith(RecentsPageConfig value, $Res Function(RecentsPageConfig) _then) = _$RecentsPageConfigCopyWithImpl;
+@useResult
+$Res call({
+ ThemeOverrideConfig themeOverride, PageBackground? background, BlurredSurfaceConfig? appBarBlurredSurface
+});
+
+
+
+
+}
+/// @nodoc
+class _$RecentsPageConfigCopyWithImpl<$Res>
+    implements $RecentsPageConfigCopyWith<$Res> {
+  _$RecentsPageConfigCopyWithImpl(this._self, this._then);
+
+  final RecentsPageConfig _self;
+  final $Res Function(RecentsPageConfig) _then;
+
+/// Create a copy of RecentsPageConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? themeOverride = null,Object? background = freezed,Object? appBarBlurredSurface = freezed,}) {
+  return _then(RecentsPageConfig(
+themeOverride: null == themeOverride ? _self.themeOverride : themeOverride // ignore: cast_nullable_to_non_nullable
+as ThemeOverrideConfig,background: freezed == background ? _self.background : background // ignore: cast_nullable_to_non_nullable
+as PageBackground?,appBarBlurredSurface: freezed == appBarBlurredSurface ? _self.appBarBlurredSurface : appBarBlurredSurface // ignore: cast_nullable_to_non_nullable
+as BlurredSurfaceConfig?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [RecentsPageConfig].
+extension RecentsPageConfigPatterns on RecentsPageConfig {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+switch (_that) {
+case _:
+  return null;
+
+}
+}
+
+}
+
+// dart format on

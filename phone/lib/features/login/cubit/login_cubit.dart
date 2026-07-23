@@ -1,0 +1,674 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:http/http.dart' as http;
+import 'package:linkify/linkify.dart';
+import 'package:logging/logging.dart';
+import 'package:pub_semver/pub_semver.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:webtrit_api/webtrit_api.dart';
+
+import 'package:webtrit_phone/app/notifications/notifications.dart';
+import 'package:webtrit_phone/data/data.dart';
+import 'package:webtrit_phone/environment_config.dart';
+import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/repositories/repositories.dart';
+import 'package:webtrit_phone/utils/crashlytics_utils.dart';
+
+import '../login.dart';
+
+part 'login_cubit.freezed.dart';
+
+part 'login_state.dart';
+
+typedef LoginSuccessCallback = void Function(Session session, WebtritSystemInfo systemInfo);
+
+final _logger = Logger('LoginCubit');
+
+class LoginCubit extends Cubit<LoginState> {
+  LoginCubit({
+    required this.authRepository,
+    required this.notificationsBloc,
+    required this.appInfo,
+    required this.packageInfo,
+    required this.appCompatibilityResolver,
+    required this.onLoginSuccess,
+    this.signinOrder = const [],
+    QrSigninConfig? qrSigninConfig,
+  }) : qrSigninConfig = qrSigninConfig ?? QrSigninConfig.disabled,
+       super(const LoginState());
+
+  final AuthRepository authRepository;
+
+  final LoginSuccessCallback onLoginSuccess;
+
+  final NotificationsBloc notificationsBloc;
+
+  final AppInfo appInfo;
+
+  final PackageInfo packageInfo;
+
+  final AppCompatibilityResolver appCompatibilityResolver;
+
+  /// Configured order of the sign-in tabs, by login type name (from app config).
+  final List<String> signinOrder;
+
+  /// Configuration of the QR-code sign-in tab (from app config).
+  final QrSigninConfig qrSigninConfig;
+
+  // Environment getters
+  String? get coreUrlFromEnvironment => EnvironmentConfig.CORE_URL;
+
+  String? get credentialsRequestUrl => EnvironmentConfig.APP_CREDENTIALS_REQUEST_URL;
+
+  String? get demoCoreUrlFromEnvironment => EnvironmentConfig.DEMO_CORE_URL;
+
+  String get coreVersionConstraint => EnvironmentConfig.CORE_VERSION_CONSTRAINT;
+
+  Version get appVersion => appInfo.version;
+
+  String get defaultTenantId => '';
+
+  bool get isDemoModeEnabled => coreUrlFromEnvironment == null;
+
+  bool get isCredentialsRequestUrlEnabled => credentialsRequestUrl != null;
+
+  @override
+  void onChange(Change<LoginState> change) {
+    if (change.nextState.hasValidSession) {
+      _saveSession(change.nextState);
+    }
+
+    super.onChange(change);
+  }
+
+  /// Finalizes the authentication flow by delegating session and system information
+  /// to the [onLoginSuccess] callback.
+  ///
+  /// This method extracts verified credentials and system configuration from the
+  /// current [state] and passes them to the parent orchestrator. This ensures
+  /// atomic persistence and state synchronization across the application's
+  /// core repositories before transitioning to the authenticated lifecycle.
+  void _saveSession(LoginState state) {
+    final systemInfo = state.systemInfo!;
+    final coreUrl = state.coreUrl!;
+    final tenantId = state.tenantId!;
+    final token = state.token!;
+    final userId = state.userId!;
+
+    onLoginSuccess(Session(coreUrl: coreUrl, tenantId: tenantId, token: token, userId: userId), systemInfo);
+  }
+
+  void launchLinkableElement(LinkableElement link) async {
+    final url = Uri.parse(link.url);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    }
+  }
+
+  Future<void> _processSystemInfo(
+    String coreUrl,
+    String tenantId, {
+    bool demo = false,
+    void Function(Object error, StackTrace stackTrace)? onError,
+  }) async {
+    emit(state.copyWith(processing: true));
+
+    try {
+      final systemInfo = await _loadAndValidateSystemInfo(coreUrl, tenantId);
+      if (systemInfo == null) {
+        emit(state.copyWith(processing: false));
+        return;
+      }
+
+      final supportedFeatures = systemInfo.adapter?.supported ?? [];
+      // Only these types are accepted from the backend; qrSignin is client-side
+      // (added below), so an adapter advertising it must not bypass the config
+      // gate or duplicate the tab.
+      const backendLoginTypes = [LoginType.otpSignin, LoginType.passwordSignin, LoginType.signup];
+      final parsedLoginTypes = backendLoginTypes.where((type) => supportedFeatures.contains(type.name)).toList();
+      // The QR tab is not a backend capability: the scanned code carries plain
+      // credentials, so it is offered whenever password sign-in is available
+      // and the app config enables it.
+      if (qrSigninConfig.enabled && parsedLoginTypes.contains(LoginType.passwordSignin)) {
+        parsedLoginTypes.add(LoginType.qrSignin);
+      }
+      // Backend may list the options in an unstable order; impose a deterministic
+      // client-side order (driven by app config) so the login tabs do not jump
+      // around between requests.
+      final supportedLoginTypes = sortLoginTypes(parsedLoginTypes, orderConfig: signinOrder);
+      if (demo) supportedLoginTypes.removeWhere((loginType) => loginType != LoginType.signup);
+
+      if (supportedLoginTypes.isEmpty) {
+        notificationsBloc.add(const NotificationsSubmitted(SupportedLoginTypeMissedErrorNotification()));
+        emit(state.copyWith(processing: false));
+        return;
+      }
+
+      emit(
+        state.copyWith(
+          processing: false,
+          coreUrl: coreUrl,
+          tenantId: tenantId,
+          supportedLoginTypes: supportedLoginTypes,
+          systemInfo: systemInfo,
+        ),
+      );
+    } catch (e, s) {
+      if (onError != null) {
+        onError(e, s);
+      } else {
+        handleError(e, s, 'LoginOtpSigninRequestSubmitted');
+      }
+      emit(state.copyWith(processing: false));
+    }
+  }
+
+  Future<WebtritSystemInfo?> _loadAndValidateSystemInfo(String coreUrl, String tenantId) async {
+    final systemInfo = await authRepository.getSystemInfo(coreUrl, tenantId);
+
+    // Shared version gate (see [AppCompatibility]). Aborting here means no
+    // session is created and signaling is never connected for an unsupported build.
+    final compatibility = appCompatibilityResolver.resolve(
+      systemInfo: systemInfo,
+      appVersion: appVersion,
+      coreVersionConstraint: coreVersionConstraint,
+    );
+    switch (compatibility) {
+      case CoreVersionUnsupported(:final coreVersion, :final constraint):
+        final notification = CoreVersionUnsupportedErrorNotification(coreVersion.toString(), constraint.toString());
+        notificationsBloc.add(NotificationsSubmitted(notification));
+        return null;
+      case AppVersionTooOld(:final appVersion, :final minSupportedVersion):
+        final notification = AppVersionUnsupportedErrorNotification(
+          appVersion: appVersion.toString(),
+          minSupported: minSupportedVersion.toString(),
+          storeVersion: packageInfo.fullVersion,
+        );
+        notificationsBloc.add(NotificationsSubmitted(notification));
+        return null;
+      case AppCompatible():
+        return systemInfo;
+    }
+  }
+
+  // LoginModeSelect
+
+  void loginModeSelectSubmitted(LoginMode mode) async {
+    emit(state.copyWith(mode: mode));
+
+    final demo = mode == LoginMode.demoCore;
+    final coreUrl = demo ? demoCoreUrlFromEnvironment : coreUrlFromEnvironment;
+
+    if (coreUrl != null) await _processSystemInfo(coreUrl, defaultTenantId, demo: demo);
+  }
+
+  void setEmbedded(EmbeddedData embedded) {
+    emit(
+      state.copyWith(
+        embedded: embedded,
+        coreUrl: isDemoModeEnabled ? demoCoreUrlFromEnvironment : coreUrlFromEnvironment,
+      ),
+    );
+  }
+
+  // LoginCoreUrlAssign
+
+  void coreUrlInputChanged(String value) {
+    emit(state.copyWith(coreUrlInput: UrlInput.dirty(value), coreUrlAssignError: null));
+  }
+
+  void loginCoreUrlAssignSubmitted() async {
+    if (state.processing || !state.coreUrlInput.isValid) {
+      return;
+    }
+
+    var coreUrlInputValue = state.coreUrlInput.value;
+    if (!coreUrlInputValue.startsWith(RegExp(r'(https|http)://'))) {
+      coreUrlInputValue = 'https://$coreUrlInputValue';
+    }
+
+    emit(state.copyWith(coreUrlAssignError: null));
+
+    await _processSystemInfo(
+      coreUrlInputValue,
+      defaultTenantId,
+      onError: (error, stackTrace) {
+        // On this step an unreachable or non-WebTrit address is an expected
+        // user mistake: surface it inline under the URL field instead of the
+        // generic error path (which stays silent for such failures).
+        if (_isCoreUnreachableError(error)) {
+          _logger.warning('Core URL assign failed: $error');
+          emit(state.copyWith(coreUrlAssignError: error));
+        } else {
+          handleError(error, stackTrace, 'LoginCoreUrlAssignSubmitted');
+        }
+      },
+    );
+  }
+
+  /// Whether [error] means the entered address does not host a reachable
+  /// WebTrit service: a transport failure, a non-JSON payload, or an HTTP
+  /// error without a structured WebTrit error body (e.g. a bare ingress 404
+  /// while the backend restarts).
+  static bool _isCoreUnreachableError(Object error) {
+    if (error is RequestFailure) return error.error == null;
+    return error is SocketException ||
+        error is http.ClientException ||
+        error is TimeoutException ||
+        error is FormatException;
+  }
+
+  void loginCoreUrlAssignBack() async {
+    emit(state.copyWith(mode: null, coreUrlInput: const UrlInput.pure(), coreUrlAssignError: null));
+  }
+
+  void credentialsRequestUrlAssignBack() async {
+    emit(state.copyWith(mode: null));
+  }
+
+  void embeddedPageAssignBack() async {
+    emit(state.copyWith(embedded: null));
+  }
+
+  // LoginSwitch
+
+  void loginSwitchBack() async {
+    emit(
+      state.copyWith(
+        mode: state.mode == LoginMode.customCore ? state.mode : null,
+        coreUrl: null,
+        tenantId: null,
+        supportedLoginTypes: null,
+        embedded: null,
+        otpSigninSessionOtpProvisionalWithDateTime: null,
+        passwordSigninPasswordInputObscureText: true,
+        signupSessionOtpProvisionalWithDateTime: null,
+        otpSigninUserRefInput: const UserRefInput.pure(),
+        otpSigninCodeInput: const CodeInput.pure(),
+        passwordSigninUserRefInput: const UserRefInput.pure(),
+        passwordSigninPasswordInput: const PasswordInput.pure(),
+        signupEmailInput: const EmailInput.pure(),
+        signupCodeInput: const CodeInput.pure(),
+      ),
+    );
+  }
+
+  // LoginOtpSigninRequest
+
+  void otpSigninUserRefInputChanged(String value) {
+    emit(state.copyWith(otpSigninUserRefInput: UserRefInput.dirty(value)));
+  }
+
+  void loginOptSigninRequestSubmitted() async {
+    if (state.processing || !state.otpSigninUserRefInput.isValid) {
+      return;
+    }
+
+    emit(state.copyWith(processing: true));
+
+    try {
+      final sessionOtpProvisional = await authRepository.requestOtp(
+        coreUrl: state.coreUrl!,
+        tenantId: state.tenantId!,
+        userRef: state.otpSigninUserRefInput.value,
+      );
+
+      emit(
+        state.copyWith(
+          processing: false,
+          otpSigninSessionOtpProvisionalWithDateTime: (sessionOtpProvisional, DateTime.now()),
+        ),
+      );
+    } catch (e, s) {
+      emit(state.copyWith(processing: false));
+
+      handleError(e, s, 'LoginOtpSigninRequestSubmitted');
+    }
+  }
+
+  // LoginOtpSigninVerify
+
+  void otpSigninCodeInputChanged(String value) {
+    emit(state.copyWith(otpSigninCodeInput: CodeInput.dirty(value)));
+  }
+
+  void loginOptSigninVerifySubmitted() async {
+    if (state.processing || !state.otpSigninCodeInput.isValid) {
+      return;
+    }
+
+    emit(state.copyWith(processing: true));
+    try {
+      final sessionToken = await authRepository.verifyOtp(
+        coreUrl: state.coreUrl!,
+        tenantId: state.tenantId!,
+        sessionOtpProvisional: state.otpSigninSessionOtpProvisionalWithDateTime!.$1,
+        code: state.otpSigninCodeInput.value,
+      );
+
+      // does not set processing to false to hold processing widgets state during navigation
+      emit(
+        state.copyWith(
+          tenantId: sessionToken.tenantId ?? state.tenantId!,
+          token: sessionToken.token,
+          // Use an empty user ID as a fallback for outdated core versions that do not support this field.
+          userId: sessionToken.userId ?? '',
+        ),
+      );
+    } catch (e, s) {
+      emit(state.copyWith(processing: false));
+
+      handleError(e, s, 'LoginSignupVerifySubmitted');
+    }
+  }
+
+  void loginOptSigninVerifyBack() async {
+    emit(state.copyWith(otpSigninSessionOtpProvisionalWithDateTime: null, otpSigninCodeInput: const CodeInput.pure()));
+  }
+
+  void loginOptSigninVerifyRepeat() {
+    loginOptSigninRequestSubmitted();
+  }
+
+  // LoginPasswordSignin
+
+  void passwordSigninUserRefInputChanged(String value) {
+    emit(state.copyWith(passwordSigninUserRefInput: UserRefInput.dirty(value)));
+  }
+
+  void passwordSigninPasswordInputChanged(String value) {
+    emit(state.copyWith(passwordSigninPasswordInput: PasswordInput.dirty(value)));
+  }
+
+  void passwordSigninPasswordInputObscureTextToggled() {
+    emit(state.copyWith(passwordSigninPasswordInputObscureText: !state.passwordSigninPasswordInputObscureText));
+  }
+
+  void loginPasswordSigninSubmitted() async {
+    if (!state.passwordSigninUserRefInput.isValid || !state.passwordSigninPasswordInput.isValid) {
+      return;
+    }
+
+    await _submitPasswordLogin(
+      userRef: state.passwordSigninUserRefInput.value,
+      password: state.passwordSigninPasswordInput.value,
+      errorContext: 'LoginPasswordSigninSubmitted',
+    );
+  }
+
+  // LoginQrSignin
+
+  /// Signs in with credentials decoded from a scanned QR code.
+  ///
+  /// Follows the same session path as [loginPasswordSigninSubmitted]; the
+  /// credentials come from the scanner instead of the input fields. Completes
+  /// when the attempt is over so the caller can resume scanning on failure.
+  Future<void> loginQrSigninSubmitted({required String userRef, required String password}) {
+    return _submitPasswordLogin(userRef: userRef, password: password, errorContext: 'LoginQrSigninSubmitted');
+  }
+
+  /// Shared session-creation path of the password-based sign-ins (manual entry
+  /// and scanned QR credentials).
+  Future<void> _submitPasswordLogin({
+    required String userRef,
+    required String password,
+    required String errorContext,
+  }) async {
+    if (state.processing) return;
+
+    emit(state.copyWith(processing: true));
+
+    try {
+      final sessionToken = await authRepository.login(
+        coreUrl: state.coreUrl!,
+        tenantId: state.tenantId!,
+        userRef: userRef,
+        password: password,
+      );
+
+      // does not set processing to false to hold processing widgets state during navigation
+      loginSigninSubmitted(sessionToken);
+    } catch (e, s) {
+      emit(state.copyWith(processing: false));
+
+      handleError(e, s, errorContext);
+    }
+  }
+
+  void loginSigninSubmitted(SessionToken token) async {
+    emit(
+      state.copyWith(
+        tenantId: token.tenantId ?? state.tenantId ?? defaultTenantId,
+        token: token.token,
+        // Use an empty user ID as a fallback for outdated core versions that do not support this field.
+        userId: token.userId ?? '',
+      ),
+    );
+  }
+
+  void loginPasswordSigninBack() async {
+    emit(
+      state.copyWith(
+        passwordSigninUserRefInput: const UserRefInput.pure(),
+        passwordSigninPasswordInput: const PasswordInput.pure(),
+      ),
+    );
+  }
+
+  // LoginSignupRequest
+
+  void signupEmailInputChanged(String value) {
+    emit(state.copyWith(signupEmailInput: EmailInput.dirty(value)));
+  }
+
+  /// Performs a custom signup flow initiated from an embedded page.
+  ///
+  /// Derives the tenant once (from extras -> state -> default) and reuses it for:
+  ///   - `POST /user` request
+  ///   - systemInfo loading (if required)
+  ///   - OTP verification via `_applyLoginResult`
+  ///
+  /// Guarantees that all signup-related requests share the same tenant context.
+  /// This avoids OTP verification mismatches across tenants.
+  Future<void> loginCustomSignupRequest(
+    Map<String, dynamic>? extras,
+    Map<String, dynamic>? embeddedCallbackData,
+  ) async {
+    emit(
+      state.copyWith(
+        processing: true,
+        embeddedExtras: extras,
+        embeddedCallbackData: embeddedCallbackData,
+        embeddedRequestError: null,
+      ),
+    );
+
+    try {
+      final tenantId = extras?['tenant_id'] ?? state.tenantId ?? defaultTenantId;
+
+      // In cases where the embedded page acts as the launch welcome screen,
+      // the systemInfo might not be loaded yet. Perform an additional check
+      // and attempt to load it if necessary.
+      final result = await authRepository.signup(coreUrl: state.coreUrl!, tenantId: tenantId, extraPayload: extras);
+
+      if (state.systemInfo == null) {
+        emit(state.copyWith(processing: true));
+        final systemInfo = await _loadAndValidateSystemInfo(state.coreUrl!, tenantId);
+        emit(state.copyWith(systemInfo: systemInfo, processing: false));
+      }
+
+      // Executes optional post-login callback request if provided by embedded flow.
+      if (result is SessionToken) {
+        final postRequest = embeddedCallbackData != null ? RawHttpRequest.fromJson(embeddedCallbackData) : null;
+        await authRepository.executePostLoginHttpRequest(postRequest);
+      }
+
+      // Applies login result and ensures tenant consistency.
+      _applyLoginResult(result, propagatedTenantId: tenantId);
+    } catch (e, s) {
+      handleError(e, s, 'LoginSignupVerifySubmitted');
+      emit(state.copyWith(processing: false, embeddedRequestError: e));
+    }
+  }
+
+  void clearEmbeddedRequestError() {
+    emit(state.copyWith(embeddedRequestError: null));
+  }
+
+  /// Handles standard (non-embedded) signup flow.
+  ///
+  /// Ensures tenant consistency by reusing the tenant stored in `state` for:
+  /// - `POST /user`
+  /// - subsequent OTP verification (propagated via `_applyLoginResult`)
+  ///
+  /// Early-exits if already processing or email is invalid. Emits errors and
+  /// resets `processing` on failure.
+  void loginSignupRequestSubmitted() async {
+    if (state.processing || !state.signupEmailInput.isValid) {
+      return;
+    }
+
+    emit(state.copyWith(processing: true));
+
+    try {
+      final result = await authRepository.signup(
+        coreUrl: state.coreUrl!,
+        tenantId: state.tenantId!,
+        email: state.signupEmailInput.value,
+      );
+
+      _applyLoginResult(result, propagatedTenantId: state.tenantId);
+    } catch (e, s) {
+      handleError(e, s, 'LoginSignupVerifySubmitted');
+      emit(state.copyWith(processing: false));
+    }
+  }
+
+  /// Applies the login result while maintaining tenant consistency across the OTP flow.
+  ///
+  /// Ensures that both `POST /user` and `otp-verify` use the same tenant context.
+  /// In embedded flows, the tenant may come from the embedded extras.
+  /// Fallback order:
+  ///   1. Explicit tenantId argument (propagated from POST /user request)
+  ///   2. Tenant from the result object
+  ///   3. Default tenant
+  ///
+  /// This prevents OTP verification issues when the backend stores OTPs under
+  /// a default tenant ("") if tenantId was not provided during creation.
+  void _applyLoginResult(SessionResult result, {String? propagatedTenantId}) {
+    if (result is SessionOtpProvisional) {
+      emit(
+        state.copyWith(
+          processing: false,
+          signupSessionOtpProvisionalWithDateTime: (result, DateTime.now()),
+          // Uses the same tenant as POST /user when provided; falls back safely otherwise.
+          tenantId: propagatedTenantId ?? result.tenantId ?? defaultTenantId,
+        ),
+      );
+    } else if (result is SessionToken) {
+      // Maintain processing state during navigation
+      emit(
+        state.copyWith(
+          // For a successful session, the tenant from the result is the ultimate source of truth.
+          // It takes precedence because this token signifies the final authenticated state,
+          // and no higher-level entity links the requests.
+          tenantId: result.tenantId ?? propagatedTenantId ?? defaultTenantId,
+          token: result.token,
+          userId: result.userId ?? '', // Fallback for outdated core versions
+        ),
+      );
+    } else {
+      throw UnimplementedError('Unexpected login result type');
+    }
+  }
+
+  // LoginSignupVerify
+
+  void signupCodeInputChanged(String value) {
+    emit(state.copyWith(signupCodeInput: CodeInput.dirty(value)));
+  }
+
+  void loginSignupVerifySubmitted() async {
+    if (state.processing || !state.signupCodeInput.isValid) {
+      return;
+    }
+
+    emit(state.copyWith(processing: true));
+
+    try {
+      final sessionToken = await authRepository.verifyOtp(
+        coreUrl: state.coreUrl!,
+        tenantId: state.tenantId!,
+        sessionOtpProvisional: state.signupSessionOtpProvisionalWithDateTime!.$1,
+        code: state.signupCodeInput.value,
+      );
+
+      // does not set processing to false to hold processing widgets state during navigation
+      emit(
+        state.copyWith(
+          tenantId: sessionToken.tenantId ?? state.tenantId!,
+          token: sessionToken.token,
+          // Use an empty user ID as a fallback for outdated core versions that do not support this field.
+          userId: sessionToken.userId ?? '',
+        ),
+      );
+    } catch (e, s) {
+      handleError(e, s, 'LoginSignupVerifySubmitted');
+      emit(state.copyWith(processing: false));
+    }
+  }
+
+  void loginSignupVerifyBack() async {
+    emit(state.copyWith(signupSessionOtpProvisionalWithDateTime: null, signupCodeInput: const CodeInput.pure()));
+  }
+
+  void loginSignupVerifyRepeat() {
+    loginSignupRequestSubmitted();
+  }
+
+  void handleError(Object error, StackTrace stackTrace, String context) {
+    if (error is RequestFailure) {
+      if (error is UserNotFoundException) {
+        _logger.warning('Known login error occurred: $error', error);
+        notificationsBloc.add(NotificationsSubmitted(const LoginUserNotFoundNotification()));
+        return;
+      }
+
+      final code = error.error?.code;
+      final readableNotification = switch (code) {
+        'otp_not_found' => const LoginOtpNotFoundNotification(),
+        'incorrect_otp_code' => const LoginIncorrectOtpCodeNotification(),
+        'otp_expired' => const LoginOtpExpiredNotification(),
+        'otp_verification_attempts_exceeded' => const LoginOtpVerificationAttemptsExceededNotification(),
+        'otp_already_verified' => const LoginOtpAlreadyVerifiedNotification(),
+        'phone_not_found' => const LoginPhoneNotFoundNotification(),
+        'incorrect_credentials' => const LoginIncorrectCredentialsNotification(),
+        'user_not_found' => const LoginUserNotFoundNotification(),
+        'unconfigured_bundle_id' => const LoginUnconfiguredBundleIdNotification(),
+        'validation_error' => const LoginValidationErrorNotification(),
+        'parameters_apply_issue' => const LoginParametersApplyIssueNotification(),
+        'empty_email' => const LoginEmptyEmailNotification(),
+        // The identifier-specific wording only makes sense for the OTP sign-in
+        // form; a non-empty user reference input is the evidence the error came
+        // from there (the code is declared on otp-create only, but signup
+        // passes adapter 422 bodies through verbatim).
+        'delivery_channel_unspecified' => LoginDeliveryChannelUnspecifiedNotification(
+          state.otpSigninUserRefInput.value.isNotEmpty ? state.otpSigninIdentifiers : const [],
+        ),
+        _ => null,
+      };
+      if (readableNotification != null) {
+        _logger.warning('Known login error occurred: ${error.error}', error);
+        notificationsBloc.add(NotificationsSubmitted(readableNotification));
+        return;
+      }
+    }
+
+    _logger.severe('Unexpected error during login process', error, stackTrace);
+    CrashlyticsUtils.recordError(error, stack: stackTrace, reason: context);
+  }
+}

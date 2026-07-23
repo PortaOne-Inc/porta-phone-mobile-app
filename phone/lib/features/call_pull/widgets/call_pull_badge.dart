@@ -1,0 +1,259 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:webtrit_phone/l10n/l10n.dart';
+import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/features/call/call.dart';
+import 'package:webtrit_phone/features/call_pull/call_pull.dart';
+
+class CallPullBadge extends StatefulWidget {
+  const CallPullBadge({required this.pullableCallDialogs, super.key});
+
+  final List<DialogInfo> pullableCallDialogs;
+
+  @override
+  State<CallPullBadge> createState() => _CallPullBadgeState();
+}
+
+class _CallPullBadgeState extends State<CallPullBadge> with TickerProviderStateMixin {
+  late final controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
+  late final callPullCubit = context.read<CallPullCubit>();
+  late final callBloc = context.read<CallBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    Future.doWhile(() async {
+      if (!mounted) return false;
+      controller.repeat(max: 0.38, reverse: true, count: 4);
+      await Future.delayed(Duration(seconds: 1 + Random().nextInt(5)));
+      return true;
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  void onTap() async {
+    final result = await showDialog(
+      context: context,
+      builder: (_) => PullableCallsDialog(callPullCubit: callPullCubit, callBloc: callBloc),
+    );
+
+    if (!mounted) return;
+    if (result is DialogInfo) onPickUp(result);
+  }
+
+  void onPickUp(DialogInfo dialog) {
+    final DialogInfo(:callId, :localTag, :remoteTag, :remoteNumber, :remoteDisplayName) = dialog;
+    if (remoteNumber == null || callId == null) return;
+    if (localTag == null || remoteTag == null) return;
+
+    // Under the mirror strategy the pull mirrors the real media: a known-video
+    // dialog is pulled as a video call (camera on), so the offer carries a real
+    // video m-line. Otherwise the local camera stays off (video: false) and, under
+    // soft-mute, the call bloc adds a recvonly video m-line to the pull offer so its
+    // media layout matches the server's answer for a video call, avoiding the
+    // setRemoteDescription m-line mismatch; the user can enable the camera
+    // afterwards. See CallPullVideoStrategy.
+    final mirrorVideo = callBloc.callPullVideoStrategy == CallPullVideoStrategy.mirror && dialog.hasVideo == true;
+
+    callBloc.add(
+      CallControlEvent.started(
+        number: remoteNumber,
+        video: mirrorVideo,
+        replaces: '$callId;from-tag=$localTag;to-tag=$remoteTag',
+        displayName: remoteDisplayName,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final contentColor = colorScheme.onPrimary;
+
+        return Material(
+          color: colorScheme.tertiary,
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RotationTransition(
+                    turns: controller.drive(
+                      Tween<double>(begin: 0, end: 1).chain(CurveTween(curve: Curves.elasticInOut)),
+                    ),
+                    child: Stack(
+                      children: [
+                        Icon(Icons.call_outlined, size: 16, color: contentColor),
+                        if (widget.pullableCallDialogs.length > 1)
+                          Positioned(
+                            right: 1,
+                            top: 0,
+                            child: Text(
+                              widget.pullableCallDialogs.length.toString(),
+                              style: TextStyle(
+                                fontSize: 8,
+                                color: contentColor,
+                                fontWeight: FontWeight.bold,
+                                height: 1,
+                              ),
+                            ),
+                          )
+                        else
+                          Positioned(
+                            right: 1,
+                            top: 1,
+                            child: switch (widget.pullableCallDialogs.first.direction) {
+                              DialogDirection.initiator => Icon(Icons.call_made, size: 8, color: contentColor),
+                              DialogDirection.recipient => Icon(Icons.call_received, size: 8, color: contentColor),
+                              _ => SizedBox.shrink(),
+                            },
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 4),
+                  if (widget.pullableCallDialogs.length > 1)
+                    LimitedBox(
+                      maxWidth: 100,
+                      child: Text(
+                        widget.pullableCallDialogs.map((e) => e.displayName?.split(' ').first ?? 'N/A').join(', '),
+                        style: TextStyle(fontSize: 12, color: contentColor),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  else
+                    Text(
+                      widget.pullableCallDialogs.first.displayName ?? 'N/A',
+                      style: TextStyle(fontSize: 12, color: contentColor),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class PullableCallsDialog extends StatefulWidget {
+  const PullableCallsDialog({required this.callPullCubit, required this.callBloc, super.key});
+
+  final CallPullCubit callPullCubit;
+  final CallBloc callBloc;
+
+  @override
+  State<PullableCallsDialog> createState() => _PullableCallsDialogState();
+}
+
+class _PullableCallsDialogState extends State<PullableCallsDialog> {
+  bool closing = false;
+
+  void onPickUp(DialogInfo dialog) {
+    maybeClose(result: dialog);
+  }
+
+  void maybeClose({DialogInfo? result}) {
+    if (!mounted || closing) return;
+
+    closing = true;
+    Navigator.of(context).pop(result);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: BlocListener<CallBloc, CallState>(
+        bloc: widget.callBloc,
+        listenWhen: (previous, current) {
+          return previous.activeCalls.length != current.activeCalls.length;
+        },
+        listener: (context, callBlocState) {
+          maybeClose();
+        },
+        child: BlocConsumer<CallPullCubit, List<DialogInfo>>(
+          bloc: widget.callPullCubit,
+          listener: (context, pullableCallDialogs) {
+            if (pullableCallDialogs.isEmpty) maybeClose();
+          },
+          builder: (context, pullableCallDialogs) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 8,
+                children: [
+                  Text(
+                    context.l10n.callPullBadge_dialogTitle,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  for (final dialog in pullableCallDialogs) ...[callTile(dialog)],
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget callTile(DialogInfo dialog) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Row(
+      children: [
+        switch (dialog.state) {
+          DialogState.proceeding || DialogState.early => switch (dialog.direction) {
+            DialogDirection.initiator => const Icon(Icons.phone_forwarded, size: 16),
+            DialogDirection.recipient => const Icon(Icons.phone_callback, size: 16),
+            _ => const Icon(Icons.phone, size: 16),
+          },
+          DialogState.confirmed => const Icon(Icons.phone_in_talk, size: 16),
+          _ => const Icon(Icons.phone, size: 16),
+        },
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            dialog.displayName ?? 'N/A',
+            style: const TextStyle(fontSize: 14),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Material(
+          color: colorScheme.tertiary.withAlpha(dialog.pullable ? 255 : 128),
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          child: InkWell(
+            onTap: () {
+              if (dialog.pullable) onPickUp(dialog);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                context.l10n.callPullBadge_pickupButtonTitle,
+                style: TextStyle(fontSize: 14, color: colorScheme.onPrimary),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

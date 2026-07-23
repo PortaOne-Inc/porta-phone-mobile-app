@@ -1,0 +1,1 @@
+enum PreferredOrientation { portrait, auto }

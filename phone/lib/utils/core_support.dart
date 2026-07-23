@@ -1,0 +1,83 @@
+import 'package:equatable/equatable.dart';
+
+import 'package:webtrit_phone/app/constants.dart';
+
+import 'package:webtrit_phone/models/system_info/system_info.dart';
+
+// TODO:
+// - rename to adapter supported flags or
+// - think about remove it because its useles abstraction
+//   - we already have system info in our models, and its enough to move this getters to AdapterInfo
+//   - also real core supported getters exist in CoreInfo so there is logical mess
+//   - see [SipPresenceMapper] for example
+
+/// Abstraction for checking core system feature support.
+abstract class CoreSupport {
+  /// Check if the voicemail feature is supported by remote system.
+  bool get supportsVoicemail;
+
+  /// Check if the SMS messaging feature is supported by remote system.
+  bool get supportsSms;
+
+  /// Check if the internal messaging feature is supported by remote system.
+  bool get supportsChats;
+
+  /// Check if the core system supports system notifications and push sending.
+  bool get supportsSystemNotifications;
+
+  /// Check if the system push notifications feature is supported by remote system.
+  bool get supportsSystemPushNotifications;
+
+  /// Check if the call-to-action list feature is supported by the remote system.
+  bool get supportsCallToActions;
+
+  /// Check if the call history (CDR) feature is supported by the remote system.
+  bool get supportsCallHistory;
+
+  /// Check if the external (server/PBX) contacts directory is supported by the remote system.
+  bool get supportsExtensions;
+}
+
+class CoreSupportImpl extends Equatable implements CoreSupport {
+  CoreSupportImpl(List<String>? supported) : _flags = {...?supported};
+
+  final Set<String> _flags;
+
+  bool _has(String flag) => _flags.contains(flag);
+
+  @override
+  bool get supportsVoicemail => _has(kVoicemailFeatureFlag);
+
+  @override
+  bool get supportsSms => _has(kSmsMessagingFeatureFlag);
+
+  @override
+  bool get supportsChats => _has(kChatMessagingFeatureFlag);
+
+  @override
+  bool get supportsSystemNotifications => _has(kSystemNotificationsFeatureFlag);
+
+  @override
+  bool get supportsSystemPushNotifications => _has(kSystemNotificationsPushFeatureFlag);
+
+  @override
+  bool get supportsCallToActions => _has(kCtaListFeatureFlag);
+
+  @override
+  bool get supportsCallHistory => _has(kCallHistoryFeatureFlag);
+
+  @override
+  bool get supportsExtensions => _has(kExtensionsFeatureFlag);
+
+  @override
+  List<Object?> get props {
+    final sortedFlags = _flags.toList()..sort();
+    return [List.unmodifiable(sortedFlags)];
+  }
+}
+
+class CoreSupportFactory {
+  static CoreSupport create(WebtritSystemInfo? systemInfo) {
+    return CoreSupportImpl(systemInfo?.adapter?.supported);
+  }
+}
