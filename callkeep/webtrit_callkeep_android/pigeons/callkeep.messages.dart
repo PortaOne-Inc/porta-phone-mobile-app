@@ -1,0 +1,556 @@
+// ignore_for_file: avoid_positional_boolean_parameters, one_member_abstracts
+
+import 'package:pigeon/pigeon.dart';
+
+@ConfigurePigeon(
+  PigeonOptions(
+    dartOut: 'lib/src/common/callkeep.pigeon.dart',
+    dartTestOut: 'test/src/common/test_callkeep.pigeon.dart',
+    kotlinOut: 'android/src/main/kotlin/com/webtrit/callkeep/Generated.kt',
+    kotlinOptions: KotlinOptions(package: 'com.webtrit.callkeep'),
+  ),
+)
+class PIOSOptions {
+  late String localizedName;
+  late String? ringtoneSound;
+  late String? ringbackSound;
+  late String? iconTemplateImageAssetName;
+  late int maximumCallGroups;
+  late int maximumCallsPerCallGroup;
+  late bool? supportsHandleTypeGeneric;
+  late bool? supportsHandleTypePhoneNumber;
+  late bool? supportsHandleTypeEmailAddress;
+  late bool supportsVideo;
+  late bool includesCallsInRecents;
+  late bool driveIdleTimerDisabled;
+}
+
+class PAndroidOptions {
+  late String? ringtoneSound;
+  late String? ringbackSound;
+  late bool? incomingCallFullScreen;
+
+  /// Timeout in milliseconds before an unanswered incoming call (STATE_RINGING) is
+  /// automatically disconnected. When null the native default is used.
+  late int? incomingCallTimeoutMs;
+
+  /// Timeout in milliseconds before an unanswered outgoing call (STATE_DIALING) is
+  /// automatically disconnected. When null the native default is used.
+  late int? outgoingCallTimeoutMs;
+
+  /// Absolute path to a file where native logs will be written directly.
+  /// When set, all Log.d/i/w/e calls are appended to this file regardless
+  /// of whether the Flutter delegate is registered.
+  late String? logFilePath;
+}
+
+class POptions {
+  late PIOSOptions ios;
+  late PAndroidOptions android;
+}
+
+class PAudioDevice {
+  late PAudioDeviceType type;
+  late String? id;
+  late String? name;
+}
+
+enum PCallkeepPermission { readPhoneState, readPhoneNumbers }
+
+enum PSpecialPermissionStatusTypeEnum { denied, granted, unknown }
+
+class PPermissionResult {
+  late PCallkeepPermission permission;
+  late PSpecialPermissionStatusTypeEnum status;
+}
+
+enum PCallkeepAndroidBatteryMode { unrestricted, optimized, restricted, unknown }
+
+enum PCallkeepAndroidCallDeliveryMode { telecom, standalone, unknown }
+
+enum PHandleTypeEnum { generic, number, email }
+
+enum PCallInfoConsts { uuid, dtmf, isVideo, number, name }
+
+class PHandle {
+  late PHandleTypeEnum type;
+  late String value;
+}
+
+enum PEndCallReasonEnum {
+  failed,
+  remoteEnded,
+  unanswered,
+  answeredElsewhere,
+  declinedElsewhere,
+  missed,
+  missedWhileConnecting,
+}
+
+// TODO: See https://github.com/flutter/flutter/issues/87307
+class PEndCallReason {
+  late PEndCallReasonEnum value;
+}
+
+enum PAudioDeviceType { earpiece, speaker, bluetooth, wiredHeadset, streaming, unknown }
+
+enum PIncomingCallErrorEnum {
+  unknown,
+  unentitled,
+  callIdAlreadyExists,
+  callIdAlreadyExistsAndAnswered,
+  callIdAlreadyTerminated,
+  filteredByDoNotDisturb,
+  filteredByBlockList,
+  internal,
+
+  /// Android only.
+  ///
+  /// Telecom rejected the incoming call registration via
+  /// `onCreateIncomingConnectionFailed` (i.e. without ever calling
+  /// `onCreateIncomingConnection`).
+  ///
+  /// **When this happens**: Android does not allow two self-managed calls to be
+  /// simultaneously in RINGING state. If a call is already ringing, Telecom
+  /// rejects every subsequent incoming self-managed call. This is standard
+  /// AOSP behaviour (observed on stock Pixel devices running Android 11+), not
+  /// an OEM-specific restriction. Some vendors (Huawei, certain MediaTek OEMs)
+  /// apply the same rejection even when the first call is already ACTIVE.
+  ///
+  /// **Consequences for the app**:
+  /// - The call was never confirmed to Flutter, so `performEndCall` will NOT
+  ///   fire for this call ID.
+  /// - The app must send the appropriate signaling (e.g. SIP BYE) to the
+  ///   server itself upon receiving this error, without waiting for
+  ///   `performEndCall`.
+  callRejectedBySystem,
+}
+
+// TODO: See https://github.com/flutter/flutter/issues/87307
+class PIncomingCallError {
+  late PIncomingCallErrorEnum value;
+}
+
+enum PCallRequestErrorEnum {
+  unknown,
+  unentitled,
+  unknownCallUuid,
+  callUuidAlreadyExists,
+  maximumCallGroupsReached,
+  internal,
+  emergencyNumber,
+
+  /// Android only.
+  ///
+  /// Triggered when the phone is not registered as a self-managed
+  /// [PhoneAccount]. As a result, the `ConnectionService` cannot create
+  /// a connection, and the system throws an exception such as
+  /// `CALL_PHONE permission required to place calls`, because it attempts
+  /// to use the GSM dialer instead of VoIP.
+  selfManagedPhoneAccountNotRegistered,
+
+  /// Android only.
+  ///
+  /// Occurs when the outgoing/incoming call request times out because the
+  /// system TelecomManager failed to bind to the ConnectionService or provide
+  /// a response within the expected timeframe.
+  ///
+  /// Typical causes:
+  /// - Zombie State: After an app crash or OS kill, TelecomManager might
+  ///   retain a stale binder connection to the previous (dead) process.
+  /// - Stale Binding: The system assumes the PhoneAccount is active but
+  ///   fails to trigger `onCreateOutgoingConnection`.
+  /// - Cold Start Latency: On certain vendors (e.g., Itel, Android One),
+  ///   the OS may deadlock or time out during service binding after a cold start.
+  timeout,
+}
+
+// TODO: See https://github.com/flutter/flutter/issues/87307
+class PCallRequestError {
+  late PCallRequestErrorEnum value;
+}
+
+enum PCallkeepLifecycleEvent { onCreate, onStart, onResume, onPause, onStop, onDestroy, onAny }
+
+class PCallkeepIncomingCallData {
+  late String callId;
+  late PHandle? handle;
+  late String? displayName;
+  late bool hasVideo;
+}
+
+class PCallkeepServiceStatus {
+  late PCallkeepLifecycleEvent lifecycleEvent;
+}
+
+enum PCallkeepConnectionState {
+  stateInitializing,
+  stateNew,
+  stateRinging,
+  stateDialing,
+  stateActive,
+  stateHolding,
+  stateDisconnected,
+  statePullingCall,
+}
+
+enum PCallkeepDisconnectCauseType {
+  unknown,
+  error,
+  local,
+  remote,
+  canceled,
+  missed,
+  rejected,
+  busy,
+  restricted,
+  other,
+  connectionManagerNotSupported,
+  answeredElsewhere,
+  callPulled,
+}
+
+class PCallkeepDisconnectCause {
+  late PCallkeepDisconnectCauseType type;
+  late String? reason;
+}
+
+class PCallkeepConnection {
+  late String callId;
+  late PCallkeepConnectionState state;
+  late PCallkeepDisconnectCause disconnectCause;
+}
+
+// TODO: drop the transport-bound "PushNotification" from these two host API names — callkeep
+// should not encode whether a call arrives via push or signaling. Rename here, regenerate pigeon
+// (flutter pub run pigeon --input pigeons/callkeep.messages.dart) and update references:
+//   PHostBackgroundPushNotificationIsolateBootstrapApi -> PHostBackgroundIsolateBootstrapApi
+//   PHostBackgroundPushNotificationIsolateApi          -> PHostBackgroundIsolateApi
+@HostApi()
+abstract class PHostBackgroundPushNotificationIsolateBootstrapApi {
+  @async
+  void initializePushNotificationCallback({required int callbackDispatcher, required int onNotificationSync});
+
+  @async
+  PIncomingCallError? reportNewIncomingCall(String callId, PHandle handle, String? displayName, bool hasVideo);
+}
+
+@HostApi()
+abstract class PHostBackgroundPushNotificationIsolateApi {
+  @async
+  void endCall(String callId);
+
+  @async
+  void endAllCalls();
+
+  /// Terminates the PhoneConnection and stops IncomingCallService.
+  /// Called when the push isolate is done with an unanswered call
+  /// (missed, declined, server hangup, signaling error).
+  @async
+  void releaseCall(String callId);
+
+  /// Stops IncomingCallService without touching the PhoneConnection.
+  /// Called when the push isolate hands off an already-answered call
+  /// to the Activity. The PhoneConnection must stay alive so the
+  /// Activity can adopt it via CALL_ID_ALREADY_EXISTS_AND_ANSWERED.
+  @async
+  void handoffCall(String callId);
+}
+
+@HostApi()
+abstract class PHostPermissionsApi {
+  @async
+  PSpecialPermissionStatusTypeEnum getFullScreenIntentPermissionStatus();
+
+  @async
+  void openFullScreenIntentSettings();
+
+  /// Status of the OEM "display pop-up windows while running in background"
+  /// capability (MIUI/HyperOS `OP_BACKGROUND_START_ACTIVITY`), which gates
+  /// showing the incoming-call Activity over the lock screen. Best-effort:
+  /// reports granted on devices where the capability does not apply.
+  @async
+  PSpecialPermissionStatusTypeEnum getBackgroundActivityStartPermissionStatus();
+
+  /// Opens the OEM permissions screen that hosts the "display pop-up windows
+  /// while running in background" toggle, with a fallback to app settings.
+  @async
+  void openBackgroundActivityStartSettings();
+
+  /// Status of the OEM "display pop-up windows while running in background"
+  /// MIUI/HyperOS `OP_SHOW_WHEN_LOCKED` capability, which gates showing the
+  /// incoming-call Activity over the lock screen. Best-effort: reports
+  /// granted on devices where the capability does not apply.
+  @async
+  PSpecialPermissionStatusTypeEnum getShowWhenLockedPermissionStatus();
+
+  /// Opens the OEM permissions screen that hosts the "show on lock screen"
+  /// toggle, with a fallback to app settings.
+  @async
+  void openShowWhenLockedSettings();
+
+  @async
+  void openSettings();
+
+  @async
+  PCallkeepAndroidBatteryMode getBatteryMode();
+
+  /// How incoming calls are delivered: Telecom `ConnectionService` vs the
+  /// limited standalone foreground service (device without `android.software.telecom`).
+  @async
+  PCallkeepAndroidCallDeliveryMode getCallDeliveryMode();
+
+  @async
+  List<PPermissionResult> requestPermissions(List<PCallkeepPermission> permissions);
+
+  @async
+  List<PPermissionResult> checkPermissionsStatus(List<PCallkeepPermission> permissions);
+}
+
+@HostApi()
+abstract class PHostDiagnosticsApi {
+  @async
+  Map<String, Object?> getDiagnosticReport();
+}
+
+@HostApi()
+abstract class PHostSoundApi {
+  @async
+  void playRingbackSound();
+
+  @async
+  void stopRingbackSound();
+}
+
+@FlutterApi()
+abstract class PDelegateBackgroundRegisterFlutterApi {
+  @async
+  void onWakeUpBackgroundHandler(
+    int userCallbackHandle,
+    PCallkeepServiceStatus status,
+    PCallkeepIncomingCallData? callData,
+  );
+
+  @async
+  void onApplicationStatusChanged(int applicationStatusCallbackHandle, PCallkeepServiceStatus status);
+
+  @async
+  void onNotificationSync(int pushNotificationSyncStatusHandle, PCallkeepIncomingCallData? callData);
+}
+
+@HostApi()
+abstract class PHostApi {
+  @ObjCSelector('isSetUp')
+  bool isSetUp();
+
+  @ObjCSelector('setUp:')
+  @async
+  void setUp(POptions options);
+
+  @ObjCSelector('tearDown')
+  @async
+  void tearDown();
+
+  @ObjCSelector('reportNewIncomingCall:handle:displayName:hasVideo:')
+  @async
+  PIncomingCallError? reportNewIncomingCall(String callId, PHandle handle, String? displayName, bool hasVideo);
+
+  @ObjCSelector('reportConnectingOutgoingCall:')
+  @async
+  void reportConnectingOutgoingCall(String callId);
+
+  @ObjCSelector('reportConnectedOutgoingCall:')
+  @async
+  void reportConnectedOutgoingCall(String callId);
+
+  @ObjCSelector('reportUpdateCall:handle:displayName:hasVideo:proximityEnabled:')
+  @async
+  void reportUpdateCall(String callId, PHandle? handle, String? displayName, bool? hasVideo, bool? proximityEnabled);
+
+  @ObjCSelector('reportEndCall:displayName:reason:')
+  @async
+  void reportEndCall(String callId, String displayName, PEndCallReason reason);
+
+  @ObjCSelector('startCall:handle:displayNameOrContactIdentifier:video:proximityEnabled:')
+  @async
+  PCallRequestError? startCall(
+    String callId,
+    PHandle handle,
+    String? displayNameOrContactIdentifier,
+    bool video,
+    bool proximityEnabled,
+  );
+
+  @ObjCSelector('answerCall:')
+  @async
+  PCallRequestError? answerCall(String callId);
+
+  @ObjCSelector('endCall:')
+  @async
+  PCallRequestError? endCall(String callId);
+
+  @ObjCSelector('setHeld:onHold:')
+  @async
+  PCallRequestError? setHeld(String callId, bool onHold);
+
+  @ObjCSelector('setMuted:muted:')
+  @async
+  PCallRequestError? setMuted(String callId, bool muted);
+
+  @ObjCSelector('setSpeaker:enabled:')
+  @async
+  PCallRequestError? setSpeaker(String callId, bool enabled);
+
+  @ObjCSelector('setAudioDevice:device:')
+  @async
+  PCallRequestError? setAudioDevice(String callId, PAudioDevice device);
+
+  @ObjCSelector('sendDTMF:key:')
+  @async
+  PCallRequestError? sendDTMF(String callId, String key);
+
+  void onDelegateSet();
+}
+
+@HostApi()
+abstract class PHostConnectionsApi {
+  @ObjCSelector('getConnection:')
+  @async
+  PCallkeepConnection? getConnection(String callId);
+
+  @async
+  List<PCallkeepConnection> getConnections();
+
+  @async
+  void cleanConnections();
+}
+
+@FlutterApi()
+abstract class PDelegateFlutterApi {
+  @ObjCSelector('continueStartCallIntentHandle:displayName:video:')
+  void continueStartCallIntent(PHandle handle, String? displayName, bool video);
+
+  @ObjCSelector('didPushIncomingCallHandle:displayName:video:id:error:')
+  void didPushIncomingCall(PHandle handle, String? displayName, bool video, String callId, PIncomingCallError? error);
+
+  @ObjCSelector('performStartCall:handle:displayNameOrContactIdentifier:video:')
+  @async
+  bool performStartCall(String callId, PHandle handle, String? displayNameOrContactIdentifier, bool video);
+
+  @ObjCSelector('performAnswerCall:')
+  @async
+  bool performAnswerCall(String callId);
+
+  @ObjCSelector('performEndCall:')
+  @async
+  bool performEndCall(String callId);
+
+  @ObjCSelector('performSetHeld:onHold:')
+  @async
+  bool performSetHeld(String callId, bool onHold);
+
+  @ObjCSelector('performSetMuted:muted:')
+  @async
+  bool performSetMuted(String callId, bool muted);
+
+  @ObjCSelector('performSendDTMF:key:')
+  @async
+  bool performSendDTMF(String callId, String key);
+
+  @ObjCSelector('audioDeviceSet:device:')
+  @async
+  bool performAudioDeviceSet(String callId, PAudioDevice device);
+
+  @ObjCSelector('performAudioDevicesUpdate:devices:')
+  @async
+  bool performAudioDevicesUpdate(String callId, List<PAudioDevice> devices);
+
+  @ObjCSelector('didActivateAudioSession')
+  void didActivateAudioSession();
+
+  @ObjCSelector('didDeactivateAudioSession')
+  void didDeactivateAudioSession();
+
+  @ObjCSelector('didReset')
+  void didReset();
+}
+
+@FlutterApi()
+abstract class PDelegateBackgroundServiceFlutterApi {
+  @async
+  void performAnswerCall(String callId);
+
+  @async
+  void performEndCall(String callId);
+}
+
+@HostApi()
+abstract class PPushRegistryHostApi {
+  @ObjCSelector('pushTokenForPushTypeVoIP')
+  String? pushTokenForPushTypeVoIP();
+}
+
+@FlutterApi()
+abstract class PPushRegistryDelegateFlutterApi {
+  @ObjCSelector('didUpdatePushTokenForPushTypeVoIP:')
+  void didUpdatePushTokenForPushTypeVoIP(String? token);
+}
+
+@FlutterApi()
+abstract class PDelegateSmsReceiverFlutterApi {
+  /// Called by native side when a matching SMS is received
+  @async
+  void onSmsReceived(String text);
+}
+
+@HostApi()
+abstract class PHostSmsReceptionConfigApi {
+  /// Initializes the SMS receiver on Android and sets a prefix and regex to filter and parse messages.
+  ///
+  /// Only SMS messages starting with [messagePrefix] and matching [regexPattern]
+  /// will be processed. The [regexPattern] must contain exactly 4 capturing groups
+  /// in the following order:
+  /// 1. callId
+  /// 2. handle
+  /// 3. displayName
+  /// 4. hasVideo (true|false)
+  ///
+  /// Example:
+  /// messagePrefix: "<#> WEBTRIT:"
+  /// regexPattern: r'\{"type":"incoming","handle":"([^"]+)","callID":"([^"]+)","displayName":"([^"]+)","hasVideo":(true|false)\}'
+  @async
+  void initializeSmsReception({required String messagePrefix, required String regexPattern});
+}
+
+// ------------------------------------------------------------------------------------------------
+// Android Activity Control section
+// ------------------------------------------------------------------------------------------------
+
+@HostApi()
+abstract class PHostActivityControlApi {
+  /// Allows the app's activity to be shown over the device lock screen.
+  ///
+  /// This is an Android-only feature.
+  @async
+  void showOverLockscreen(bool enable);
+
+  /// Turns the screen on when the app's window is shown.
+  ///
+  /// Typically used in conjunction with [showOverLockscreen].
+  /// This is an Android-only feature.
+  @async
+  void wakeScreenOnShow(bool enable);
+
+  /// Moves the entire task (app) to the background.
+  ///
+  /// This is an Android-only feature.
+  /// Returns `true` if successful.
+  @async
+  bool sendToBackground();
+
+  /// Checks if the device screen is currently locked (keyguard is active).
+  ///
+  /// Returns `false` on non-Android platforms.
+  @async
+  bool isDeviceLocked();
+}

@@ -1,0 +1,1 @@
+enum CallkeepSpecialPermissions { fullScreenIntent, backgroundActivityStart }

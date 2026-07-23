@@ -1,0 +1,342 @@
+package com.webtrit.callkeep.services.core
+
+import com.webtrit.callkeep.PCallkeepConnection
+import com.webtrit.callkeep.PCallkeepConnectionState
+import com.webtrit.callkeep.PCallkeepDisconnectCause
+import com.webtrit.callkeep.PCallkeepDisconnectCauseType
+import com.webtrit.callkeep.models.CallConnectionState
+import com.webtrit.callkeep.models.CallMetadata
+import java.util.concurrent.ConcurrentHashMap
+
+/**
+ * A lightweight shadow registry that mirrors [com.webtrit.callkeep.services.services.connection.PhoneConnectionService]
+ * connection state in the main process.
+ *
+ * Updated from broadcasts emitted by [com.webtrit.callkeep.services.services.connection.PhoneConnectionService]:
+ * - [com.webtrit.callkeep.services.broadcaster.CallLifecycleEvent.IncomingConnectionReported] -> promote incoming
+ * - [com.webtrit.callkeep.services.broadcaster.CallLifecycleEvent.AnswerCall]           -> markAnswered
+ * - [com.webtrit.callkeep.services.broadcaster.CallLifecycleEvent.HungUp] /
+ *   [com.webtrit.callkeep.services.broadcaster.CallLifecycleEvent.DeclineCall]          -> markTerminated
+ * - [com.webtrit.callkeep.services.broadcaster.CallLifecycleEvent.OngoingCall]          -> promote outgoing
+ *
+ * Termination is derived: a call is considered terminated when it is absent from all active
+ * tracking sets ([connections], [pendingCallIds], [pendingAnswers], [answeredCallIds]).
+ * No explicit terminated set is maintained, so a call that re-arrives with the same ID
+ * (e.g. transfer back) is never incorrectly blocked.
+ *
+ * This allows [ForegroundService] and [com.webtrit.callkeep.ConnectionsApi] to query connection
+ * state without crossing a process boundary. The main process never reads
+ * [com.webtrit.callkeep.services.services.connection.PhoneConnectionService.connectionManager]
+ * directly — that object lives in the `:callkeep_core` JVM and is empty in the main process.
+ * Call state is mirrored via a combination of main-process updates (pending registration and
+ * local guards) and IPC broadcasts from `:callkeep_core` for lifecycle transitions.
+ */
+class MainProcessConnectionTracker internal constructor() : ConnectionTracker {
+    // callId -> metadata for all known, non-terminated calls
+    private val connections = ConcurrentHashMap<String, CallMetadata>()
+
+    // callIds registered with Telecom but whose PhoneConnection has not yet been created
+    private val pendingCallIds: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // callIds that have been answered by the user
+    private val answeredCallIds: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // callIds for which answerCall was requested before the PhoneConnection was created
+    private val pendingAnswers: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // -------------------------------------------------------------------------
+    // Callback guards (moved from ForegroundService)
+    // -------------------------------------------------------------------------
+
+    // callIds whose termination was directly notified via performEndCall in tearDown().
+    // Suppresses the stale async HungUp broadcast that arrives after the new session starts.
+    private val directNotifiedCallIds: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // callIds for which endCall() has already dispatched a HungUpCall IPC or re-fired
+    // performEndCall for a Telecom-terminated call. Prevents duplicate performEndCall.
+    private val endCallDispatchedCallIds: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // last known Pigeon connection state per callId, kept for getConnections() queries
+    private val connectionStates = ConcurrentHashMap<String, PCallkeepConnectionState>()
+
+    // callIds the app ended while they were never presented in Flutter state (the call==null
+    // signaling-hangup path). Used by reportNewIncomingCall to reject EVERY stale ghost
+    // re-presentation of such a call (a stale handshake can replay the dead incoming several times,
+    // so this is a sticky flag, not one-shot). Cleared on tearDown via clear(). Not time-based: a
+    // transfer-back always reuses a call the app DID know, so its end never lands here - making this
+    // a semantic discriminator rather than a timing bet, and safe to keep sticky.
+    private val endedWithoutFlutterStateCallIds: MutableSet<String> = ConcurrentHashMap.newKeySet()
+
+    // -------------------------------------------------------------------------
+    // Write operations — called from ForegroundService broadcast receiver
+    // -------------------------------------------------------------------------
+
+    /**
+     * Register a call that has been sent to Telecom but whose [com.webtrit.callkeep.services.services.connection.PhoneConnection]
+     * has not yet been created (i.e., between addNewIncomingCall / startOutgoingCall and
+     * onCreateIncoming/OutgoingConnection).
+     *
+     * The call is intentionally NOT added to [connections] here — only to [pendingCallIds].
+     * This keeps [exists] returning false so that [ForegroundService.answerCall] correctly
+     * routes to the deferred-answer path ([reserveAnswer]) rather than attempting to answer
+     * a PhoneConnection that does not yet exist. [connections] is populated only in [promote].
+     *
+     * Returns true if [callId] was newly inserted into the pending set, false if it was already
+     * present. Callers can use this to determine whether they own the pending entry and should
+     * roll it back on error — avoiding a race where a second caller's error removes the first
+     * caller's genuine pending entry.
+     */
+    override fun addPending(callId: String): Boolean {
+        // Reset all per-call lifecycle state from any prior use of this callId (e.g. transfer-back
+        // reusing the same callId). Without this, a reused callId can inherit stale guards from
+        // the previous call — for example, endCallDispatchedCallIds would cause the second
+        // clearAndMarkEndCallDispatched to return false, suppressing the required performEndCall.
+        answeredCallIds.remove(callId)
+        pendingAnswers.remove(callId)
+        endCallDispatchedCallIds.remove(callId)
+        directNotifiedCallIds.remove(callId)
+        return pendingCallIds.add(callId)
+    }
+
+    /**
+     * Promote a pending call to a fully registered connection once the
+     * [com.webtrit.callkeep.services.services.connection.PhoneConnection] has been created.
+     *
+     * @param state the initial Telecom state reported for this call.
+     *   Use [PCallkeepConnectionState.STATE_RINGING] for incoming, [PCallkeepConnectionState.STATE_DIALING] for outgoing.
+     */
+    override fun promote(
+        callId: String,
+        metadata: CallMetadata,
+        state: PCallkeepConnectionState,
+    ) {
+        // Reset all per-call lifecycle guards in case addPending was not called first (push-path),
+        // or in case this callId is being reused without going through addPending.
+        answeredCallIds.remove(callId)
+        pendingAnswers.remove(callId)
+        endCallDispatchedCallIds.remove(callId)
+        directNotifiedCallIds.remove(callId)
+        connections[callId] = metadata
+        pendingCallIds.remove(callId)
+        connectionStates[callId] = state
+    }
+
+    /**
+     * Mark [callId] as answered (lifecycle guard for isAnswered/checkIncomingDuplicate).
+     *
+     * Does NOT stamp the connection state: the ACTIVE state is mirrored from the real connection via
+     * [updateState] (PhoneConnection.onStateChanged for Telecom; explicit ConnectionStateChanged from
+     * StandaloneCallService). The initial registration snapshot is still set by [promote].
+     */
+    override fun markAnswered(callId: String) {
+        answeredCallIds.add(callId)
+    }
+
+    /**
+     * Mirror the authoritative connection [state] for [callId]. The source of truth is the real
+     * android.telecom.Connection state, broadcast from PhoneConnection.onStateChanged (and emitted
+     * explicitly by the no-Telecom StandaloneCallService). Replaces the per-event state stamping that
+     * the removed markAnswered(ACTIVE)/markHeld did; like those it writes [connectionStates]
+     * unconditionally (it is NOT gated on [connections] membership), so the state survives an
+     * [addPending] reset and the cold-start "already answered" detection in reportNewIncomingCall keeps
+     * working. Touches no lifecycle guard set. Termination (STATE_DISCONNECTED) is owned by
+     * [markTerminated] on the cause-carrying events, not by this mirror.
+     */
+    override fun updateState(
+        callId: String,
+        state: CallConnectionState,
+    ) {
+        // Terminal state is owned by markTerminated (via the cause-carrying HungUp/DeclineCall events),
+        // not by this mirror — guard here so a future ConnectionStateChanged(DISCONNECTED) call site
+        // cannot accidentally override the termination path.
+        if (state == CallConnectionState.DISCONNECTED) return
+        connectionStates[callId] = state.toPCallkeepConnectionState()
+    }
+
+    // Conversion from the local model enum to the Pigeon enum lives here, at the core boundary,
+    // so model/domain code (CallMetadata) stays free of the generated PCallkeepConnectionState.
+    private fun CallConnectionState.toPCallkeepConnectionState(): PCallkeepConnectionState =
+        when (this) {
+            CallConnectionState.INITIALIZING -> PCallkeepConnectionState.STATE_INITIALIZING
+            CallConnectionState.NEW -> PCallkeepConnectionState.STATE_NEW
+            CallConnectionState.RINGING -> PCallkeepConnectionState.STATE_RINGING
+            CallConnectionState.DIALING -> PCallkeepConnectionState.STATE_DIALING
+            CallConnectionState.ACTIVE -> PCallkeepConnectionState.STATE_ACTIVE
+            CallConnectionState.HOLDING -> PCallkeepConnectionState.STATE_HOLDING
+            CallConnectionState.DISCONNECTED -> PCallkeepConnectionState.STATE_DISCONNECTED
+        }
+
+    override fun updateMetadata(metadata: CallMetadata) {
+        connections.computeIfPresent(metadata.callId) { _, existing ->
+            existing.mergeWith(metadata)
+        }
+    }
+
+    /**
+     * Mark [callId] as terminated. Removes it from all active tracking sets so that
+     * [isTerminated] returns true (derived: absent from all sets = terminated).
+     */
+    override fun markTerminated(callId: String) {
+        connections.remove(callId)
+        answeredCallIds.remove(callId)
+        pendingCallIds.remove(callId)
+        pendingAnswers.remove(callId)
+        connectionStates[callId] = PCallkeepConnectionState.STATE_DISCONNECTED
+    }
+
+    // -------------------------------------------------------------------------
+    // Read operations — replaces PhoneConnectionService.connectionManager.* reads
+    // -------------------------------------------------------------------------
+
+    /** Returns true if an active connection record exists for [callId]. */
+    override fun exists(callId: String): Boolean = connections.containsKey(callId)
+
+    /** Returns true if [callId] is in pending state (Telecom notified, PhoneConnection not yet created). */
+    override fun isPending(callId: String): Boolean = pendingCallIds.contains(callId)
+
+    /** Returns a non-destructive snapshot of all currently pending call IDs. */
+    override fun getPendingCallIds(): Set<String> = pendingCallIds.toSet()
+
+    /**
+     * Returns true if [callId] was previously observed (i.e. appeared in [connectionStates]
+     * via [addPending] → [markTerminated], [promote], or [markAnswered]) and is no longer
+     * present in any active tracking set.
+     *
+     * Requiring [connectionStates] presence prevents false positives for callIds that were
+     * never tracked: an unknown callId absent from all sets is NOT considered terminated —
+     * it is simply unknown. Without this guard, [ForegroundService.endCall] would
+     * misclassify an unknown callId as terminated and fire a spurious [performEndCall].
+     *
+     * Termination is still derived — no explicit terminated set is maintained — so a call
+     * that re-arrives with the same ID (e.g. transfer back) is never blocked once it
+     * re-enters [pendingCallIds] via [addPending] or [promote].
+     */
+    override fun isTerminated(callId: String): Boolean =
+        connectionStates.containsKey(callId) &&
+            !connections.containsKey(callId) &&
+            !pendingCallIds.contains(callId) &&
+            !pendingAnswers.contains(callId) &&
+            !answeredCallIds.contains(callId)
+
+    /** Returns true if [callId] has been answered. */
+    override fun isAnswered(callId: String): Boolean = answeredCallIds.contains(callId)
+
+    /** Returns [CallMetadata] for [callId], or null if not tracked. */
+    override fun get(callId: String): CallMetadata? = connections[callId]
+
+    /** Returns metadata for all active (non-terminated) calls. */
+    override fun getAll(): List<CallMetadata> = connections.values.toList()
+
+    /** Returns the last known Pigeon connection state for [callId], or null if not tracked. */
+    override fun getState(callId: String): PCallkeepConnectionState? = connectionStates[callId]
+
+    /**
+     * Constructs a [PCallkeepConnection] for [callId] using stored metadata and state.
+     * Returns null if [callId] is not currently tracked.
+     */
+    override fun toPCallkeepConnection(callId: String): PCallkeepConnection? {
+        val metadata = connections[callId] ?: return null
+        val state = connectionStates[callId] ?: PCallkeepConnectionState.STATE_NEW
+        val disconnectCause =
+            PCallkeepDisconnectCause(
+                type = PCallkeepDisconnectCauseType.UNKNOWN,
+                reason = "Unknown reason",
+            )
+        return PCallkeepConnection(callId = metadata.callId, state = state, disconnectCause = disconnectCause)
+    }
+
+    // -------------------------------------------------------------------------
+    // Deferred answer (mirrors ConnectionManager.reserveAnswer / consumeAnswer)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Remove [callId] from the pending set without touching any other state.
+     *
+     * Called when [com.webtrit.callkeep.services.services.foreground.ForegroundService.reportNewIncomingCall]
+     * receives an error from [com.webtrit.callkeep.services.services.connection.PhoneConnectionService]:
+     * the call was never actually registered with Telecom, so the pending entry must be
+     * rolled back to prevent [drainUnconnectedPendingCallIds] from firing a spurious
+     * performEndCall during the next [com.webtrit.callkeep.services.services.foreground.ForegroundService.tearDown].
+     */
+    override fun removePending(callId: String) {
+        pendingCallIds.remove(callId)
+    }
+
+    /**
+     * Reserve a deferred answer for [callId] before its [com.webtrit.callkeep.services.services.connection.PhoneConnection]
+     * is created. Mirrors [com.webtrit.callkeep.services.services.connection.ConnectionManager.reserveAnswer].
+     */
+    override fun reserveAnswer(callId: String) {
+        pendingAnswers.add(callId)
+    }
+
+    /**
+     * Consume and return whether a deferred answer was reserved for [callId].
+     * Returns true and removes the reservation; false if none existed.
+     */
+    override fun consumeAnswer(callId: String): Boolean = pendingAnswers.remove(callId)
+
+    // -------------------------------------------------------------------------
+    // tearDown helpers
+    // -------------------------------------------------------------------------
+
+    /**
+     * Drain all pending call IDs that have not yet been promoted to active connections.
+     * Used by [ForegroundService.tearDown] to fire performEndCall for calls that were
+     * sent to Telecom but whose PhoneConnection was never created.
+     *
+     * The drained IDs are removed from tracking; subsequent [isPending] calls return false.
+     */
+    override fun drainUnconnectedPendingCallIds(): Set<String> {
+        val unconnected = pendingCallIds.toSet()
+        pendingCallIds.clear()
+        return unconnected
+    }
+
+    /**
+     * Clear all tracked state. Called at the end of [ForegroundService.tearDown]
+     * after all Flutter notifications and native connection cleanup have been dispatched.
+     */
+    override fun clear() {
+        connections.clear()
+        pendingCallIds.clear()
+        answeredCallIds.clear()
+        pendingAnswers.clear()
+        connectionStates.clear()
+        directNotifiedCallIds.clear()
+        endCallDispatchedCallIds.clear()
+        endedWithoutFlutterStateCallIds.clear()
+    }
+
+    // -------------------------------------------------------------------------
+    // Callback guards
+    // -------------------------------------------------------------------------
+
+    override fun markDirectNotified(callId: String) {
+        directNotifiedCallIds.add(callId)
+    }
+
+    override fun consumeDirectNotified(callId: String): Boolean = directNotifiedCallIds.remove(callId)
+
+    override fun markEndCallDispatched(callId: String): Boolean = endCallDispatchedCallIds.add(callId)
+
+    override fun markEndedWithoutFlutterState(callId: String) {
+        endedWithoutFlutterStateCallIds.add(callId)
+    }
+
+    override fun wasEndedWithoutFlutterState(callId: String): Boolean =
+        endedWithoutFlutterStateCallIds.contains(callId)
+
+    companion object {
+        /**
+         * Process-wide singleton. All main-process components ([ForegroundService],
+         * [com.webtrit.callkeep.ConnectionsApi], etc.) share this single instance so that
+         * connection state is consistent across the process.
+         *
+         * Typed as [ConnectionTracker] so that the implementation can be swapped
+         * (e.g. for a broadcast-backed variant after the `:callkeep_core` process split)
+         * without touching any caller.
+         */
+        val instance: ConnectionTracker = MainProcessConnectionTracker()
+    }
+}

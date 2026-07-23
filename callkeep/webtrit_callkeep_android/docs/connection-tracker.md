@@ -1,0 +1,93 @@
+# ConnectionTracker / MainProcessConnectionTracker
+
+**Files**:
+
+- `kotlin/com/webtrit/callkeep/services/core/ConnectionTracker.kt` (interface)
+- `kotlin/com/webtrit/callkeep/services/core/MainProcessConnectionTracker.kt` (implementation)
+
+## Responsibility
+
+`MainProcessConnectionTracker` is a **shadow call-state registry** living in the main-process JVM.
+Because `PhoneConnectionService` and its `ConnectionManager` run in the `:callkeep_core` process,
+the main process cannot read their in-memory state. `MainProcessConnectionTracker` mirrors Telecom
+connection state so the main process and Flutter can query call status at any time without an IPC
+round-trip.
+
+State is updated exclusively from broadcast events emitted by `PhoneConnectionService`.
+
+## Data Structures
+
+| Field               | Type                                                  | Description                                                             |
+|---------------------|-------------------------------------------------------|-------------------------------------------------------------------------|
+| `connections`       | `ConcurrentHashMap<String, CallMetadata>`             | Non-terminated calls with full metadata                                 |
+| `connectionStates`  | `ConcurrentHashMap<String, PCallkeepConnectionState>` | Telecom state snapshot per call                                         |
+| `pendingCallIds`    | `MutableSet<String>`                                  | Calls sent to Telecom, `PhoneConnection` not yet created                |
+| `answeredCallIds`   | `MutableSet<String>`                                  | Answer guard (calls the user answered); the ACTIVE state itself is mirrored via `updateState` |
+| `terminatedCallIds` | `MutableSet<String>`                                  | Ended calls (never removed, to detect stale events)                     |
+| `pendingAnswers`    | `MutableSet<String>`                                  | Deferred answers (user pressed answer before `PhoneConnection` existed) |
+
+## Callback Guards
+
+These sets prevent duplicate Dart notifications for the same call:
+
+| Guard                        | Purpose                                                                                                    |
+|------------------------------|------------------------------------------------------------------------------------------------------------|
+| `directNotifiedCallIds`      | Calls notified directly during `tearDown()`. Suppresses a subsequent `HungUp` broadcast for the same call. |
+| `endCallDispatchedCallIds`   | Calls for which `performEndCall()` has already been sent to Dart. Prevents a second dispatch.              |
+
+(The `IncomingConnectionReported` event is register-only and does not notify the Flutter delegate,
+so no app-reported suppression guard is needed. The foreground delegate is notified of an incoming
+call by its own signaling, or by `ReplayIncomingCall` on delegate attach; the Dart `CallBloc`
+deduplicates by callId.)
+
+## State Transitions
+
+```text
+addPending(callId)
+    pendingCallIds += callId
+
+promote(callId, metadata, state)
+    pendingCallIds -= callId
+    connections[callId] = metadata
+    connectionStates[callId] = state
+
+markAnswered(callId)
+    answeredCallIds += callId          # guard only -- does NOT stamp connectionStates
+
+updateState(callId, state)
+    connectionStates[callId] = state   # writes UNCONDITIONALLY (not gated on connections
+                                       # membership; callable before promote). DISCONNECTED
+                                       # is ignored -- terminal state is owned by markTerminated.
+
+markTerminated(callId)
+    connections -= callId
+    connectionStates -= callId
+    pendingCallIds -= callId
+    answeredCallIds -= callId
+    terminatedCallIds += callId
+```
+
+## Query Methods
+
+| Method                 | Returns                                                            |
+|------------------------|--------------------------------------------------------------------|
+| `exists(callId)`       | True if any of pending / connections / terminated contains this id |
+| `isPending(callId)`    | True if in `pendingCallIds`                                        |
+| `isTerminated(callId)` | True if in `terminatedCallIds`                                     |
+| `isAnswered(callId)`   | True if in `answeredCallIds`                                       |
+| `get(callId)`          | `CallMetadata?` from `connections`                                 |
+| `getAll()`             | All entries in `connections`                                       |
+| `getState(callId)`     | `PCallkeepConnectionState?` from `connectionStates`                |
+
+## Thread Safety
+
+All collections are either `ConcurrentHashMap` or accessed from the main thread (broadcast
+receiver callbacks run on the main looper). Guard sets are `LinkedHashSet` accessed only from the
+service's main thread.
+
+## Related Components
+
+- [callkeep-core.md](callkeep-core.md) — exposes the query/mutation API to the rest of the main
+  process
+- [foreground-service.md](foreground-service.md) — drives state mutations from broadcast handlers
+- [ipc-broadcasting.md](ipc-broadcasting.md) — the events that trigger state transitions

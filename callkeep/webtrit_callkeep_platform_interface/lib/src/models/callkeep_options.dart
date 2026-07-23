@@ -1,0 +1,102 @@
+import 'package:equatable/equatable.dart';
+import 'package:webtrit_callkeep_platform_interface/src/models/callkeep_handle.dart';
+
+class CallkeepOptions extends Equatable {
+  const CallkeepOptions({required this.ios, required this.android});
+
+  final CallkeepIOSOptions ios;
+  final CallkeepAndroidOptions android;
+
+  @override
+  List<Object?> get props => [ios, android];
+}
+
+class CallkeepIOSOptions extends Equatable {
+  const CallkeepIOSOptions({
+    required this.localizedName,
+    required this.maximumCallGroups,
+    required this.maximumCallsPerCallGroup,
+    required this.supportedHandleTypes,
+    this.ringtoneSound,
+    this.ringbackSound,
+    this.iconTemplateImageAssetName,
+    this.supportsVideo = false,
+    this.includesCallsInRecents = true,
+    this.driveIdleTimerDisabled = true,
+    this.callWaitingToneOwnCallsOnly = true,
+  });
+
+  final String localizedName;
+  final String? ringtoneSound;
+  final String? ringbackSound;
+  final String? iconTemplateImageAssetName;
+  final int maximumCallGroups;
+  final int maximumCallsPerCallGroup;
+  final Set<CallkeepHandleType> supportedHandleTypes;
+  final bool supportsVideo;
+  final bool includesCallsInRecents;
+  final bool driveIdleTimerDisabled;
+
+  /// iOS only: when true (default), the call-waiting tone detection considers only
+  /// this app's own CallKit calls; when false, calls from other apps (cellular,
+  /// other VoIP apps) also count towards the connected/ringing combination.
+  final bool callWaitingToneOwnCallsOnly;
+
+  @override
+  List<Object?> get props => [
+    localizedName,
+    ringtoneSound,
+    ringbackSound,
+    iconTemplateImageAssetName,
+    maximumCallGroups,
+    maximumCallsPerCallGroup,
+    supportedHandleTypes,
+    supportsVideo,
+    includesCallsInRecents,
+    driveIdleTimerDisabled,
+    callWaitingToneOwnCallsOnly,
+  ];
+}
+
+class CallkeepAndroidOptions extends Equatable {
+  const CallkeepAndroidOptions({
+    this.ringtoneSound,
+    this.ringbackSound,
+    this.incomingCallFullScreen,
+    this.incomingCallTimeoutMs = 60000,
+    this.outgoingCallTimeoutMs = 60000,
+    this.nativeLogFilePath,
+  });
+
+  final String? ringtoneSound;
+  final String? ringbackSound;
+
+  /// Whether incoming call notifications should use a full-screen intent to
+  /// wake the device on lock screen. Defaults to `true` on the Kotlin side
+  /// when not specified. Pass `false` to show a heads-up notification instead.
+  final bool? incomingCallFullScreen;
+
+  /// Timeout in milliseconds before an unanswered incoming call (STATE_RINGING)
+  /// is automatically disconnected. Defaults to `60000` ms.
+  final int incomingCallTimeoutMs;
+
+  /// Timeout in milliseconds before an unanswered outgoing call (STATE_DIALING)
+  /// is automatically disconnected. Defaults to `60000` ms.
+  final int outgoingCallTimeoutMs;
+
+  /// Absolute path to the file where native (Kotlin) logs will be written.
+  /// Kotlin writes directly to this exact path — no renaming or suffix is applied.
+  /// Pass [AppPath.nativeLogFilePath] here and the same value to [NativeLogForwarder]
+  /// so both sides agree on the file location.
+  final String? nativeLogFilePath;
+
+  @override
+  List<Object?> get props => [
+    ringtoneSound,
+    ringbackSound,
+    incomingCallFullScreen,
+    incomingCallTimeoutMs,
+    outgoingCallTimeoutMs,
+    nativeLogFilePath,
+  ];
+}
