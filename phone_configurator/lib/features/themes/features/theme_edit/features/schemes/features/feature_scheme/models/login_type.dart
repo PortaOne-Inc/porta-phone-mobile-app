@@ -1,0 +1,1 @@
+enum EnvLoginType { defaultLogin, customLogin }

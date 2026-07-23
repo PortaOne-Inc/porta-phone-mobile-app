@@ -1,0 +1,177 @@
+name: webtrit_configurator
+description: A project that allows you to customize the style of the mobile application.
+
+publish_to: 'none'
+
+version: 0.0.0
+
+environment:
+  sdk: ^3.11.0
+  flutter: ^3.19.0
+
+workspace:
+  - packages/domain
+  - packages/data
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  screenshots:
+    path: ../webtrit_phone/screenshots
+  webtrit_phone:
+    path: ../webtrit_phone
+  domain:
+    path: ./packages/domain
+  # TODO(Serdun): Try to remove data dependency from presentation now it used for providing env data for http client
+  data:
+    path: ./packages/data
+
+  injectable: ^2.6.0
+  get_it: ^9.0.5
+  freezed_annotation: ^3.1.0
+  freezed: ^3.2.3
+  firebase_core: ^4.2.1
+  firebase_analytics: ^12.0.4
+  intl: any
+  go_router: ^17.0.0
+  url_launcher: ^6.3.2
+  bloc: ^9.1.0
+  flutter_bloc: ^9.1.1
+  bloc_concurrency: ^0.3.0
+  responsive_framework: ^1.5.1
+  flutter_hsvcolor_picker: ^1.5.1
+  file_picker: ^10.3.3
+  flutter_svg: ^2.2.2
+  formz: ^0.8.0
+  google_fonts: ^8.1.0
+  infinite_scroll_pagination: ^5.1.1
+  screenshot: ^3.0.0
+  characters: ^1.3.0
+  collection: ^1.19.1
+  path: ^1.9.1
+  image_size_getter: ^2.4.1
+  easy_debounce: ^2.0.3
+  validated: ^2.0.0
+  resizable_columns: ^0.0.2
+  json_annotation: ^4.9.0
+  logging: ^1.3.0
+  logging_appenders: ^2.0.0+1
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.3
+  package_info_plus: ^10.1.0
+  mime: ^2.0.0
+  vector_math: ^2.2.0
+  web: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  webtrit_analysis:
+    git: https://github.com/WebTrit/webtrit_analysis.git
+
+  flutter_gen_runner: ^5.12.0
+  injectable_generator: ^2.9.1
+  build_runner: ^2.10.2
+  json_serializable: ^6.11.1
+  melos: ^7.4.0
+
+dependency_overrides:
+  win32: ^6.0.1
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/themes/
+    - assets/scheme/
+    - assets/environment/
+
+melos:
+  name: webtrit_configurator
+  useRootAsPackage: true
+  scripts:
+    generate:
+      description: Run build_runner code generation in all packages.
+      run: dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dependsOn: build_runner
+
+    generate:watch:
+      description: Run build_runner watch (use --scope to target a package).
+      run: dart run build_runner watch --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn: build_runner
+
+    analyze:
+      description: Run dart analyze in all packages.
+      run: dart analyze --fatal-infos
+      exec:
+        concurrency: 3
+
+    fmt:check:
+      description: Check Dart formatting in all packages.
+      run: dart format --set-exit-if-changed .
+      exec:
+        concurrency: 3
+
+    fmt:
+      description: Fix Dart formatting in all packages.
+      run: dart format .
+      exec:
+        concurrency: 3
+
+    test:
+      description: Run tests in all packages.
+      run: flutter test
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dirExists: test
+
+    test:coverage:
+      description: Run tests with coverage in all packages.
+      run: flutter test --coverage
+      exec:
+        concurrency: 1
+        orderDependents: true
+      packageFilters:
+        dirExists: test
+
+    clean:
+      description: Clean all packages.
+      run: flutter clean
+      exec:
+        concurrency: 3
+
+    get:
+      description: Get dependencies for all packages.
+      run: flutter pub get
+      exec:
+        concurrency: 3
+
+    deploy:version:
+      description: >
+        Build and deploy Flutter web to a versioned Firebase Hosting site.
+        Auto-detects version from a webtrit-phone/<version> branch, or pass it manually:
+          melos run deploy:version -- 1-13-1
+      run: ./tool/deploy_hosting.sh $@
+
+    deploy:develop:
+      description: Build and deploy Flutter web to the develop (latest) Firebase Hosting site.
+      run: ./tool/deploy_hosting.sh develop
+
+    deploy:versions-index:
+      description: Regenerate and deploy the versions index page (lists all deployed versions).
+      run: ./tool/update_versions_index.sh

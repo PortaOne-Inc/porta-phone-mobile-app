@@ -1,0 +1,651 @@
+{
+  "@@locale": "en",
+  "@@author": "serdun",
+  "app_name": "Portaphone configurator",
+  "theme_new": "New theme",
+  "theme_primary": "Primary",
+  "theme_name": "Theme name",
+  "theme_create": "Create",
+  "theme_update": "Update",
+  "common_help": "Help",
+  "common_file": "File",
+  "common_not_fount_go_home": "Go to homepage",
+  "common_not_fount_title": "Not Found",
+  "common_not_fount_description": "Sorry, we couldn't find the page you're looking for. It's possible that the page has been removed, renamed, or is temporarily unavailable. Please check the URL and try again, or contact us if you think this is a mistake.",
+  "feature_authorization_exception_invalid_credentials": "Invalid email or password.",
+  "feature_authorization_reset_password": "Reset password.",
+  "authorization_title": "Authorization",
+  "authorization_session_expired": "Your session has expired.\nPlease log in again",
+  "authorization_enter_email_hint": "Enter email",
+  "authorization_enter_password_hint": "Enter password",
+  "authorization_sign_in": "Sign In",
+  "configurator_color_template_title": "Color scheme",
+  "configurator_text_font": "Text font",
+  "configurator_button_text_style": "Text button",
+  "configurator_general_text_style": "General",
+  "configurator_primary_text_style": "Primary text",
+  "configurator_accent_text_style": "Accent text",
+  "configurator_image_resources": "Image resources",
+  "configurator_common_color": "Color",
+  "configurator_text_line_height": "Line height",
+  "configurator_text_later_spacing": "Later spacing",
+  "configurator_text_word_spacing": "Word spacing",
+  "configurator_text_dispay_large": "Display large",
+  "configurator_font_add": "Add font style",
+  "configurator_image_resource_onboarding": "Onboarding image",
+  "configurator_color_primary": "Primary",
+  "configurator_color_on_primary": "On primary",
+  "configurator_color_secondary": "Secondary",
+  "configurator_color_secondary_container": "Secondary container",
+  "configurator_color_on_secondary_container": "On secondary container",
+  "configurator_color_tertiary": "Tertiary",
+  "configurator_color_error": "Error",
+  "configurator_color_outline": "Outline",
+  "configurator_color_background": "Background",
+  "configurator_color_surface": "Surface",
+  "configurator_color_on_surface": "On surface",
+  "configurator_color_gradient_tab": "Tab gradient",
+  "configurator_color_gradient_control_panel": "Control panel gradient",
+  "configurator_color_template_title": "Color scheme",
+  "configurator_color_primary": "Primary",
+  "configurator_color_on_primary": "On Primary",
+  "configurator_color_primary_container": "Primary Container",
+  "configurator_color_on_primary_container": "On Primary Container",
+  "configurator_color_secondary": "Secondary",
+  "configurator_color_on_secondary": "On Secondary",
+  "configurator_color_secondary_container": "Secondary Container",
+  "configurator_color_on_secondary_container": "On Secondary Container",
+  "configurator_color_tertiary": "Tertiary",
+  "configurator_color_on_tertiary": "On Tertiary",
+  "configurator_color_tertiary_container": "Tertiary Container",
+  "configurator_color_on_tertiary_container": "On Tertiary Container",
+  "configurator_color_error": "Error",
+  "configurator_color_on_error": "On Error",
+  "configurator_color_error_container": "Error container",
+  "configurator_color_on_error_container": "On Error Error",
+  "configurator_color_outline": "Outline",
+  "configurator_color_outline_variant": "Outline Variant",
+  "configurator_color_background": "Background",
+  "feature_theme_edit_Color_on_background": "On Background",
+  "configurator_color_surface": "Surface",
+  "configurator_color_on_surface": "On Surface",
+  "configurator_color_surface_dim": "Surface Dim",
+  "configurator_color_surface_bright": "Surface Bright",
+  "configurator_color_surface_container_lowest": "Surface Container Lowest",
+  "configurator_color_surface_container_low": "Surface Container Low",
+  "configurator_color_surface_container": "Surface Container",
+  "configurator_color_surface_container_high": "Surface Container High",
+  "configurator_color_surface_container_highest": "Surface Container Highest",
+  "configurator_color_on_surface_variant": "On Surface Variant",
+  "configurator_color_inverse_surface": "Inverse Surface",
+  "configurator_color_inverse_primary": "Inverse Primary",
+  "configurator_color_shadow": "Shadow",
+  "configurator_color_scrim": "Scrim",
+  "configurator_color_surface_tint": "Surface Tint",
+  "configurator_color_gradient_tab": "Gradient Tab",
+  "configurator_color_launcher_scheme_title": "Launcher color scheme",
+  "configurator_color_adaptive_icon_background": "Adaptive icon background",
+  "configurator_color_splash_background": "Native splash background",
+  "configurator_application_manager": "Application manager",
+  "configurator_got_it": "Got it",
+  "configurator_cancel": "Cancel",
+  "locale_default": "Default",
+  "feature_theme_primary_color": "Primary color",
+  "feature_admin_title": "Static theme dashboard",
+  "feature_theme_Tooltip_description_title": "Definition of \"Theme\"",
+  "feature_theme_Tooltip_description_message": "Theme - is a set of colors and elements that reflects your brand or style. You can have a main theme and several alternate or additional themes for a particular event. So you can create, for example, a Christmas theme for your application and apply it for a certain period of time",
+  "feature_theme_InputHint_note": "Note",
+  "feature_theme_InputHint_app_name": "Greeting message",
+  "feature_theme_greeting_message": "Greeting message",
+  "feature_theme_contact_email": "Contact email",
+  "feature_theme_switch_system": "Switch system",
+  "feature_theme_as_default": "As default",
+  "feature_theme_open_local": "Open local theme",
+  "feature_theme_all_theme": "All themes",
+  "feature_theme_public_themes": "Public themes",
+  "feature_theme_create": "Create",
+  "feature_theme_create_title": "Create theme",
+  "feature_theme_create_Text_create_or_select_theme": "Create or select your theme",
+  "feature_theme_edit_Validation_image_format": "The {format} is not available for this field",
+  "feature_theme_edit_open_screen": "Open screen where using this text",
+  "feature_theme_edit_greeting_info": "It is displayed on the authorization page in large font",
+  "feature_theme_edit_contact_us_info": "An email for contacting support that will be displayed on the page in the phone application",
+  "feature_theme_edit_Validation_image_size": "Image should have {size} px",
+  "feature_theme_edit_Text_no_themes_yet_title": "No themes yet",
+  "feature_theme_edit_Text_no_themes_yet_description": "You have not created any themes yet.",
+  "feature_theme_edit_Validation_to_short": "Theme name to short",
+  "feature_theme_edit_Validation_to_long": "Theme name to long",
+  "feature_theme_edit_ExpansionTile_common_property": "Text resources",
+  "feature_theme_edit_add_font": "Choose one of the google fonts",
+  "feature_theme_edit_edit_font": "Change your chosen font",
+  "feature_theme_edit_FontPicker_font_details": "Font details",
+  "feature_theme_edit_Toolbar_dashboard": "Dashboard",
+  "feature_theme_edit_LogEvent_title": "Events",
+  "feature_theme_edit_Image_primary_onboarding_logo": "Primary onboarding Logo",
+  "feature_theme_edit_Image_secondary_onboarding_logo": "Secondary onboarding Logo",
+  "feature_theme_edit_TextStyle_title": "Text style",
+  "feature_theme_edit_TextStyle_display_large": "Display large",
+  "feature_theme_edit_TextStyle_display_medium": "Display medium",
+  "feature_theme_edit_TextStyle_display_small": "Display small",
+  "feature_theme_edit_TextStyle_headline_large": "Headline large",
+  "feature_theme_edit_TextStyle_headline_medium": "Headline medium",
+  "feature_theme_edit_TextStyle_headline_small": "Headline small",
+  "feature_theme_edit_TextStyle_title_large": "Title large",
+  "feature_theme_edit_TextStyle_title_medium": "Title medium",
+  "feature_theme_edit_TextStyle_title_small": "Title small",
+  "feature_theme_edit_TextStyle_body_large": "Body large",
+  "feature_theme_edit_TextStyle_body_medium": "Body medium",
+  "feature_theme_edit_TextStyle_body_small": "Body small",
+  "feature_theme_edit_Color_on_background": "On background",
+  "feature_theme_edit_Color_on_primary": "On primary",
+  "feature_theme_edit_Dropdown_scale_x1": "x1",
+  "feature_theme_edit_Dropdown_scale_x2": "x2",
+  "feature_theme_edit_Dropdown_scale_x3": "x3",
+  "feature_theme_edit_Template": "Template",
+  "feature_theme_edit_Template_dot": "Template: ",
+  "feature_theme_edit_Template_description": "Use one of the color schemes",
+  "feature_theme_info": "Info",
+  "feature_theme_is_not_valid": "Theme is not valid",
+  "common_text_ok": "Ok",
+  "common_language_en": "EN",
+  "common_language_ua": "UA",
+  "common_text_delete": "Delete",
+  "common_feature_create": "Create",
+  "common_failure_message": "Failure",
+  "common_text_undefine": "Undefine",
+  "feature_application_details_Toolbar_title": "Application details",
+  "feature_application_id": "Application id: ",
+  "feature_application_Toolbar_title": "Create application",
+  "feature_application_Toolbar_edit": "Edit application",
+  "feature_application_Toolbar_edit_file_edit": "Edit",
+  "feature_application_Toolbar_edit_file_delete": "Delete",
+  "feature_application_Toolbar_edit_file_new": "New",
+  "feature_application_Toolbar_edit_navigate_new": "Go to applications",
+  "feature_application_Toolbar_edit_navigate_translations": "Edit translations",
+  "feature_application_Input_title": "Application name",
+  "feature_application_Input_hint": "Name of your workspace",
+  "feature_application_project_name": "Project name",
+  "feature_application_project_description": "Project description",
+  "feature_application_android_package_name": "Android package name: ",
+  "feature_application_android_package_name_error": "Android package name not correct",
+  "feature_application_identifier": "Application identifier: ",
+  "feature_application_android_identifier": "Android identifier: ",
+  "feature_application_ios_identifier": "IOS identifier: ",
+  "feature_application_identifier_error": "Identifier not correct",
+  "feature_application_terms_and_conditions_error": "Terms and Conditions URL not correct",
+  "feature_auth_logout": "Logout",
+  "feature_auth_snackBar_success_auth": "Successfully authorized.",
+  "feature_auth_Input_invalid_email_address": "Invalid email address",
+  "feature_auth_Input_invalid_password_not_meet_requirements": "The password does not meet the requirements",
+  "feature_auth_Toolbar_title_phone_configurator": "Your visual phone configurator",
+  "feature_auth_reset_toolbar_title": "Reset password",
+  "feature_auth_reset_toolbar_recover_account": "Recover account",
+  "feature_auth_reset_success": "Email for reset password sent",
+  "feature_application_title": "Application",
+  "feature_application_use_current_theme": "Use as current for application",
+  "feature_application_create_Validation_description_to_short": "Description to short",
+  "feature_application_create_Validation_description_to_long": "Description to long",
+  "feature_application_create": "Create application",
+  "feature_application_create_Tooltip_name_info": "The name of the project that will represent the application instance.",
+  "feature_application_create_Tooltip_identifier_info": "ID of the application for publication in the market.\nThe ID is unique to the app and can be seen in the app store url.",
+  "feature_application_create_Text_no_applications_yet_title": "No applications yet",
+  "feature_application_create_Text_no_applications_yet_description": "You have not created any apps yet.",
+  "feature_application_create_Text_new_application_theme": "New application theme",
+  "feature_application_collection_ApplicationPreviewItem_delete": "Delete",
+  "feature_application_collection_ApplicationPreviewItem_edit": "Edit",
+  "feature_application_collection_ApplicationStatus_ready_to_deploy": "Application ready to deploy",
+  "feature_application_collection_ApplicationStatus_not_resolved_issues": "Not resolved {count} issues",
+  "feature_application_details_PlayStoreConfigForm_track_label": "Track",
+  "feature_application_details_PlayStoreConfigForm_status_label": "Status",
+  "feature_application_details_PlayStoreConfigForm_update_priority_label": "Update Priority",
+  "feature_application_details_PlayStoreConfigForm_update_priority_validator": "Please enter a valid priority (0-5)",
+  "feature_application_details_PlayStoreConfigForm_user_fraction_label": "User Fraction",
+  "feature_application_details_PlayStoreConfigForm_user_fraction_validator": "Please enter a valid fraction (0.0-1.0)",
+  "feature_application_details_BranchSelector_input_custom_branch": "Input custom branch",
+  "feature_application_details_BranchSelector_choose_branch": "Choose branch",
+  "feature_application_details_ApplicationDetailsScreen_demo_flow_title": "Demo flow:",
+  "feature_application_details_ApplicationDetailsScreen_demo_flow_subtitle": "Enable this option to use the demo authentication flow.",
+  "feature_application_details_ApplicationDetailsScreen_configuration": "Configuration",
+  "feature_application_details_ApplicationDetailsScreen_project_name": "Project name:",
+  "feature_application_details_ApplicationDetailsScreen_project_id": "Project id:",
+  "feature_application_details_ApplicationDetailsScreen_platform_identifier": "Platform identifier:",
+  "feature_application_details_ApplicationDetailsScreen_android_platform_id": "Android platform ID:",
+  "feature_application_details_ApplicationDetailsScreen_ios_platform_id": "iOS platform ID:",
+  "feature_application_details_ApplicationDetailsScreen_android_build_name": "Android build name:",
+  "feature_application_details_ApplicationDetailsScreen_android_build_number": "Android build number:",
+  "feature_application_details_ApplicationDetailsScreen_ios_build_name": "iOS build name:",
+  "feature_application_details_ApplicationDetailsScreen_ios_build_number": "iOS build number:",
+  "feature_application_details_ApplicationDetailsScreen_application_core": "Application core:",
+  "feature_application_details_ApplicationDetailsScreen_terms_and_conditions": "Terms and conditions:",
+  "feature_application_details_ApplicationDetailsScreen_version": "Version:",
+  "feature_application_details_ApplicationDetailsScreen_default_theme": "Default theme:",
+  "feature_application_details_ApplicationDetailsScreen_open": "Open",
+  "feature_application_details_ApplicationDetailsScreen_not_selected_default_theme_yet": "Not selected default theme yet",
+  "feature_application_details_ApplicationDetailsScreen_google_services": "Google services:",
+  "feature_application_details_ApplicationDetailsScreen_google_services_not_uploaded": "Google services have not been uploaded",
+  "feature_application_details_ApplicationDetailsScreen_deployment": "Deployment",
+  "feature_application_details_ApplicationDetailsScreen_platforms": "Platforms:",
+  "feature_application_details_ApplicationDetailsScreen_android_configuration": "Android configuration",
+  "feature_application_details_ApplicationDetailsScreen_select_branch_for_phone": "Select branch for Phone:",
+  "feature_application_details_ApplicationDetailsScreen_additional_configuration": "Additional configuration",
+  "feature_application_details_ApplicationDetailsScreen_branches": "Branches",
+  "feature_application_details_ApplicationDetailsScreen_enter_branch_for_callkeep": "Enter branch for Callkeep:",
+  "feature_application_details_ApplicationDetailsScreen_enter_branch_for_common_dependency": "Enter branch for Common Dependency:",
+  "feature_application_details_ApplicationDetailsScreen_enter_branch_for_phone_configurator_tool": "Enter branch for Phone Configurator Tool:",
+  "feature_application_details_ApplicationDetailsScreen_enter_branch_for_keystore": "Enter branch for Keystore",
+  "feature_application_details_ApplicationDetailsScreen_deploy": "Deploy",
+  "feature_application_details_ApplicationDetailsScreen_deploy_success_message": "Deploy process successfully started",
+  "feature_application_details_ApplicationDetailsScreen_builds_configuration": "Builds configuration",
+  "feature_application_details_ApplicationDetailsScreen_android_platform_id": "Android platform ID:",
+  "feature_application_details_ApplicationDetailsScreen_ios_platform_id": "iOS platform ID:",
+  "feature_application_details_ApplicationDetailsScreen_android_build_name": "Android build name:",
+  "feature_application_details_ApplicationDetailsScreen_android_build_number": "Android build number:",
+  "feature_application_details_ApplicationDetailsScreen_ios_build_name": "iOS build name:",
+  "feature_application_details_ApplicationDetailsScreen_ios_build_number": "iOS build number:",
+  "feature_application_details_ApplicationDetailsScreen_invalidCoreUrl": "The core URL provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidTermsConditionsUrl": "The terms and conditions URL provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionName": "The Android version name provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidAndroidVersionNumber": "The Android version number provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidIosVersionName": "The iOS version name provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidIosVersionNumber": "The iOS version number provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidIosPlatformId": "The iOS platform ID provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidAndroidPlatformId": "The Android platform ID provided is invalid.",
+  "feature_application_details_ApplicationDetailsScreen_invalidLabel_deploy_error": "The application can’t be deployed due to existing errors:",
+  "feature_application_details_DeployConfirmDialog_confirm_deployment": "Confirm Deployment",
+  "feature_application_details_DeployConfirmDialog_android_deployment": "Android Deployment",
+  "feature_application_details_DeployConfirmDialog_ios_deployment": "iOS Deployment",
+  "feature_application_details_DeployConfirmDialog_track": "- Track",
+  "feature_application_details_DeployConfirmDialog_status": "- Status",
+  "feature_application_details_DeployConfirmDialog_update_priority": "- Update Priority",
+  "feature_application_details_DeployConfirmDialog_user_fraction": "- User Fraction",
+  "feature_application_details_DeployConfirmDialog_flow": "Flow",
+  "feature_application_details_DeployConfirmDialog_phone_source_branch": "Phone Source Branch",
+  "feature_application_details_DeployConfirmDialog_callkeep_source_branch": "Callkeep Source Branch",
+  "feature_application_details_DeployConfirmDialog_common_dependency_source_branch": "Common Dependency Source Branch",
+  "feature_application_details_DeployConfirmDialog_phone_configurator_tool_source_branch": "Phone Configurator Tool Source Branch",
+  "feature_application_details_DeployConfirmDialog_keystore_source_branch": "Keystore Source Branch",
+  "feature_application_details_DeployConfirmDialog_cancel": "Cancel",
+  "feature_application_details_DeployConfirmDialog_accept": "Accept",
+  "feature_translation_TranslationItem_hint_text": "Enter translation",
+  "feature_translation_TranslationItem_tooltip_save": "Save",
+  "feature_translation_TranslationItem_tooltip_clear_override": "Clear override",
+  "feature_translation_TranslationsPage_name": "Translations",
+  "feature_translation_ControlBar_all": "all",
+  "feature_translation_ControlBar_search_hint": "Search",
+  "feature_translation_ControlBar_search_mode_key": "Key",
+  "feature_translation_ControlBar_search_mode_value": "Value",
+  "feature_translation_ControlBar_search_mode_both": "Both",
+  "feature_translation_LocaleSettings_title": "Language settings",
+  "feature_translation_LocaleSettings_tooltip": "Language settings",
+  "feature_translation_LocaleSettings_empty": "No languages available",
+  "feature_translation_LocaleSettings_close": "Close",
+  "feature_translation_OverrideEditDialog_edit_translation": "Edit translation",
+  "feature_translation_OverrideEditDialog_value_label": "Value",
+  "feature_translation_OverrideEditDialog_value_required": "Value is required",
+  "feature_translation_OverrideEditDialog_cancel": "Cancel",
+  "feature_translation_OverrideEditDialog_save": "Save",
+  "feature_application_themes": "Applications themes",
+  "feature_application_no_themes": "No themes yet",
+  "feature_application_Text_butWeCan": "but we can",
+  "feature_application_Text_or": "Or",
+  "feature_applications_title": "Applications",
+  "feature_applications_version": "Version: {version}",
+  "feature_applications_Menu_increment": "Inc version",
+  "common_not_implemented": "Not implemented",
+  "common_url_is_not_valid": "The provided URL is invalid",
+  "configurator_common_description": "Description",
+  "@locale_default": {
+  },
+  "locale_en": "English",
+  "@locale_en": {
+  },
+  "themeMode_system": "System",
+  "@themeMode_system": {
+  },
+  "themeMode_light": "Light",
+  "@themeMode_light": {
+  },
+  "themeMode_dark": "Dark",
+  "@themeMode_dark": {
+  },
+  "alertDialogActions_no": "No",
+  "@alertDialogActions_no": {
+  },
+  "alertDialogActions_yes": "Yes",
+  "@alertDialogActions_yes": {
+  },
+  "alertDialogActions_ok": "Ok",
+  "@alertDialogActions_ok": {
+  },
+  "callStatus_connectivityNone": "No internet connection",
+  "@callStatus_connectivityNone": {
+  },
+  "callStatus_connectError": "Connection error",
+  "@callStatus_connectError": {
+  },
+  "callStatus_appUnregistered": "Unregistered",
+  "@callStatus_appUnregistered": {
+  },
+  "callStatus_connectIssue": "Connection issue",
+  "@callStatus_connectIssue": {
+  },
+  "callStatus_inProgress": "Connection in progress",
+  "@callStatus_inProgress": {
+  },
+  "callStatus_ready": "Connection established",
+  "@callStatus_ready": {
+  },
+  "notifications_errorSnackBar_callSignalingClientNotConnect": "Cannot initiate the call, please check the connection status",
+  "@notifications_errorSnackBar_callSignalingClientNotConnect": {
+  },
+  "notifications_errorSnackBar_callConnect": "Connecting to the core failed, trying to reconnect",
+  "@notifications_errorSnackBar_callConnect": {
+  },
+  "notifications_errorSnackBar_callUserMedia": "No access to media input, please check app permissions",
+  "@notifications_errorSnackBar_callUserMedia": {
+  },
+  "notifications_errorSnackBarAction_callUserMedia": "Check",
+  "@notifications_errorSnackBarAction_callUserMedia": {
+  },
+  "main_BottomNavigationBarItemLabel_favorites": "Favorites",
+  "@main_BottomNavigationBarItemLabel_favorites": {
+  },
+  "main_BottomNavigationBarItemLabel_recents": "Recents",
+  "@main_BottomNavigationBarItemLabel_recents": {
+  },
+  "main_BottomNavigationBarItemLabel_contacts": "Contacts",
+  "@main_BottomNavigationBarItemLabel_contacts": {
+  },
+  "main_BottomNavigationBarItemLabel_keypad": "Keypad",
+  "@main_BottomNavigationBarItemLabel_keypad": {
+  },
+  "call_FailureAcknowledgeDialog_title": "Failure",
+  "@call_FailureAcknowledgeDialog_title": {
+  },
+  "call_description_incoming": "Incoming call from",
+  "@call_description_incoming": {
+  },
+  "call_description_outgoing": "Outgoing call to",
+  "@call_description_outgoing": {
+  },
+  "call_CallActionsTooltip_mute": "Mute microphone",
+  "@call_CallActionsTooltip_mute": {
+  },
+  "call_CallActionsTooltip_unmute": "Unmute microphone",
+  "@call_CallActionsTooltip_unmute": {
+  },
+  "call_CallActionsTooltip_disableCamera": "Disable camera",
+  "@call_CallActionsTooltip_disableCamera": {
+  },
+  "call_CallActionsTooltip_enableCamera": "Enable camera",
+  "@call_CallActionsTooltip_enableCamera": {
+  },
+  "call_CallActionsTooltip_disableSpeaker": "Disable speakerphone",
+  "@call_CallActionsTooltip_disableSpeaker": {
+  },
+  "call_CallActionsTooltip_enableSpeaker": "Enable speakerphone",
+  "@call_CallActionsTooltip_enableSpeaker": {
+  },
+  "call_CallActionsTooltip_transfer": "Transfer",
+  "@call_CallActionsTooltip_transfer": {
+  },
+  "call_CallActionsTooltip_hold": "Hold call",
+  "@call_CallActionsTooltip_hold": {
+  },
+  "call_CallActionsTooltip_unhold": "Unhold call",
+  "@call_CallActionsTooltip_unhold": {
+  },
+  "call_CallActionsTooltip_showKeypad": "Show keypad",
+  "@call_CallActionsTooltip_showKeypad": {
+  },
+  "call_CallActionsTooltip_hideKeypad": "Hide keypad",
+  "@call_CallActionsTooltip_hideKeypad": {
+  },
+  "call_CallActionsTooltip_hangup": "Hangup",
+  "@call_CallActionsTooltip_hangup": {
+  },
+  "call_CallActionsTooltip_accept": "Accept",
+  "@call_CallActionsTooltip_accept": {
+  },
+  "favorites_BodyCenter_failure": "Failed to get favorites",
+  "@favorites_BodyCenter_failure": {
+  },
+  "favorites_BodyCenter_empty": "There are no favorite numbers",
+  "@favorites_BodyCenter_empty": {
+  },
+  "favorites_SnackBar_deleted": "{name} deleted",
+  "@favorites_SnackBar_deleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "favorites_DeleteConfirmDialog_title": "Confirm deleting",
+  "@favorites_DeleteConfirmDialog_title": {
+  },
+  "favorites_DeleteConfirmDialog_content": "Are you sure you want to delete the current favorite?",
+  "@favorites_DeleteConfirmDialog_content": {
+  },
+  "login_Button_back": "Back",
+  "@login_Button_back": {
+  },
+  "login_TextFieldLabelText_coreUrl": "Enter your Core URL",
+  "@login_TextFieldLabelText_coreUrl": {
+  },
+  "login_Button_coreUrlAssign": "Assign",
+  "@login_Button_coreUrlAssign": {
+  },
+  "loginOtpRequestTabPhoneTextFieldLabel": "Enter your phone number",
+  "@loginOtpRequestTabPhoneTextFieldLabel": {
+  },
+  "loginOtpRequestTabProceedButtonLabel": "Proceed",
+  "@loginOtpRequestTabProceedButtonLabel": {
+  },
+  "loginOtpRequestTabCodeTextFieldLabel": "Enter the verification code",
+  "@loginOtpRequestTabCodeTextFieldLabel": {
+  },
+  "loginOtpRequestTabVerifyButtonLabel": "Verify",
+  "@loginOtpRequestTabVerifyButtonLabel": {
+  },
+  "login_validationCoreUrlError": "Please enter a correct URL",
+  "@login_validationCoreUrlError": {
+  },
+  "login_LoginIncompatibleCoreVersionExceptionError": "Incompatible Core version provided",
+  "@login_LoginIncompatibleCoreVersionExceptionError": {
+  },
+  "login_FormatExceptionError": "A response issue occurred",
+  "@login_FormatExceptionError": {
+  },
+  "login_SocketExceptionError": "A network issue occurred",
+  "@login_SocketExceptionError": {
+  },
+  "login_TypeErrorError": "A response issue occurred",
+  "@login_TypeErrorError": {
+  },
+  "login_RequestFailureError": "A server failure occurred",
+  "@login_RequestFailureError": {
+  },
+  "login_RequestFailureEmptyEmailError": "Cannot send the verification code",
+  "@login_RequestFailureEmptyEmailError": {
+  },
+  "login_RequestFailurePhoneNotFoundError": "Phone number not found",
+  "@login_RequestFailurePhoneNotFoundError": {
+  },
+  "login_RequestFailureCodeIncorrectError": "Incorrect verification code",
+  "@login_RequestFailureCodeIncorrectError": {
+  },
+  "login_RequestFailureOtpIdVerifyAttemptsExceededError": "Verification attempts exceeded",
+  "@login_RequestFailureOtpIdVerifyAttemptsExceededError": {
+  },
+  "validationBlankError": "Please enter a value",
+  "@validationBlankError": {
+  },
+  "validationInvalidVersionFormat": "Must be in format X.Y.Z (e.g. 1.0.0)",
+  "@validationInvalidVersionFormat": {
+  },
+  "validationInvalidBuildNumber": "Must be a positive integer",
+  "@validationInvalidBuildNumber": {
+  },
+  "recentTimeBeforeMidnight": "{time}",
+  "@recentTimeBeforeMidnight": {
+    "placeholders": {
+      "time": {
+        "type": "DateTime",
+        "format": "Hm"
+      }
+    }
+  },
+  "recentTimeAfterMidnight": "{time}",
+  "@recentTimeAfterMidnight": {
+    "placeholders": {
+      "time": {
+        "type": "DateTime",
+        "format": "yMd"
+      }
+    }
+  },
+  "recentsVisibilityFilter_all": "All",
+  "@recentsVisibilityFilter_all": {
+  },
+  "recentsVisibilityFilter_missed": "Missed",
+  "@recentsVisibilityFilter_missed": {
+  },
+  "recentsVisibilityFilter_incoming": "Incoming",
+  "@recentsVisibilityFilter_incoming": {
+  },
+  "recentsVisibilityFilter_outgoing": "Outgoing",
+  "@recentsVisibilityFilter_outgoing": {
+  },
+  "recents_errorSnackBar_loadFailure": "Oops... an error happened ☹️",
+  "@recents_errorSnackBar_loadFailure": {
+  },
+  "recents_snackBar_deleted": "{name} deleted",
+  "@recents_snackBar_deleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "recents_DeleteConfirmDialog_title": "Confirm deleting",
+  "@recents_DeleteConfirmDialog_title": {
+  },
+  "recents_DeleteConfirmDialog_content": "Are you sure you want to delete the current call log?",
+  "@recents_DeleteConfirmDialog_content": {
+  },
+  "contactsSourceLocal": "Local",
+  "@contactsSourceLocal": {
+  },
+  "contactsSourceExternal": "Internal",
+  "@contactsSourceExternal": {
+  },
+  "contacts_LocalTabText_permissionFailure": "There are no permissions to get local contacts",
+  "@contacts_LocalTabText_permissionFailure": {
+  },
+  "contacts_LocalTabButton_openAppSettings": "Grant access to your contacts",
+  "@contacts_LocalTabButton_openAppSettings": {
+  },
+  "contacts_LocalTabText_failure": "Failed to get local contacts",
+  "@contacts_LocalTabText_failure": {
+  },
+  "contacts_LocalTabText_emptyOnSearching": "No local contacts found",
+  "@contacts_LocalTabText_emptyOnSearching": {
+  },
+  "contacts_LocalTabText_empty": "No local contacts",
+  "@contacts_LocalTabText_empty": {
+  },
+  "contacts_LocalTabButton_refresh": "Refresh",
+  "@contacts_LocalTabButton_refresh": {
+  },
+  "contacts_ExternalTabText_failure": "Failed to get external contacts",
+  "@contacts_ExternalTabText_failure": {
+  },
+  "contacts_ExternalTabText_emptyOnSearching": "No external contacts found",
+  "@contacts_ExternalTabText_emptyOnSearching": {
+  },
+  "contacts_ExternalTabText_empty": "No local contacts",
+  "@contacts_ExternalTabText_empty": {
+  },
+  "contacts_ExternalTabButton_refresh": "Refresh",
+  "@contacts_ExternalTabButton_refresh": {
+  },
+  "settings_AppBarTitle_myAccount": "My account",
+  "@settings_AppBarTitle_myAccount": {
+  },
+  "settings_ListViewTileTitle_registered": "Registered",
+  "@settings_ListViewTileTitle_registered": {
+  },
+  "settings_ListViewTileTitle_logout": "Logout",
+  "@settings_ListViewTileTitle_logout": {
+  },
+  "settings_ListViewTileTitle_settings": "SETTINGS",
+  "@settings_ListViewTileTitle_settings": {
+  },
+  "settings_ListViewTileTitle_network": "Network settings",
+  "@settings_ListViewTileTitle_network": {
+  },
+  "settings_ListViewTileTitle_help": "Help",
+  "@settings_ListViewTileTitle_help": {
+  },
+  "settings_ListViewTileTitle_language": "Language",
+  "@settings_ListViewTileTitle_language": {
+  },
+  "settings_ListViewTileTitle_termsConditions": "Terms and conditions",
+  "@settings_ListViewTileTitle_termsConditions": {
+  },
+  "settings_ListViewTileTitle_about": "About",
+  "@settings_ListViewTileTitle_about": {
+  },
+  "settings_ListViewTileTitle_themeMode": "Theme mode",
+  "@settings_ListViewTileTitle_themeMode": {
+  },
+  "settings_ListViewTileTitle_toolbox": "TOOLBOX",
+  "@settings_ListViewTileTitle_toolbox": {
+  },
+  "settings_ListViewTileTitle_logRecordsConsole": "Log records console",
+  "@settings_ListViewTileTitle_logRecordsConsole": {
+  },
+  "settings_LogoutConfirmDialog_title": "Confirm logout",
+  "@settings_LogoutConfirmDialog_title": {
+  },
+  "settings_LogoutConfirmDialog_content": "Are you sure you want to logout?",
+  "@settings_LogoutConfirmDialog_content": {
+  },
+  "settings_FormatExceptionError": "A response issue occurred",
+  "@settings_FormatExceptionError": {
+  },
+  "settings_SocketExceptionError": "A network issue occurred",
+  "@settings_SocketExceptionError": {
+  },
+  "settings_TypeErrorError": "A response issue occurred",
+  "@settings_TypeErrorError": {
+  },
+  "settings_RequestFailureError": "A server failure occurred",
+  "@settings_RequestFailureError": {
+  },
+  "webRegistration_ErrorAcknowledgeDialog_title": "Web resource error",
+  "@webRegistration_ErrorAcknowledgeDialog_title": {
+  },
+  "webRegistration_ErrorAcknowledgeDialogActions_demo": "Demo",
+  "@webRegistration_ErrorAcknowledgeDialogActions_demo": {
+  },
+  "webRegistration_ErrorAcknowledgeDialogActions_skip": "Skip",
+  "@webRegistration_ErrorAcknowledgeDialogActions_skip": {
+  },
+  "webRegistration_ErrorAcknowledgeDialogActions_retry": "Retry",
+  "@webRegistration_ErrorAcknowledgeDialogActions_retry": {
+  },
+  "underDevelopment": "This page is under development.",
+  "@underDevelopment": {
+  },
+  "notImplemented": "Sorry, not implemented yet",
+  "@notImplemented": {
+  },
+  "loginModeSelectionTabDemoButtonLabel": "Demo",
+  "@loginModeSelectionTabDemoButtonLabel": {
+  },
+  "loginModeSelectionTabSignInButtonLabel": "Sign in",
+  "@loginModeSelectionTabSignInButtonLabel": {
+  }
+}
