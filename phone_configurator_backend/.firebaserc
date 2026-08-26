@@ -1,7 +1,0 @@
-{
-  "projects": {
-    "dev":   "webtrit-configurator-dev",
-    "stage": "webtrit-configurator-stage",
-    "prod":  "webtrit-configurator"
-  }
-}

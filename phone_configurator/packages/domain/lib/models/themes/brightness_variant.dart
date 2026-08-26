@@ -1,1 +1,0 @@
-enum BrightnessVariant { light, dark }
