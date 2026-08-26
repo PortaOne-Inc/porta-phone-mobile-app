@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.g.dart';
 
 // ignore_for_file: type=lint
@@ -11,6 +12,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get account_selfCarePasswordExpired_message =>
       'Your self-care password has expired. Please update it using your self-care.\nUntil the password is changed, access to the service will be limited.';
+
+  @override
+  String get actionpad_SemanticsLabel_backspace => 'Backspace';
 
   @override
   String agoTicker_daysAgo(int days) {
@@ -121,6 +125,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get callTileActions_more => 'More';
+
+  @override
+  String get call_SemanticsLabel_hideControls => 'Hide call controls';
+
+  @override
+  String get call_SemanticsLabel_showControls => 'Show call controls';
+
+  @override
+  String get keypad_SemanticsLabel_number => 'Phone number';
+
+  @override
+  String get keypad_SemanticsAction_paste => 'Paste a number';
+
+  @override
+  String get callCameraPreview_SemanticsLabel_switchCamera => 'Switch camera';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveTopLeft => 'Move to the top left';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveTopRight => 'Move to the top right';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveMiddleLeft => 'Move to the middle left';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveMiddleRight => 'Move to the middle right';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveBottomLeft => 'Move to the bottom left';
+
+  @override
+  String get callThumbnail_SemanticsAction_moveBottomRight => 'Move to the bottom right';
+
+  @override
+  String get callThumbnail_SemanticsLabel_returnToCall => 'Return to the call';
+
+  @override
+  String callTile_SemanticsLabel_call(String name) {
+    return 'Call $name';
+  }
+
+  @override
+  String callTile_SemanticsLabel_videoCall(String name) {
+    return 'Video call $name';
+  }
+
+  @override
+  String get callerId_SemanticsLabel_addMatch => 'Add a dial code match';
+
+  @override
+  String get callerId_SemanticsLabel_matchNumber => 'Number to show for this dial code';
+
+  @override
+  String get callerId_SemanticsLabel_defaultNumber => 'Number to call from by default';
+
+  @override
+  String callerId_SemanticsLabel_matchPrefix(String country) {
+    return 'Dial code to match, currently $country';
+  }
+
+  @override
+  String callerId_SemanticsLabel_removeMatch(String dialCode) {
+    return 'Remove the match for $dialCode';
+  }
+
+  @override
+  String callerId_SemanticsLabel_matchRule(String dialCode, String number) {
+    return 'Calls to $dialCode show $number';
+  }
 
   @override
   String get call_CallActionsTooltip_accept => 'Accept';
@@ -343,6 +417,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'To resume making calls, a phone restart is required. This will resolve a temporary system error.';
 
   @override
+  String get callStatus_serviceUnavailable => 'Service temporarily unavailable';
+
+  @override
   String get call_SystemErrorDialog_title => 'System Error';
 
   @override
@@ -367,6 +444,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cdrs_noRecentCalls_message => 'No recent calls';
 
   @override
+  String get common_SemanticsLabel_loading => 'Loading';
+
+  @override
   String get common_noInternetConnection_message =>
       'It seems you are not connected to the internet. Please check your connection and try again.';
 
@@ -378,6 +458,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get common_problemWithLoadingPage => 'There was an issue loading the page.';
+
+  @override
+  String contact_SemanticsLabel_addFavorite(String number) {
+    return 'Add $number to favorites';
+  }
+
+  @override
+  String contact_SemanticsLabel_optionInfo(String option) {
+    return 'What $option means';
+  }
+
+  @override
+  String contact_SemanticsLabel_removeFavorite(String number) {
+    return 'Remove $number from favorites';
+  }
+
+  @override
+  String contact_SemanticsLabel_sendEmail(String address) {
+    return 'Send an email to $address';
+  }
+
+  @override
+  String contact_SemanticsLabel_transfer(String number) {
+    return 'Transfer current call to $number';
+  }
+
+  @override
+  String get contacts_ContactsScreen_emptyFavorites =>
+      'No favorites among your contacts yet.\nAdd one from a contact card using the star icon';
+
+  @override
+  String get contacts_ContactsScreen_filterFavorites => 'Favorites';
+
+  @override
+  String get contacts_ContactsScreen_searchSemanticsLabel => 'Search contacts';
+
+  @override
+  String get contacts_ContactsScreen_sourceSemanticsLabel => 'Contact source';
 
   @override
   String get contacts_agreement_button_text => 'Continue';
@@ -613,6 +731,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get diagnostic_callingMode_standalone_description =>
       'This device does not support the system call framework (Telecom), so incoming calls use a limited background service. Calls may be delayed or missed when the system restricts background apps. Bluetooth and wired headset selection is not available in this mode.';
+
+  @override
+  String get diagnostic_fullScreenIntent_tile_title => 'Full-screen calls';
+
+  @override
+  String get diagnostic_fullScreenIntent_navigate_section => 'Navigate to the Full-screen notifications section';
+
+  @override
+  String get diagnostic_fullScreenIntent_groupTitle => 'Lock screen calls';
+
+  @override
+  String get diagnostic_fullScreenIntent_caption => 'Calls arrive as a notification, not full screen';
+
+  @override
+  String get diagnostic_fullScreenIntent_description =>
+      'Lets an incoming call open full screen over the lock screen and be answered right there. Without it the call arrives as a notification, and answering from a locked screen protected by a PIN, pattern or fingerprint asks to unlock the phone first.';
 
   @override
   String get diagnostic_permission_camera_description =>
@@ -851,6 +985,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get favorites_DeleteConfirmDialog_title => 'Confirm deleting';
 
   @override
+  String get favorites_SemanticsLabel_reorderDone => 'Finish reordering';
+
+  @override
+  String get favorites_SemanticsLabel_reorder => 'Reorder favorites';
+
+  @override
   String favorites_SnackBar_deleted(String name) {
     return '$name deleted';
   }
@@ -985,6 +1125,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_RequestFailureUnconfiguredBundleIdError => 'The app is not supported by your WebTrit Cloud Backend';
+
+  @override
+  String get login_SemanticsLabel_hidePassword => 'Hide password';
+
+  @override
+  String get login_SemanticsLabel_showPassword => 'Show password';
 
   @override
   String get login_SupportedLoginTypeMissedExceptionError =>
@@ -1221,15 +1367,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get messaging_ChooseContact_title => 'Choose contact:';
 
   @override
-  String get messaging_ConfirmDialog_ask => 'Are you sure?';
-
-  @override
-  String get messaging_ConfirmDialog_cancel => 'No';
-
-  @override
-  String get messaging_ConfirmDialog_confirm => 'Yes';
-
-  @override
   String get messaging_ConversationBuilders_back => 'Back';
 
   @override
@@ -1354,6 +1491,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get messaging_Conversations_tile_you => 'You';
 
   @override
+  String get messaging_DeleteConversationDialog_content => 'It will be removed from this device and from the account.';
+
+  @override
+  String get messaging_DeleteConversationDialog_title => 'Delete this conversation?';
+
+  @override
   String get messaging_DialogInfo_deleteAsk => 'Are you sure you want to delete this dialog?';
 
   @override
@@ -1379,6 +1522,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get messaging_GroupInfo_groupMembersHeadline => 'Group members';
+
+  @override
+  String get messaging_LeaveGroupDialog_content =>
+      'You will stop receiving its messages. The conversation stays for everyone else.';
+
+  @override
+  String get messaging_LeaveGroupDialog_title => 'Leave this group?';
 
   @override
   String get messaging_GroupInfo_leaveAndDeleteAsk => 'Are you sure you want leave and delete this group?';
@@ -1635,7 +1785,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get numberActions_viewContact => 'View Contact';
 
   @override
+  String get permission_Button_notNow => 'Not now';
+
+  @override
   String get permission_Button_request => 'Continue';
+
+  @override
+  String get permission_fullScreenNotification_Text_optional =>
+      'You can continue without this. Incoming calls will arrive as a notification instead of opening full screen, and if your phone is locked with a PIN, pattern or fingerprint, you will have to unlock it to answer from the lock screen.';
 
   @override
   String get permission_manageFullScreenNotificationInstructions_step1 => 'Go to your phone\'s Settings.';
@@ -1743,6 +1900,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get presence_activity_vacation_name => 'On vacation';
+
+  @override
+  String get presence_badge_state_available => 'Available';
+
+  @override
+  String get presence_badge_state_onCall => 'On a call';
+
+  @override
+  String get presence_badge_state_registered => 'Registered';
+
+  @override
+  String get presence_badge_state_unavailable => 'Unavailable';
+
+  @override
+  String get presence_badge_state_unregistered => 'Not registered';
 
   @override
   String get presence_infoView_activity => 'Activity:';
@@ -1990,10 +2162,102 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sessionStatus_AppBar_connecting => 'Connecting...';
 
   @override
+  String get sessionStatus_AppBar_serviceUnavailable => 'Service temporarily unavailable';
+
+  @override
   String get sessionStatus_pushNotificationServiceProblem => 'Problem with configuration push notification service';
 
   @override
+  String get sessionStatus_subtitle_connectivityNone => 'Check Wi-Fi or mobile data';
+
+  @override
+  String get sessionStatus_subtitle_diagnostic => 'Tap for diagnostics';
+
+  @override
+  String get sessionStatus_subtitle_inProgress => 'Connecting to the server...';
+
+  @override
+  String get sessionStatus_subtitle_ready => 'Calls can reach this account';
+
+  @override
+  String get sessionStatus_subtitle_registrationOff => 'Registration is off';
+
+  @override
+  String get sessionStatus_subtitle_serviceUnavailable => 'Your connection is fine, tap for details';
+
+  @override
   String get session_Teardown_progressText => 'Signing out...';
+
+  @override
+  String get sessions_AppBar_title => 'Active sessions';
+
+  @override
+  String get sessions_AppType_android => 'Android app';
+
+  @override
+  String get sessions_AppType_ios => 'iOS app';
+
+  @override
+  String get sessions_AppType_linux => 'Linux app';
+
+  @override
+  String get sessions_AppType_macos => 'macOS app';
+
+  @override
+  String get sessions_AppType_smart => 'Smart device';
+
+  @override
+  String get sessions_AppType_unknown => 'Unknown device';
+
+  @override
+  String get sessions_AppType_web => 'Web app';
+
+  @override
+  String get sessions_AppType_windows => 'Windows app';
+
+  @override
+  String get sessions_Button_retry => 'Try again';
+
+  @override
+  String get sessions_Button_revokeAllOthers => 'Sign out other sessions';
+
+  @override
+  String get sessions_Placeholder_empty => 'No active sessions';
+
+  @override
+  String get sessions_Placeholder_failure => 'Could not load the active sessions';
+
+  @override
+  String get sessions_RevokeAllConfirmDialog_content =>
+      'The other devices signed in with this account will be signed out.';
+
+  @override
+  String get sessions_RevokeAllConfirmDialog_title => 'Sign out other sessions?';
+
+  @override
+  String get sessions_RevokeConfirmDialog_content => 'This device will be signed out of the account.';
+
+  @override
+  String get sessions_RevokeConfirmDialog_title => 'Sign out this session?';
+
+  @override
+  String get sessions_SnackBar_revokeFailed => 'Could not sign out the session';
+
+  @override
+  String sessions_Tile_created(String time) {
+    return 'Signed in $time';
+  }
+
+  @override
+  String get sessions_Tile_currentSession => 'This device';
+
+  @override
+  String sessions_Tile_lastActivity(String time) {
+    return 'Last used $time';
+  }
+
+  @override
+  String get sessions_Tile_revokeTooltip => 'Sign out';
 
   @override
   String get settings_AboutText_ApplicationEmbeddedLinks => 'Application embedded links';
@@ -2037,6 +2301,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_AppBarTitle_myAccount => 'My account';
+
+  @override
+  String get settings_SemanticsLabel_editAccount => 'Edit account details';
 
   @override
   String get settings_audioProcessing_Section_AGC_title => 'Auto gain control';
@@ -2385,6 +2652,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings_iceSettings_Section_trfilter_title => 'Transport protocol';
 
   @override
+  String get settings_ListViewTileSubtitle_registeredNeedsConnection => 'Needs connection';
+
+  @override
+  String get settings_ListViewTileSubtitle_registeredOff => 'Incoming calls are rejected';
+
+  @override
+  String get settings_ListViewTileSubtitle_registeredOn => 'Account can receive calls';
+
+  @override
+  String get settings_ListViewTileSubtitle_registeredUpdating => 'Updating...';
+
+  @override
+  String get settings_ListViewTileSubtitle_registeredWaitingForConnection => 'Waiting for connection...';
+
+  @override
   String get settings_ListViewTileTitle_about => 'About';
 
   @override
@@ -2431,6 +2713,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_ListViewTileTitle_self_config => 'Self-config page';
+
+  @override
+  String get settings_ListViewTileTitle_sessions => 'Sessions';
 
   @override
   String get settings_ListViewTileTitle_settings => 'SETTINGS';
@@ -2482,6 +2767,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settings_network_smsFallback_toggle => 'SMS as a backup channel';
+
+  @override
+  String get settings_registerStatusSnackBar_requestFailed => 'Could not reach the server - please try again';
+
+  @override
+  String get settings_registerStatusSnackBar_unavailable =>
+      'No connection to the server - this setting can\'t be changed now';
 
   @override
   String get settings_videoCapturing_Section_framerate_prefix => 'frames: ';
@@ -2827,6 +3119,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get voicemail_Label_retry => 'Try again';
+
+  @override
+  String get voicemail_SemanticsLabel_loading => 'Loading';
+
+  @override
+  String get voicemail_SemanticsLabel_moreActions => 'More';
+
+  @override
+  String get voicemail_SemanticsLabel_pause => 'Pause';
+
+  @override
+  String get voicemail_SemanticsLabel_play => 'Play';
 
   @override
   String get voicemail_Snackbar_notConfigured => 'Contact your administrator to activate voicemail';
@@ -3193,4 +3497,147 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get devTools_signalingService_simulateKill_cancel => 'Cancel';
+
+  @override
+  String get common_SemanticsLabel_refresh => 'Refresh';
+
+  @override
+  String get common_SemanticsLabel_scrollToBottom => 'Scroll to bottom';
+
+  @override
+  String get common_SemanticsLabel_scrollToTop => 'Scroll to top';
+
+  @override
+  String common_SemanticsValue_unreadCount(int count) {
+    return '$count unread';
+  }
+
+  @override
+  String common_SemanticsValue_totalCount(int count) {
+    return '$count total';
+  }
+
+  @override
+  String common_SemanticsValue_selectedCount(int count) {
+    return '$count selected';
+  }
+
+  @override
+  String get contacts_SemanticsLabel_clearSearch => 'Clear search';
+
+  @override
+  String get contacts_SemanticsLabel_closeSearch => 'Close search';
+
+  @override
+  String get messaging_SemanticsLabel_newChat => 'Start a new chat';
+
+  @override
+  String get messaging_SemanticsLabel_newSms => 'Write a new message';
+
+  @override
+  String get messaging_SemanticsLabel_call => 'Call';
+
+  @override
+  String get messaging_SemanticsLabel_videoCall => 'Video call';
+
+  @override
+  String get messaging_SemanticsLabel_message => 'Message';
+
+  @override
+  String get messaging_SemanticsLabel_send => 'Send';
+
+  @override
+  String get messaging_SemanticsLabel_conversationDetails => 'Conversation details';
+
+  @override
+  String get messaging_SemanticsLabel_conversationOptions => 'Conversation options';
+
+  @override
+  String get messaging_SemanticsLabel_replying => 'Replying to';
+
+  @override
+  String get messaging_SemanticsLabel_editing => 'Editing';
+
+  @override
+  String get messaging_SemanticsLabel_forwarding => 'Forwarding';
+
+  @override
+  String get messaging_SemanticsLabel_stopReplying => 'Stop replying';
+
+  @override
+  String get messaging_SemanticsLabel_stopEditing => 'Stop editing';
+
+  @override
+  String get messaging_SemanticsLabel_stopForwarding => 'Stop forwarding';
+
+  @override
+  String get messaging_SemanticsLabel_sendForward => 'Forward the message';
+
+  @override
+  String callPull_SemanticsLabel_badge(String name) {
+    return 'Take over the call with $name';
+  }
+
+  @override
+  String callPull_SemanticsLabel_badgeSeveral(int count) {
+    return 'Take over one of $count calls';
+  }
+
+  @override
+  String callPull_SemanticsLabel_pickup(String name) {
+    return 'Pick up the call with $name';
+  }
+
+  @override
+  String get diagnosticNetworkTest_SemanticsLabel_refresh => 'Run the network test again';
+
+  @override
+  String get presence_settings_statusIcon_searchHint => 'Search icons';
+
+  @override
+  String presenceSettings_SemanticsLabel_optionInfo(String option) {
+    return 'What $option means';
+  }
+
+  @override
+  String get presenceSettings_SemanticsLabel_preset => 'Status preset';
+
+  @override
+  String get presenceSettings_SemanticsLabel_pickStatusIcon => 'Choose a status icon';
+
+  @override
+  String get presenceSettings_SemanticsLabel_clearStatusIcon => 'Remove the status icon';
+
+  @override
+  String get presenceSettings_SemanticsLabel_searchIcons => 'Search icons';
+
+  @override
+  String get presenceSettings_SemanticsLabel_stopSearchingIcons => 'Stop searching icons';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryRecent => 'Recently used';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategorySmileys => 'Smileys and people';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryAnimals => 'Animals and nature';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryFoods => 'Food and drink';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryActivities => 'Activities';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryTravel => 'Travel and places';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryObjects => 'Objects';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategorySymbols => 'Symbols';
+
+  @override
+  String get presenceSettings_SemanticsLabel_iconCategoryFlags => 'Flags';
 }

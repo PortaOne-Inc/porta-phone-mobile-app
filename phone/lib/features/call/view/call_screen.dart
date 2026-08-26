@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/l10n/l10n.dart';
 import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/theme/theme.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
 
 import '../call.dart';
@@ -15,12 +16,16 @@ import 'call_init_scaffold.dart';
 class CallScreen extends StatefulWidget {
   const CallScreen({
     super.key,
+    required this.contactResolver,
     this.localePlaceholderBuilder,
     this.remotePlaceholderBuilder,
     this.callConfig = const CallCapabilitiesConfig(),
   });
 
   final CallCapabilitiesConfig callConfig;
+
+  /// Resolves the remote party to a contact for its name and avatar.
+  final ContactResolver contactResolver;
 
   final WidgetBuilder? localePlaceholderBuilder;
   final WidgetBuilder? remotePlaceholderBuilder;
@@ -65,16 +70,24 @@ class _CallScreenState extends State<CallScreen> with AutoRouteAwareStateMixin {
       },
       builder: (context, state) {
         if (state.isActive) {
-          return CallActiveScaffold(
-            callStatus: state.status,
-            activeCalls: state.activeCalls,
-            // isActive guarantees at least one call, so focusedCall is non-null.
-            focusedCall: state.focusedCall!,
-            audioDevice: state.audioDevice,
-            availableAudioDevices: state.availableAudioDevices,
-            callConfig: widget.callConfig,
-            localePlaceholderBuilder: widget.localePlaceholderBuilder,
-            remotePlaceholderBuilder: widget.remotePlaceholderBuilder,
+          return ScreenReaderBuilder(
+            builder: (context, screenReaderOn) => CallActiveScaffold(
+              callStatus: state.status,
+              activeCalls: state.activeCalls,
+              // isActive guarantees at least one call, so focusedCall is non-null.
+              focusedCall: state.focusedCall!,
+              audioDevice: state.audioDevice,
+              availableAudioDevices: state.availableAudioDevices,
+              callConfig: widget.callConfig,
+              localePlaceholderBuilder: widget.localePlaceholderBuilder,
+              remotePlaceholderBuilder: widget.remotePlaceholderBuilder,
+              // The controls have to stay while a screen reader is in use:
+              // hidden ones are gone from the accessibility tree, and five
+              // seconds is far less than it takes to step through them one
+              // swipe at a time.
+              keepControlsVisible: screenReaderOn,
+              contactResolver: widget.contactResolver,
+            ),
           );
         } else {
           return const CallInitScaffold();
@@ -82,6 +95,11 @@ class _CallScreenState extends State<CallScreen> with AutoRouteAwareStateMixin {
       },
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(value: style ?? SystemUiOverlayStyle.light, child: scaffold);
+    // Not SystemUiOverlayStyle.light: that constant hardcodes an opaque black
+    // navigation bar, which the app no longer uses. The call screen is always dark,
+    // hence the fixed brightness.
+    final overlayStyle = style ?? systemOverlayStyleOf(Brightness.dark);
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(value: overlayStyle, child: scaffold);
   }
 }

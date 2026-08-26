@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webtrit_phone/theme/theme.dart';
 import 'package:webtrit_phone/widgets/themed_scaffold.dart';
 
 class LoginScaffold extends StatelessWidget {
@@ -9,6 +10,7 @@ class LoginScaffold extends StatelessWidget {
     this.body,
     this.contentThemeOverride,
     this.applyToAppBar,
+    this.appBarTheme,
     this.systemUiOverlayStyle,
   });
 
@@ -16,6 +18,7 @@ class LoginScaffold extends StatelessWidget {
   final Widget? body;
   final ThemeMode? contentThemeOverride;
   final bool? applyToAppBar;
+  final AppBarTheme? appBarTheme;
   final SystemUiOverlayStyle? systemUiOverlayStyle;
 
   @override
@@ -23,12 +26,11 @@ class LoginScaffold extends StatelessWidget {
     return ThemedScaffold(
       contentThemeOverride: contentThemeOverride,
       applyToAppBar: applyToAppBar ?? true,
+      appBarTheme: appBarTheme,
       extendBodyBehindAppBar: true,
       appBar: appBar,
       body: AnnotatedRegion<SystemUiOverlayStyle>(
-        // Use provided style, or fallback to dark icons (standard for light backgrounds),
-        // but ideally this should align with the active theme brightness.
-        value: systemUiOverlayStyle ?? SystemUiOverlayStyle.dark,
+        value: systemUiOverlayStyle ?? systemOverlayStyleOf(Theme.of(context).brightness),
         child: LayoutBuilder(
           builder: (context, viewportConstraints) {
             return SingleChildScrollView(

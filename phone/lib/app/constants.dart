@@ -20,6 +20,15 @@ const kSignalingClientFastReconnectDelay = Duration(seconds: 1);
 /// so one full reconnect cycle is absorbed before the UI updates.
 const kSignalingStatusDebounce = Duration(seconds: _kSignalingClientReconnectDelaySeconds, milliseconds: 500);
 
+/// How long the local ringback waits after the first ringing answer of an
+/// outgoing call, in case the network is about to send a ringback of its own.
+///
+/// Operators that play their own tone announce the call as ringing first and
+/// send the media right after; on a customer trace that gap was about 0.8 s, so
+/// the window is a touch wider. Calls where no network audio follows simply
+/// start the tone once it elapses.
+const kOutgoingRingbackStartDelay = Duration(seconds: 1);
+
 /// How long [WebtritSignalingService.connect] waits for a terminal event
 /// (Connected / Disconnected / ConnectionFailed) before resetting
 /// [_startPending] and retrying. Covers the case where the background isolate
@@ -37,9 +46,20 @@ const kDefaultCountdownRepeatIntervalSeconds = Duration(seconds: 30);
 
 const kInset = kMinInteractiveDimension / 2;
 
-const kMainAppBarBottomTabHeight = 42.0;
-const kMainAppBarBottomSearchHeight = kMinInteractiveDimension;
 const kMainAppBarBottomPaddingGap = 6.0;
+
+/// Height of a control the app bar carries in its bottom rows - a tab, the
+/// search field, the button that clears it.
+///
+/// Every one of them is a tap target, so this is the floor: pass it to the
+/// control directly. Deriving a control's height from the row that holds it
+/// is what leaves it short, because the row also carries the gap below.
+const kMainAppBarBottomControlHeight = kMinInteractiveDimension;
+
+/// What the app bar reserves for such a row: the control plus the gap that
+/// separates it from what follows.
+const kMainAppBarBottomTabHeight = kMainAppBarBottomControlHeight + kMainAppBarBottomPaddingGap;
+const kMainAppBarBottomSearchHeight = kMainAppBarBottomControlHeight + kMainAppBarBottomPaddingGap;
 
 /// Standard vertical padding (in logical pixels) used around Material list items.
 ///
@@ -119,3 +139,10 @@ const kContactSmsLabel = 'sms';
 
 /// Represents any additional phone number or contact method.
 const kContactAdditionalLabel = 'additional';
+
+/// For reference: Telegram 4 096, Discord 2 000, Signal ~2 000, WhatsApp 65 536.
+const kAppMessagingMaxLength = 4096;
+
+/// 160 * 10 de-facto segment/segments cap, but better to make it configurable from system-info
+/// TODO: Make this variable configurable based on sms provider capabilities
+const kSmsMessagingMaxLength = 1600;

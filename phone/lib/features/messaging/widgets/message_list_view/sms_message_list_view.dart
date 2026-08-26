@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/features/messaging/messaging.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+import 'package:webtrit_phone/app/constants.dart';
 
 import 'message_text_field.dart';
 import 'typing_indicator.dart';
@@ -121,12 +124,14 @@ class _SmsMessageListViewState extends State<SmsMessageListView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Stack(
       children: [
         list(),
         Positioned(top: MediaQuery.of(context).padding.top, left: 0, right: 0, child: const MessagingStateBar()),
         Positioned(
-          bottom: MediaQuery.of(context).padding.bottom,
+          bottom: 0,
           left: 0,
           right: 0,
           child: Column(
@@ -137,10 +142,24 @@ class _SmsMessageListViewState extends State<SmsMessageListView> {
                 child: ScrollToBottomButton(scrolledAway, scrollToBottom),
               ),
               const SizedBox(height: 24),
-              MessageTextField(
-                controller: inputController,
-                onSend: handleSend,
-                onChanged: (value) => context.read<SmsTypingCubit>().sendTyping(),
+              ClipRRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Column(
+                    children: [
+                      MessageTextField(
+                        controller: inputController,
+                        onSend: handleSend,
+                        onChanged: (value) => context.read<SmsTypingCubit>().sendTyping(),
+                        maxLength: kSmsMessagingMaxLength,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).padding.bottom,
+                        color: colorScheme.surface.withAlpha(200),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -151,6 +170,10 @@ class _SmsMessageListViewState extends State<SmsMessageListView> {
 
   Widget list() {
     return GestureDetector(
+      // A tap anywhere puts the keyboard away. It is a convenience for a
+      // finger and nothing a screen reader should be taken to - left in the
+      // tree it turns the whole screen into one nameless stop.
+      excludeFromSemantics: true,
       onTap: () => FocusScope.of(context).unfocus(),
       child: ListView(
         controller: scrollController,
@@ -166,7 +189,7 @@ class _SmsMessageListViewState extends State<SmsMessageListView> {
           TypingIndicator(userId: widget.userId, typingNumbers: context.watch<SmsTypingCubit>().state),
           ...viewEntries.map((entry) {
             if (entry is _MessageViewEntry) {
-              return FadeIn(
+              return SizedBox(
                 key: Key(entry.message?.idKey ?? entry.outboxEntry!.idKey),
                 child: SmsMessageView(
                   userNumber: widget.userNumber,

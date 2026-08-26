@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'mail_to.dart';
+
 import 'package:webtrit_phone/utils/regexes.dart';
 
 class TextMatchers {
@@ -23,7 +25,7 @@ class TextMatchers {
     ];
   }
 
-  static MatchText boldMatcher({final TextStyle? style}) {
+  static MatchText boldMatcher({TextStyle? style}) {
     return MatchText(
       pattern: r'\*[^*]+\*',
       style: style,
@@ -34,7 +36,7 @@ class TextMatchers {
     );
   }
 
-  static MatchText italicMatcher({final TextStyle? style}) {
+  static MatchText italicMatcher({TextStyle? style}) {
     return MatchText(
       pattern: r'_[^_]+_',
       style: style,
@@ -45,7 +47,7 @@ class TextMatchers {
     );
   }
 
-  static MatchText lineThroughMatcher({final TextStyle? style}) {
+  static MatchText lineThroughMatcher({TextStyle? style}) {
     return MatchText(
       pattern: r'~[^~]+~',
       style: style,
@@ -56,7 +58,7 @@ class TextMatchers {
     );
   }
 
-  static MatchText underlineMatcher({final TextStyle? style}) {
+  static MatchText underlineMatcher({TextStyle? style}) {
     return MatchText(
       pattern: r'\+[^+]+\+',
       style: style,
@@ -67,7 +69,7 @@ class TextMatchers {
     );
   }
 
-  static MatchText codeMatcher({final TextStyle? style}) {
+  static MatchText codeMatcher({TextStyle? style}) {
     return MatchText(
       pattern: r'`[^`]+`',
       style: style,
@@ -78,7 +80,7 @@ class TextMatchers {
     );
   }
 
-  static MatchText quoteMatcher({final TextStyle? style, final BoxDecoration? quoteDecoration}) {
+  static MatchText quoteMatcher({TextStyle? style, BoxDecoration? quoteDecoration}) {
     return MatchText(
       pattern: r'>[^\n]+',
       style: style,
@@ -94,20 +96,11 @@ class TextMatchers {
     );
   }
 
-  static MatchText mailToMatcher({final TextStyle? style, final bool tapEnabled = true}) {
-    return MatchText(
-      onTap: tapEnabled
-          ? (mail) async {
-              final url = Uri(scheme: 'mailto', path: mail);
-              if (await canLaunchUrl(url)) await launchUrl(url);
-            }
-          : null,
-      pattern: emailRegex,
-      style: style,
-    );
+  static MatchText mailToMatcher({TextStyle? style, bool tapEnabled = true}) {
+    return MatchText(onTap: tapEnabled ? (mail) => launchMailTo(mail) : null, pattern: emailRegex, style: style);
   }
 
-  static MatchText urlMatcher({final TextStyle? style, final bool tapEnabled = true}) {
+  static MatchText urlMatcher({TextStyle? style, bool tapEnabled = true}) {
     return MatchText(
       onTap: tapEnabled
           ? (urlText) async {

@@ -36,7 +36,9 @@ void main() {
       // Favorites
       tabs[0].when(
         favorites: (enabled, initial, titleL10n, icon) {
-          expect(enabled, isTrue);
+          // Off by default: favourites are reached inside contacts now, and a
+          // section of their own beside it would offer the same list twice.
+          expect(enabled, isFalse);
           expect(initial, isFalse);
           expect(titleL10n, 'main_BottomNavigationBarItemLabel_favorites');
           expect(icon, '0xe5fd');
@@ -68,12 +70,16 @@ void main() {
       tabs[2].when(
         favorites: unexpectedFavorites,
         recents: unexpectedRecents,
-        contacts: (enabled, initial, titleL10n, icon, contactSourceTypes) {
+        contacts: (enabled, initial, titleL10n, icon, contactSourceTypes, layout, favorites) {
           expect(enabled, isTrue);
           expect(initial, isFalse);
           expect(titleL10n, 'main_BottomNavigationBarItemLabel_contacts');
           expect(icon, '0xee35');
           expect(contactSourceTypes, ['local', 'external']);
+          // The arrangement that takes the place of the section the tab above
+          // no longer offers, with favourites inside it.
+          expect(layout, ContactsLayoutScheme.unified);
+          expect(favorites, isTrue);
         },
         keypad: unexpectedKeypad,
         messaging: unexpectedMessaging,
@@ -158,6 +164,22 @@ void main() {
       expect(settingsSection.enabled, isTrue);
       expect(settingsSection.items.any((i) => i.type == 'terms'), isTrue);
     });
+
+    test('the default terms item carries no embedded resource reference', () {
+      // `0` used to stand here for "none". It is not an id: the app looks it up
+      // among the application's embedded resources, finds nothing and falls
+      // back to its built-in terms screen, so it only ever meant absence.
+      // Both routes to the default matter: an absent settings block uses the
+      // constructor default, a present-but-empty one uses the generated one.
+      for (final json in const [
+        <String, dynamic>{},
+        <String, dynamic>{'settingsConfig': <String, dynamic>{}},
+      ]) {
+        final items = AppConfig.fromJson(json).settingsConfig.sections.expand((section) => section.items);
+        final terms = items.firstWhere((item) => item.type == 'terms');
+        expect(terms.embeddedResourceId, isNull, reason: 'json: $json');
+      }
+    });
   });
 
   group('AppConfig.localization parsing', () {
@@ -179,6 +201,42 @@ void main() {
     test('defaults to an empty allowlist when the block is absent', () {
       final config = AppConfig.fromJson(const {});
       expect(config.localization.enabledLanguages, isEmpty);
+    });
+  });
+
+  group('ContactsTabScheme.layout parsing', () {
+    ContactsTabScheme contactsTab(Map<String, Object?> extra) {
+      return BottomMenuTabScheme.fromJson({
+            'type': 'contacts',
+            'enabled': true,
+            'titleL10n': 'contacts',
+            'icon': '0xee35',
+            ...extra,
+          })
+          as ContactsTabScheme;
+    }
+
+    test('a configuration that names an arrangement gets it', () {
+      expect(contactsTab({'layout': 'tabbed'}).layout, ContactsLayoutScheme.tabbed);
+      expect(contactsTab({'layout': 'unified'}).layout, ContactsLayoutScheme.unified);
+    });
+
+    test('one that names none keeps the arrangement it has', () {
+      expect(contactsTab(const {}).layout, ContactsLayoutScheme.tabbed);
+      expect(contactsTab(const {}).favorites, isTrue);
+    });
+
+    test('and one written for a newer app still opens', () {
+      // The configurator can offer an arrangement before every installed app
+      // can draw it. Such a build has to fall back to the one it knows, not
+      // fail to read its own settings and take the whole configuration down
+      // with it.
+      expect(contactsTab({'layout': 'something-this-build-never-heard-of'}).layout, ContactsLayoutScheme.tabbed);
+    });
+
+    test('favourites are read as their own answer', () {
+      expect(contactsTab({'layout': 'unified', 'favorites': false}).favorites, isFalse);
+      expect(contactsTab({'layout': 'unified'}).favorites, isTrue);
     });
   });
 

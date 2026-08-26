@@ -1,3 +1,4 @@
+export 'active_session.dart';
 export 'agreement_status.dart';
 export 'audio_processing_settings.dart';
 export 'auth/auth.dart';
@@ -12,6 +13,8 @@ export 'contact.dart';
 export 'contact_email.dart';
 export 'contact_phone.dart';
 export 'contact_source_type.dart';
+export 'contacts_layout.dart';
+export 'conversations_tab.dart';
 export 'dialog_info.dart';
 export 'embedded/embedded.dart';
 export 'enableble.dart';

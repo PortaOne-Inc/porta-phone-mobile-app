@@ -9,6 +9,8 @@ fastlane, Flutter SDK version management, and tips for local development.
 
 For all available melos scripts, see [Melos Commands](make_file.md).
 For how a release pins its `webtrit_callkeep` version, see [Release Versioning](release_versioning.md).
+For picking the cheapest check that proves a change compiles - and the flags a build fails without -
+see [Verifying a Change Compiles](build_verification.md).
 
 ---
 
@@ -248,7 +250,7 @@ truth, read by [`fvm`](https://fvm.app) locally and by the `webtrit_phone_builde
 
 ```json
 {
-  "flutter": "3.44.0"
+  "flutter": "3.47.1"
 }
 ```
 

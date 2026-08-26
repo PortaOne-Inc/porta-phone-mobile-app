@@ -10,7 +10,7 @@
 - [Input Configuration](#input-configuration)
 - [Text Configuration](#text-configuration)
 - [Dialog Configuration](#dialog-configuration)
-- [Action Pad Configuration](#action-pad-configuration)
+- [Call and keypad buttons](#call-and-keypad-buttons)
 - [Keypad Configuration](#keypad-configuration)
 - [Statuses Configuration](#statuses-configuration)
 - [Decoration Configuration](#decoration-configuration)
@@ -32,23 +32,37 @@ Defines the default font settings from [Google Fonts](https://fonts.google.com/)
 ### Button Configuration
 
 Override the default button styles (primary, neutral, primaryOnDark, neutralOnDark) with custom
-configurations. Defines
-button styles, including:
+configurations.
+
+This is the one button style object used everywhere in the theme - here, on the call screen and
+under the dial pad. Every field is optional; whatever you leave out keeps the app default.
 
 ```json
 {
   "backgroundColor": "#ffff061e",
   "foregroundColor": "#ffffffff",
-  "textColor": "#ff000000",
   "iconColor": "#ffe42626",
-  "disabledIconColor": "#1fcd2f2f"
+  "overlayColor": "#22ffffff",
+  "disabledBackgroundColor": "#66dde0e3",
+  "disabledForegroundColor": "#ff848581",
+  "disabledIconColor": "#1fcd2f2f",
+  "elevation": 0,
+  "textStyle": {
+    "fontSize": 16
+  }
 }
 ```
 
-- Background color (optional)
-- Foreground color (optional)
-- Icon colors (optional)
-- Disabled states (optional)
+- `backgroundColor`, `foregroundColor`, `iconColor` - the resting look. `foregroundColor` is the
+  text color, and the icon color too unless `iconColor` overrides it.
+- `selectedBackgroundColor`, `selectedForegroundColor`, `selectedIconColor` - the same three while
+  a button that can be on or off is switched on. Ignored by buttons that have no such state.
+- `disabledBackgroundColor`, `disabledForegroundColor`, `disabledIconColor` - the same three while
+  the button is unavailable.
+- `overlayColor` - the ripple shown on press/hover/focus.
+- `textStyle`, `elevation`, `padding`, `minimumSize`, `fixedSize`, `maximumSize`, `iconSize`,
+  `side`, `shape`, `visualDensity`, `shadowColor`, `disabledShadowColor`, `surfaceTintColor`,
+  `animationDuration` - shape, size and typography of the button.
 
 ### Group Configuration
 
@@ -61,12 +75,15 @@ Defines the structure of grouped widgets, including:
 ```json
 {
   "backgroundColor": "#ffdf2929",
-  "textColor": "#ff100000"
+  "textStyle": {
+    "color": "#ff100000",
+    "fontSize": 14
+  }
 }
 ```
 
 - Background color (optional)
-- Text color (optional)
+- Title text style (optional)
 
 ### Bar Configuration
 
@@ -168,6 +185,13 @@ Configurable properties:
 
 #### Leading Avatar Style Configuration
 
+> **A theme lists only what it wants different.** Every value below has an app-side default
+> (`LeadingAvatarStyle.defaults`); a key present in the theme is a deliberate override and pins that
+> value for good, a key left out follows the app and changes with the next build. So do not restate
+> a default here - that is exactly what stops an app-wide appearance change from reaching this
+> deployment. The shipped `original.widget.*.config.json` files follow the same rule and therefore
+> mention only the values that differ from the app.
+
 The **Leading Avatar** component is a circular profile/avatar element commonly used in lists, call
 screens, and contact details.  
 It can display a user’s photo, initials, or a placeholder icon, and supports additional visual
@@ -183,14 +207,20 @@ smart badges, and registration status markers.
 - **Loading overlay** — loader visibility, padding, stroke width.
 - **Smart indicator** — top-left badge with background color, icon, and size factor.
 - **Registered badge** — bottom-right badge with colors for registered/unregistered and size factor.
+- **Name colors** — pseudorandom, name-derived colors for avatars without a photo:
+    - **enabled** — when `true` (default), the circle background and initials color are derived
+      deterministically from the displayed name, so the same contact/chat/group always gets the
+      same color; set to `false` to keep the static `backgroundColor` / `initialsTextStyle.color`.
+    - **palette** — optional list of hex colors to pick from; when `null` or empty the color is
+      generated from the name hash (unbounded number of hues, tuned per light/dark theme).
 
-**Example:**
+**Example** (only the values this brand wants different; badge sizes, name colors and the avatar
+radius are left to the app):
 
 ```json
 {
   "leadingAvatarStyle": {
     "backgroundColor": "#EEF3F6",
-    "radius": 20.0,
     "initialsTextStyle": {
       "fontFamily": "Montserrat",
       "fontSize": null,
@@ -205,14 +235,12 @@ smart badges, and registration status markers.
       "matchTextDirection": false
     },
     "loading": {
-      "showByDefault": false,
       "padding": {
         "left": 2.0,
         "top": 2.0,
         "right": 2.0,
         "bottom": 2.0
-      },
-      "strokeWidth": 1.0
+      }
     },
     "smartIndicator": {
       "backgroundColor": "#F8FBFD",
@@ -220,13 +248,7 @@ smart badges, and registration status markers.
         "codePoint": "0xe491",
         "fontFamily": "MaterialIcons",
         "matchTextDirection": false
-      },
-      "sizeFactor": 0.4
-    },
-    "registeredBadge": {
-      "registeredColor": null,
-      "unregisteredColor": null,
-      "sizeFactor": 0.2
+      }
     }
   }
 }
@@ -312,63 +334,16 @@ Defines dialog settings, including:
 - Confirmation dialogs
 - Snack bar messages (success, error, info, warning colors)
 
-### Action Pad Configuration
+### Call and keypad buttons
 
-Defines the styles for various action buttons, primarily used on the call screen and dial pad. Each
-key in this object
-corresponds to a specific button, and its value is a button style configuration (see [Button
-Configuration](#button-configuration)).
+These are not part of the widget configuration. They belong to the page that shows them:
 
-This allows for customizing buttons like `callStart`, `hangup`, `camera`, `muted`, `digit` (for
-keypad numbers), `backspace`, etc.
-For toggleable buttons like `camera` or `muted`, you can define separate styles for their active
-states (e.g., `cameraActive`).
+- call screen buttons (call, hangup, mute, camera, speaker, hold, transfer, swap, keypad) -
+  `dialing.actions`, see [Call actions](page_configuration.md#call-actions);
+- buttons under the dial pad (call, transfer, backspace) - `keypad.actionpad`, see
+  [Action pad](page_configuration.md#action-pad).
 
-**Example:**
-
-```json
-{
-  "callStart": {
-    "backgroundColor": "#75B943",
-    "foregroundColor": "#ffffff",
-    "iconColor": "#ffffff"
-  },
-  "hangup": {
-    "backgroundColor": "#E74C3C",
-    "foregroundColor": "#ffffff",
-    "iconColor": "#ffffff"
-  },
-  "camera": {
-    "backgroundColor": "#660371b3"
-  },
-  "cameraActive": {
-    "backgroundColor": "#ff4baecc"
-  },
-  "muted": {
-    "backgroundColor": "#6613a7fe"
-  },
-  "mutedActive": {
-    "backgroundColor": "#ff14a3f8"
-  },
-  "digit": {
-    "backgroundColor": "#EEF3F6",
-    "foregroundColor": "#494949",
-    "textColor": "#494949"
-  },
-  "backspace": {
-    "backgroundColor": "transparent",
-    "iconColor": "#494949"
-  }
-}
-```
-
-- `callStart`: Style for the call initiation button.
-- `hangup`: Style for the call termination button.
-- `camera`, `cameraActive`: Styles for the camera toggle button in its inactive and active states.
-- `muted`, `mutedActive`: Styles for the mute toggle button.
-- `digit`: Style for the numeric (0-9, *, #) buttons on the dial pad.
-- `backspace`: Style for the backspace button on the dial pad.
-  ... and other action buttons can be configured similarly.
+Both use the same button style object described in [Button Configuration](#button-configuration).
 
 ### Keypad Configuration
 

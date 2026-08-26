@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 
@@ -62,6 +63,12 @@ void _isolateEntry(SendPort mainSendPort) {
 /// Call [start] once, [analyzeFrame] for each probe, [dispose] on teardown.
 /// Sequential use only — one outstanding [analyzeFrame] call at a time.
 class FrameAnalysisWorker {
+  /// Whether frames can be analysed on this platform.
+  ///
+  /// Web has no isolates, and decoding a full-resolution frame per probe on the
+  /// UI thread would stall rendering, so frames are not analysed there.
+  static const bool isSupported = !kIsWeb;
+
   Isolate? _isolate;
   ReceivePort? _receivePort;
   SendPort? _sendPort;
@@ -69,7 +76,7 @@ class FrameAnalysisWorker {
   late final Future<void> _ready;
 
   void start() {
-    _ready = _init();
+    _ready = isSupported ? _init() : Future<void>.value();
   }
 
   Future<void> _init() async {
@@ -101,7 +108,12 @@ class FrameAnalysisWorker {
 
   /// Returns `true` when the frame is black or empty, `false` when it has
   /// visible content. Awaits isolate startup if [start] hasn't finished yet.
+  ///
+  /// Always returns `false` where [isSupported] is `false`: nothing is analysed,
+  /// so the frame is reported as renderable.
   Future<bool> analyzeFrame(Uint8List frameBytes) async {
+    if (!isSupported) return false;
+
     await _ready;
     final completer = Completer<bool>();
     _pendingAnalysis = completer;

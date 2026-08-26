@@ -19,7 +19,7 @@ Please align your local environment with these versions for consistent behavior 
 - **Build Process**: Learn more about build configurations in the [Build](docs/build.md) documentation.
 - **Application Properties**: Customize properties such as the Bundle ID and App Name in the  [Application Settings](docs/application_properties.md) documentation.
 - **Application Launch Assets**: Configure the application launch assets in the [Launch Assets](docs/launch_assets.md) documentation.
-- **Localization**: For information on localization settings, see [Localizely](docs/localization.md).
+- **Localization**: For information on localization settings, see [Localization](docs/localization.md).
 
 ## Application Configuration
 
@@ -37,6 +37,8 @@ The application offers extensive customization options:
  - **Flavors**: See the [Build Flavors](docs/flavors.md) documentation for details on how to configure and use build flavors.
  - **Melos Commands**: See the [Melos Commands](docs/make_file.md) for all available build, run, and automation commands.
  - **Development Workflow and Git Hooks**: See the [Development Guide](docs/development.md) for details on commit conventions, hook setup, and workflow tools.
+ - **Accessibility**: See the [Accessibility Guide](docs/accessibility.md) for what every interactive control must expose to screen readers and UI automation, and how to verify it.
+ - **Startup time**: See [Where cold start time goes](docs/startup.md) for the measured breakdown of a cold start and the candidates worth optimising next.
 
 # Testing
 
@@ -58,6 +60,10 @@ Integration tests are located in the `patrol_test` folder.
 - **Commands**: See [Integration Test Commands](docs/integration_test_commands.md) for all patrol build, run, Firebase Test Lab, and local companion commands.
 
 - **Coverage**: See [Integration Test Coverage](docs/integration_test_coverage.md) for a description of every test file and its steps.
+
+### Manual testing on real devices
+
+- **BrowserStack App Live**: See [BrowserStack App Live Upload](docs/browserstack_upload.md) for uploading builds to BrowserStack and testing them manually on real devices.
 
 ## Contributing
 

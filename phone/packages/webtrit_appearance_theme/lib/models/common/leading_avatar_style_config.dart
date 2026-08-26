@@ -39,6 +39,9 @@ class LeadingAvatarStyleConfig with _$LeadingAvatarStyleConfig {
 
     /// Presence badge appearance.
     this.presenceBadge,
+
+    /// Per-name pseudorandom color appearance.
+    this.nameColors,
   });
 
   /// Circle background color. Defaults to theme.secondaryContainer when null.
@@ -73,9 +76,44 @@ class LeadingAvatarStyleConfig with _$LeadingAvatarStyleConfig {
   @override
   final PresenceBadgeStyleConfig? presenceBadge;
 
+  /// Per-name pseudorandom color appearance.
+  @override
+  final NameColorsStyleConfig? nameColors;
+
   factory LeadingAvatarStyleConfig.fromJson(Map<String, Object?> json) => _$LeadingAvatarStyleConfigFromJson(json);
 
   Map<String, Object?> toJson() => _$LeadingAvatarStyleConfigToJson(this);
+}
+
+/// Pseudorandom, name-derived avatar colors.
+///
+/// When enabled, an avatar without a photo gets a background deterministically derived from
+/// the displayed name instead of the static [LeadingAvatarStyleConfig.backgroundColor].
+@freezed
+@JsonSerializable()
+class NameColorsStyleConfig with _$NameColorsStyleConfig {
+  /// Creates a [NameColorsStyleConfig].
+  const NameColorsStyleConfig({
+    /// Whether name-derived colors are used at all.
+    this.enabled = true,
+
+    /// Optional fixed palette to pick from; when null/empty the color is generated from the
+    /// name hash (hue) so the number of distinct colors is unbounded.
+    this.palette,
+  });
+
+  /// Whether name-derived colors are used at all.
+  @override
+  final bool enabled;
+
+  /// Optional fixed palette to pick from; when null/empty the color is generated from the
+  /// name hash (hue) so the number of distinct colors is unbounded.
+  @override
+  final List<String>? palette;
+
+  factory NameColorsStyleConfig.fromJson(Map<String, Object?> json) => _$NameColorsStyleConfigFromJson(json);
+
+  Map<String, Object?> toJson() => _$NameColorsStyleConfigToJson(this);
 }
 
 /// Loading overlay style shown while avatar data is unavailable.
@@ -186,10 +224,18 @@ class PresenceBadgeStyleConfig with _$PresenceBadgeStyleConfig {
     /// Color used when presence is "available" (e.g., online, idle).
     this.availableColor,
 
-    /// Color used when presence is "unavailable" (e.g., offline, busy).
+    /// Color used when presence is "unavailable" (e.g., offline).
     this.unavailableColor,
 
-    /// Size factor relative to avatar diameter (widget uses ~0.325 by default).
+    /// Color used when the contact should not be called right now: one
+    /// publishing "busy" or "do not disturb".
+    this.busyColor,
+
+    /// Color of the activity glyph drawn inside the badge; it has to read on
+    /// top of the badge fill.
+    this.iconColor,
+
+    /// Size factor relative to avatar diameter.
     this.sizeFactor,
   });
 
@@ -197,11 +243,21 @@ class PresenceBadgeStyleConfig with _$PresenceBadgeStyleConfig {
   @override
   final String? availableColor;
 
-  /// Color used when presence is "unavailable" (e.g., offline, busy).
+  /// Color used when presence is "unavailable" (e.g., offline).
   @override
   final String? unavailableColor;
 
-  /// Size factor relative to avatar diameter (widget uses ~0.325 by default).
+  /// Color used when the contact should not be called right now: one
+  /// publishing "busy" or "do not disturb".
+  @override
+  final String? busyColor;
+
+  /// Color of the activity glyph drawn inside the badge; it has to read on
+  /// top of the badge fill.
+  @override
+  final String? iconColor;
+
+  /// Size factor relative to avatar diameter.
   @override
   final double? sizeFactor;
 

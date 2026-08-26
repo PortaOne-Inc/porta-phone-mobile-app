@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,7 @@ import 'package:webtrit_phone/features/messaging/messaging.dart';
 import 'package:webtrit_phone/l10n/app_localizations.g.mapper.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
+import 'package:webtrit_phone/app/constants.dart';
 
 import 'exchange_bar.dart';
 import 'message_text_field.dart';
@@ -184,12 +187,14 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Stack(
       children: [
         list(),
         Positioned(top: MediaQuery.of(context).padding.top, left: 0, right: 0, child: const MessagingStateBar()),
         Positioned(
-          bottom: MediaQuery.of(context).padding.bottom,
+          bottom: 0,
           left: 0,
           right: 0,
           child: Column(
@@ -200,7 +205,20 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
                 child: ScrollToBottomButton(scrolledAway, scrollToBottom),
               ),
               const SizedBox(height: 24),
-              field(),
+              ClipRRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Column(
+                    children: [
+                      field(),
+                      Container(
+                        height: MediaQuery.of(context).padding.bottom,
+                        color: colorScheme.surface.withAlpha(200),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -210,6 +228,10 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
 
   Widget list() {
     return GestureDetector(
+      // A tap anywhere puts the keyboard away. It is a convenience for a
+      // finger and nothing a screen reader should be taken to - left in the
+      // tree it turns the whole screen into one nameless stop.
+      excludeFromSemantics: true,
       onTap: () => FocusScope.of(context).unfocus(),
       child: ListView(
         controller: scrollController,
@@ -225,7 +247,7 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
           TypingIndicator(userId: widget.userId, typingUsers: context.watch<ChatTypingCubit>().state),
           ...viewEntries.map((entry) {
             if (entry is _MessageViewEntry) {
-              return FadeIn(
+              return SizedBox(
                 key: Key(entry.message?.idKey ?? entry.outboxMessage!.idKey),
                 child: ChatMessageView(
                   userId: widget.userId,
@@ -290,8 +312,8 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
         Widget? exchangeWidget;
         if (messageForForward != null) {
           exchangeWidget = ExchangeBar(
+            kind: ExchangeKind.forward,
             text: messageForForward.content,
-            icon: Icons.forward,
             onCancel: chatsForwardingCubit.clear,
             onConfirm: () {
               widget.onSendForward(messageForForward.content, messageForForward);
@@ -302,8 +324,8 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
 
         if (replyingMessage != null) {
           exchangeWidget = ExchangeBar(
+            kind: ExchangeKind.reply,
             text: replyingMessage!.content,
-            icon: Icons.reply,
             onCancel: () {
               setState(() => replyingMessage = null);
               FocusScope.of(context).unfocus();
@@ -313,8 +335,8 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
 
         if (editingMessage != null) {
           exchangeWidget = ExchangeBar(
+            kind: ExchangeKind.edit,
             text: editingMessage!.content,
-            icon: Icons.edit_note,
             onCancel: () {
               setState(() => editingMessage = null);
               inputController.text = '';
@@ -342,6 +364,7 @@ class _ChatMessageListViewState extends State<ChatMessageListView> {
                 controller: inputController,
                 onSend: handleSend,
                 onChanged: (value) => context.read<ChatTypingCubit>().sendTyping(),
+                maxLength: kAppMessagingMaxLength,
               ),
           ],
         );

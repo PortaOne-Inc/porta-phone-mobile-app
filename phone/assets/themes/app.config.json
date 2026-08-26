@@ -51,7 +51,7 @@
       "cacheSelectedTab": true,
       "tabs": [
         {
-          "enabled": true,
+          "enabled": false,
           "initial": false,
           "type": "favorites",
           "titleL10n": "main_BottomNavigationBarItemLabel_favorites",
@@ -71,6 +71,8 @@
           "type": "contacts",
           "titleL10n": "main_BottomNavigationBarItemLabel_contacts",
           "icon": "0xee35",
+          "layout": "unified",
+          "favorites": true,
           "contactSourceTypes": [
             "local",
             "external"

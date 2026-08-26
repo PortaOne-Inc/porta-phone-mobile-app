@@ -115,7 +115,7 @@ class FeatureAccess extends Equatable {
 
       final loginConfig = LoginMapper.map(appConfig, embeddedConfig.embeddedResources);
       final bottomMenuConfig = BottomMenuMapper.map(appConfig, embeddedConfig, coreSupport, featureOverrides);
-      final settingsConfig = SettingsMapper.map(appConfig, embeddedResources, coreSupport, termsConfig);
+      final settingsConfig = SettingsMapper.map(appConfig, embeddedResources, coreSupport, termsConfig, systemInfo);
       final callConfig = CallMapper.map(appConfig, featureOverrides, systemInfo);
       final messagingConfig = MessagingMapper.map(appConfig, coreSupport);
       final contactsConfig = ContactsMapper.map(appConfig);
@@ -236,10 +236,27 @@ abstract final class BottomMenuMapper {
       throw Exception('Bottom menu configuration is missing or empty');
     }
 
+    final seenIdentities = <String>{};
     final bottomMenuTabs = bottomMenu.tabs
         .where((tab) => tab.enabled)
         .map((tab) => _createBottomMenuTab(tab, embeddedConfig, coreSupport, overrides))
         .where((tab) => !(tab is ContactsBottomMenuTab && tab.contactSourceTypes.isEmpty))
+        // Two entries of one identity would render with one widget key and
+        // bring the bar down with a duplicate-key crash. A config that
+        // repeats a section keeps only its first entry, every property of
+        // the dropped one included - a duplicate carrying the initial flag
+        // does not hand it to the survivor. This filter has to stay AFTER
+        // the two above: an entry they drop must not claim an identity.
+        .where((tab) {
+          // The identity is the very one the bar keys its entries by, so two
+          // entries pass this filter only if their widget keys really differ.
+          final identity = tab.navBarId;
+          final first = seenIdentities.add(identity);
+          if (!first) {
+            _logger.warning('Bottom menu repeats section "$identity"; keeping only its first entry');
+          }
+          return first;
+        })
         .toList();
 
     if (bottomMenuTabs.isEmpty) {
@@ -272,11 +289,15 @@ abstract final class BottomMenuMapper {
         titleL10n: tab.titleL10n,
         icon: tab.icon.toIconData(),
       ),
-      contacts: (enabled, initial, titleL10n, icon, contactSourceTypes) => ContactsBottomMenuTab(
+      contacts: (enabled, initial, titleL10n, icon, contactSourceTypes, layout, favorites) => ContactsBottomMenuTab(
         enabled: tab.enabled,
         initial: tab.initial,
         titleL10n: tab.titleL10n,
         icon: tab.icon.toIconData(),
+        layout: switch (layout) {
+          ContactsLayoutScheme.tabbed => const ContactsTabbedLayout(),
+          ContactsLayoutScheme.unified => ContactsUnifiedLayout(favorites: favorites),
+        },
         contactSourceTypes: contactSourceTypes
             .map((type) => ContactSourceType.values.byName(type))
             .where((type) => type != ContactSourceType.external || coreSupport.supportsExtensions)
@@ -320,6 +341,7 @@ abstract final class SettingsMapper {
     List<EmbeddedResource> embeddedResources,
     CoreSupport coreSupport,
     TermsConfig termsConfig,
+    WebtritSystemInfo? systemInfo,
   ) {
     final settingSections = <SettingsSection>[];
     bool hasVoicemail = false;
@@ -353,7 +375,14 @@ abstract final class SettingsMapper {
       }
     }
 
-    return SettingsConfig(voicemailsEnabled: hasVoicemail, sections: List.unmodifiable(settingSections));
+    return SettingsConfig(
+      voicemailsEnabled: hasVoicemail,
+      // Listing and revoking sessions is a core endpoint with no adapter
+      // involvement, so there is no capability flag for it: the core version
+      // decides. The row is not configurable, so nothing else gates it.
+      sessionsEnabled: systemInfo?.core.supportsSessionTracking ?? false,
+      sections: List.unmodifiable(settingSections),
+    );
   }
 
   // TODO (Serdun): Move platform-specific configuration to a separate config file.
@@ -636,16 +665,15 @@ abstract final class ContactsMapper {
 abstract final class SupportedMapper {
   /// Maps a list of [SupportedFeature]s to a [SupportedConfig].
   static SupportedConfig map(List<SupportedFeature> supportedFeatures) {
-    final themeFeature =
-        supportedFeatures.firstWhere((e) => e is SupportedThemeMode, orElse: () => const SupportedFeature.themeMode())
-            as SupportedThemeMode;
+    final themeFeature = supportedFeatures.firstWhere(
+      (e) => e is SupportedThemeMode,
+      orElse: () => const SupportedFeature.themeMode(),
+    ) as SupportedThemeMode;
 
-    final videoCallFeature =
-        supportedFeatures.firstWhere(
-              (e) => e is SupportedVideoCall,
-              orElse: () => const SupportedFeature.videoCall(enabled: false),
-            )
-            as SupportedVideoCall;
+    final videoCallFeature = supportedFeatures.firstWhere(
+      (e) => e is SupportedVideoCall,
+      orElse: () => const SupportedFeature.videoCall(enabled: false),
+    ) as SupportedVideoCall;
 
     final configThemeMode = switch (themeFeature.mode) {
       ThemeModeConfig.system => ThemeMode.system,
@@ -657,46 +685,18 @@ abstract final class SupportedMapper {
   }
 }
 
-/// Mapper responsible for resolving the app's selectable locales from the
-/// language allowlist in [AppConfig], intersected with the locales the app
-/// actually bundles ([AppLocalizations.supportedLocales]).
+/// The languages the app offers.
+///
+/// Whatever it was built with, and nothing else to decide. The build already
+/// wrote only the languages the brand enables - the tool that assembles a brand
+/// takes them from its theme and removes the rest before the localizations are
+/// generated - so filtering again here could only disagree with what is on
+/// disk, and did: a language present in the build but missing from the config
+/// was hidden, a language named in the config but absent from the build was
+/// silently ignored.
 abstract final class LocalizationMapper {
-  static LocalizationConfig map(AppConfig appConfig) {
-    final enabledLanguages = appConfig.localization.enabledLanguages;
-    final bundled = AppLocalizations.supportedLocales;
-
-    // Diagnose misconfiguration without throwing: a bad code in a per-brand
-    // config must never brick the app (this feeds MaterialApp.supportedLocales),
-    // so unknown codes are logged and ignored, and resolve() keeps at least the
-    // full bundled set.
-    if (enabledLanguages.isNotEmpty) {
-      final bundledCodes = bundled.map((l) => l.languageCode.toLowerCase()).toSet();
-      final unknown = enabledLanguages
-          .map((code) => code.trim().toLowerCase())
-          .where((code) => code.isNotEmpty && !bundledCodes.contains(code))
-          .toList(growable: false);
-      if (unknown.isNotEmpty) {
-        _logger.warning(
-          'localization.enabledLanguages contains code(s) not bundled in the app '
-          '$unknown; ignoring them. Bundled: ${bundledCodes.toList()}',
-        );
-      }
-    }
-
-    final supportedLocales = LocalizationConfig.resolve(bundled, enabledLanguages);
-    if (enabledLanguages.isNotEmpty && supportedLocales.length == bundled.length) {
-      final requested = enabledLanguages.map((c) => c.trim().toLowerCase()).where((c) => c.isNotEmpty).toSet();
-      final anyValid = bundled.any((l) => requested.contains(l.languageCode.toLowerCase()));
-      if (!anyValid) {
-        _logger.warning(
-          'localization.enabledLanguages ($enabledLanguages) matched no bundled '
-          'language; falling back to all bundled languages.',
-        );
-      }
-    }
-
-    return LocalizationConfig(supportedLocales: supportedLocales);
-  }
+  static LocalizationConfig map(AppConfig appConfig) =>
+      const LocalizationConfig(supportedLocales: AppLocalizations.supportedLocales);
 }
 
 abstract final class LoggingMapper {

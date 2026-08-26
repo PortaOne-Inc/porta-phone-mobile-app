@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:equatable/equatable.dart';
 
 import '../contact_source_type.dart';
+import '../contacts_layout.dart';
 import '../embedded/embedded.dart';
 import '../main_flavor.dart';
 
@@ -29,6 +30,12 @@ sealed class BottomMenuTab extends Equatable {
     (flavor: final f, embeddedId: null) => f,
     (flavor: final f, embeddedId: final id) => '$f/$id',
   };
+
+  /// The kind segment of a stored [routePath] value - the decoder side of the
+  /// encoding above, kept next to it so the two cannot drift apart. Subclasses
+  /// may append their own segments (see [RecentsBottomMenuTab.routePath]), so
+  /// only the first segment names the kind.
+  static String flavorSegmentOf(String routePath) => routePath.split('/').first;
 
   @override
   List<Object?> get props => [enabled, initial, titleL10n, icon, data, flavor];
@@ -100,8 +107,11 @@ final class RecentsBottomMenuTab extends BottomMenuTab {
 }
 
 final class ContactsBottomMenuTab extends BottomMenuTab {
+  static const unifiedSegment = 'unified';
+
   ContactsBottomMenuTab({
     required List<ContactSourceType> contactSourceTypes,
+    required this.layout,
     required super.enabled,
     required super.initial,
     required super.titleL10n,
@@ -111,11 +121,25 @@ final class ContactsBottomMenuTab extends BottomMenuTab {
 
   final List<ContactSourceType> contactSourceTypes;
 
+  /// How this tab arranges what it shows, and whatever that arrangement
+  /// carries with it. The arrangements are separate screens, so the path
+  /// below keeps them apart across a restart.
+  final ContactsLayout layout;
+
+  /// Whether a person can get at their favourites through this tab.
+  bool get offersFavorites => layout.offersFavorites;
+
   @override
   MainFlavor get flavor => MainFlavor.contacts;
 
   @override
-  List<Object?> get props => [...super.props, contactSourceTypes];
+  String get routePath => switch (layout) {
+    ContactsUnifiedLayout() => '${super.routePath}/$unifiedSegment',
+    ContactsTabbedLayout() => super.routePath,
+  };
+
+  @override
+  List<Object?> get props => [...super.props, contactSourceTypes, layout];
 }
 
 final class EmbeddedBottomMenuTab extends BottomMenuTab {

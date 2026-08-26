@@ -408,7 +408,6 @@ AppConfigSettings _$AppConfigSettingsFromJson(Map<String, dynamic> json) =>
                   type: 'terms',
                   titleL10n: 'settings_ListViewTileTitle_termsConditions',
                   icon: '0xeedf',
-                  embeddedResourceId: '0',
                 ),
                 AppConfigSettingsItem(
                   enabled: true,
@@ -658,6 +657,14 @@ ContactsTabScheme _$ContactsTabSchemeFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const <String>[],
+      layout:
+          $enumDecodeNullable(
+            _$ContactsLayoutSchemeEnumMap,
+            json['layout'],
+            unknownValue: ContactsLayoutScheme.tabbed,
+          ) ??
+          ContactsLayoutScheme.tabbed,
+      favorites: json['favorites'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -668,8 +675,15 @@ Map<String, dynamic> _$ContactsTabSchemeToJson(ContactsTabScheme instance) =>
       'titleL10n': instance.titleL10n,
       'icon': instance.icon,
       'contactSourceTypes': instance.contactSourceTypes,
+      'layout': _$ContactsLayoutSchemeEnumMap[instance.layout]!,
+      'favorites': instance.favorites,
       'type': instance.$type,
     };
+
+const _$ContactsLayoutSchemeEnumMap = {
+  ContactsLayoutScheme.tabbed: 'tabbed',
+  ContactsLayoutScheme.unified: 'unified',
+};
 
 KeypadTabScheme _$KeypadTabSchemeFromJson(Map<String, dynamic> json) =>
     KeypadTabScheme(

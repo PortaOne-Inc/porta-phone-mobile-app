@@ -41,6 +41,11 @@ LeadingAvatarStyleConfig _$LeadingAvatarStyleConfigFromJson(
       : PresenceBadgeStyleConfig.fromJson(
           json['presenceBadge'] as Map<String, dynamic>,
         ),
+  nameColors: json['nameColors'] == null
+      ? null
+      : NameColorsStyleConfig.fromJson(
+          json['nameColors'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$LeadingAvatarStyleConfigToJson(
@@ -54,6 +59,23 @@ Map<String, dynamic> _$LeadingAvatarStyleConfigToJson(
   'smartIndicator': instance.smartIndicator?.toJson(),
   'registeredBadge': instance.registeredBadge?.toJson(),
   'presenceBadge': instance.presenceBadge?.toJson(),
+  'nameColors': instance.nameColors?.toJson(),
+};
+
+NameColorsStyleConfig _$NameColorsStyleConfigFromJson(
+  Map<String, dynamic> json,
+) => NameColorsStyleConfig(
+  enabled: json['enabled'] as bool? ?? true,
+  palette: (json['palette'] as List<dynamic>?)
+      ?.map((e) => e as String)
+      .toList(),
+);
+
+Map<String, dynamic> _$NameColorsStyleConfigToJson(
+  NameColorsStyleConfig instance,
+) => <String, dynamic>{
+  'enabled': instance.enabled,
+  'palette': instance.palette,
 };
 
 LoadingOverlayStyleConfig _$LoadingOverlayStyleConfigFromJson(
@@ -113,6 +135,8 @@ PresenceBadgeStyleConfig _$PresenceBadgeStyleConfigFromJson(
 ) => PresenceBadgeStyleConfig(
   availableColor: json['availableColor'] as String?,
   unavailableColor: json['unavailableColor'] as String?,
+  busyColor: json['busyColor'] as String?,
+  iconColor: json['iconColor'] as String?,
   sizeFactor: (json['sizeFactor'] as num?)?.toDouble(),
 );
 
@@ -121,5 +145,7 @@ Map<String, dynamic> _$PresenceBadgeStyleConfigToJson(
 ) => <String, dynamic>{
   'availableColor': instance.availableColor,
   'unavailableColor': instance.unavailableColor,
+  'busyColor': instance.busyColor,
+  'iconColor': instance.iconColor,
   'sizeFactor': instance.sizeFactor,
 };

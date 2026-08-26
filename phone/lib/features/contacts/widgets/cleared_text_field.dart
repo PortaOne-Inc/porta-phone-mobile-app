@@ -1,14 +1,55 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_phone/app/keys.dart';
+import 'package:webtrit_phone/l10n/l10n.dart';
 import 'package:webtrit_phone/theme/theme.dart';
+import 'package:webtrit_phone/widgets/widgets.dart';
 
 class ClearedTextField extends StatefulWidget {
-  const ClearedTextField({super.key, this.initialValue, this.onChanged, this.onSubmitted, this.iconConstraints});
+  const ClearedTextField({
+    super.key,
+    this.identifier,
+    this.clearButtonKey,
+    this.clearButtonIdentifier,
+    this.initialValue,
+    this.onChanged,
+    this.onSubmitted,
+    this.onDismissed,
+    this.iconConstraints,
+  });
+
+  /// Automation id of the search field itself, read from the accessibility
+  /// tree by the on-device tests.
+  ///
+  /// Supplied by the screen rather than baked in here: the same field serves
+  /// the contact list and the conversation list, and two controls answering to
+  /// one id is a trap for whoever writes the test. Left out, the field simply
+  /// carries no id - which is what the conversation list does until its own
+  /// naming lands.
+  final String? identifier;
+
+  /// Widget key of the clear button, used by the tests that run inside the app
+  /// (they address widgets by key, not by accessibility id).
+  final Key? clearButtonKey;
+
+  /// Automation id of the clear button, kept apart from [identifier] so a test
+  /// can tell the box from the cross that empties it - merging the two into one
+  /// control would leave no way to press just the cross.
+  ///
+  /// Its spoken name is not a parameter: "clear search" reads the same on every
+  /// screen, so it lives in this widget.
+  final String? clearButtonIdentifier;
 
   final String? initialValue;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
+
+  /// Called when the cross is pressed on a box that is already empty, for a
+  /// screen where the box is something you leave rather than something that
+  /// is always there.
+  ///
+  /// Supplying it also keeps the cross on screen while the box is empty -
+  /// without that there would be nothing to press, and no way back.
+  final VoidCallback? onDismissed;
   final BoxConstraints? iconConstraints;
 
   @override
@@ -37,7 +78,7 @@ class ClearedTextFieldState extends State<ClearedTextField> {
     final themeData = Theme.of(context);
     final InputDecorations? inputDecorations = themeData.extension<InputDecorations>();
     final iconConstraints = widget.iconConstraints;
-    return Ink(
+    final field = Ink(
       decoration: BoxDecoration(
         color: themeData.colorScheme.surfaceBright,
         borderRadius: iconConstraints == null ? null : BorderRadius.circular(iconConstraints.minHeight / 2),
@@ -48,19 +89,34 @@ class ClearedTextFieldState extends State<ClearedTextField> {
         decoration: inputDecorations?.search?.copyWith(
           prefixIcon: const Icon(Icons.search),
           prefixIconConstraints: iconConstraints,
-          suffixIcon: _isEmpty
+          suffixIcon: _isEmpty && widget.onDismissed == null
               ? null
-              : IconButton(
-                  key: contactsSerchInputClearKey,
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    setState(() {
-                      _isEmpty = true;
-                    });
-                    _controller.clear();
-                    widget.onChanged?.call('');
-                  },
-                  constraints: iconConstraints,
+              : SemanticAction(
+                  // Named for what the press will actually do: on an empty
+                  // box this control no longer empties anything, it leaves
+                  // the search, and announcing it as "clear" would send
+                  // someone listening past the only way out.
+                  label: _isEmpty && widget.onDismissed != null
+                      ? context.l10n.contacts_SemanticsLabel_closeSearch
+                      : context.l10n.contacts_SemanticsLabel_clearSearch,
+                  identifier: widget.clearButtonIdentifier,
+                  child: IconButton(
+                    key: widget.clearButtonKey,
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      // Empties the box on the first press and closes it on
+                      // the next, so one control both undoes a search and
+                      // leaves it - and neither is reached by guessing.
+                      if (_isEmpty) return widget.onDismissed?.call();
+
+                      setState(() {
+                        _isEmpty = true;
+                      });
+                      _controller.clear();
+                      widget.onChanged?.call('');
+                    },
+                    constraints: iconConstraints,
+                  ),
                 ),
           suffixIconConstraints: iconConstraints,
         ),
@@ -71,8 +127,16 @@ class ClearedTextFieldState extends State<ClearedTextField> {
           });
           widget.onChanged?.call(value);
         },
-        onSubmitted: (value) => widget.onSubmitted,
+        onSubmitted: (value) => widget.onSubmitted?.call(value),
       ),
     );
+
+    final identifier = widget.identifier;
+    if (identifier == null) return field;
+
+    // Plain Semantics rather than a merging wrapper: merging would pull the
+    // clear button into the field and leave the search box with no way to be
+    // typed into by name.
+    return SemanticId(identifier: identifier, child: field);
   }
 }

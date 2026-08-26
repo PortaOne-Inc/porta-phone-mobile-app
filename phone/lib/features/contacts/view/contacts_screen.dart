@@ -68,6 +68,16 @@ class _ContactsScreenState extends State<ContactsScreen> with SingleTickerProvid
     }
   }
 
+  /// Tab of one contact source, addressable by the id of that source.
+  ExtTab _tab(BuildContext context, ContactSourceType sourceType) {
+    final (key, identifier) = switch (sourceType) {
+      ContactSourceType.local => (contactsTabLocalKey, contactsTabLocalId),
+      ContactSourceType.external => (contactsTabExtKey, contactsTabExtId),
+    };
+
+    return ExtTab(key: key, identifier: identifier, text: sourceType.l10n(context));
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
@@ -81,68 +91,39 @@ class _ContactsScreenState extends State<ContactsScreen> with SingleTickerProvid
             child: ExtTabBar(
               controller: _tabController,
               width: mediaQueryData.size.width * 0.75,
-              height: kMainAppBarBottomTabHeight - kMainAppBarBottomPaddingGap,
-              tabs: widget.sourceTypes.map((sourceType) {
-                return Tab(
-                  key: switch (sourceType) {
-                    ContactSourceType.local => contactsTabLocalKey,
-                    ContactSourceType.external => contactsTabExtKey,
-                  },
-                  text: sourceType.l10n(context),
-                );
-              }).toList(),
+              height: kMainAppBarBottomControlHeight,
+              tabs: [for (final sourceType in widget.sourceTypes) _tab(context, sourceType)],
             ),
           );
 
-    final search = Padding(
-      padding: const EdgeInsets.only(
-        left: kMainAppBarBottomPaddingGap,
-        right: kMainAppBarBottomPaddingGap,
-        bottom: kMainAppBarBottomPaddingGap,
-      ),
-      child: IgnoreUnfocuser(
-        child: BlocBuilder<ContactsBloc, ContactsState>(
-          builder: (context, state) {
-            final contactsSearchBloc = context.read<ContactsBloc>();
-            return ClearedTextField(
-              key: contactsSerchInputKey,
-              initialValue: state.search,
-              onChanged: (value) => contactsSearchBloc.add(ContactsSearchChanged(value)),
-              onSubmitted: (value) => contactsSearchBloc.add(ContactsSearchSubmitted(value)),
-              iconConstraints: const BoxConstraints.expand(
-                width: kMainAppBarBottomSearchHeight - kMainAppBarBottomPaddingGap,
-                height: kMainAppBarBottomSearchHeight - kMainAppBarBottomPaddingGap,
-              ),
-            );
-          },
-        ),
+    const search = ContactsSearchRow();
+
+    // What the bar below the title takes up. Stated once: the bar is built
+    // from it and the body is inset by it, and the two drifting apart is how
+    // a list ends up starting underneath the search field.
+    final appBarBottomHeight = (tabBar != null ? kMainAppBarBottomTabHeight : 0) + ContactsSearchRow.height;
+    final appBar = MainAppBar(
+      title: widget.title,
+      context: context,
+      flexibleSpace: BlurredSurface.fromStyle(effectiveStyle?.appBarBlurredSurface),
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(appBarBottomHeight),
+        child: Column(children: [?tabBar, search]),
       ),
     );
+
     return Unfocuser(
       child: ThemedScaffold(
         background: effectiveStyle?.background,
         contentThemeOverride: effectiveStyle?.contentThemeOverride ?? ThemeMode.system,
-        applyToAppBar: effectiveStyle?.applyToAppBar ?? false,
+        applyToAppBar: effectiveStyle?.applyToAppBar ?? true,
+        appBarTheme: effectiveStyle?.appBarTheme,
         extendBodyBehindAppBar: true,
-        appBar: MainAppBar(
-          title: widget.title,
-          context: context,
-          flexibleSpace: BlurredSurface.fromStyle(effectiveStyle?.appBarBlurredSurface),
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(
-              (tabBar != null ? kMainAppBarBottomTabHeight : 0) + kMainAppBarBottomSearchHeight,
-            ),
-            child: Column(children: [?tabBar, search]),
-          ),
-        ),
+        appBar: appBar,
         body: MediaQuery(
           data: mediaQueryData.copyWith(
             padding: mediaQueryData.padding.copyWith(
-              top:
-                  mediaQueryData.padding.top +
-                  kToolbarHeight +
-                  (tabBar != null ? kMainAppBarBottomTabHeight : 0) +
-                  kMainAppBarBottomSearchHeight,
+              top: mediaQueryData.padding.top + kToolbarHeight + appBarBottomHeight,
             ),
           ),
           child: TabBarView(

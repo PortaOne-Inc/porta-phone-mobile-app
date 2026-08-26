@@ -22,10 +22,15 @@ class MainScreenScreenshot extends StatefulWidget {
     super.key,
     this.keypadDialing = false,
     this.interactive = false,
+    this.pullableCallDialogs = const [],
   });
 
   final MainFlavor flavor;
   final Widget? title;
+
+  /// Calls active on other devices; a non-empty list puts the call pull badge
+  /// into the app bar.
+  final List<DialogInfo> pullableCallDialogs;
 
   /// When the keypad flavor is shown, pre-fill it with a dialed number and resolved contact.
   /// Ignored when [interactive] is true (the live keypad starts empty and reacts to input).
@@ -40,7 +45,10 @@ class MainScreenScreenshot extends StatefulWidget {
 }
 
 class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
-  late MainFlavor _flavor = widget.flavor;
+  /// Selected by position, not by kind: two embedded sections share one
+  /// flavor, and remembering the flavor would highlight the first of them
+  /// whichever one was pressed.
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +57,13 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
     final featureAccess = context.read<FeatureAccess?>();
 
     final configTabs = featureAccess?.bottomMenuConfig.tabs;
-    final tabs = (configTabs != null && configTabs.length >= 2) ? configTabs : _defaultTabs(context);
+    // Demo tabs stand in only when there is no configuration to show at all.
+    // A real config keeps its own tabs whatever their count: substituting the
+    // demo menu for a one-tab config made the preview show five sections the
+    // app would never render.
+    final tabs = (configTabs != null && configTabs.isNotEmpty) ? configTabs : _defaultTabs(context);
 
-    return MultiProvider(
+    Widget screen = MultiProvider(
       providers: [
         // TODO(Vladislav): Replace workaround with ContactsRepository in _ContactInfoBuilderState.
         Provider<ContactsRepository>(create: (c) => MockContactsRepository()),
@@ -59,27 +71,73 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
       child: MultiBlocProvider(
         providers: _createMockBlocProviders(),
         child: Builder(
-          builder: (context) => MainScreen(
-            body: AppBarParams(
+          builder: (context) {
+            final flavorIndex = tabs.indexWhere((tab) => tab.flavor == widget.flavor);
+            // A capture asks for a section by name; silently substituting
+            // another would produce differently-named screenshots of one and
+            // the same screen. An interactive preview may start anywhere.
+            assert(
+              widget.interactive || flavorIndex >= 0,
+              'the configured menu has no ${widget.flavor} section to capture',
+            );
+            // Clamped rather than trusted: the remembered position can outlive
+            // a config change that shrank the tabs list.
+            final selectedIndex = (_selectedIndex ?? (flavorIndex < 0 ? 0 : flavorIndex)).clamp(0, tabs.length - 1);
+            final body = AppBarParams(
               systemNotificationsEnabled: true,
-              pullableCallDialogs: const [],
-              child: _buildFlavorWidget(context, _flavor, featureAccess),
-            ),
-            bottomNavigationBar: _buildBottomNavigationBar(context, tabs),
-          ),
+              pullableCallDialogs: widget.pullableCallDialogs,
+              child: _buildFlavorWidget(context, tabs[selectedIndex].flavor, featureAccess),
+            );
+            // MainScreen itself drops the bar for a single-section menu - the
+            // preview inherits the rule instead of restating it.
+            return MainScreen(
+              // The mock unread state below backs this the way the shell does
+              // in the app.
+              decorateTabIcon: MessagingFlavorOverlay.forTab,
+              body: body,
+              tabs: tabs,
+              currentIndex: selectedIndex,
+              onTabSelected: widget.interactive ? _selectTab : null,
+            );
+          },
         ),
       ),
     );
+
+    if (widget.pullableCallDialogs.isNotEmpty) {
+      // The call pull badge wobbles on a timer, which a snapshot cannot capture
+      // deterministically; the badge holds still when animations are disabled.
+      screen = MediaQuery(data: MediaQuery.of(context).copyWith(disableAnimations: true), child: screen);
+    }
+
+    return screen;
   }
 
   List<BlocProvider> _createMockBlocProviders() {
     return [
       BlocProvider<CallBloc>(create: (_) => MockCallBloc.mainScreen()),
       BlocProvider<CallRoutingCubit>(create: (_) => MockCallRoutingCubit.initial()),
-      BlocProvider<SessionStatusCubit>(create: (_) => MockSessionStatusCubit.initial()),
+      // The app bar renders the call pull badge only on a ready session, so the
+      // badge preview needs a connected one; the other states keep the default
+      // "Connecting..." look.
+      BlocProvider<SessionStatusCubit>(
+        create: (_) =>
+            widget.pullableCallDialogs.isNotEmpty ? MockSessionStatusCubit.ready() : MockSessionStatusCubit.initial(),
+      ),
       BlocProvider<UserInfoCubit>(create: (_) => MockUserInfoCubit.initial()),
       BlocProvider<SystemNotificationsCounterCubit>(create: (_) => MockSystemNotificationCounterCubit.withDefaults()),
       BlocProvider<MicrophoneStatusBloc>(create: (_) => MockMicrophoneStatusBloc.initial(isGranted: true)),
+      // One unread-count cubit serves both the bar's badge and the messaging
+      // body, the way production provides it. The static messaging capture
+      // carries real counts and the other captures stay badge-free, but the
+      // interactive preview always has them: it is created with whatever tab
+      // is first, and the messaging screen the user taps into afterwards must
+      // demonstrate its counters, not a menu that happens to be empty.
+      BlocProvider<UnreadCountCubit>(
+        create: (_) => widget.interactive || widget.flavor == MainFlavor.messaging
+            ? MockUnreadCountCubit.withUnreadMessages()
+            : MockUnreadCountCubit.initial(),
+      ),
     ];
   }
 
@@ -104,6 +162,7 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
         titleL10n: 'main_BottomNavigationBarItemLabel_contacts',
         icon: Icons.people,
         contactSourceTypes: [],
+        layout: const ContactsTabbedLayout(),
       ),
       const KeypadBottomMenuTab(
         enabled: true,
@@ -120,26 +179,9 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
     ];
   }
 
-  BottomNavigationBar _buildBottomNavigationBar(BuildContext context, List<BottomMenuTab> tabs) {
-    final textTheme = Theme.of(context).textTheme;
-
-    final selectedIndex = tabs.indexWhere((tab) => tab.flavor == _flavor);
-
-    return BottomNavigationBar(
-      currentIndex: selectedIndex < 0 ? 0 : selectedIndex,
-      type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: textTheme.bodySmall,
-      unselectedLabelStyle: textTheme.bodySmall,
-      onTap: widget.interactive ? (index) => _selectTab(tabs[index].flavor) : null,
-      items: tabs
-          .map((tab) => BottomNavigationBarItem(icon: Icon(tab.icon), label: context.parseL10n(tab.titleL10n)))
-          .toList(),
-    );
-  }
-
-  void _selectTab(MainFlavor flavor) {
-    if (flavor == _flavor) return;
-    setState(() => _flavor = flavor);
+  void _selectTab(int index) {
+    if (index == _selectedIndex) return;
+    setState(() => _selectedIndex = index);
   }
 
   Widget _buildFlavorWidget(BuildContext context, MainFlavor flavor, FeatureAccess? featureAccess) {
@@ -199,7 +241,7 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
       case MainFlavor.keypad:
         return BlocProvider<KeypadCubit>(
           create: (context) => widget.interactive
-              ? KeypadCubit(_ScreenshotContactResolver(context.read<ContactsRepository>()))
+              ? KeypadCubit(MockContactResolver(context.read<ContactsRepository>()))
               : (widget.keypadDialing ? MockKeypadCubit.dialing() : MockKeypadCubit.mainScreen()),
           child: Builder(
             // CallControllerScope is only read when a call action is tapped; provide it so the
@@ -229,15 +271,14 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
             BlocProvider<MessagingBloc>(create: (_) => MockMessagingBloc.initial()),
             BlocProvider<ChatConversationsCubit>(create: (_) => MockChatConversationsCubit.withMockData()),
             BlocProvider<SmsConversationsCubit>(create: (_) => MockSmsConversationsCubit.withConversations()),
-            BlocProvider<UnreadCountCubit>(create: (_) => MockUnreadCountCubit.withUnreadMessages()),
           ],
           child: ConversationsScreen(
             title: Text(EnvironmentConfig.APP_NAME),
             // Dual tabs expose the chat/sms tab bar (its TabController is local, so switching
             // works) for the interactive preview; the snapshot stays chat-only.
             initialTabsState: widget.interactive
-                ? const DualTabState(TabType.chat, true)
-                : const SingleTabState(TabType.chat, true),
+                ? const DualTabState(ConversationsTab.chat, true)
+                : const SingleTabState(ConversationsTab.chat, true),
           ),
         );
     }
@@ -255,25 +296,6 @@ class _MainScreenScreenshotState extends State<MainScreenScreenshot> {
           create: (_) => MockContactsExternalTabBloc.mainScreen(),
           child: const ContactsExternalTab(),
         );
-    }
-  }
-}
-
-/// Resolves contacts through the (mock) [ContactsRepository] for interactive
-/// keypad previews. Skips the self-number check of [DefaultContactResolver],
-/// which needs a [UserRepository] the screenshot harness does not provide.
-class _ScreenshotContactResolver implements ContactResolver {
-  _ScreenshotContactResolver(this._contactsRepository);
-
-  final ContactsRepository _contactsRepository;
-
-  @override
-  Future<Contact?> resolve(String? number) async {
-    if (number == null || number.isEmpty) return null;
-    try {
-      return await _contactsRepository.getContactByPhoneNumber(number);
-    } catch (_) {
-      return null;
     }
   }
 }

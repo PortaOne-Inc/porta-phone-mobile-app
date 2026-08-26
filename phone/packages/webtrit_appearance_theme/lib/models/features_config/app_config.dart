@@ -432,6 +432,19 @@ class EncodingDefaultPresetOverride with _$EncodingDefaultPresetOverride {
 // legacy `useCdrs` key, then let the field default apply when neither is present.
 Object? _readRecentsSupportsCallHistory(Map json, String key) => json.containsKey(key) ? json[key] : json['useCdrs'];
 
+/// How the contacts section arranges what it shows.
+enum ContactsLayoutScheme {
+  /// Each address book is a tab of its own, and favourites are a section
+  /// elsewhere in the bottom bar.
+  @JsonValue('tabbed')
+  tabbed,
+
+  /// One list: the address book behind it is chosen in the header, and
+  /// favourites narrow the same list rather than living apart from it.
+  @JsonValue('unified')
+  unified,
+}
+
 @Freezed(unionKey: 'type')
 sealed class BottomMenuTabScheme with _$BottomMenuTabScheme {
   const BottomMenuTabScheme._();
@@ -464,6 +477,22 @@ sealed class BottomMenuTabScheme with _$BottomMenuTabScheme {
     required String titleL10n,
     required String icon,
     @Default(<String>[]) List<String> contactSourceTypes,
+
+    /// How the section is arranged. A deployment that says nothing keeps the
+    /// arrangement it already has.
+    ///
+    /// Read leniently: a configurator may offer an arrangement before an
+    /// installed app knows how to draw it, and such a build has to fall back
+    /// to the one it does know rather than fail to read its own settings.
+    @JsonKey(unknownEnumValue: ContactsLayoutScheme.tabbed)
+    @Default(ContactsLayoutScheme.tabbed)
+    ContactsLayoutScheme layout,
+
+    /// Whether favourites are offered inside the list. Read only where the
+    /// arrangement has a place for them, which is the unified one; on by
+    /// default, because a deployment that picks that arrangement is picking
+    /// the one favourites live in.
+    @Default(true) bool favorites,
   }) = ContactsTabScheme;
 
   @JsonSerializable(explicitToJson: true)
@@ -526,7 +555,6 @@ class AppConfigSettings with _$AppConfigSettings {
             type: 'terms',
             titleL10n: 'settings_ListViewTileTitle_termsConditions',
             icon: '0xeedf',
-            embeddedResourceId: '0',
           ),
           AppConfigSettingsItem(
             enabled: true,

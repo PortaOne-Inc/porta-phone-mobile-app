@@ -6,8 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/features/features.dart';
 import 'package:webtrit_phone/l10n/l10n.dart';
+import 'package:webtrit_phone/app/keys.dart';
 import 'package:webtrit_phone/models/models.dart';
-import 'package:webtrit_phone/widgets/widgets.dart' hide ConfirmDialog;
+import 'package:webtrit_phone/utils/utils.dart';
+import 'package:webtrit_phone/widgets/widgets.dart';
 
 class DialogChatInfo extends StatefulWidget {
   const DialogChatInfo(
@@ -32,10 +34,7 @@ class _DialogChatInfoState extends State<DialogChatInfo> {
   late final _callController = CallControllerScope.of(context);
 
   Future<void> onDeleteDialog() async {
-    final askResult = await showDialog<bool>(
-      context: context,
-      builder: (context) => ConfirmDialog(askText: context.l10n.messaging_DialogInfo_deleteAsk),
-    );
+    final askResult = await ConfirmDialog.show(context, title: context.l10n.messaging_DialogInfo_deleteAsk);
 
     if (!mounted) return;
     if (askResult != true) return;
@@ -90,12 +89,16 @@ class _DialogChatInfoState extends State<DialogChatInfo> {
                             username: contact?.displayTitle,
                             thumbnail: contact?.thumbnail,
                             thumbnailUrl: contact?.thumbnailUrl,
-                            registered: contact?.registered,
-                            presenceInfo: contact?.presenceInfo,
-                            dialogInfo: contact?.dialogInfo,
+                            badge: AvatarStatusBadge.maybe(
+                              registered: contact?.registered,
+                              presenceInfo: contact?.presenceInfo,
+                              dialogInfo: contact?.dialogInfo,
+                            ),
                             radius: 50,
                           ),
-                          const SizedBox(height: 8),
+                          // The status mark straddles the avatar's edge, so it
+                          // reaches below it; keep the name clear of it.
+                          const SizedBox(height: 16),
                           Text(
                             contact?.displayTitle ?? context.l10n.messaging_ParticipantName_unknown,
                             style: theme.textTheme.headlineSmall?.copyWith(
@@ -134,7 +137,7 @@ class _DialogChatInfoState extends State<DialogChatInfo> {
                                       trailing: IconButton(
                                         splashRadius: 24,
                                         icon: const Icon(Icons.email),
-                                        onPressed: () {},
+                                        onPressed: () => _onEmail(contactEmail),
                                       ),
                                     ),
                                 ],
@@ -166,20 +169,35 @@ class _DialogChatInfoState extends State<DialogChatInfo> {
     );
   }
 
+  /// Opens the mail app on the address shown next to the button.
+  ///
+  /// The button has been on this screen with an empty callback: it looked like
+  /// a way to write to the contact and did nothing at all. Same route as the
+  /// contact card takes.
+  Future<void> _onEmail(ContactEmail contactEmail) => launchMailTo(contactEmail.address);
+
   /// Returns a list of call action buttons based on provided configuration.
   List<Widget> _buildCallActions(ContactPhone contactPhone, Contact contact) {
     return [
       if (widget.isAudioCallEnabled)
-        IconButton(
-          splashRadius: 24,
-          icon: const Icon(Icons.call),
-          onPressed: () => _onCall(contactPhone, contact, false),
+        SemanticAction(
+          label: context.l10n.messaging_SemanticsLabel_call,
+          identifier: chatInfoCallId,
+          child: IconButton(
+            splashRadius: 24,
+            icon: const Icon(Icons.call),
+            onPressed: () => _onCall(contactPhone, contact, false),
+          ),
         ),
       if (widget.isVideoCallEnabled)
-        IconButton(
-          splashRadius: 24,
-          icon: const Icon(Icons.videocam),
-          onPressed: () => _onCall(contactPhone, contact, true),
+        SemanticAction(
+          label: context.l10n.messaging_SemanticsLabel_videoCall,
+          identifier: chatInfoVideoCallId,
+          child: IconButton(
+            splashRadius: 24,
+            icon: const Icon(Icons.videocam),
+            onPressed: () => _onCall(contactPhone, contact, true),
+          ),
         ),
     ];
   }

@@ -147,24 +147,22 @@ class _SmsConversationBuilderViewState extends State<SmsConversationBuilderView>
   }
 
   AppBar buildAppBar(bool isValidNumberInField) {
-    final colorScheme = Theme.of(context).colorScheme;
+    // Accent-colored on purpose: these are modal-sheet actions, not bar chrome.
+    final actionColor = Theme.of(context).colorScheme.primary;
 
     return AppBar(
       title: Text(context.l10n.messaging_ConversationBuilders_title_new),
       automaticallyImplyLeading: false,
       leading: TextButton(
         onPressed: () => Navigator.of(context).pop(),
-        child: Text(context.l10n.messaging_ConversationBuilders_cancel, style: TextStyle(color: colorScheme.primary)),
+        child: Text(context.l10n.messaging_ConversationBuilders_cancel, style: TextStyle(color: actionColor)),
       ),
       leadingWidth: 100,
       actions: [
         if (isValidNumberInField)
           TextButton(
             onPressed: builderCubit.onConfirmByParsedNumber,
-            child: Text(
-              context.l10n.messaging_ConversationBuilders_create,
-              style: TextStyle(color: colorScheme.primary),
-            ),
+            child: Text(context.l10n.messaging_ConversationBuilders_create, style: TextStyle(color: actionColor)),
           ),
       ],
     );
@@ -321,7 +319,7 @@ class _SmsConversationBuilderViewState extends State<SmsConversationBuilderView>
             username: contact.displayTitle,
             thumbnail: contact.thumbnail,
             thumbnailUrl: contact.thumbnailUrl,
-            registered: contact.registered,
+            badge: AvatarStatusBadge.maybe(registered: contact.registered),
             radius: 24,
           ),
           title: Text(contact.displayTitle),
@@ -338,7 +336,7 @@ class _SmsConversationBuilderViewState extends State<SmsConversationBuilderView>
         username: contact.displayTitle,
         thumbnail: contact.thumbnail,
         thumbnailUrl: contact.thumbnailUrl,
-        registered: contact.registered,
+        badge: AvatarStatusBadge.maybe(registered: contact.registered),
         radius: 24,
       ),
       title: Text(contact.displayTitle),
