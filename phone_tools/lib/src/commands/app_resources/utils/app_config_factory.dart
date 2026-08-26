@@ -1,10 +1,10 @@
-import 'package:data/dto/dto.dart';
+import '../models/build_bundle.dart';
 
 import '../constants/constants.dart';
 import 'package:webtrit_phone_tools/src/extension/extension.dart';
 
 class AppConfigFactory {
-  static Map<String, dynamic> createBuildCacheConfig(ApplicationDTO application, String keystorePath) {
+  static Map<String, dynamic> createBuildCacheConfig(BundleApplication application, String keystorePath) {
     if (application.androidVersion?.buildName == null ||
         application.androidVersion?.buildNumber == null ||
         application.iosVersion?.buildName == null ||
@@ -23,8 +23,8 @@ class AppConfigFactory {
     };
   }
 
-  static Map<String, dynamic> createDartDefineEnv(ApplicationDTO application, String keystorePath) {
-    final env = Map<String, dynamic>.from(application.environment ?? {});
+  static Map<String, dynamic> createDartDefineEnv(BundleApplication application, String keystorePath) {
+    final env = Map<String, dynamic>.from(application.environment);
     env['WEBTRIT_ANDROID_RELEASE_UPLOAD_KEYSTORE_PATH'] = keystorePath;
     return env;
   }
@@ -55,11 +55,11 @@ class AppConfigFactory {
     };
   }
 
-  static Map<String, String> createPackageConfigEnv(ApplicationDTO application) {
+  static Map<String, String> createPackageConfigEnv(BundleApplication application) {
     return {
-      'ANDROID_APP_NAME': application.name ?? '',
+      'ANDROID_APP_NAME': application.launchNameFor(BuildPlatform.android),
       'PACKAGE_NAME': application.androidPlatformId ?? '',
-      'IOS_APP_NAME': application.name ?? '',
+      'IOS_APP_NAME': application.launchNameFor(BuildPlatform.ios),
       'BUNDLE_ID': application.iosPlatformId ?? '',
     };
   }

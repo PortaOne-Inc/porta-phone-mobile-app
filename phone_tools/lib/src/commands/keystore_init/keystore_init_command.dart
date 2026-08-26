@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:data/datasource/configurator_backend/configurator_bakcend.dart';
+import 'package:webtrit_phone_tools/src/configurator/configurator.dart';
 import 'package:mason_logger/mason_logger.dart';
 import 'package:path/path.dart' as path;
 
@@ -20,10 +20,10 @@ const _token = 'token';
 class KeystoreInitCommand extends Command<int> {
   KeystoreInitCommand({
     required Logger logger,
-    required ConfiguratorBackandDatasource datasource,
+    required ConfiguratorClient client,
     required KeystoreReadmeUpdater keystoreReadmeUpdater,
   })  : _logger = logger,
-        _datasource = datasource,
+        _client = client,
         _keystoreReadmeUpdater = keystoreReadmeUpdater {
     argParser
       ..addOption(
@@ -46,7 +46,7 @@ class KeystoreInitCommand extends Command<int> {
       'Initialize a project with necessary keystore files and folders for signing the application.';
 
   final Logger _logger;
-  final ConfiguratorBackandDatasource _datasource;
+  final ConfiguratorClient _client;
   final KeystoreReadmeUpdater _keystoreReadmeUpdater;
 
   @override
@@ -55,12 +55,9 @@ class KeystoreInitCommand extends Command<int> {
       final context = _buildContext();
 
       final application = await ApplicationFetcher(
-        datasource: _datasource,
+        client: _client.withHeaders(context.authHeader),
         logger: _logger,
-      ).fetch(
-        applicationId: context.applicationId,
-        authHeader: context.authHeader,
-      );
+      ).fetch(applicationId: context.applicationId);
 
       final keystoreProjectPath = path.join(context.workingDirectoryPath, 'applications', context.applicationId);
 
@@ -89,9 +86,14 @@ class KeystoreInitCommand extends Command<int> {
         keystoreProjectPath: keystoreProjectPath,
       );
       if (uploadFingerprint != null) {
+        // A fingerprint means there is an Android keystore, which says nothing
+        // about whether this brand has an iOS identifier at all - three of the
+        // brands in production do not. Both are passed as they are, and the
+        // sub-command writes each file only where it has what that file needs.
         await AssetlinksGenerateRunner(logger: _logger).run(
           keystoreProjectPath: keystoreProjectPath,
-          iosPlatformId: application.iosPlatformId!,
+          iosPlatformId: application.iosPlatformId,
+          androidPlatformId: application.androidPlatformId,
           uploadFingerprint: uploadFingerprint,
         );
       }

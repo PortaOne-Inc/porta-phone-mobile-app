@@ -1,7 +1,10 @@
 {
   "version": "0.2",
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "dictionaries": ["vgv_allowed", "vgv_forbidden"],
+  "dictionaries": [
+    "vgv_allowed",
+    "vgv_forbidden"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "vgv_allowed",
@@ -17,22 +20,26 @@
   "useGitignore": true,
   "words": [
     "appbundle",
-    "assetlinks",
     "Assetlinks",
+    "assetlinks",
     "Backand",
     "Behaviour",
+    "cloudfunctions",
     "codesign",
     "colour",
-    "configurator",
     "Configurator",
+    "configurator",
+    "Configurators",
+    "configurators",
+    "Deeplink",
     "deeplink",
     "deeplinks",
-    "Deeplink",
     "keytool",
     "mobileprovision",
     "optimised",
+    "Porta",
     "rethrowing",
-    "webtrit",
-    "WebTrit"
+    "WebTrit",
+    "webtrit"
   ]
 }

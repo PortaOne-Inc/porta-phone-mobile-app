@@ -25,9 +25,24 @@ jobs:
             platform: windows
             output: webtrit_phone_tools.exe
 
+    defaults:
+      run:
+        working-directory: webtrit_phone_tools
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+        with:
+          path: webtrit_phone_tools
+
+      # The theme package the build reads lives in the phone repository, and
+      # is expected beside this one the way it lies on a workstation.
+      - name: Checkout sibling webtrit_phone
+        uses: actions/checkout@v3
+        with:
+          repository: WebTrit/webtrit_phone
+          ref: develop
+          path: webtrit_phone
 
       - name: Setup Dart SDK
         uses: dart-lang/setup-dart@v1
@@ -54,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dart-cli-build-${{ matrix.platform }}
-          path: build/${{ matrix.output }}
+          path: webtrit_phone_tools/build/${{ matrix.output }}
 
       - name: Provide download link
         run: |
