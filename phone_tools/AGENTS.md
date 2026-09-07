@@ -12,7 +12,6 @@ dart pub get                  # Install dependencies
 dart analyze                  # Static analysis
 dart test                     # Run test suite
 dart run bin/webtrit_phone_tools.dart --help  # Run CLI locally
-bash stringify_assets.sh      # Regenerate lib/src/gen/stringify_assets.dart from assets/
 ```
 
 ---
@@ -134,7 +133,7 @@ import '../models/models.dart';
 
 ### 7.5 Command Naming
 
-- Lowercase, hyphen-separated: `keystore-generate`, `resources-get`.
+- Lowercase, hyphen-separated: `configurator-setup`, `configurator-resources`.
 - `description` and `summary` must be set on every command for `--help` output.
 
 ### 7.6 Testing
@@ -149,10 +148,10 @@ import '../models/models.dart';
 
 - **Simple commands** (single responsibility, minimal I/O): implement logic directly in the
   `Command` subclass without subdirectories.
-  Examples: `update_command.dart`, `assetlinks_generate_command.dart`
+  Examples: `update_command.dart`
 - **Complex commands** (multi-step: API + file I/O + external processes): use the
   **Orchestrator Pattern** described in section 8 below.
-  Examples: `app_resources/`, `app_configure/`, `keystore_init/`
+  Examples: `app_resources/`, `app_configure/`, `app_setup/`
 
 ---
 
@@ -166,7 +165,7 @@ import '../models/models.dart';
 | **Context**      | `<Name>Context`                   | Immutable validated state; passed between all layers                          |
 | **Service**      | `<Name>Fetcher` / `<Name>Service` | Fetches remote data (API calls); pure I/O, no business logic                  |
 | **Processor**    | `<Name>Processor`                 | Transforms/writes data (file I/O, JSON manipulation, asset downloads)         |
-| **Runner**       | `<Name>Runner`                    | Executes external processes (`flutter`, `dart`, `keytool`, `make`, `git`)     |
+| **Runner**       | `<Name>Runner`                    | Executes external processes (`flutter`, `dart`, `keytool`, `git`)     |
 | **Factory/Util** | `<Name>Factory` / `<Name>Util`    | Pure stateless helpers; no side effects                                       |
 
 ### 8.2 Layer Rules
@@ -222,16 +221,7 @@ lib/src/commands/<feature_name>/
 
 ---
 
-## 9. Template Rendering
-
-- Mustache templates live in `assets/` and are stringified into Dart constants in
-  `lib/src/gen/stringify_assets.dart` by `stringify_assets.sh`.
-- Never embed large template strings directly in source files.
-- Use `TemplateExtension.renderAndCleanJson()` to render and prune null/empty fields.
-
----
-
-## 10. Extension Methods
+## 9. Extension Methods
 
 - Extension classes live in `lib/src/extension/`.
 - Each file contains exactly one extension, named `<type>_extension.dart`.
@@ -240,7 +230,7 @@ lib/src/commands/<feature_name>/
 
 ---
 
-## 11. Tech Stack
+## 10. Tech Stack
 
 | Dependency          | Version     | Purpose                                  |
 |---------------------|-------------|------------------------------------------|
@@ -249,7 +239,6 @@ lib/src/commands/<feature_name>/
 | `mason_logger`      | ^0.3.3      | Terminal output with colors/spinners     |
 | `path`              | ^1.9.1      | Cross-platform path handling             |
 | `pub_updater`       | ^0.5.0      | Check for pub.dev updates                |
-| `mustache_template` | ^2.0.2      | Mustache template rendering              |
 | `http`              | ^1.6.0      | Simple GET requests                      |
 | `archive`           | ^4.0.7      | ZIP/archive handling                     |
 | `yaml`              | ^3.1.3      | YAML parsing                             |

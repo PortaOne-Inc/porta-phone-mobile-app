@@ -23,71 +23,27 @@ dart pub global activate --source=path <path_to_package>
 
 ---
 
-## Which backend a build talks to
+## The backend a build talks to
 
 The address of the configurator backend is a constant in this repository, so the
 **revision checked out is the choice** - no caller can override it. `main` faces
 the Cloud Run backend; `legacy/firebase-backend` is frozen at the last commit
 that faced the Firebase one, for configurators deployed before the move. Details,
 and why pointing an address elsewhere is not the same thing:
-[`docs/which_backend_a_build_talks_to.md`](docs/which_backend_a_build_talks_to.md).
+[`docs/architecture/backend-address.md`](docs/architecture/backend-address.md).
 
 ---
 
 ## Usage
 
-### Keystore Project Initialization
-
-Initialize a full keystore project directory for a given application. Fetches application metadata
-from the Configurator API and generates the required folder structure, signing keys, deep link
-metadata, and template credential files.
-
-```sh
-$ webtrit_phone_tools keystore-init --applicationId=<id> --token=<jwt> [directory]
-```
-
-The command creates the following structure under `<directory>/applications/<applicationId>/`:
-
-```
-<applicationId>/
-├── assets/                              # Application assets (logos, icons, etc.)
-├── build/
-│   └── google-play-service-account.json # Google Play service account for CI publishing
-├── deep_links/
-│   └── .well-known/
-│       ├── apple-app-site-association.json
-│       └── assetlinks.json
-├── push_notifications/
-│   └── firebase-service-account.json    # Firebase service account for push notifications
-├── ssl_certificates/                    # SSL certificates for the application
-├── AuthKey_[key_id].p8                  # iOS APNs auth key
-├── Certificates.p12                     # iOS distribution certificate
-├── CertificateSigningRequest.certSigningRequest # CSR to upload to the Apple Developer portal
-├── CertificateSigningRequest.key        # Private key for the CSR (required to use the issued certificate)
-├── Provision.mobileprovision            # iOS provisioning profile
-├── upload-keystore.jks                  # Android upload keystore (JKS)
-├── upload-keystore.p12                  # Android upload keystore (P12)
-├── upload-keystore-metadata.json        # Android keystore metadata
-└── upload-store-connect-metadata.json   # App Store Connect credentials
-```
-
-Files that require manual completion are created with an `.incomplete` suffix.
-
 ### Android Keystore Signing
 
-Tools for managing signing keys and certificates.
+Nothing here makes a keystore any more. The configurator backend does, on the deploy screen, and
+the result lands in the Secrets catalogue as a credential like any other; a build reads it from the
+slot it is linked to rather than from a checkout.
 
-```sh
-# Generate a new keystore
-$ webtrit_phone_tools keystore-generate --bundleId="com.webtrit.app" --appendDirectory ../keystores/applications
-
-# Commit changes to the keystore repository
-$ webtrit_phone_tools keystore-commit --bundleId="com.webtrit.app" --appendDirectory ../keystores/applications
-
-# Verify an existing keystore
-$ webtrit_phone_tools keystore-verify ../keystores/applications/com.webtrit.app
-
-```
+The only reason this ever needed a JVM was the belief that it produced a JKS. It did not: `keytool
+-genkeypair` under Java 9+ writes PKCS#12 whatever the file is called.
 
 ### Resources & Configuration
 
@@ -100,37 +56,21 @@ $ webtrit_phone_tools resources-get --applicationId=<id> --token=<jwt> --keystor
 # Generate local configuration files
 $ webtrit_phone_tools configurator-generate
 
-# Create metadata (Assetlinks and Apple App Site Association)
-$ webtrit_phone_tools assetlinks-generate --bundleId=<id> --appleTeamID=<id> --androidFingerprints=<sha256> --output=<path>
 
-```
-
-### Certificate Signing Request
-
-Generate an RSA private key and a certificate signing request (CSR) for the Apple Developer portal, mirroring the
-Keychain Access certificate assistant ("Request a Certificate from a Certificate Authority"). Produces
-`CertificateSigningRequest.certSigningRequest` (upload to Apple) and `CertificateSigningRequest.key` (keep it; the
-issued certificate is useless without it).
-
-```sh
-$ webtrit_phone_tools csr-generate --email=app.admin@webtrit.com --commonName="PortaDialer admin certificate request" [directory]
-```
-
-Once Apple issues the certificate, download the `.cer` and finalize it with `csr-finalize`. It bundles the
-certificate with the private key (`CertificateSigningRequest.key`) into `Certificates.p12`, computes the 40-character
-code signing identity (SHA-1 fingerprint), and writes it to `upload-store-connect-metadata.json` as
-`code-signing-identity`.
-
-```sh
-$ webtrit_phone_tools csr-finalize --cert=ios_distribution.cer [--password=<p12-password>] [directory]
 ```
 
 ---
 
 ## Documentation
 
-- [Architecture & Orchestrator Pattern](.rules/architecture.rules.md)
-- [CLI Commands Conventions](.rules/commands.rules.md)
-- [Global Coding Standards](.rules/global.rules.md)
-- [Shared Makefile Reference](docs/shared_makefile_reference.md)
-- [Splash Asset Pipeline](docs/splash_asset_pipeline.md)
+[**docs/README.md**](docs/README.md) is the map: every page, one line each, and
+the routes through them - running the CLI, a build talking to the wrong
+backend, a splash screen that came out wrong.
+
+- [The commands](docs/reference/commands.md) - every command and its options
+- [The backend a build talks to](docs/architecture/backend-address.md) - and why the revision decides it
+- [Splash and launch icons](docs/reference/splash-assets.md) - what is downloaded and what is generated
+- [Running it](docs/guides/running-it.md) - from a checkout, and the checks a pull request runs
+
+The coding standards - imports, barrel files, error handling, the orchestrator
+pattern, the git flow - are in `AGENTS.md`.
