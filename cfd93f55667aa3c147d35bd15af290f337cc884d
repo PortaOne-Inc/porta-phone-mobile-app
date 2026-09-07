@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5656cbd0_14870b11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 690
+      },
+      "writtenOn": "2026-09-07T13:23:19Z",
+      "side": 1,
+      "message": "just becuase it\u0027s first commit.\n\nShould be:\n\nWT-1802 Drop dead link domain fallback",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "cfd93f55667aa3c147d35bd15af290f337cc884d",
+      "serverId": "b3d83be1-eb64-49fe-9bf1-b81a817d2fd2"
+    }
+  ]
+}
