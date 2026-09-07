@@ -182,10 +182,14 @@ class EnvironmentConfig {
 
   // SMS-based incoming call trigger prefix.
   // Used to filter incoming SMS messages. Only messages starting with this prefix are processed.
+  //
+  // The prefix is one half of a contract: the sender has to emit exactly what the app matches on.
+  // The default below only applies to a build that enables the mechanism without configuring the
+  // prefix, so a brand that turns the mechanism on is expected to set both sides deliberately.
   static const CALL_TRIGGER_MECHANISM_SMS_PREFIX__NAME = 'WEBTRIT_CALL_TRIGGER_MECHANISM_SMS_PREFIX';
   static String get CALL_TRIGGER_MECHANISM_SMS_PREFIX => _env.string(
     CALL_TRIGGER_MECHANISM_SMS_PREFIX__NAME,
-    const String.fromEnvironment(CALL_TRIGGER_MECHANISM_SMS_PREFIX__NAME, defaultValue: '<#> WEBTRIT:'),
+    const String.fromEnvironment(CALL_TRIGGER_MECHANISM_SMS_PREFIX__NAME, defaultValue: '<#> PORTAPHONE:'),
   );
 
   // ICU regex pattern to extract callId, handle, displayName and hasVideo from SMS body.
@@ -194,8 +198,9 @@ class EnvironmentConfig {
     CALL_TRIGGER_MECHANISM_SMS_REGEX_PATTERN__NAME,
     const String.fromEnvironment(
       CALL_TRIGGER_MECHANISM_SMS_REGEX_PATTERN__NAME,
-      defaultValue:
-          r'https://app\.webtrit\.com/call\?callId=([^&]+)&handle=([^&]+)&displayName=([^&]+)&hasVideo=(true|false)',
+      // Host-agnostic on purpose: every brand serves this link from its own domain, so naming one
+      // here would make the default wrong for all the others.
+      defaultValue: r'https://[^/]+/call\?callId=([^&]+)&handle=([^&]+)&displayName=([^&]+)&hasVideo=(true|false)',
     ),
   );
 
