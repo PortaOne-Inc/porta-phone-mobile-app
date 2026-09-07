@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:clock/clock.dart';
 import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:webtrit_phone/common/common.dart';
 import 'package:webtrit_phone/services/connectivity_service.dart';
+import 'package:webtrit_phone/services/polling_task_handle.dart';
 import 'package:webtrit_phone/utils/utils.dart';
 
 final _logger = Logger('PollingService');
@@ -109,29 +111,58 @@ class PollingService with WidgetsBindingObserver implements Disposable {
   bool _isConnected = false;
   bool _disposed = false;
 
+  // Connectivity state applied last, null until the first report. Every
+  // piece of connectivity evidence - stream events and the boot probe - is
+  // applied through [_handleConnectivityChange] in completion order, and only
+  // an actual state change starts a leading cycle, so a late or repeated
+  // report can neither double the cycle nor wedge the state.
+  bool? _lastAppliedConnected;
+
+  // Bumped on every applied connectivity change; a reachability probe that
+  // resolves under an older epoch is stale and must not write its result
+  // into [_reachability].
+  int _connectivityEpoch = 0;
+
   final Map<Refreshable, _PollingConfig> _pollingConfigs = {};
 
-  /// Register a [listener] with a polling [interval].
+  /// Register a [listener] with a polling [interval] and return its stable handle.
   ///
   /// If the listener already exists and the interval changes, the schedule is
   /// restarted **without** an extra leading call. For a brand-new listener,
   /// a **group-leading** cycle runs (one reachability check shared by all listeners).
-  void register(PollingRegistration registration) {
+  /// Re-registering the same listener returns the same [PollingTaskHandle].
+  PollingTaskHandle register(PollingRegistration registration) {
+    if (_disposed) {
+      throw StateError('Cannot register a polling task after PollingService.dispose().');
+    }
+
     final listener = registration.listener;
     final newInterval = registration.interval;
 
     final existed = _pollingConfigs.containsKey(listener);
-    final config = _pollingConfigs.putIfAbsent(listener, () => _PollingConfig(interval: newInterval));
+    final config = _pollingConfigs.putIfAbsent(listener, () {
+      final config = _PollingConfig(interval: newInterval);
+      config.handle = _PollingTaskHandle(
+        runNow: () => _runNow(listener, config),
+        invalidate: (after) => _invalidate(listener, config, after),
+        unregister: () => unregister(listener),
+      );
+      return config;
+    });
 
     final intervalChanged = config.interval != newInterval;
     config.interval = newInterval;
 
-    if (intervalChanged && config.scheduler.isScheduled) {
-      // Cancel previous schedule; do not trigger immediate refresh here.
+    if (intervalChanged) {
+      // Cancel previous schedule (even mid-tick); do not trigger immediate refresh here.
+      config.scheduleEpoch++;
       config.scheduler.cancel();
     }
 
-    if (!_shouldRunTimers) return;
+    if (!_shouldRunTimers) {
+      if (_lastAppliedConnected == false) _markWaitingForConnectivity(config);
+      return config.handle;
+    }
 
     if (!existed) {
       // New listener: run group-leading once for all listeners (single reachability check).
@@ -142,12 +173,19 @@ class PollingService with WidgetsBindingObserver implements Disposable {
       _startPolling(listener); // schedules next run via FixedDelayScheduler
     }
     // If existed && !intervalChanged — nothing to do.
+
+    return config.handle;
   }
 
   /// Unregister a [listener] and cancel its schedule.
   void unregister(Refreshable listener) {
     final config = _pollingConfigs.remove(listener);
-    config?.scheduler.cancel();
+    if (config == null) return;
+
+    config.scheduleEpoch++;
+    config.scheduler.cancel();
+    _clearInvalidation(config);
+    unawaited(config.handle.stop());
   }
 
   /// Handle app lifecycle transitions. By default:
@@ -177,8 +215,13 @@ class PollingService with WidgetsBindingObserver implements Disposable {
     WidgetsBinding.instance.removeObserver(this);
     _disposed = true;
     _stopAllTimers();
+
+    final configs = _pollingConfigs.values.toList(growable: false);
     _pollingConfigs.clear();
-    await _connectivitySub.cancel();
+    for (final config in configs) {
+      _clearInvalidation(config);
+    }
+    await Future.wait([_connectivitySub.cancel(), ...configs.map((config) => config.handle.stop())]);
   }
 
   bool get _shouldRunTimers => !_disposed && _isConnected && (!_options.pauseInBackground || _isForeground);
@@ -186,33 +229,43 @@ class PollingService with WidgetsBindingObserver implements Disposable {
   Future<void> _initializePollingIfConnected() async {
     if (_disposed) return;
     _logger.info('PollingService: Initializing polling...');
-    _isConnected = await _connectivityService.checkConnection();
-    _reachability.clear(); // start with empty cache; we'll fill it in group-leading
-
-    if (_shouldRunTimers) {
-      // On boot: group-leading (one reachability check, then trigger all).
-      await _runLeadingForAll(forceCheck: true);
-    }
+    final connected = await _connectivityService.checkConnection();
+    if (_disposed) return;
+    // The boot probe is just one more piece of connectivity evidence: route
+    // it through the same single-writer path as stream events.
+    _handleConnectivityChange(connected);
   }
 
   void _handleConnectivityChange(bool connected) {
     if (_disposed) return;
 
+    final changed = connected != _lastAppliedConnected;
+    _lastAppliedConnected = connected;
     _isConnected = connected;
-    _reachability.clear();
+    if (!changed) return;
+
+    _connectivityEpoch++;
+    // The report that carried this state was itself produced by a liveness
+    // probe, so seed the cache with it instead of probing again right away.
+    _reachability.set(connected);
 
     if (_shouldRunTimers) {
-      // On (re)connect: group-leading (one reachability check for all listeners).
-      unawaited(_runLeadingForAll(forceCheck: true));
+      // On boot/(re)connect: group-leading sharing that fresh reachability result.
+      unawaited(_runLeadingForAll(forceCheck: false));
     } else {
       _stopAllTimers();
+      if (!connected) {
+        for (final config in _pollingConfigs.values) {
+          _markWaitingForConnectivity(config);
+        }
+      }
     }
   }
 
   void _stopAllTimers() {
     for (final c in _pollingConfigs.values) {
+      c.scheduleEpoch++;
       c.scheduler.cancel();
-      c.isRefreshing = false;
       // Do not reset backoff counters here; they reset on success.
     }
   }
@@ -236,35 +289,32 @@ class PollingService with WidgetsBindingObserver implements Disposable {
   /// backoff (on errors) and jitter (to spread load).
   void _startPolling(Refreshable listener) {
     final config = _pollingConfigs[listener];
-    if (config == null || _disposed || config.scheduler.isScheduled) return;
+    if (config == null || _disposed || config.scheduler.isActive) return;
+
+    final scheduleEpoch = config.scheduleEpoch;
 
     FutureOr<Duration> onTick() async {
-      if (_disposed || !_shouldRunTimers || _pollingConfigs[listener] != config) {
+      if (!_isCurrentSchedule(listener, config, scheduleEpoch)) {
         return _nextDelay(config);
       }
 
       final reachable = await _isReachable();
-      if (_disposed) return _nextDelay(config);
+      if (!_isCurrentSchedule(listener, config, scheduleEpoch)) {
+        return _nextDelay(config);
+      }
 
       if (!listener.isActive) {
         unregister(listener);
         return _nextDelay(config);
       }
 
-      if (reachable && !config.isRefreshing) {
-        config.isRefreshing = true;
+      if (!reachable) {
+        _markWaitingForConnectivity(config);
+      } else if (config.inFlight == null) {
         try {
-          await listener.refresh();
-          _logger.finest('PollingService: refresh() succeeded for $listener');
-          config.consecutiveErrors = 0;
-          config.lastSuccessAt = clock.now();
-        } catch (e) {
-          config.consecutiveErrors++;
-          config.lastError = e;
-          config.lastErrorAt = clock.now();
-          _logger.warning('PollingService: refresh() failed for $listener', e);
-        } finally {
-          config.isRefreshing = false;
+          await _runRefreshCycle(listener, config, trigger: _PollingTrigger.scheduled);
+        } catch (_) {
+          // The cycle already published and logged the scheduled failure.
         }
       }
 
@@ -278,40 +328,262 @@ class PollingService with WidgetsBindingObserver implements Disposable {
   /// Leading refresh for a listener that **does not** perform its own reachability check.
   /// It uses a known result [reachable] that was computed once for the entire leading cycle.
   void _triggerOnceWithKnownReachability(Refreshable listener, _PollingConfig config, bool reachable) {
-    if (_disposed || config.isRefreshing) return;
-    config.isRefreshing = true;
+    if (_disposed || _pollingConfigs[listener] != config) return;
+
+    if (!reachable) _markWaitingForConnectivity(config);
 
     // Cancel any pending schedule to avoid firing with an outdated cadence.
+    config.scheduleEpoch++;
     config.scheduler.cancel();
 
     scheduleMicrotask(() async {
-      if (_disposed) return;
       try {
-        if (_shouldRunTimers && reachable) {
+        if (_shouldRunTimers && reachable && _pollingConfigs[listener] == config) {
           if (!listener.isActive) {
             unregister(listener);
             return;
           }
-          await listener.refresh();
-          _logger.finest('PollingService: leading refresh succeeded for $listener');
-          config.consecutiveErrors = 0;
-          config.lastSuccessAt = clock.now();
-        }
-      } catch (e) {
-        config.consecutiveErrors++;
-        config.lastError = e;
-        config.lastErrorAt = clock.now();
-        _logger.warning('PollingService: leading refresh failed for $listener', e);
-      } finally {
-        config.isRefreshing = false;
 
+          if (config.inFlight == null) {
+            try {
+              await _runRefreshCycle(listener, config, trigger: _PollingTrigger.leading);
+            } catch (_) {
+              // The cycle already published and logged the scheduled failure.
+            }
+          }
+        }
+      } finally {
         final shouldSchedule = !_disposed && _shouldRunTimers && _pollingConfigs[listener] == config;
 
-        if (shouldSchedule && !config.scheduler.isScheduled) {
+        if (shouldSchedule && !config.scheduler.isActive) {
           _startPolling(listener); // schedules next run via FixedDelayScheduler
         }
       }
     });
+  }
+
+  /// Run immediately or join the listener's current refresh cycle, then place
+  /// the next periodic tick one full computed delay after that cycle.
+  Future<void> _runNow(Refreshable listener, _PollingConfig config) async {
+    if (_disposed || _pollingConfigs[listener] != config || !config.handle.isRegistered) {
+      throw StateError('This polling task is no longer registered.');
+    }
+
+    if (!listener.isActive) {
+      unregister(listener);
+      throw StateError('Cannot run an inactive polling task.');
+    }
+
+    final joiningInFlight = config.inFlight != null;
+    config.scheduleEpoch++;
+
+    // An in-flight scheduled tick already owns its scheduler chain. Canceling
+    // here invalidates that continuation while preserving the refresh future
+    // that this manual call is about to join.
+    if (joiningInFlight) config.scheduler.cancel();
+
+    try {
+      await _runRefreshCycle(listener, config, trigger: _PollingTrigger.manual);
+    } finally {
+      if (!_disposed && _pollingConfigs[listener] == config) {
+        config.scheduleEpoch++;
+        config.scheduler.cancel();
+        if (_shouldRunTimers) _startPolling(listener);
+      }
+    }
+  }
+
+  /// Schedule an automatic refresh using trailing-edge debounce.
+  void _invalidate(Refreshable listener, _PollingConfig config, Duration after) {
+    if (after.isNegative) {
+      throw ArgumentError.value(after, 'after', 'must not be negative');
+    }
+    if (_disposed || _pollingConfigs[listener] != config || !config.handle.isRegistered) {
+      throw StateError('This polling task is no longer registered.');
+    }
+
+    config.invalidationEpoch++;
+    final invalidationEpoch = config.invalidationEpoch;
+    config.invalidationPending = true;
+    config.invalidationDue = false;
+    config.invalidationTimer?.cancel();
+    config.invalidationTimer = null;
+
+    void triggerWhenCurrent() {
+      if (!_isCurrentInvalidation(listener, config, invalidationEpoch)) return;
+      config.invalidationTimer = null;
+      config.invalidationDue = true;
+      unawaited(_runDueInvalidation(listener, config));
+    }
+
+    if (after == Duration.zero) {
+      scheduleMicrotask(triggerWhenCurrent);
+    } else {
+      config.invalidationTimer = Timer(after, triggerWhenCurrent);
+    }
+  }
+
+  /// Run the pending invalidation when the task becomes eligible. A cycle that
+  /// predates its deadline is awaited rather than joined, preserving a
+  /// post-invalidation refresh attempt.
+  Future<void> _runDueInvalidation(Refreshable listener, _PollingConfig config) async {
+    while (_isDueInvalidation(listener, config)) {
+      if (!_shouldRunTimers) return;
+
+      if (!listener.isActive) {
+        unregister(listener);
+        return;
+      }
+
+      final inFlight = config.inFlight;
+      if (inFlight != null) {
+        try {
+          await inFlight;
+        } catch (_) {
+          // The pending invalidation still needs its own automatic attempt.
+        }
+        continue;
+      }
+
+      final invalidationEpoch = config.invalidationEpoch;
+      final reachable = await _isReachable();
+      if (!_isDueInvalidation(listener, config) || config.invalidationEpoch != invalidationEpoch) continue;
+      if (!_shouldRunTimers) return;
+      if (!reachable) {
+        _markWaitingForConnectivity(config);
+        return;
+      }
+      if (config.inFlight != null) continue;
+
+      config.scheduleEpoch++;
+      config.scheduler.cancel();
+
+      try {
+        await _runRefreshCycle(listener, config, trigger: _PollingTrigger.invalidated);
+      } catch (_) {
+        // The cycle already published and logged the automatic failure.
+      } finally {
+        final shouldSchedule = !_disposed && _shouldRunTimers && _pollingConfigs[listener] == config;
+        if (shouldSchedule && !config.scheduler.isActive) {
+          _startPolling(listener);
+        }
+      }
+      return;
+    }
+  }
+
+  /// The only path that invokes [Refreshable.refresh]. It publishes state and
+  /// gives all manual callers the same in-flight future.
+  Future<void> _runRefreshCycle(Refreshable listener, _PollingConfig config, {required _PollingTrigger trigger}) {
+    final inFlight = config.inFlight;
+    if (inFlight != null) return inFlight;
+
+    if (trigger != _PollingTrigger.manual && _isDueInvalidation(listener, config)) {
+      _clearInvalidation(config);
+    }
+
+    final completer = Completer<void>();
+    config.inFlight = completer.future;
+
+    final startedAt = clock.now();
+    config.handle.emit(
+      PollingTaskState(
+        phase: PollingTaskPhase.running,
+        lastStartedAt: startedAt,
+        lastSuccessAt: config.lastSuccessAt,
+        lastFailureAt: config.lastFailureAt,
+      ),
+    );
+
+    unawaited(() async {
+      try {
+        await Future.sync(listener.refresh);
+
+        final completedAt = clock.now();
+        config.consecutiveErrors = 0;
+        config.lastSuccessAt = completedAt;
+        config.handle.emit(
+          PollingTaskState(
+            phase: PollingTaskPhase.succeeded,
+            lastStartedAt: startedAt,
+            lastSuccessAt: completedAt,
+            lastFailureAt: config.lastFailureAt,
+          ),
+        );
+        _logger.finest('PollingService: ${trigger.name} refresh succeeded for $listener');
+        completer.complete();
+      } catch (error, stackTrace) {
+        if (trigger != _PollingTrigger.manual) config.consecutiveErrors++;
+
+        final completedAt = clock.now();
+        config.lastFailureAt = completedAt;
+        config.handle.emit(
+          PollingTaskState(
+            phase: PollingTaskPhase.failed,
+            lastStartedAt: startedAt,
+            lastSuccessAt: config.lastSuccessAt,
+            lastFailureAt: completedAt,
+            error: error,
+            stackTrace: stackTrace,
+          ),
+        );
+        _logger.warning('PollingService: ${trigger.name} refresh failed for $listener', error, stackTrace);
+        completer.completeError(error, stackTrace);
+      } finally {
+        if (identical(config.inFlight, completer.future)) {
+          config.inFlight = null;
+          if (_shouldRunTimers && _isDueInvalidation(listener, config)) {
+            scheduleMicrotask(() => unawaited(_runDueInvalidation(listener, config)));
+          }
+        }
+      }
+    }());
+
+    return completer.future;
+  }
+
+  bool _isCurrentSchedule(Refreshable listener, _PollingConfig config, int scheduleEpoch) {
+    return !_disposed &&
+        _shouldRunTimers &&
+        _pollingConfigs[listener] == config &&
+        config.scheduleEpoch == scheduleEpoch;
+  }
+
+  bool _isCurrentInvalidation(Refreshable listener, _PollingConfig config, int invalidationEpoch) {
+    return !_disposed &&
+        _pollingConfigs[listener] == config &&
+        config.invalidationPending &&
+        config.invalidationEpoch == invalidationEpoch;
+  }
+
+  bool _isDueInvalidation(Refreshable listener, _PollingConfig config) {
+    return !_disposed && _pollingConfigs[listener] == config && config.invalidationPending && config.invalidationDue;
+  }
+
+  void _clearInvalidation(_PollingConfig config) {
+    config.invalidationEpoch++;
+    config.invalidationPending = false;
+    config.invalidationDue = false;
+    config.invalidationTimer?.cancel();
+    config.invalidationTimer = null;
+  }
+
+  void _markWaitingForConnectivity(_PollingConfig config) {
+    final previous = config.handle.state;
+    if (!config.handle.isRegistered ||
+        previous.phase == PollingTaskPhase.running ||
+        previous.phase == PollingTaskPhase.waitingForConnectivity) {
+      return;
+    }
+
+    config.handle.emit(
+      PollingTaskState(
+        phase: PollingTaskPhase.waitingForConnectivity,
+        lastStartedAt: previous.lastStartedAt,
+        lastSuccessAt: previous.lastSuccessAt,
+        lastFailureAt: previous.lastFailureAt,
+      ),
+    );
   }
 
   /// Reachability check with TTL cache. When [force] is true, the cache is ignored.
@@ -322,8 +594,11 @@ class PollingService with WidgetsBindingObserver implements Disposable {
     if (cached != null) return cached;
 
     _logger.fine('PollingService: Checking reachability...');
+    final epoch = _connectivityEpoch;
     final r = await _connectivityService.checkConnection();
-    _reachability.set(r);
+    if (_connectivityEpoch == epoch) {
+      _reachability.set(r);
+    }
     return r;
   }
 
@@ -333,6 +608,8 @@ class PollingService with WidgetsBindingObserver implements Disposable {
     return _jitter.add(raw);
   }
 }
+
+enum _PollingTrigger { leading, scheduled, invalidated, manual }
 
 /// Internal per-listener state.
 class _PollingConfig {
@@ -344,14 +621,97 @@ class _PollingConfig {
   /// Fixed-delay scheduler that guarantees no overlapping runs.
   final FixedDelayScheduler scheduler;
 
-  /// Whether a refresh is currently running.
-  bool isRefreshing = false;
+  /// Stable public capability for this registration.
+  late final _PollingTaskHandle handle;
+
+  /// Shared future for the listener's current refresh cycle.
+  Future<void>? inFlight;
+
+  /// Invalidates ticks that crossed an async boundary under an older schedule.
+  int scheduleEpoch = 0;
+
+  /// Latest trailing-edge invalidation request. Its epoch invalidates delayed
+  /// callbacks and reachability continuations from replaced requests.
+  int invalidationEpoch = 0;
+  bool invalidationPending = false;
+  bool invalidationDue = false;
+  Timer? invalidationTimer;
 
   // Observability / backoff
   int consecutiveErrors = 0;
   DateTime? lastSuccessAt;
-  DateTime? lastErrorAt;
-  Object? lastError;
+  DateTime? lastFailureAt;
+}
+
+class _PollingTaskHandle implements PollingTaskHandle {
+  _PollingTaskHandle({
+    required Future<void> Function() runNow,
+    required void Function(Duration after) invalidate,
+    required void Function() unregister,
+  }) : _runNow = runNow,
+       _invalidate = invalidate,
+       _unregister = unregister;
+
+  final Future<void> Function() _runNow;
+  final void Function(Duration after) _invalidate;
+  final void Function() _unregister;
+  final BehaviorSubject<PollingTaskState> _states = BehaviorSubject.seeded(
+    const PollingTaskState(phase: PollingTaskPhase.idle),
+  );
+
+  bool _isRegistered = true;
+
+  @override
+  bool get isRegistered => _isRegistered;
+
+  @override
+  PollingTaskState get state => _states.value;
+
+  @override
+  Stream<PollingTaskState> get states => _states.stream;
+
+  @override
+  Future<void> runNow() {
+    if (!_isRegistered) {
+      return Future.error(StateError('This polling task is no longer registered.'));
+    }
+    return _runNow();
+  }
+
+  @override
+  void invalidate({Duration after = Duration.zero}) {
+    if (!_isRegistered) {
+      throw StateError('This polling task is no longer registered.');
+    }
+    _invalidate(after);
+  }
+
+  @override
+  void unregister() {
+    if (_isRegistered) _unregister();
+  }
+
+  void emit(PollingTaskState state) {
+    if (_isRegistered) _states.add(state);
+  }
+
+  Future<void> stop() async {
+    if (!_isRegistered) return;
+
+    _isRegistered = false;
+    final previous = state;
+    _states.add(
+      PollingTaskState(
+        phase: PollingTaskPhase.stopped,
+        lastStartedAt: previous.lastStartedAt,
+        lastSuccessAt: previous.lastSuccessAt,
+        lastFailureAt: previous.lastFailureAt,
+        error: previous.error,
+        stackTrace: previous.stackTrace,
+      ),
+    );
+    await _states.close();
+  }
 }
 
 /// A registration for a [Refreshable] listener with a specific polling [interval].

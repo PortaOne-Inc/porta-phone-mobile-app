@@ -448,6 +448,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get cdrs_noRecentCalls_message => 'Nessuna chiamata recente';
 
   @override
+  String get cdrs_refreshFailed_message => 'Impossibile aggiornare la cronologia chiamate - riprova';
+
+  @override
   String get common_SemanticsLabel_loading => 'Caricamento';
 
   @override
@@ -493,9 +496,6 @@ class AppLocalizationsIt extends AppLocalizations {
       'Non ci sono ancora preferiti tra i tuoi contatti.\nAggiungine uno dalla scheda del contatto con la stella';
 
   @override
-  String get contacts_ContactsScreen_filterFavorites => 'Preferiti';
-
-  @override
   String get contacts_ContactsScreen_searchSemanticsLabel => 'Cerca contatti';
 
   @override
@@ -517,6 +517,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get contacts_ExternalTabButton_refresh => 'Aggiorna';
+
+  @override
+  String get contacts_ExternalTabSnackBar_requestFailed => 'Impossibile raggiungere il server - riprova';
 
   @override
   String get contacts_ExternalTabText_empty => 'Nessun contatto';
@@ -554,13 +557,13 @@ class AppLocalizationsIt extends AppLocalizations {
       'Non ci sono i permessi per ottenere i tuoi contatti telefonici';
 
   @override
+  String get contactsSourceFavorites => 'Preferiti';
+
+  @override
   String get contactsSourceExternal => 'Centralino cloud';
 
   @override
   String get contactsSourceLocal => 'Il tuo telefono';
-
-  @override
-  String get contacts_Text_blingTransferInitiated => 'Trasferimento senza vedere';
 
   @override
   String get contacts_DialogsInfoView_title => 'Informazioni chiamate (BLF):';
@@ -1003,9 +1006,6 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get favorites_Text_blingTransferInitiated => 'Trasferimento senza vedere';
-
-  @override
   String formatPhone(String style, String main, String ext) {
     String _temp0 = intl.Intl.selectLogic(style, {
       'full': '$main (int.: $ext)',
@@ -1319,6 +1319,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get main_BottomNavigationBarItemLabel_chats => 'Le chat';
 
   @override
+  String get main_Text_blindTransferInitiated => 'Trasferimento senza vedere';
+
+  @override
   String get main_BottomNavigationBarItemLabel_contacts => 'Contatti';
 
   @override
@@ -1329,6 +1332,9 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get main_BottomNavigationBarItemLabel_recents => 'Recenti';
+
+  @override
+  String get main_BottomNavigationBarItemLabel_voicemail => 'Segreteria';
 
   @override
   String get main_CompatibilityIssueDialogActions_logout => 'Esci';
@@ -2121,9 +2127,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String recents_snackBar_deleted(String name) {
     return '$name cancellato';
   }
-
-  @override
-  String get recents_Text_blingTransferInitiated => 'Trasferimento senza vedere';
 
   @override
   String get recentsVisibilityFilter_all => 'Tutto';

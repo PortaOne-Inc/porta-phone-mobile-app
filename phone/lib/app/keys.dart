@@ -91,6 +91,8 @@ const String callActionsKeypadId = 'callActionsKeypad';
 const callActionsKeypadKey = Key(callActionsKeypadId);
 const String callActionsHangupId = 'callActionsHangup';
 const callActionsHangupKey = Key(callActionsHangupId);
+const String callActionsHideKeypadId = 'callActionsHideKeypad';
+const callActionsHideKeypadKey = Key(callActionsHideKeypadId);
 const String callActionsTransferMenuId = 'callActionsTransferMenu';
 const callActionsTransferMenuKey = Key(callActionsTransferMenuId);
 const String callActionsTransferMenuBlindInitId = 'callActionsTransferMenuBlindInit';
@@ -118,6 +120,8 @@ const String keypadNavBarId = 'keypadNavBar';
 const keypadNavBarKey = Key(keypadNavBarId);
 const String messagingNavBarId = 'messagingNavBar';
 const messagingNavBarKey = Key(messagingNavBarId);
+const String voicemailNavBarId = 'voicemailNavBar';
+const voicemailNavBarKey = Key(voicemailNavBarId);
 const String embeddedNavBarIdPrefix = 'embeddedNavBar';
 
 /// Id of the bottom navigation entry that opens the embedded section [id].
@@ -169,7 +173,6 @@ const String actionPadTransferId = 'actionPadTransfer';
 const String actionPadVoiceCallId = 'actionPadVoiceCall';
 const String callActionsAcceptId = 'callActionsAccept';
 const String callActionsAudioDeviceId = 'callActionsAudioDevice';
-const String callActionsHideKeypadId = 'callActionsHideKeypad';
 const String callActionsOptionsId = 'callActionsOptions';
 const String callPullBadgeId = 'callPullBadge';
 const String callPullDialogId = 'callPullDialog';
@@ -284,8 +287,10 @@ const contactsTabLocalKey = Key(contactsTabLocalId);
 // The contacts screen of a deployment that offers favourites as a filter.
 // Its own ids: the two screens are addressed separately so a flow cannot pass
 // against whichever of them happens to be on screen.
-const String contactsFilterFavoritesId = 'contactsFilterFavorites';
-const contactsFilterFavoritesKey = Key(contactsFilterFavoritesId);
+const String contactsFavoritesReorderId = 'contactsFavoritesReorder';
+const contactsFavoritesReorderKey = Key(contactsFavoritesReorderId);
+const String contactsSourceFavoritesId = 'contactsSourceFavorites';
+const contactsSourceFavoritesKey = Key(contactsSourceFavoritesId);
 const String contactsSourcePickerId = 'contactsSourcePicker';
 const contactsSourcePickerKey = Key(contactsSourcePickerId);
 const String contactsSearchOpenId = 'contactsSearchOpen';

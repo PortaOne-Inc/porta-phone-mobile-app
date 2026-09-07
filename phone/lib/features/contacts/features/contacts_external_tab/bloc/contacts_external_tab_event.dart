@@ -16,6 +16,19 @@ class ContactsExternalTabStarted extends ContactsExternalTabEvent {
   List<Object?> get props => [search];
 }
 
-class ContactsExternalTabRefreshed extends ContactsExternalTabEvent {
-  const ContactsExternalTabRefreshed();
+final class _ContactsExternalTabRefreshRequested extends ContactsExternalTabEvent {
+  _ContactsExternalTabRefreshRequested();
+
+  final _completed = Completer<bool>();
+
+  Future<bool> get completed => _completed.future;
+
+  void complete({required bool succeeded}) {
+    if (!_completed.isCompleted) {
+      _completed.complete(succeeded);
+    }
+  }
+
+  @override
+  List<Object?> get props => [_completed];
 }

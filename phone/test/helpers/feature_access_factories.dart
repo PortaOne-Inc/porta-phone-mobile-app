@@ -60,18 +60,17 @@ AppConfig createMockAppConfig() {
   final contactInfo = MockChatContactInfo();
 
   when(() => login.modeSelect).thenReturn(loginModeSelect);
-  when(() => loginModeSelect.actions).thenReturn([]);
-  when(() => login.signinOrder).thenReturn(const ['passwordSignin', 'otpSignin', 'signup']);
+  // The resolvers, not the raw fields: a mock replaces the class whole, so
+  // stubbing what the resolver reads leaves the resolver itself returning null.
+  when(() => loginModeSelect.modeSelectActions).thenReturn([]);
+  when(() => login.signinOrderOrDefault).thenReturn(const ['passwordSignin', 'otpSignin', 'signup']);
   when(() => login.common).thenReturn(const AppConfigLoginCommon());
   when(() => login.qr).thenReturn(const AppConfigLoginQr());
 
   when(() => main.bottomMenu).thenReturn(bottomMenu);
   when(() => bottomMenu.tabs).thenReturn([BottomMenuTabScheme.keypad(titleL10n: 'Keypad', icon: '0xe1ce')]);
-  // TODO: Migrate client configurations first before fully removing this property.
-  // ignore: deprecated_member_use_from_same_package, deprecated_member_use
-  when(() => main.systemNotificationsEnabled).thenReturn(false);
-
-  when(() => settings.sections).thenReturn([]);
+  when(() => bottomMenu.cacheSelectedTab).thenReturn(true);
+  when(() => settings.settingsSections).thenReturn([]);
 
   when(() => call.videoEnabled).thenReturn(true);
   when(() => call.transfer).thenReturn(transfer);
@@ -101,7 +100,6 @@ AppConfig createMockAppConfig() {
   when(() => appConfig.callConfig).thenReturn(call);
   when(() => appConfig.contacts).thenReturn(contacts);
   when(() => appConfig.messaging).thenReturn(messaging);
-  when(() => appConfig.localization).thenReturn(const AppConfigLocalization());
   when(() => appConfig.supported).thenReturn([]);
 
   return appConfig;

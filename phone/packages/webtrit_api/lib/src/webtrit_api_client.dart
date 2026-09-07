@@ -507,6 +507,23 @@ class WebtritApiClient {
     }
   }
 
+  /// Retrieves the deployment's own STUN/TURN configuration.
+  ///
+  /// Declared as an optional endpoint: a core that does not bundle ICE servers
+  /// answers 501 (or 404 without a backend error code), which surfaces as
+  /// [EndpointNotSupportedException] rather than a generic failure.
+  Future<IceServersResponse> getUserIceServers(String token, {RequestOptions options = const RequestOptions()}) async {
+    final responseJson = await _httpClientExecuteGet(
+      [..._apiBasePathSegmentsV1, 'user', 'ice-servers'],
+      null,
+      token,
+      requestOptions: options,
+      responseOptions: _optionalEndpoint,
+    );
+
+    return IceServersResponse.fromJson(responseJson);
+  }
+
   Future<List<UserContact>> getUserContactList(String token, {RequestOptions options = const RequestOptions()}) async {
     final responseJson = await _httpClientExecuteGet(
       [..._apiBasePathSegmentsV1, 'user', 'contacts'],
@@ -848,6 +865,7 @@ class WebtritApiClient {
     String token, {
     DateTime? from,
     DateTime? to,
+    int? page,
     int? limit,
     String? locale,
     RequestOptions options = const RequestOptions(),
@@ -860,6 +878,7 @@ class WebtritApiClient {
       queryParameters: {
         if (from != null) 'time_from': from.toUtc().toIso8601String(),
         if (to != null) 'time_to': to.toUtc().toIso8601String(),
+        if (page != null) 'page': page.toString(),
         if (limit != null) 'items_per_page': limit.toString(),
       },
     );

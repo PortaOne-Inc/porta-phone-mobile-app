@@ -419,6 +419,9 @@ class ActiveCall with _$ActiveCall implements CallEntry {
   @override
   bool get wasAccepted => acceptedTime != null;
 
+  /// An incoming call that is still ringing - offered but not yet accepted.
+  bool get isIncomingRinging => isIncoming && !wasAccepted;
+
   @override
   bool get wasHungUp => hungUpTime != null;
 
@@ -464,6 +467,10 @@ extension ActiveCallIterableExtension<T extends ActiveCall> on Iterable<T> {
   List<T> get nonCurrent => where((activeCall) => activeCall != current).toList();
 
   T? get blindTransferInitiated => firstWhereOrNull((activeCall) => activeCall.transfer is BlindTransferInitiated);
+
+  /// The calls answering acts upon - everything except the still-ringing
+  /// incoming ones (they keep ringing; the rest is held or ended).
+  List<T> get nonIncomingRinging => where((activeCall) => !activeCall.isIncomingRinging).toList();
 
   /// The most concerning media-degradation indicator across all calls, for the
   /// global toolbar status line: an active (non-recovered) warning beats a

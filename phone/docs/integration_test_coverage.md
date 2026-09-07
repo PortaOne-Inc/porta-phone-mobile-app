@@ -1,7 +1,10 @@
 # Integration Test Coverage
 
 All tests live in the `patrol_test/` directory and are built on the [Patrol](https://patrol.dev/) framework.
-Each test bootstraps the full app, logs in (or reuses an existing session), performs its scenario, and tears down cleanly.
+App-flow tests bootstrap the full app and log in or reuse an existing session.
+Focused native-integration guards may construct only the services under test.
+Every test tears down its device state.
+Last reviewed: 2026-09-06.
 
 ---
 
@@ -224,6 +227,87 @@ Three independent tests — each skipped automatically if the required credentia
 7. Place an outgoing call to contact A by tapping their recents tile.
 8. Verify order: contact A first (outgoing, `Icons.call_made`), contact B second (incoming), contact A third (incoming).
 9. Verify contact names are displayed correctly throughout.
+
+---
+
+## Background Polling - Connectivity Probe Ordering
+
+**File:** `patrol_test/connectivity_probe_ordering_test.dart`
+
+**Verifies:** An older HTTP liveness probe cannot overwrite the online state
+from a newer Android connectivity event or stop the recovered polling schedule.
+
+**Steps:**
+1. Disable Wi-Fi and cellular connectivity and create the connectivity and
+   polling services while offline.
+2. Enable Wi-Fi to start probe P1, disable it again, then enable it to start P2.
+3. Complete P2 as online and verify that polling runs its leading refresh.
+4. Complete P1 as offline after P2 and verify that the last connection state
+   remains online.
+5. Wait for a periodic tick and verify that polling is still scheduled.
+6. Restore both device transports during teardown.
+
+The network transitions and `connectivity_plus` event stream are real. Probe
+completion is controlled to make the otherwise timing-dependent race
+deterministic. No account credentials are required.
+
+---
+
+## Background Polling - Connect Invariant
+
+**File:** `patrol_test/polling_connect_invariant_test.dart`
+
+**Verifies:** Fresh login, foreground resume, and network recovery each produce
+exactly one user-info request, without a retry or a back-to-back duplicate.
+
+**Steps:**
+1. Bootstrap and log in, capture API client request logs, and assert one `/user` request.
+2. Background and reopen the app, then assert one `/user` request after resume.
+3. Disable Wi-Fi and cellular connectivity, restore them, and wait for polling recovery.
+4. Assert one `/user` request after recovery.
+
+This scenario stays focused on the user-info endpoint. Contacts has its own
+worker-driven lifecycle scenario below.
+
+---
+
+## Background Polling - Contacts Worker Sync
+
+**File:** `patrol_test/contacts_worker_sync_e2e_test.dart`
+
+**Verifies:** External Contacts uses one worker-owned request path across login,
+manual refresh, resume, failure, and recovery, while synced data reaches the UI
+and excludes the signed-in number.
+
+**Steps:**
+1. Start from a fresh session, log in, and assert one `/user/contacts` request
+   with no transport retry.
+2. Open External Contacts and verify a configured contact reaches the screen.
+3. Search by number and verify the signed-in number is absent while the known
+   external contact remains discoverable.
+4. Pull the list down and assert one request and a completed refresh indicator.
+5. Background and reopen the app, then assert one request after resume.
+6. Pull while offline and verify the refresh indicator still completes.
+7. Restore connectivity and assert one recovery request.
+
+---
+
+## Background Polling - CDR Pagination
+
+**File:** `patrol_test/cdr_sync_pagination_e2e_test.dart`
+
+**Verifies:** CDR sync is started by its app-owned polling registration, and a
+pull-to-refresh routed through the retained task drains every incremental page
+before updating local state.
+
+**Steps:**
+1. Seed one CDR in the local SIP adapter and log in through the local Core.
+2. Wait for the app-owned polling registration to fetch and persist it.
+3. Complete one task cycle to place the next periodic deadline outside setup.
+4. Seed 120 incremental CDRs and pull the Recent Calls list.
+5. Assert exactly three requests for pages 1, 2, and 3 with one stable anchor.
+6. Verify all records from every page are stored in newest-first order and
+   rendered by the Recent Calls screen, and that the refresh indicator closes.
 
 ---
 

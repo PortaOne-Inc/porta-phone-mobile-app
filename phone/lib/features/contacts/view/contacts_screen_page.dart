@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/app/router/app_router.dart';
 import 'package:webtrit_phone/blocs/blocs.dart';
+import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/environment_config.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/features/features.dart';
@@ -46,12 +47,11 @@ class ContactsScreenPage extends StatelessWidget {
 Widget contactSourceTypeWidgetBuilder(
   BuildContext context,
   ContactSourceType sourceType, {
-  bool favoritesOnly = false,
   bool markFavorites = false,
 }) {
   switch (sourceType) {
     case ContactSourceType.local:
-      final widget = ContactsLocalTab(favoritesOnly: favoritesOnly, markFavorites: markFavorites);
+      final widget = ContactsLocalTab(markFavorites: markFavorites);
       final provider = BlocProvider(
         create: (context) {
           final contactsSearchBloc = context.read<ContactsBloc>();
@@ -65,18 +65,50 @@ Widget contactSourceTypeWidgetBuilder(
       );
       return provider;
     case ContactSourceType.external:
-      final widget = ContactsExternalTab(favoritesOnly: favoritesOnly, markFavorites: markFavorites);
+      final sync = context.read<ExternalContactsSync>();
+      final widget = ContactsExternalTab(markFavorites: markFavorites);
       final provider = BlocProvider(
         create: (context) {
           final contactsSearchBloc = context.read<ContactsBloc>();
           return ContactsExternalTabBloc(
             contactsRepository: context.read<ContactsRepository>(),
             contactsSearchBloc: contactsSearchBloc,
-            externalContactsSyncBloc: context.read<ExternalContactsSyncBloc>(),
+            syncState: sync,
+            syncRunner: sync,
           )..add(ContactsExternalTabStarted(search: contactsSearchBloc.state.search));
         },
         child: widget,
       );
       return provider;
   }
+}
+
+/// Mounts the favourites section's own list.
+///
+/// The same bloc, the same rows, the same empty state as the favourites
+/// section: a second list built from the contacts table would be a second
+/// answer to the same question.
+///
+/// The bloc is not provided here. The button that turns rearranging on sits in
+/// the screen's scaffold, above this, and has to read the same list to know
+/// whether rearranging is worth offering at all.
+Widget contactsFavoritesWidgetBuilder(
+  BuildContext context, {
+  bool reorderMode = false,
+  void Function(int index)? onReorderStart,
+  void Function(int index)? onReorderEnd,
+}) {
+  final featureAccess = context.read<FeatureAccess>();
+  final cdrsEnabled = featureAccess.bottomMenuConfig.getTabEnabled<RecentsBottomMenuTab>()?.supportsCallHistory;
+
+  return FavoritesList(
+    reorderMode: reorderMode,
+    onReorderStart: onReorderStart,
+    onReorderEnd: onReorderEnd,
+    transferEnabled: featureAccess.callConfig.capabilities.isBlindTransferEnabled,
+    videoEnabled: featureAccess.callConfig.capabilities.isVideoCallEnabled,
+    chatsEnabled: featureAccess.messagingConfig.chatsPresent,
+    smssEnabled: featureAccess.messagingConfig.smsPresent,
+    cdrsEnabled: cdrsEnabled ?? false,
+  );
 }

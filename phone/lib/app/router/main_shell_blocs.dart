@@ -119,17 +119,6 @@ class MainShellBlocs extends StatelessWidget {
             return bloc;
           },
         ),
-        if (featureAccess.coreSupport.supportsExtensions)
-          BlocProvider<ExternalContactsSyncBloc>(
-            lazy: false,
-            create: (context) {
-              return ExternalContactsSyncBloc(
-                userRepository: context.read<UserRepository>(),
-                externalContactsRepository: context.read<ExternalContactsRepository>(),
-                contactsRepository: context.read<ContactsRepository>(),
-              )..add(const ExternalContactsSyncStarted());
-            },
-          ),
         BlocProvider<CallBloc>(
           create: (context) {
             final appBloc = context.read<AppBloc>();
@@ -163,11 +152,16 @@ class MainShellBlocs extends StatelessWidget {
             // Used to resolve the contact (and its display name) of the caller
             final contactResolver = context.read<ContactResolver>();
 
-            // Try to get CDRs sync worker to trigger immediate sync after call ends
-            // If CDRs feature is disabled, the worker will be null and no sync will be performed
-            final cdrsSyncWorker = context.readOrNull<CdrsSyncWorker>();
+            // The feature may be disabled for this session, in which case no
+            // CDR refresh is requested after a call.
+            final cdrsSync = context.readOrNull<CdrsSync>();
 
             final peerConnectionManager = PeerConnectionManager(
+              // The deployment's own STUN/TURN servers, resolved per connection so
+              // a renewed TURN credential is picked up without rebuilding the bloc.
+              factory: DefaultPeerConnectionFactory(
+                iceServersResolver: context.read<IceServersRepository>().resolveIceServers,
+              ),
               retrieveTimeout: kPeerConnectionRetrieveTimeout,
               monitorCheckInterval: monitorInterval,
               monitorDelegatesFactory: (callId, logger) => [LoggingRtpTrafficMonitorDelegate(logger: logger)],
@@ -224,7 +218,7 @@ class MainShellBlocs extends StatelessWidget {
               sendPresenceSettings: featureAccess.sipPresenceConfig.hybridPresenceSupport,
               callPullVideoStrategy: featureAccess.callConfig.capabilities.callPullVideoStrategy,
               peerMessageSupported: featureAccess.callConfig.capabilities.isPeerMessageEnabled,
-              onCallEnded: () => cdrsSyncWorker?.forceSync(const Duration(seconds: 1)),
+              onCallEnded: cdrsSync?.requestPostCallRefresh,
               onDiagnosticReportRequested: (id, error) => diagnosticService.request(
                 DiagnosticType.androidCallkeepOnly,
                 extras: {'callId': id, 'error': error.name},
@@ -262,6 +256,14 @@ class MainShellBlocs extends StatelessWidget {
           },
         ),
         BlocProvider(create: (_) => ChatsForwardingCubit()),
+        // Eager: the counter is what a badge reads, and a badge that starts
+        // counting only once someone opens the screen it sits on is of no use
+        // there. The messaging counter beside it is read by the navigation bar
+        // on the first frame, so it is eager in effect already.
+        BlocProvider<VoicemailUnreadCubit>(
+          lazy: false,
+          create: (context) => VoicemailUnreadCubit(repository: context.read<VoicemailRepository>())..init(),
+        ),
       ],
       child: Builder(
         builder: (context) {

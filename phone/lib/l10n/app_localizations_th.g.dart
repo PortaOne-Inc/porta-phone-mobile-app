@@ -443,6 +443,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get cdrs_noRecentCalls_message => 'ไม่มีการโทรล่าสุด';
 
   @override
+  String get cdrs_refreshFailed_message => 'ไม่สามารถรีเฟรชประวัติการโทรได้ - โปรดลองอีกครั้ง';
+
+  @override
   String get common_SemanticsLabel_loading => 'กำลังโหลด';
 
   @override
@@ -488,9 +491,6 @@ class AppLocalizationsTh extends AppLocalizations {
       'ยังไม่มีรายการโปรดในรายชื่อของคุณ\nเพิ่มได้จากการ์ดรายชื่อโดยแตะไอคอนดาว';
 
   @override
-  String get contacts_ContactsScreen_filterFavorites => 'รายการโปรด';
-
-  @override
   String get contacts_ContactsScreen_searchSemanticsLabel => 'ค้นหารายชื่อ';
 
   @override
@@ -512,6 +512,9 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get contacts_ExternalTabButton_refresh => 'รีเฟรช';
+
+  @override
+  String get contacts_ExternalTabSnackBar_requestFailed => 'ไม่สามารถติดต่อเซิร์ฟเวอร์ได้ - โปรดลองอีกครั้ง';
 
   @override
   String get contacts_ExternalTabText_empty => 'ไม่มีรายชื่อติดต่อ';
@@ -548,13 +551,13 @@ class AppLocalizationsTh extends AppLocalizations {
   String get contacts_LocalTabText_permissionFailure => 'ไม่มีสิทธิ์ในการเข้าถึงรายชื่อติดต่อในโทรศัพท์ของคุณ';
 
   @override
+  String get contactsSourceFavorites => 'รายการโปรด';
+
+  @override
   String get contactsSourceExternal => 'Cloud PBX';
 
   @override
   String get contactsSourceLocal => 'โทรศัพท์ของคุณ';
-
-  @override
-  String get contacts_Text_blingTransferInitiated => 'กำลังโอนสายแบบไม่แจ้ง';
 
   @override
   String get contacts_DialogsInfoView_title => 'ข้อมูลการโทร (BLF):';
@@ -989,9 +992,6 @@ class AppLocalizationsTh extends AppLocalizations {
   }
 
   @override
-  String get favorites_Text_blingTransferInitiated => 'กำลังโอนสายแบบไม่แจ้ง';
-
-  @override
   String formatPhone(String style, String main, String ext) {
     String _temp0 = intl.Intl.selectLogic(style, {
       'full': '$main (ต่อ: $ext)',
@@ -1302,6 +1302,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get main_BottomNavigationBarItemLabel_chats => 'แชท';
 
   @override
+  String get main_Text_blindTransferInitiated => 'กำลังโอนสายแบบไม่แจ้ง';
+
+  @override
   String get main_BottomNavigationBarItemLabel_contacts => 'รายชื่อ';
 
   @override
@@ -1312,6 +1315,9 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get main_BottomNavigationBarItemLabel_recents => 'ล่าสุด';
+
+  @override
+  String get main_BottomNavigationBarItemLabel_voicemail => 'ข้อความเสียง';
 
   @override
   String get main_CompatibilityIssueDialogActions_logout => 'ออกจากระบบ';
@@ -2092,9 +2098,6 @@ class AppLocalizationsTh extends AppLocalizations {
   String recents_snackBar_deleted(String name) {
     return 'ลบ $name แล้ว';
   }
-
-  @override
-  String get recents_Text_blingTransferInitiated => 'กำลังโอนสายแบบไม่รอรับ';
 
   @override
   String get recentsVisibilityFilter_all => 'ทั้งหมด';

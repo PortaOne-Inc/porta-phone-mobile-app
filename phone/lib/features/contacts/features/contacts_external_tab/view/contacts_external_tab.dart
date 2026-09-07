@@ -3,23 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/app/keys.dart';
-import 'package:webtrit_phone/models/models.dart';
+import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/l10n/l10n.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
 
 import '../../../contacts.dart';
 
 class ContactsExternalTab extends StatefulWidget {
-  const ContactsExternalTab({super.key, this.favoritesOnly = false, this.markFavorites = false});
-
-  /// Narrows the list to the people with a favourite among their numbers.
-  /// False is the whole address book, which is what the contacts screen
-  /// without the filter always shows.
-  final bool favoritesOnly;
+  const ContactsExternalTab({this.markFavorites = false, super.key});
 
   /// Whether a star marks the people with a favourite among their numbers.
-  /// It goes with the filter: without the star, a list narrowed to favourites
-  /// gives no clue what it was narrowed by.
+  /// Only where favourites are reachable from this screen: a star that leads
+  /// nowhere is worse than no star at all.
   final bool markFavorites;
 
   @override
@@ -33,21 +28,32 @@ class _ContactsExternalTabState extends State<ContactsExternalTab> {
     setState(() => _expandedContactId = _expandedContactId == contactId ? null : contactId);
   }
 
+  Future<void> _refreshContacts() async {
+    try {
+      final succeeded = await context.read<ContactsExternalTabBloc>().refresh();
+      if (!succeeded && mounted) {
+        context.showErrorSnackBar(context.l10n.contacts_ExternalTabSnackBar_requestFailed);
+      }
+    } catch (_) {
+      if (mounted) {
+        context.showErrorSnackBar(context.l10n.contacts_ExternalTabSnackBar_requestFailed);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Future refreshContacts() async {
-      final tabBloc = context.read<ContactsExternalTabBloc>();
-      tabBloc.add(const ContactsExternalTabRefreshed());
-      await tabBloc.stream.firstWhere((state) => state.status != ContactsExternalTabStatus.inProgress);
-    }
-
     return BlocBuilder<ContactsExternalTabBloc, ContactsExternalTabState>(
       builder: (context, state) {
-        final contacts = widget.favoritesOnly ? state.contacts.favoritesOnly : state.contacts;
+        final contacts = state.contacts;
 
         if (contacts.isNotEmpty) {
           return RefreshIndicator(
-            onRefresh: refreshContacts,
+            // See the local tab: the body runs behind the app bar, so the
+            // spinner needs the same inset the list content is given, or it
+            // is drawn underneath the bar.
+            edgeOffset: MediaQuery.of(context).padding.top,
+            onRefresh: _refreshContacts,
             child: ListView.builder(
               itemCount: contacts.length,
               itemBuilder: (context, index) {
@@ -55,9 +61,6 @@ class _ContactsExternalTabState extends State<ContactsExternalTab> {
 
                 return ContactTileAdapter(
                   tileKey: contactsExtContactTileKey,
-                  // Only where favourites are a filter of this list: a star
-                  // is what makes that filter understandable from the whole
-                  // list too.
                   markFavorite: widget.markFavorites,
                   contact: contact,
                   expanded: _expandedContactId == contact.id,
@@ -66,12 +69,6 @@ class _ContactsExternalTabState extends State<ContactsExternalTab> {
               },
             ),
           );
-        }
-
-        // Nothing to show because of the filter is a different answer from
-        // nothing to show at all, and it is not a failure or a slow fetch.
-        if (widget.favoritesOnly && state.contacts.isNotEmpty) {
-          return NoDataPlaceholder(content: Text(context.l10n.contacts_ContactsScreen_emptyFavorites));
         }
 
         // No contacts to show yet: keep a loading indicator visible while the
@@ -90,7 +87,7 @@ class _ContactsExternalTabState extends State<ContactsExternalTab> {
             return NoDataPlaceholder(
               content: Text(context.l10n.contacts_ExternalTabText_empty),
               actions: [
-                TextButton(onPressed: refreshContacts, child: Text(context.l10n.contacts_ExternalTabButton_refresh)),
+                TextButton(onPressed: _refreshContacts, child: Text(context.l10n.contacts_ExternalTabButton_refresh)),
               ],
             );
         }

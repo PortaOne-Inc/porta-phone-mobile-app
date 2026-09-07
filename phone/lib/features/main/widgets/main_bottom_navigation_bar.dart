@@ -10,6 +10,16 @@ import 'package:webtrit_phone/widgets/widgets.dart';
 /// decoration reads - the bar itself takes no part in that.
 typedef TabIconDecorator = Widget Function(BottomMenuTab tab, Widget icon);
 
+/// One decorator out of several, each wrapping what the ones before it built.
+///
+/// The bar takes a single decorator on purpose - it is not the place that knows
+/// which sections carry a badge. A menu whose sections carry more than one
+/// composes them here, so each badge stays owned by the feature it belongs to
+/// instead of collecting in a decorator that knows about all of them.
+TabIconDecorator composeTabIconDecorators(List<TabIconDecorator> decorators) {
+  return (tab, icon) => decorators.fold(icon, (decorated, decorate) => decorate(tab, decorated));
+}
+
 /// Bottom navigation of the main screen: one entry per configured section.
 class MainBottomNavigationBar extends StatelessWidget {
   const MainBottomNavigationBar({
@@ -34,14 +44,25 @@ class MainBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final bar = theme.bottomNavigationBarTheme;
+
     return BottomNavigationBar(
-      elevation: 0,
-      backgroundColor: theme.bottomNavigationBarTheme.backgroundColor?.withAlpha(200),
+      // Everything about how the bar looks comes off its theme, which is built
+      // from the brand's own configuration. This widget used to reach past it
+      // twice: it drew the background at `withAlpha(200)`, so a colour a brand
+      // chose was never the colour it got, and it handed both label styles
+      // `bodySmall` - a style that carries a colour, which Flutter then used
+      // *instead of* the selected and unselected item colours. Between them,
+      // two of the three colours the editor offers did nothing to the
+      // captions, and the third could not be reached.
+      //
+      // A bar that should show what is behind it now says so in the alpha of
+      // the colour it names.
+      elevation: bar.elevation ?? 0,
+      backgroundColor: bar.backgroundColor,
       useLegacyColorScheme: false,
       enableFeedback: true,
       type: BottomNavigationBarType.fixed,
-      selectedLabelStyle: theme.textTheme.bodySmall,
-      unselectedLabelStyle: theme.textTheme.bodySmall,
       currentIndex: currentIndex,
       items: [for (final tab in tabs) _item(context, tab)],
       onTap: onTap,

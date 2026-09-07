@@ -178,6 +178,7 @@ extension AppLocalizationsExtension on AppLocalizations {
       'call_videoView_actionLabel_fit' => call_videoView_actionLabel_fit,
       'cdrs_noMissedCalls_message' => cdrs_noMissedCalls_message,
       'cdrs_noRecentCalls_message' => cdrs_noRecentCalls_message,
+      'cdrs_refreshFailed_message' => cdrs_refreshFailed_message,
       'common_SemanticsLabel_loading' => common_SemanticsLabel_loading,
       'common_noInternetConnection_message' =>
         common_noInternetConnection_message,
@@ -187,8 +188,6 @@ extension AppLocalizationsExtension on AppLocalizations {
       'common_problemWithLoadingPage' => common_problemWithLoadingPage,
       'contacts_ContactsScreen_emptyFavorites' =>
         contacts_ContactsScreen_emptyFavorites,
-      'contacts_ContactsScreen_filterFavorites' =>
-        contacts_ContactsScreen_filterFavorites,
       'contacts_ContactsScreen_searchSemanticsLabel' =>
         contacts_ContactsScreen_searchSemanticsLabel,
       'contacts_ContactsScreen_sourceSemanticsLabel' =>
@@ -199,6 +198,8 @@ extension AppLocalizationsExtension on AppLocalizations {
       'contacts_agreement_title' => contacts_agreement_title,
       'contacts_ExternalTabButton_refresh' =>
         contacts_ExternalTabButton_refresh,
+      'contacts_ExternalTabSnackBar_requestFailed' =>
+        contacts_ExternalTabSnackBar_requestFailed,
       'contacts_ExternalTabText_empty' => contacts_ExternalTabText_empty,
       'contacts_ExternalTabText_emptyOnSearching' =>
         contacts_ExternalTabText_emptyOnSearching,
@@ -216,10 +217,9 @@ extension AppLocalizationsExtension on AppLocalizations {
       'contacts_LocalTabText_failure' => contacts_LocalTabText_failure,
       'contacts_LocalTabText_permissionFailure' =>
         contacts_LocalTabText_permissionFailure,
+      'contactsSourceFavorites' => contactsSourceFavorites,
       'contactsSourceExternal' => contactsSourceExternal,
       'contactsSourceLocal' => contactsSourceLocal,
-      'contacts_Text_blingTransferInitiated' =>
-        contacts_Text_blingTransferInitiated,
       'contacts_DialogsInfoView_title' => contacts_DialogsInfoView_title,
       'contacts_ContactScreen_options' => contacts_ContactScreen_options,
       'contacts_ContactScreen_presenceViaSip' =>
@@ -454,8 +454,6 @@ extension AppLocalizationsExtension on AppLocalizations {
       'favorites_SemanticsLabel_reorderDone' =>
         favorites_SemanticsLabel_reorderDone,
       'favorites_SemanticsLabel_reorder' => favorites_SemanticsLabel_reorder,
-      'favorites_Text_blingTransferInitiated' =>
-        favorites_Text_blingTransferInitiated,
       'locale_default' => locale_default,
       'locale_en' => locale_en,
       'locale_it' => locale_it,
@@ -586,6 +584,7 @@ extension AppLocalizationsExtension on AppLocalizations {
         logRecordsConsole_PopupMenuItem_clear,
       'main_BottomNavigationBarItemLabel_chats' =>
         main_BottomNavigationBarItemLabel_chats,
+      'main_Text_blindTransferInitiated' => main_Text_blindTransferInitiated,
       'main_BottomNavigationBarItemLabel_contacts' =>
         main_BottomNavigationBarItemLabel_contacts,
       'main_BottomNavigationBarItemLabel_favorites' =>
@@ -594,6 +593,8 @@ extension AppLocalizationsExtension on AppLocalizations {
         main_BottomNavigationBarItemLabel_keypad,
       'main_BottomNavigationBarItemLabel_recents' =>
         main_BottomNavigationBarItemLabel_recents,
+      'main_BottomNavigationBarItemLabel_voicemail' =>
+        main_BottomNavigationBarItemLabel_voicemail,
       'main_CompatibilityIssueDialogActions_logout' =>
         main_CompatibilityIssueDialogActions_logout,
       'main_CompatibilityIssueDialogActions_update' =>
@@ -943,8 +944,6 @@ extension AppLocalizationsExtension on AppLocalizations {
       'recents_DeleteConfirmDialog_title' => recents_DeleteConfirmDialog_title,
       'recents_HistoryTile_missedCallText' =>
         recents_HistoryTile_missedCallText,
-      'recents_Text_blingTransferInitiated' =>
-        recents_Text_blingTransferInitiated,
       'recentsVisibilityFilter_all' => recentsVisibilityFilter_all,
       'recentsVisibilityFilter_all_preposit' =>
         recentsVisibilityFilter_all_preposit,

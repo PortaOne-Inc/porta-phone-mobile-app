@@ -463,6 +463,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get cdrs_noRecentCalls_message => 'Немає останніх дзвінків';
 
   @override
+  String get cdrs_refreshFailed_message => 'Не вдалося оновити історію дзвінків - спробуйте ще раз';
+
+  @override
   String get common_SemanticsLabel_loading => 'Завантаження';
 
   @override
@@ -508,9 +511,6 @@ class AppLocalizationsUk extends AppLocalizations {
       'Серед ваших контактів ще немає улюблених.\nДодайте на картці контакта, натиснувши зірочку';
 
   @override
-  String get contacts_ContactsScreen_filterFavorites => 'Улюблені';
-
-  @override
   String get contacts_ContactsScreen_searchSemanticsLabel => 'Пошук контактів';
 
   @override
@@ -532,6 +532,9 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get contacts_ExternalTabButton_refresh => 'Оновити';
+
+  @override
+  String get contacts_ExternalTabSnackBar_requestFailed => 'Не вдалося зв\'язатися з сервером - спробуйте ще раз';
 
   @override
   String get contacts_ExternalTabText_empty => 'Немає контактів';
@@ -568,13 +571,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contacts_LocalTabText_permissionFailure => 'Відсутні дозволи для доступу до контактів вашого телефону';
 
   @override
+  String get contactsSourceFavorites => 'Улюблені';
+
+  @override
   String get contactsSourceExternal => 'Хмарний PBX';
 
   @override
   String get contactsSourceLocal => 'Ваш телефон';
-
-  @override
-  String get contacts_Text_blingTransferInitiated => 'Безумовне переведення дзвінка';
 
   @override
   String get contacts_DialogsInfoView_title => 'Інформація про дзвінки (BLF):';
@@ -1015,9 +1018,6 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get favorites_Text_blingTransferInitiated => 'Безумовне переведення дзвінка';
-
-  @override
   String formatPhone(String style, String main, String ext) {
     String _temp0 = intl.Intl.selectLogic(style, {
       'full': '$main (розш: $ext)',
@@ -1332,6 +1332,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get main_BottomNavigationBarItemLabel_chats => 'Чати';
 
   @override
+  String get main_Text_blindTransferInitiated => 'Безумовне переведення дзвінка';
+
+  @override
   String get main_BottomNavigationBarItemLabel_contacts => 'Контакти';
 
   @override
@@ -1342,6 +1345,9 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get main_BottomNavigationBarItemLabel_recents => 'Останні';
+
+  @override
+  String get main_BottomNavigationBarItemLabel_voicemail => 'Голосова пошта';
 
   @override
   String get main_CompatibilityIssueDialogActions_logout => 'Вийти';
@@ -2129,9 +2135,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String recents_snackBar_deleted(String name) {
     return '$name видалено';
   }
-
-  @override
-  String get recents_Text_blingTransferInitiated => 'Безумовне переведення дзвінка';
 
   @override
   String get recentsVisibilityFilter_all => 'Всі';

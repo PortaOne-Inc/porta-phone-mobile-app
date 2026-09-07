@@ -31,6 +31,13 @@ class CallRemoteAvatar extends StatefulWidget {
 
   @override
   State<CallRemoteAvatar> createState() => _CallRemoteAvatarState();
+
+  /// Preferred radius of the avatar shown in place of the remote video; the
+  /// avatar scales itself down when the space left over by the info block and
+  /// the action area is smaller than this.
+  static double preferredRadius(MediaQueryData mediaQueryData) {
+    return (mediaQueryData.size.shortestSide * 0.30).clamp(24.0, 150.0);
+  }
 }
 
 class _CallRemoteAvatarState extends State<CallRemoteAvatar> {
@@ -114,9 +121,10 @@ class _CallRemoteAvatarContent extends StatelessWidget {
 
     if (thumbnailUrl != null) {
       // Ask the remote for the resolution actually painted; the list-sized default
-      // would be upscaled to a blur at this diameter.
-      final devicePixels = (diameter * MediaQuery.devicePixelRatioOf(context)).round();
-      final url = gravatarUrlWithSize(thumbnailUrl, devicePixels) ?? thumbnailUrl!;
+      // would be upscaled to a blur at this diameter. The size is one of the shared
+      // request sizes, so this is the same url the rest of the app already asked for.
+      final devicePixels = diameter * MediaQuery.devicePixelRatioOf(context);
+      final url = GravatarUrl.withSize(thumbnailUrl, GravatarUrl.requestSize(devicePixels)) ?? thumbnailUrl!;
 
       return Image.network(
         url.toString(),

@@ -5,11 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/app/keys.dart';
 import 'package:webtrit_phone/extensions/extensions.dart';
-import 'package:webtrit_phone/l10n/l10n.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
 
-import '../../call/call.dart';
 import '../contacts.dart';
 
 export 'contacts_screen_styles.dart';
@@ -120,28 +118,15 @@ class _ContactsScreenState extends State<ContactsScreen> with SingleTickerProvid
         appBarTheme: effectiveStyle?.appBarTheme,
         extendBodyBehindAppBar: true,
         appBar: appBar,
-        body: MediaQuery(
-          data: mediaQueryData.copyWith(
-            padding: mediaQueryData.padding.copyWith(
-              top: mediaQueryData.padding.top + kToolbarHeight + appBarBottomHeight,
-            ),
-          ),
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              for (final sourceType in widget.sourceTypes) widget.sourceTypeWidgetBuilder(context, sourceType),
-            ],
-          ),
-        ),
-        bottomNavigationBar: BlocBuilder<CallBloc, CallState>(
-          buildWhen: (previous, current) => previous.isBlingTransferInitiated != current.isBlingTransferInitiated,
-          builder: (context, callState) {
-            if (callState.isBlingTransferInitiated) {
-              return TransferBottomNavigationBar(context.l10n.contacts_Text_blingTransferInitiated);
-            } else {
-              return const SizedBox.shrink();
-            }
-          },
+        // No inset of its own: the body runs behind the bar, and Scaffold
+        // already hands it a MediaQuery whose top padding is the bar plus the
+        // status bar. A list with no padding of its own takes that figure, and
+        // so does the refresh indicator. Computing it here a second time is
+        // what let the two disagree - it read kToolbarHeight where MainAppBar
+        // is built from kMinInteractiveDimension, eight points apart.
+        body: TabBarView(
+          controller: _tabController,
+          children: [for (final sourceType in widget.sourceTypes) widget.sourceTypeWidgetBuilder(context, sourceType)],
         ),
       ),
     );

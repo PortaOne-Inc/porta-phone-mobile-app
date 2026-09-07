@@ -1,10 +1,16 @@
 # Refreshing data by hand
 
 How a user asks a list in the app to fetch again, screen by screen.
-Last reviewed: 2026-08-19.
+Last reviewed: 2026-09-06.
 
 The rule: refreshing is a pull on the list. A screen that can be refreshed
 carries no refresh control in its app bar.
+
+This page describes UI behavior. The shared scheduler, task handles, and the
+boundary between automatic and manual execution are documented in
+[`polling.md`](polling.md). A manual fetch for a data source that is also polled
+must use the same task capability to avoid a parallel refresh path. External
+Contacts and CDR synchronization follow this rule.
 
 ## My account (settings)
 
@@ -49,15 +55,59 @@ button in its empty state instead. The local tab also has states where a fetch
 is not the answer at all (contacts permission denied, contacts agreement not
 accepted) - they lead to the settings or to the agreement.
 
+The external tab calls `ContactsExternalTabBloc.refresh()` and awaits its exact
+result. The BLoC receives `PollingTaskRunner` from the `ExternalContactsSync`
+owner, so the pull joins a scheduled Contacts cycle when one is already
+running. A failed pull shows the same request-failed snack bar as the account
+screen. The widget has no polling dependency, and the owner keeps invalidation
+and unregister capabilities private.
+
+Both lists sit behind a translucent app bar, so - as on the account screen -
+the indicator carries an `edgeOffset`, or the spinner is drawn behind the bar
+and the pull looks like it did nothing. It takes the top padding `Scaffold`
+gives the body, which is what the first row is placed by too, so the spinner
+and the list it belongs to cannot drift apart.
+
+Watch for this on any screen under `ThemedScaffold`: it turns
+`extendBodyBehindAppBar` on by itself when the theme carries a gradient or an
+image background, so a list that is fine on a flat theme needs the same offset
+on a branded one.
+
 ## Recent calls
 
 `lib/features/cdrs/view/recent_cdrs_screen.dart` (backend reports the
 `callhistory` capability) and `lib/features/recents/view/recents_screen.dart`
 (it does not).
 
-Neither screen can be refreshed by hand. The list is served from the local
-database, which `CdrsSyncWorker` fills on a ten-second poll; scrolling to the
-bottom pulls older pages through `CdrsListCubit.fetchHistory()`.
+The server-backed screen can be refreshed by pulling either the All or Missed
+list, including an empty list. Both tabs receive only the
+`PollingTaskRunner` capability exposed by `CdrsSync` and await `runNow()`. A
+pull therefore joins an active scheduled cycle instead of starting a second
+request path, and its spinner closes only when that cycle has persisted its
+result. A failure keeps cached records visible and reports the failed explicit
+action with a snack bar.
+
+The indicator uses the same top inset as the list because the body extends
+behind the app bar. Both populated and empty scrollables use always-scrollable
+physics so a short list can still recognize the gesture. A list's pagination
+listener ignores positions at or beyond its leading edge, including negative
+iOS bounce overscroll, so a pull cannot start `fetchHistory()` beside the
+polling cycle. Scrolling toward the bottom remains a separate action: it loads
+older pages through `CdrsListCubit.fetchHistory()`.
+
+The local-recents screen cannot be refreshed by hand and has nothing remote to
+refresh: its list is written by the app itself and watched live.
+
+Ending a call invalidates the same polling task with a one-second delay so the
+backend can publish the CDR. Repeated call-ended events use trailing-edge
+debounce, and the refresh cannot overlap the periodic cycle.
+
+An empty cache keeps its initial loader while the first remote cycle is
+pending. When automatic polling cannot run offline, the CDR task publishes a
+replaying `waitingForConnectivity` state and the screen immediately resolves to
+the empty state. A screen opened after the offline transition receives the same
+retained state. A slow online sync remains loading instead of being mistaken
+for offline, and a later successful sync still populates the list normally.
 
 ## Voicemail
 

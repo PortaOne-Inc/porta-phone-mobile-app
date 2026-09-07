@@ -387,6 +387,8 @@
   "@cdrs_noMissedCalls_message": {},
   "cdrs_noRecentCalls_message": "ไม่มีการโทรล่าสุด",
   "@cdrs_noRecentCalls_message": {},
+  "cdrs_refreshFailed_message": "ไม่สามารถรีเฟรชประวัติการโทรได้ - โปรดลองอีกครั้ง",
+  "@cdrs_refreshFailed_message": {},
   "common_SemanticsLabel_loading": "กำลังโหลด",
   "@common_SemanticsLabel_loading": {
     "description": "Accessibility name announced while a screen waits for a request to finish."
@@ -446,8 +448,6 @@
   },
   "contacts_ContactsScreen_emptyFavorites": "ยังไม่มีรายการโปรดในรายชื่อของคุณ\nเพิ่มได้จากการ์ดรายชื่อโดยแตะไอคอนดาว",
   "@contacts_ContactsScreen_emptyFavorites": {},
-  "contacts_ContactsScreen_filterFavorites": "รายการโปรด",
-  "@contacts_ContactsScreen_filterFavorites": {},
   "contacts_ContactsScreen_searchSemanticsLabel": "ค้นหารายชื่อ",
   "@contacts_ContactsScreen_searchSemanticsLabel": {},
   "contacts_ContactsScreen_sourceSemanticsLabel": "แหล่งที่มาของรายชื่อ",
@@ -462,6 +462,8 @@
   "@contacts_agreement_title": {},
   "contacts_ExternalTabButton_refresh": "รีเฟรช",
   "@contacts_ExternalTabButton_refresh": {},
+  "contacts_ExternalTabSnackBar_requestFailed": "ไม่สามารถติดต่อเซิร์ฟเวอร์ได้ - โปรดลองอีกครั้ง",
+  "@contacts_ExternalTabSnackBar_requestFailed": {},
   "contacts_ExternalTabText_empty": "ไม่มีรายชื่อติดต่อ",
   "@contacts_ExternalTabText_empty": {},
   "contacts_ExternalTabText_emptyOnSearching": "ไม่พบรายชื่อติดต่อ",
@@ -490,12 +492,12 @@
   "@contacts_LocalTabText_permissionFailure": {
     "description": "Shown when the app cannot access local phone contacts because the user has not granted the required permission (e.g. Contacts permission denied in system settings)."
   },
+  "contactsSourceFavorites": "รายการโปรด",
+  "@contactsSourceFavorites": {},
   "contactsSourceExternal": "Cloud PBX",
   "@contactsSourceExternal": {},
   "contactsSourceLocal": "โทรศัพท์ของคุณ",
   "@contactsSourceLocal": {},
-  "contacts_Text_blingTransferInitiated": "กำลังโอนสายแบบไม่แจ้ง",
-  "@contacts_Text_blingTransferInitiated": {},
   "contacts_DialogsInfoView_title": "ข้อมูลการโทร (BLF):",
   "@contacts_DialogsInfoView_title": {},
   "contacts_ContactTile_inCall": "อยู่ในสาย: {destination}",
@@ -861,8 +863,6 @@
       }
     }
   },
-  "favorites_Text_blingTransferInitiated": "กำลังโอนสายแบบไม่แจ้ง",
-  "@favorites_Text_blingTransferInitiated": {},
   "formatPhone": "{style, select, full{{main} (ต่อ: {ext})} simple{{main}} only_ext{ต่อ: {ext}} empty{ไม่มีหมายเลขโทรศัพท์} other{{main}}}",
   "@formatPhone": {
     "description": "Formats phone number based on presence of main number and extension, covering four scenarios: both, main only, extension only, and neither.",
@@ -1170,6 +1170,8 @@
   "@logRecordsConsole_PopupMenuItem_clear": {},
   "main_BottomNavigationBarItemLabel_chats": "แชท",
   "@main_BottomNavigationBarItemLabel_chats": {},
+  "main_Text_blindTransferInitiated": "กำลังโอนสายแบบไม่แจ้ง",
+  "@main_Text_blindTransferInitiated": {},
   "main_BottomNavigationBarItemLabel_contacts": "รายชื่อ",
   "@main_BottomNavigationBarItemLabel_contacts": {},
   "main_BottomNavigationBarItemLabel_favorites": "รายการโปรด",
@@ -1178,6 +1180,8 @@
   "@main_BottomNavigationBarItemLabel_keypad": {},
   "main_BottomNavigationBarItemLabel_recents": "ล่าสุด",
   "@main_BottomNavigationBarItemLabel_recents": {},
+  "main_BottomNavigationBarItemLabel_voicemail": "ข้อความเสียง",
+  "@main_BottomNavigationBarItemLabel_voicemail": {},
   "main_CompatibilityIssueDialogActions_logout": "ออกจากระบบ",
   "@main_CompatibilityIssueDialogActions_logout": {},
   "main_CompatibilityIssueDialogActions_update": "อัปเดต",
@@ -1824,8 +1828,6 @@
       }
     }
   },
-  "recents_Text_blingTransferInitiated": "กำลังโอนสายแบบไม่รอรับ",
-  "@recents_Text_blingTransferInitiated": {},
   "recentsVisibilityFilter_all": "ทั้งหมด",
   "@recentsVisibilityFilter_all": {},
   "recentsVisibilityFilter_all_preposit": "ทั้งหมด",

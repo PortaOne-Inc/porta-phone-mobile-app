@@ -820,6 +820,12 @@ abstract class AppLocalizations {
   /// **'No recent calls'**
   String get cdrs_noRecentCalls_message;
 
+  /// No description provided for @cdrs_refreshFailed_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not refresh call history - please try again'**
+  String get cdrs_refreshFailed_message;
+
   /// Accessibility name announced while a screen waits for a request to finish.
   ///
   /// In en, this message translates to:
@@ -886,12 +892,6 @@ abstract class AppLocalizations {
   /// **'No favorites among your contacts yet.\nAdd one from a contact card using the star icon'**
   String get contacts_ContactsScreen_emptyFavorites;
 
-  /// No description provided for @contacts_ContactsScreen_filterFavorites.
-  ///
-  /// In en, this message translates to:
-  /// **'Favorites'**
-  String get contacts_ContactsScreen_filterFavorites;
-
   /// No description provided for @contacts_ContactsScreen_searchSemanticsLabel.
   ///
   /// In en, this message translates to:
@@ -933,6 +933,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refresh'**
   String get contacts_ExternalTabButton_refresh;
+
+  /// No description provided for @contacts_ExternalTabSnackBar_requestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not reach the server - please try again'**
+  String get contacts_ExternalTabSnackBar_requestFailed;
 
   /// No description provided for @contacts_ExternalTabText_empty.
   ///
@@ -1000,6 +1006,12 @@ abstract class AppLocalizations {
   /// **'There are no permissions to get your phone contacts'**
   String get contacts_LocalTabText_permissionFailure;
 
+  /// No description provided for @contactsSourceFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get contactsSourceFavorites;
+
   /// No description provided for @contactsSourceExternal.
   ///
   /// In en, this message translates to:
@@ -1011,12 +1023,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your phone'**
   String get contactsSourceLocal;
-
-  /// No description provided for @contacts_Text_blingTransferInitiated.
-  ///
-  /// In en, this message translates to:
-  /// **'Performing blind transfer'**
-  String get contacts_Text_blingTransferInitiated;
 
   /// No description provided for @contacts_DialogsInfoView_title.
   ///
@@ -1828,12 +1834,6 @@ abstract class AppLocalizations {
   /// **'{name} deleted'**
   String favorites_SnackBar_deleted(String name);
 
-  /// No description provided for @favorites_Text_blingTransferInitiated.
-  ///
-  /// In en, this message translates to:
-  /// **'Performing blind transfer'**
-  String get favorites_Text_blingTransferInitiated;
-
   /// Formats phone number based on presence of main number and extension, covering four scenarios: both, main only, extension only, and neither.
   ///
   /// In en, this message translates to:
@@ -2368,6 +2368,12 @@ abstract class AppLocalizations {
   /// **'Chats'**
   String get main_BottomNavigationBarItemLabel_chats;
 
+  /// No description provided for @main_Text_blindTransferInitiated.
+  ///
+  /// In en, this message translates to:
+  /// **'Performing blind transfer'**
+  String get main_Text_blindTransferInitiated;
+
   /// No description provided for @main_BottomNavigationBarItemLabel_contacts.
   ///
   /// In en, this message translates to:
@@ -2391,6 +2397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recents'**
   String get main_BottomNavigationBarItemLabel_recents;
+
+  /// No description provided for @main_BottomNavigationBarItemLabel_voicemail.
+  ///
+  /// In en, this message translates to:
+  /// **'Voicemail'**
+  String get main_BottomNavigationBarItemLabel_voicemail;
 
   /// No description provided for @main_CompatibilityIssueDialogActions_logout.
   ///
@@ -3840,12 +3852,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{name} deleted'**
   String recents_snackBar_deleted(String name);
-
-  /// No description provided for @recents_Text_blingTransferInitiated.
-  ///
-  /// In en, this message translates to:
-  /// **'Performing blind transfer'**
-  String get recents_Text_blingTransferInitiated;
 
   /// No description provided for @recentsVisibilityFilter_all.
   ///

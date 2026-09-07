@@ -42,13 +42,14 @@ class MainShellServices extends StatelessWidget {
           dispose: (context, service) => service.dispose(),
           lazy: false,
         ),
-        if (featureAccess.bottomMenuConfig.getTabEnabled<RecentsBottomMenuTab>()?.supportsCallHistory == true)
-          Provider<CdrsSyncWorker>(
-            create: (context) =>
-                CdrsSyncWorker(context.read<CdrsLocalRepository>(), context.read<CdrsRemoteRepository>())..init(),
-            dispose: (context, worker) => worker.dispose(),
+        if (featureAccess.coreSupport.supportsExtensions)
+          Provider<ExternalContactsSync>(
+            create: _createExternalContactsSync,
+            dispose: (context, sync) => sync.dispose(),
             lazy: false,
           ),
+        if (featureAccess.bottomMenuConfig.getTabEnabled<RecentsBottomMenuTab>()?.supportsCallHistory == true)
+          Provider<CdrsSync>(create: _createCdrsSync, dispose: (context, sync) => sync.dispose(), lazy: false),
       ],
       child: child,
     );
@@ -63,18 +64,23 @@ class MainShellServices extends StatelessWidget {
   /// Current registrations:
   /// - [UserRepository]: polled every 10 seconds to keep user data up to date.
   /// - [SystemInfoRepository]: polled every 5 minutes to refresh system information.
-  /// - [VoicemailRepository]: polled every 5 minutes, but only if the voicemail feature is enabled
-  ///   in [FeatureAccess.settingsConfig].
+  /// - [ExternalContactsSyncWorker]: registered through its standard owner so
+  ///   state and manual refresh share one task without exposing lifecycle control.
+  /// - [VoicemailRepository]: polled every 5 minutes, but only if voicemail runs for this session
+  ///   ([FeatureAccess.voicemailAvailable]) - whichever placement offers it.
+  /// - [IceServersRepository]: polled every 5 minutes when the core bundles STUN/TURN servers.
+  ///   The tick is a noop until the cached configuration approaches its expiration, so its only
+  ///   job is to renew short-lived TURN credentials inside a long-running session.
   ///
   /// This method centralizes the polling configuration, so changes in polling logic or intervals
   /// can be made here without touching the [Provider] or [PollingService] setup.
   List<PollingRegistration> _pollingRegistrations(BuildContext context) {
     final featureAccess = context.read<FeatureAccess>();
-    final isVoicemailsEnabled = featureAccess.settingsConfig.voicemailsEnabled;
-    final supportsExtensions = featureAccess.coreSupport.supportsExtensions;
+    final isVoicemailsEnabled = featureAccess.voicemailAvailable;
     final cliSettingsRepository = context.read<CallerIdSettingsRepository>();
     final favoritesRepository = context.read<FavoritesRepository>();
     final sipSubscriptionsRepository = context.read<SipSubscriptionsRepository>();
+    final iceServersRepository = context.read<IceServersRepository>();
 
     return [
       PollingRegistration(
@@ -85,11 +91,6 @@ class MainShellServices extends StatelessWidget {
         listener: context.read<SystemInfoRepository>(),
         interval: Duration(seconds: EnvironmentConfig.SYSTEM_INFO_REPOSITORY_POLLING_INTERVAL_SECONDS),
       ),
-      if (supportsExtensions)
-        PollingRegistration(
-          listener: context.read<ExternalContactsRepository>(),
-          interval: Duration(seconds: EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS),
-        ),
       if (isVoicemailsEnabled)
         PollingRegistration(
           listener: context.read<VoicemailRepository>(),
@@ -110,7 +111,34 @@ class MainShellServices extends StatelessWidget {
           listener: sipSubscriptionsRepository,
           interval: Duration(seconds: EnvironmentConfig.SIP_SUBSCRIPTIONS_REPOSITORY_POLLING_INTERVAL_SECONDS),
         ),
+      if (iceServersRepository is IceServersRepositoryImpl)
+        PollingRegistration(
+          listener: iceServersRepository,
+          interval: Duration(seconds: EnvironmentConfig.ICE_SERVERS_REPOSITORY_POLLING_INTERVAL_SECONDS),
+        ),
     ];
+  }
+
+  ExternalContactsSync _createExternalContactsSync(BuildContext context) {
+    final worker = ExternalContactsSyncWorker(
+      userRepository: context.read<UserRepository>(),
+      externalContactsRepository: context.read<ExternalContactsRepository>(),
+      contactsRepository: context.read<ContactsRepository>(),
+    );
+    return ExternalContactsSync(
+      worker: worker,
+      pollingService: context.read<PollingService>(),
+      interval: Duration(seconds: EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS),
+    );
+  }
+
+  CdrsSync _createCdrsSync(BuildContext context) {
+    final worker = CdrsSyncWorker(context.read<CdrsLocalRepository>(), context.read<CdrsRemoteRepository>());
+    return CdrsSync(
+      worker: worker,
+      pollingService: context.read<PollingService>(),
+      interval: Duration(seconds: EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS),
+    );
   }
 
   /// Builds a list of listeners that should be registered in [ConnectivityLifecycleService].
@@ -120,13 +148,13 @@ class MainShellServices extends StatelessWidget {
   /// - a [Suspendable] listener to be suspended automatically when connectivity is lost.
   ///
   /// Current registrations:
-  /// - [VoicemailRepository]: refreshed when going online, but only if the voicemail feature
-  ///   is enabled in [FeatureAccess.settingsConfig].
+  /// - [VoicemailRepository]: refreshed when going online, but only if voicemail runs for this
+  ///   session ([FeatureAccess.voicemailAvailable]) - whichever placement offers it.
   ///
   /// This method centralizes the connectivity recovery configuration, so changes in
   /// registration logic can be made here without touching the [Provider] or service setup.
   List<ConnectivityRecoveryRegistration> _connectivityRecoveryRegistrations(BuildContext context) {
-    final isVoicemailsEnabled = context.read<FeatureAccess>().settingsConfig.voicemailsEnabled;
+    final isVoicemailsEnabled = context.read<FeatureAccess>().voicemailAvailable;
 
     return [if (isVoicemailsEnabled) ConnectivityRecoveryRegistration.refreshable(context.read<VoicemailRepository>())];
   }

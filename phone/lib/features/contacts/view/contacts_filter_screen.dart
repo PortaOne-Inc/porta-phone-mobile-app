@@ -3,39 +3,48 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/app/constants.dart';
-import 'package:webtrit_phone/l10n/l10n.dart';
+import 'package:webtrit_phone/app/keys.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/widgets/widgets.dart';
 
 import '../../call/call.dart';
+import '../../favorites/favorites.dart';
 import '../contacts.dart';
 
-/// Which rows of the address book the list shows.
-enum ContactsListFilter { all, favorites }
-
-/// The contacts screen of a deployment where favourites are a filter rather
-/// than a section of their own.
+/// The contacts screen of a deployment where favourites live inside the
+/// contacts section rather than in a section of their own.
 ///
-/// The two choices on this screen are not equals, and the layout says so: the
-/// filter is a control of the screen and sits with the others on the title
-/// row, while the address book behind the list is stated on the line below,
-/// where the list's own controls are. Both draw the same lists as the other
-/// contacts screen, through the same search box - the rows, their order and
-/// what they show are the other screen's, not this one's.
+/// Everything the list can be drawn from is stated in one control on the line
+/// under the title: each address book, and the favourites. One control rather
+/// than a chooser plus a switch on the title row, because the question a
+/// person is answering is the same either way - which list do I want - and two
+/// controls asking it invite the combination nobody meant: the favourites of
+/// one address book, under a header still naming that book.
 class ContactsFilterScreen extends StatefulWidget {
   const ContactsFilterScreen({
     super.key,
-    required this.sourceTypes,
+    required this.selections,
     required this.sourceTypeWidgetBuilder,
+    required this.favoritesWidgetBuilder,
     this.title,
     this.style,
   });
 
-  final List<ContactSourceType> sourceTypes;
+  /// What this deployment offers to pick between, in the order it offers it.
+  final List<ContactsListSelection> selections;
 
-  /// Mounts the list of one address book, narrowed to favourites when asked.
-  final Widget Function(BuildContext context, ContactSourceType sourceType, {bool favoritesOnly, bool markFavorites})
+  /// Mounts the list of one address book.
+  final Widget Function(BuildContext context, ContactSourceType sourceType, {bool markFavorites})
   sourceTypeWidgetBuilder;
+
+  /// Mounts the favourites section's own list, rearrangeable when asked.
+  final Widget Function(
+    BuildContext context, {
+    bool reorderMode,
+    void Function(int index)? onReorderStart,
+    void Function(int index)? onReorderEnd,
+  })
+  favoritesWidgetBuilder;
 
   final Widget? title;
   final ContactsScreenStyle? style;
@@ -45,17 +54,71 @@ class ContactsFilterScreen extends StatefulWidget {
 }
 
 class _ContactsFilterScreenState extends State<ContactsFilterScreen> {
-  ContactsListFilter _filter = ContactsListFilter.all;
+  /// Whether the favourites entry is the one picked.
+  ///
+  /// Kept here rather than in [ContactsBloc]: that bloc remembers the address
+  /// book across restarts, and favourites are not one - the star this replaced
+  /// was a choice of the moment too.
+  bool _favorites = false;
+
   bool _searching = false;
 
-  /// The address book actually shown for a remembered choice.
+  final _reorder = FavoritesReorderController();
+
+  @override
+  void dispose() {
+    _reorder.dispose();
+    super.dispose();
+  }
+
+  /// Whether this deployment carries the favourites entry at all.
+  bool get _offersFavorites => widget.selections.any((selection) => selection is ContactsFavoritesSelection);
+
+  /// The address book the list is drawn from, or null where this deployment
+  /// offers none.
   ///
-  /// What was remembered is not always on offer: the choice outlives a change
-  /// of configuration, and it starts out as a default nobody picked. Falling
-  /// back to the first configured one keeps the list and the control saying
-  /// the same thing.
-  ContactSourceType _shown(ContactSourceType remembered) =>
-      widget.sourceTypes.contains(remembered) ? remembered : widget.sourceTypes.first;
+  /// What [ContactsBloc] remembered is not always on offer: the choice
+  /// outlives a change of configuration, and it starts out as a default nobody
+  /// made.
+  ContactSourceType? _shownSource(ContactSourceType remembered) {
+    if (widget.selections.contains(ContactsSourceSelection(remembered))) return remembered;
+
+    // The first address book rather than the first entry: favourites hold only
+    // the people someone has starred, so opening on them when nothing was
+    // chosen would greet a new account with an empty screen.
+    for (final selection in widget.selections) {
+      if (selection is ContactsSourceSelection) return selection.sourceType;
+    }
+    return null;
+  }
+
+  /// The list actually shown.
+  ContactsListSelection _shown(ContactSourceType remembered) {
+    if (_favorites && _offersFavorites) return const ContactsFavoritesSelection();
+
+    final sourceType = _shownSource(remembered);
+    if (sourceType != null) return ContactsSourceSelection(sourceType);
+
+    // Favourites are all that is left. A tab configured with no lists at all
+    // lands here too and shows an empty screen, exactly as the tabbed
+    // arrangement does with no address books.
+    return const ContactsFavoritesSelection();
+  }
+
+  void _onSelected(ContactsListSelection selection) {
+    setState(() {
+      _favorites = selection is ContactsFavoritesSelection;
+      // Rearranging belongs to the favourites list; picking another one ends it
+      // rather than leaving a mode on a list that cannot use it.
+      if (!_favorites) _reorder.stop();
+    });
+
+    // Only an address book is worth remembering, and only when one was picked:
+    // a hop through favourites and back must land on the book left behind.
+    if (selection is ContactsSourceSelection) {
+      context.read<ContactsBloc>().add(ContactsSourceTypeChanged(selection.sourceType));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,84 +146,112 @@ class _ContactsFilterScreenState extends State<ContactsFilterScreen> {
         applyToAppBar: effectiveStyle?.applyToAppBar ?? true,
         appBarTheme: effectiveStyle?.appBarTheme,
         extendBodyBehindAppBar: true,
+        floatingActionButton: _favorites && _offersFavorites
+            ? BlocBuilder<CallBloc, CallState>(
+                buildWhen: (previous, current) => previous.isBlingTransferInitiated != current.isBlingTransferInitiated,
+                // A transfer turns every row into a destination to pick, and
+                // the bar announcing it takes the bottom of the screen.
+                builder: (context, callState) => FavoritesReorderButton(
+                  controller: _reorder,
+                  identifier: contactsFavoritesReorderId,
+                  bottomPadding: mediaQueryData.padding.bottom,
+                  hidden: callState.isBlingTransferInitiated,
+                ),
+              )
+            : null,
         appBar: MainAppBar(
           title: widget.title,
           context: context,
-          actions: [
-            ContactsFavoritesAction(
-              selected: _filter == ContactsListFilter.favorites,
-              onTap: () => setState(
-                () => _filter = _filter == ContactsListFilter.favorites
-                    ? ContactsListFilter.all
-                    : ContactsListFilter.favorites,
-              ),
-            ),
-          ],
           flexibleSpace: BlurredSurface.fromStyle(effectiveStyle?.appBarBlurredSurface),
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(ContactsSearchRow.height),
-            child: ContactsSearchRow(
-              inset: titleInset,
-              // Half the gap above, half below: the row is the whole header
-              // here, and its controls would otherwise sit against the avatar
-              // in the title row above them.
-              gapAbove: kMainAppBarBottomPaddingGap / 2,
-              searching: _searching,
-              onSearchOpened: () => setState(() => _searching = true),
-              onSearchClosed: () => setState(() => _searching = false),
-              // With one address book there is nothing to pick, so the search
-              // box takes the whole line, exactly as on the screen without the
-              // filter.
-              leading: widget.sourceTypes.length <= 1
-                  ? null
-                  : BlocBuilder<ContactsBloc, ContactsState>(
-                      buildWhen: (previous, current) => previous.sourceType != current.sourceType,
-                      builder: (context, state) => ContactsSourcePicker(
-                        sourceTypes: widget.sourceTypes,
-                        selected: _shown(state.sourceType),
-                        onSelected: (sourceType) =>
-                            context.read<ContactsBloc>().add(ContactsSourceTypeChanged(sourceType)),
+            child: BlocBuilder<ContactsBloc, ContactsState>(
+              buildWhen: (previous, current) => previous.sourceType != current.sourceType,
+              builder: (context, state) {
+                final selection = _shown(state.sourceType);
+
+                return ContactsSearchRow(
+                  inset: titleInset,
+                  // Half the gap above, half below: the row is the whole
+                  // header here, and its controls would otherwise sit against
+                  // the avatar in the title row above them.
+                  gapAbove: kMainAppBarBottomPaddingGap / 2,
+                  searching: _searching,
+                  // The favourites section has never offered a search, and a
+                  // box that takes text and changes nothing is worse than none.
+                  searchable: selection is! ContactsFavoritesSelection,
+                  onSearchOpened: () => setState(() => _searching = true),
+                  onSearchClosed: () => setState(() => _searching = false),
+                  // With one list there is nothing to pick, so the search box
+                  // takes the whole line, exactly as on the tabbed screen.
+                  leading: widget.selections.length <= 1
+                      ? null
+                      : ContactsSourcePicker(
+                          selections: widget.selections,
+                          selected: selection,
+                          onSelected: _onSelected,
+                        ),
+                );
+              },
+            ),
+          ),
+        ),
+        // No inset of its own: the body runs behind the bar, and Scaffold
+        // already hands it a MediaQuery whose top padding is the bar plus the
+        // status bar. A list with no padding of its own takes that figure, and
+        // so does the refresh indicator. Computing it here a second time is
+        // what let the two disagree - it read kToolbarHeight where MainAppBar
+        // is built from kMinInteractiveDimension, eight points apart.
+        //
+        // Favourites are not this screen's list narrowed down - they are the
+        // favourites section's own list, drawn by the widget that section
+        // draws it with. Deriving them a second time from the contacts table
+        // is what made two answers to one question, and they disagree the
+        // moment either side changes.
+        //
+        // Both are kept alive and only one is shown, because each is watched
+        // by a bloc of its own: swapped in and out instead, every tap of the
+        // control would tear a list down, build the other from nothing and
+        // flash a spinner where a list already stood.
+        body: BlocBuilder<ContactsBloc, ContactsState>(
+          buildWhen: (previous, current) => previous.sourceType != current.sourceType,
+          builder: (context, state) {
+            // A tab can be configured with nothing to show at all.
+            if (widget.selections.isEmpty) return const SizedBox.shrink();
+
+            final shown = _shown(state.sourceType);
+
+            // A slot per list, not one per kind of list. Sharing a slot
+            // between the address books tears one down and builds the other
+            // from nothing whenever someone changes book: a spinner where a
+            // list already stood, and the place they had in it lost.
+            return IndexedStack(
+              index: widget.selections.indexOf(shown).clamp(0, widget.selections.length - 1),
+              sizing: StackFit.expand,
+              children: [
+                for (final selection in widget.selections)
+                  switch (selection) {
+                    ContactsSourceSelection(:final sourceType) => widget.sourceTypeWidgetBuilder(
+                      context,
+                      sourceType,
+                      markFavorites: true,
+                    ),
+                    // Listened to here as well as by the button: the two sit
+                    // in different parts of the tree, and a button that
+                    // changes its icon while the rows stay put is the whole
+                    // thing not working.
+                    ContactsFavoritesSelection() => ListenableBuilder(
+                      listenable: _reorder,
+                      builder: (context, _) => widget.favoritesWidgetBuilder(
+                        context,
+                        reorderMode: _reorder.active,
+                        onReorderStart: _reorder.dragStarted,
+                        onReorderEnd: _reorder.dragEnded,
                       ),
                     ),
-            ),
-          ),
-        ),
-        body: MediaQuery(
-          data: mediaQueryData.copyWith(
-            padding: mediaQueryData.padding.copyWith(
-              top: mediaQueryData.padding.top + kToolbarHeight + ContactsSearchRow.height,
-            ),
-          ),
-          child: BlocBuilder<ContactsBloc, ContactsState>(
-            buildWhen: (previous, current) => previous.sourceType != current.sourceType,
-            // Keyed by the address book alone. Its list is fetched and watched
-            // per address book, so a different one is a different list; the
-            // filter only decides how much of the same list is shown, and
-            // keying on it as well would refetch and flash a spinner on every
-            // tap of the control.
-            builder: (context, state) {
-              final sourceType = _shown(state.sourceType);
-
-              return KeyedSubtree(
-                key: ValueKey(sourceType),
-                child: widget.sourceTypeWidgetBuilder(
-                  context,
-                  sourceType,
-                  favoritesOnly: _filter == ContactsListFilter.favorites,
-                  markFavorites: true,
-                ),
-              );
-            },
-          ),
-        ),
-        bottomNavigationBar: BlocBuilder<CallBloc, CallState>(
-          buildWhen: (previous, current) => previous.isBlingTransferInitiated != current.isBlingTransferInitiated,
-          builder: (context, callState) {
-            if (callState.isBlingTransferInitiated) {
-              return TransferBottomNavigationBar(context.l10n.contacts_Text_blingTransferInitiated);
-            } else {
-              return const SizedBox.shrink();
-            }
+                  },
+              ],
+            );
           },
         ),
       ),

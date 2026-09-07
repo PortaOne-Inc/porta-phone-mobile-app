@@ -387,6 +387,8 @@
   "@cdrs_noMissedCalls_message": {},
   "cdrs_noRecentCalls_message": "Nessuna chiamata recente",
   "@cdrs_noRecentCalls_message": {},
+  "cdrs_refreshFailed_message": "Impossibile aggiornare la cronologia chiamate - riprova",
+  "@cdrs_refreshFailed_message": {},
   "common_SemanticsLabel_loading": "Caricamento",
   "@common_SemanticsLabel_loading": {
     "description": "Accessibility name announced while a screen waits for a request to finish."
@@ -446,8 +448,6 @@
   },
   "contacts_ContactsScreen_emptyFavorites": "Non ci sono ancora preferiti tra i tuoi contatti.\nAggiungine uno dalla scheda del contatto con la stella",
   "@contacts_ContactsScreen_emptyFavorites": {},
-  "contacts_ContactsScreen_filterFavorites": "Preferiti",
-  "@contacts_ContactsScreen_filterFavorites": {},
   "contacts_ContactsScreen_searchSemanticsLabel": "Cerca contatti",
   "@contacts_ContactsScreen_searchSemanticsLabel": {},
   "contacts_ContactsScreen_sourceSemanticsLabel": "Origine dei contatti",
@@ -462,6 +462,8 @@
   "@contacts_agreement_title": {},
   "contacts_ExternalTabButton_refresh": "Aggiorna",
   "@contacts_ExternalTabButton_refresh": {},
+  "contacts_ExternalTabSnackBar_requestFailed": "Impossibile raggiungere il server - riprova",
+  "@contacts_ExternalTabSnackBar_requestFailed": {},
   "contacts_ExternalTabText_empty": "Nessun contatto",
   "@contacts_ExternalTabText_empty": {},
   "contacts_ExternalTabText_emptyOnSearching": "Nessun contatto trovato",
@@ -490,12 +492,12 @@
   "@contacts_LocalTabText_permissionFailure": {
     "description": "Shown when the app cannot access local phone contacts because the user has not granted the required permission (e.g. Contacts permission denied in system settings)."
   },
+  "contactsSourceFavorites": "Preferiti",
+  "@contactsSourceFavorites": {},
   "contactsSourceExternal": "Centralino cloud",
   "@contactsSourceExternal": {},
   "contactsSourceLocal": "Il tuo telefono",
   "@contactsSourceLocal": {},
-  "contacts_Text_blingTransferInitiated": "Trasferimento senza vedere",
-  "@contacts_Text_blingTransferInitiated": {},
   "contacts_DialogsInfoView_title": "Informazioni chiamate (BLF):",
   "@contacts_DialogsInfoView_title": {},
   "contacts_ContactTile_inCall": "In chiamata: {destination}",
@@ -861,8 +863,6 @@
       }
     }
   },
-  "favorites_Text_blingTransferInitiated": "Trasferimento senza vedere",
-  "@favorites_Text_blingTransferInitiated": {},
   "formatPhone": "{style, select, full{{main} (int.: {ext})} simple{{main}} only_ext{int.: {ext}} empty{Numero di telefono non specificato} other{{main}}}",
   "@formatPhone": {
     "description": "Formats phone number based on presence of main number and extension, covering four scenarios: both, main only, extension only, and neither.",
@@ -1170,6 +1170,8 @@
   "@logRecordsConsole_PopupMenuItem_clear": {},
   "main_BottomNavigationBarItemLabel_chats": "Le chat",
   "@main_BottomNavigationBarItemLabel_chats": {},
+  "main_Text_blindTransferInitiated": "Trasferimento senza vedere",
+  "@main_Text_blindTransferInitiated": {},
   "main_BottomNavigationBarItemLabel_contacts": "Contatti",
   "@main_BottomNavigationBarItemLabel_contacts": {},
   "main_BottomNavigationBarItemLabel_favorites": "Favoriti",
@@ -1178,6 +1180,8 @@
   "@main_BottomNavigationBarItemLabel_keypad": {},
   "main_BottomNavigationBarItemLabel_recents": "Recenti",
   "@main_BottomNavigationBarItemLabel_recents": {},
+  "main_BottomNavigationBarItemLabel_voicemail": "Segreteria",
+  "@main_BottomNavigationBarItemLabel_voicemail": {},
   "main_CompatibilityIssueDialogActions_logout": "Esci",
   "@main_CompatibilityIssueDialogActions_logout": {},
   "main_CompatibilityIssueDialogActions_update": "Aggiornamento",
@@ -1821,8 +1825,6 @@
       }
     }
   },
-  "recents_Text_blingTransferInitiated": "Trasferimento senza vedere",
-  "@recents_Text_blingTransferInitiated": {},
   "recentsVisibilityFilter_all": "Tutto",
   "@recentsVisibilityFilter_all": {},
   "recentsVisibilityFilter_all_preposit": "tutto",
