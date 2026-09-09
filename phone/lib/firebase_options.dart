@@ -16,7 +16,11 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      // Firebase is not wired up on the web - messaging is skipped there, and
+      // the options that used to sit here named a different project from the
+      // one the shipped app uses. Refusing says that; a set of constants
+      // nothing initialises reads as configuration that works.
+      throw UnsupportedError('DefaultFirebaseOptions are not configured for the web.');
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -42,16 +46,6 @@ class DefaultFirebaseOptions {
         throw UnsupportedError('DefaultFirebaseOptions are not supported for this platform.');
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDe8pkZdFusbdWZqWQlv533x-welRG1pOw',
-    appId: '1:973049735976:web:8cd789c0e89ea49b547e1d',
-    messagingSenderId: '973049735976',
-    projectId: 'webtrit-app',
-    authDomain: 'webtrit-app.firebaseapp.com',
-    storageBucket: 'webtrit-app.appspot.com',
-    measurementId: 'G-NNFJ03JQDH',
-  );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBiHZTx8_6-kdgVXwKoIxgfPAXL7ug6tVQ',
