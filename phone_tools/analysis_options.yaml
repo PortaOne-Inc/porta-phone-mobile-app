@@ -3,3 +3,8 @@ include: package:webtrit_analysis/analysis_options.yaml
 analyzer:
   exclude:
     - lib/src/gen/**
+
+# Declared here, like every other package in this repository: the shared rules
+# in the analysis package carry lints, not a page width.
+formatter:
+  page_width: 120
