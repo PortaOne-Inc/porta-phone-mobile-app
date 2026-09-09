@@ -55,8 +55,8 @@ lefthook run pre-push
 The subject check also runs on its own, over any range:
 
 ```bash
-bash tool/scripts/commit-subject-check.sh              # what this push would publish
-bash tool/scripts/commit-subject-check.sh origin/master..HEAD
+bash scripts/commit-subject-check.sh              # what this push would publish
+bash scripts/commit-subject-check.sh origin/master..HEAD
 ```
 
 ### Example Output

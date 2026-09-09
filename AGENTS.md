@@ -8,7 +8,7 @@ own until the move to Gerrit, and each keeps the instructions it came with.
 |---------------|---------------------------------------------------------|------------------------------------------|
 | `phone/`      | The Flutter application                                  | [phone/AGENTS.md](phone/AGENTS.md)       |
 | `callkeep/`   | The call plugin: platform interface, Android, iOS        | [callkeep/AGENTS.md](callkeep/AGENTS.md) |
-| `phone_tools/`| The CLI that configures and builds a brand               | [phone_tools/AGENTS.md](phone_tools/AGENTS.md) |
+| `tools/`      | The CLI that configures and builds a brand               | [tools/AGENTS.md](tools/AGENTS.md)       |
 | `analysis/`   | The lint rules the other three include                   | `analysis/README.md`                     |
 
 Work inside the package a change belongs to. Its instructions load when you read

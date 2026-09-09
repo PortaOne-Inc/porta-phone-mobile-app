@@ -12,6 +12,7 @@
       "Bash(melos *)",
       "Bash(very_good *)",
       "Bash(lefthook *)",
+      "Bash(bash scripts/*)",
       "Bash(bash tool/scripts/*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
