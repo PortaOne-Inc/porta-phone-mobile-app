@@ -1,0 +1,121 @@
+# The repository keeps one lefthook config, because lefthook reads only the one at
+# the root. The three this replaces sat in phone/, callkeep/ and phone_tools/,
+# which were roots of repositories of their own before the subtree merge. Nothing
+# has read them since, so none of the rules they carried were being enforced.
+#
+# There is deliberately no commit-msg section. That hook is Gerrit's - it is what
+# writes the Change-Id trailer - and `lefthook install` moves any hook it claims
+# aside as <hook>.old without ever calling it. Claiming commit-msg here would stop
+# Change-Id being written and Gerrit would refuse every push. The commit subject is
+# checked at pre-push instead, where the whole series is visible and a bad one can
+# still be amended.
+#
+# Every scoped command names its directory twice, and both are needed: `root` sets
+# the working directory, `glob` decides whether the command runs at all. `root`
+# alone does not filter by directory - it changes the working directory and strips
+# the prefix, so a command scoped by `root` alone runs on another package's files.
+
+pre-commit:
+  parallel: true
+  commands:
+    phone-format:
+      root: phone/
+      glob: "phone/**/*.dart"
+      exclude: ["*.g.dart", "*.freezed.dart", "*.gr.dart"]
+      run: dart format --output=none --set-exit-if-changed {staged_files}
+
+    tools-format:
+      root: phone_tools/
+      glob: "phone_tools/**/*.dart"
+      exclude: ["*.g.dart", "*.freezed.dart", "*.gr.dart"]
+      run: dart format --output=none --set-exit-if-changed {staged_files}
+
+    analysis-format:
+      root: analysis/
+      glob: "analysis/**/*.dart"
+      run: dart format --output=none --set-exit-if-changed {staged_files}
+
+    callkeep-format:
+      root: callkeep/
+      glob: "callkeep/**/*.dart"
+      exclude: ["*.g.dart", "*.freezed.dart", "*.gr.dart", "*.pigeon.dart"]
+      run: dart format --line-length 120 {staged_files}
+      stage_fixed: true
+
+    callkeep-kotlin:
+      root: callkeep/
+      glob: "callkeep/**/*.kt"
+      exclude: ["Generated.kt"]
+      run: ktlint --format {staged_files}
+      stage_fixed: true
+
+    callkeep-markdown:
+      root: callkeep/
+      glob: "callkeep/**/*.md"
+      run: markdownlint-cli2 {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    commit-subjects:
+      run: bash tool/scripts/commit-subject-check.sh
+
+    phone-semantics:
+      root: phone/
+      glob: "phone/**"
+      run: bash tool/scripts/semantics-gate.sh
+
+    phone-l10n:
+      root: phone/
+      glob: "phone/**"
+      run: dart tool/check_l10n.dart
+
+    phone-analyze:
+      root: phone/
+      glob: "phone/**"
+      run: flutter analyze
+
+    phone-test:
+      root: phone/
+      glob: "phone/**"
+      run: flutter test
+
+    tools-analyze:
+      root: phone_tools/
+      glob: "phone_tools/**"
+      run: dart analyze
+
+    tools-test:
+      root: phone_tools/
+      glob: "phone_tools/**"
+      run: dart test
+
+    callkeep-analyze:
+      root: callkeep/
+      glob: "callkeep/**"
+      run: |
+        for dir in webtrit_callkeep webtrit_callkeep_platform_interface webtrit_callkeep_android webtrit_callkeep_ios; do
+          if [ -d "$dir" ]; then
+            echo "Analyzing $dir..."
+            (cd "$dir" && flutter analyze) || exit 1
+          fi
+        done
+
+    callkeep-test:
+      root: callkeep/
+      glob: "callkeep/**"
+      run: (cd webtrit_callkeep_android && flutter test test/)
+
+    callkeep-android-test:
+      root: callkeep/
+      glob: "callkeep/**"
+      # The module resolves the Flutter SDK through a local.properties that is not
+      # in the repository; CI writes one before running this. Without it the build
+      # fails on io.flutter being unresolvable, which says nothing about the change
+      # being pushed - so say what is missing and let the push through.
+      run: |
+        if [ ! -f webtrit_callkeep_android/android/local.properties ]; then
+          echo "skipped: write webtrit_callkeep_android/android/local.properties with flutter.sdk=<path> to run these"
+          exit 0
+        fi
+        (cd webtrit_callkeep_android/android && ./gradlew testDebugUnitTest)

@@ -2,43 +2,39 @@
 
 ## Git Hooks
 
-We use [Lefthook](https://github.com/evilmartians/lefthook) to manage Git hooks for this project.
+We use [Lefthook](https://github.com/evilmartians/lefthook) to manage Git hooks.
 
-### What Are Git Hooks?
+The config lives at the **root of the repository**, one level above this package. Lefthook reads
+only that one - the per-package configs this repository used to carry stopped being read when the
+packages became subtrees, and the rules in them went unenforced until they were removed.
 
-Git hooks are scripts that run automatically at certain points in your Git workflow. They're used in
-this project to:
+### What the hooks do
 
-- Enforce [Conventional Commits](https://www.conventionalcommits.org/)
-- Check branch naming conventions (e.g., `feature/`, `feat/`, `fix/`)
-- Run `dart format` before committing
-- Run `flutter analyze` and unit/widget tests before pushing
+| Hook         | Purpose                                                                                     |
+|--------------|---------------------------------------------------------------------------------------------|
+| `pre-commit` | `dart format` on staged Dart files (generated files excluded); `ktlint` and `markdownlint` for callkeep |
+| `pre-push`   | Commit subjects, then `flutter analyze`, `flutter test`, `check_l10n.dart` and the semantics gate for whichever packages the push touches |
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) for branch naming and commit message rules.
+Each command is scoped to its package, so a push that only touches `phone/` does not run callkeep's
+Gradle tests.
+
+### commit-msg belongs to Gerrit
+
+There is no lefthook `commit-msg` section, and adding one would break pushing. `lefthook install`
+moves aside any hook it claims - as `<hook>.old` - and never calls it. In this repository that hook
+is Gerrit's, the one that writes the `Change-Id` trailer, and a commit without `Change-Id` is
+refused on push. The commit subject is therefore checked at `pre-push`, where the whole series is
+visible and a bad subject can still be amended.
 
 ### Installation
 
-Install [Lefthook](https://github.com/evilmartians/lefthook):
-
 ```bash
 brew install lefthook
+lefthook install          # from the repository root
 ```
 
-Install Git hooks for this repo:
-
-```bash
-lefthook install
-```
-
-### Hook Overview
-
-| Hook         | Purpose                                                                                      |
-|--------------|----------------------------------------------------------------------------------------------|
-| `pre-commit` | Runs `dart format` on staged Dart files (generated files excluded)                           |
-| `pre-push`   | Runs `flutter analyze`, `flutter test`, `dart tool/check_l10n.dart`, and checks branch name |
-| `commit-msg` | Validates commit messages using [Conventional Commits](https://www.conventionalcommits.org/) |
-
-The hook logic is defined in `lefthook.yml` and shell scripts under `tool/scripts/`.
+If `.git/hooks/commit-msg` is missing or is not Gerrit's, restore it with `setup-devel-tools.sh`
+as described in [Code Review](https://wiki.portaone.com/pages/viewpage.action?pageId=3867971).
 
 ### Skipping Hooks
 
@@ -46,32 +42,33 @@ To bypass hooks temporarily (not recommended):
 
 ```bash
 git commit --no-verify
+git push --no-verify
 ```
 
 ### Manual Execution
 
-To run hooks manually:
-
 ```bash
 lefthook run pre-commit
-lefthook run commit-msg
 lefthook run pre-push
 ```
 
-Or run specific scripts directly:
+The subject check also runs on its own, over any range:
 
 ```bash
-bash tool/scripts/branch-name-check.sh
-bash tool/scripts/commit-msg-check.sh
+bash tool/scripts/commit-subject-check.sh              # what this push would publish
+bash tool/scripts/commit-subject-check.sh origin/master..HEAD
 ```
 
 ### Example Output
 
 ```
-╭───────────────────────────────────────╮
-│ 🥊 lefthook v1.12.2  hook: commit-msg │
-╰───────────────────────────────────────╯
-✅ Commit message OK.
+9b5f4eaa7 fix: route external contacts through the shared polling task (WT-1760)
+  - the ticket id has to come first, as in 'WT-1234 Add the thing'
+  - the subject is 78 characters; 50 is the limit
+  - conventional-commits types are not used here; lead with the ticket id
+  - no Change-Id trailer - install Gerrit's commit-msg hook, then amend
+
+Fix with 'git commit --amend' (or 'git rebase -i' for an earlier commit).
 ```
 
 ## Claude Code Settings
