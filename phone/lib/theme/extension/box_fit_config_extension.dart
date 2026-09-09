@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 
 extension BoxFitConfigExtension on BoxFitConfig {
   BoxFit? get boxFit {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 import 'package:webtrit_phone/theme/factory/styles/action_pad_style_factory.dart';
 
 /// What the three buttons under the dial pad look like when the theme sets none

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/features/call/call.dart';
 import 'package:webtrit_phone/models/models.dart';

@@ -16,7 +16,7 @@ import 'package:async/async.dart';
 
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
 import 'package:webtrit_phone/mappers/signaling/signaling.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/app/notifications/notifications.dart';
@@ -25,7 +25,7 @@ import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 import 'package:webtrit_phone/services/services.dart';
 import 'package:webtrit_phone/utils/utils.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import '../extensions/extensions.dart';
 import '../models/models.dart';

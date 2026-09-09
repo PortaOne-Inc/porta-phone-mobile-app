@@ -1,4 +1,4 @@
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 
 /// Field-wise cascade of app bar configurations: a page-level override on top
 /// of the global bar config. Every field the page leaves unset falls through

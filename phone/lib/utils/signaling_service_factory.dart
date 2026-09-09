@@ -1,4 +1,4 @@
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart'
+import 'package:signaling_service/signaling_service.dart'
     show SignalingModule, SignalingServiceConfig, SignalingServiceMode, WebtritSignalingService;
 
 import 'package:webtrit_phone/app/constants.dart';

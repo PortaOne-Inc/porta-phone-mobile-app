@@ -1,4 +1,4 @@
-import 'package:webtrit_api/webtrit_api.dart' show WebtritApiClient, UnauthorizedException;
+import 'package:api/api.dart' show WebtritApiClient, UnauthorizedException;
 
 import 'package:webtrit_phone/mappers/api/system_notification_mapper.dart';
 import 'package:webtrit_phone/models/system_notification.dart';

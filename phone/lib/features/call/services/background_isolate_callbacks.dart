@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:logging/logging.dart';
 
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling/signaling.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import 'package:webtrit_phone/common/common.dart';
 import 'package:webtrit_phone/l10n/app_localizations.g.dart';
@@ -12,7 +12,7 @@ import 'package:webtrit_phone/push_notification/push_notifications.dart';
 
 import 'isolate_manager.dart';
 
-export 'package:webtrit_signaling_service/webtrit_signaling_service.dart'
+export 'package:signaling_service/signaling_service.dart'
     show
         SignalingModule,
         SignalingModuleEvent,

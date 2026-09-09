@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_appearance_theme/webtrit_appearance_theme.dart';
+import 'package:theme_schema/theme_schema.dart';
 
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/data/data.dart';

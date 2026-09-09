@@ -1,7 +1,7 @@
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/models/models.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 class SignalingPresenceSettingsMapper {
   static SignalingPresenceSettings toSignaling(PresenceSettings data) {

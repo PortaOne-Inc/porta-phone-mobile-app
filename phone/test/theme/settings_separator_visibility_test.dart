@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 import 'package:webtrit_phone/theme/factory/styles/settings_screen_style_factory.dart';
 
 /// Whether the settings list draws separators.

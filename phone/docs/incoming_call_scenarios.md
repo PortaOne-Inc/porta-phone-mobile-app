@@ -10,7 +10,7 @@ GitHub renders the `mermaid` blocks below.
 Colour legend:
 
 - blue — `webtrit_callkeep`
-- green — `webtrit_signaling_service`
+- green — `signaling_service`
 - orange — `webtrit_phone` (app code, incl. app callbacks running on a callkeep / FGS engine)
 - grey — external (FCM, signaling server / WebSocket, Android Telecom / system UI)
 

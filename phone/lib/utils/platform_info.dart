@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 class PlatformInfo {
   static bool get isWeb => kIsWeb;

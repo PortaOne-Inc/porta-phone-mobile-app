@@ -8,7 +8,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart' show MockPlatformInterfaceMixin;
 
 // ignore: depend_on_referenced_packages
-import 'package:webtrit_signaling_service_platform_interface/webtrit_signaling_service_platform_interface.dart'
+import 'package:signaling_service_platform_interface/signaling_service_platform_interface.dart'
     show SignalingServicePlatform;
 
 import 'package:webtrit_phone/blocs/app/app_bloc.dart';

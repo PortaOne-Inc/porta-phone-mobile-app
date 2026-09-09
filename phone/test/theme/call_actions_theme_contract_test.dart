@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 
 /// Guards the shape of the call-action part of a theme file.
 ///

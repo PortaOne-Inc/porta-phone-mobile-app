@@ -3,13 +3,13 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/features/call/extensions/extensions.dart';
 import 'package:webtrit_phone/features/messaging/messaging.dart';
 import 'package:webtrit_phone/models/models.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import 'l10n.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';
 
 /// What a button falls back to for a color the theme leaves empty.

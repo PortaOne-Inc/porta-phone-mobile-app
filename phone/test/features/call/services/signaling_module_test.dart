@@ -3,9 +3,9 @@ import 'dart:collection';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ssl_certificates/ssl_certificates.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import 'package:webtrit_phone/app/constants.dart';
 

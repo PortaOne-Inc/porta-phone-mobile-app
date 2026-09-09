@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mocktail/mocktail.dart';
 
-import 'package:webtrit_api/webtrit_api.dart' hide Balance, Numbers, UserInfo;
+import 'package:api/api.dart' hide Balance, Numbers, UserInfo;
 
 import 'package:webtrit_phone/app/session/session.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:clock/clock.dart';
 import 'package:logging/logging.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/common/common.dart';
 import 'package:webtrit_phone/mappers/mappers.dart';
