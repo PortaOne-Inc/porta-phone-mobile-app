@@ -2,68 +2,56 @@
 
 ## Branch Naming
 
-Branches must follow the pattern `<type>/<description>`, where `<description>` uses kebab-case.
-
-**Accepted prefixes:**
-
-| Prefix                | When to use                               |
-|-----------------------|-------------------------------------------|
-| `feature/` or `feat/` | New feature or enhancement                |
-| `fix/`                | Bug fix                                   |
-| `refactor/`           | Code refactoring without behaviour change |
-| `chore/`              | Maintenance, dependency updates, tooling  |
-| `docs/`               | Documentation only                        |
-| `style/`              | Code style / formatting changes           |
-| `build/`              | Build system or CI changes                |
-| `release/`            | Release preparation                       |
-
-> Both `feature/` and `feat/` are accepted as equivalent aliases for feature branches.
-
-Examples:
+Under Gerrit a local branch never reaches the server - a push goes to `refs/for/master` - so the
+name is yours alone. Name it after the ticket, so the work is findable in a list of forty:
 
 ```
-feature/add-login-form
-feat/add-login-form
-fix/null-pointer-crash
-release/1.2.0
+WT-1234-drop-the-web-firebase-options
 ```
 
 ## Commit Messages
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+The form is the department's, and it is the same in every PortaOne repository:
+[commit message rules](https://wiki.portaone.com/pages/viewpage.action?pageId=302270444).
 
 ```
-<type>[(scope)]: <lowercase description>
+WT-1234 Capitalised summary, 50 characters or fewer
+
+Why the change was needed: how things worked before and what was wrong with
+that, how they work now, and why it was solved this way. Wrapped at 72
+characters.
+
+Change-Id: I9f2c1a...
 ```
 
-Accepted types: `feat`, `fix`, `chore`, `refactor`, `test`, `docs`, `style`, `ci`, `perf`, `build`,
-`revert`.
-
-- Description must start with a **lowercase** letter.
-- No Cyrillic characters anywhere in commit messages.
-
-Examples:
-
-```
-feat: add biometric login
-fix(api): handle null response from signaling
-chore: upgrade flutter to 3.32.4
-```
+- The ticket id comes first, then a capitalised summary. No conventional-commits type.
+- The test for a subject: after removing the ticket id and lowering the first letter,
+  "If applied, this commit will *<subject>*" has to read as English.
+- 50 characters or fewer, and no full stop at the end.
+- The body explains **why**, not how - the code says how. Wrapped at 72.
+- `Change-Id` is written by Gerrit's own `commit-msg` hook, installed by `setup-devel-tools.sh`.
+  A commit without one is refused on push.
+- No Cyrillic anywhere in the message, and no AI attribution.
+- One change is one commit. Corrections go in with `git commit --amend`, which Gerrit records as a
+  new patchset of the same change rather than as a second commit.
 
 ## Git Hooks
 
-Hooks are managed with [Lefthook](https://github.com/evilmartians/lefthook).
+Hooks are managed with [Lefthook](https://github.com/evilmartians/lefthook), configured once at the
+root of the repository.
 
 ```bash
 brew install lefthook
 lefthook install
 ```
 
-Hooks run automatically:
+- **pre-commit** - `dart format` on staged Dart files, `ktlint` and `markdownlint` on callkeep's
+- **pre-push** - the commit subjects above, plus analyze, tests, l10n and the semantics gate for
+  whichever packages the push touches
 
-- **pre-commit** — `dart format` on staged Dart files (generated files excluded)
-- **commit-msg** — validates commit message format
-- **pre-push** — validates branch name, runs `flutter analyze` and `flutter test`
+`commit-msg` is **not** ours: it belongs to Gerrit. `lefthook install` moves aside any hook it
+claims without calling it, so a lefthook `commit-msg` section would silently stop `Change-Id` being
+written and every push would be refused. That is why the subject is checked at pre-push.
 
 For installation details, manual execution, and troubleshooting see [docs/development.md](docs/development.md).
 
