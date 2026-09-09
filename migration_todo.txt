@@ -1,5 +1,4 @@
 rename webtrit* packages and references after developers migration to new git
-move .claude .agents and other shared folders to repo level
 add new app CD trigger api to configurator after migration to jenkins
 change webrtc and flutter_contacts references after migration to new git
 remove folders prefix phone_* as not needed anymore

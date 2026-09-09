@@ -3,11 +3,16 @@
     "allow": [
       "Bash(flutter test:*)",
       "Bash(flutter analyze:*)",
-      "Bash(dart format:*)",
-      "Bash(dart fix:*)",
       "Bash(flutter pub get:*)",
       "Bash(flutter gen-l10n:*)",
+      "Bash(dart format:*)",
+      "Bash(dart fix:*)",
+      "Bash(dart analyze:*)",
+      "Bash(dart test:*)",
       "Bash(melos *)",
+      "Bash(very_good *)",
+      "Bash(lefthook *)",
+      "Bash(bash tool/scripts/*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -26,6 +31,7 @@
       "Bash(**/.env*)",
       "Read(**/.env*)",
       "Write(**/.env*)",
+      "Edit(**/.env*)",
       "Read(**/*.jks)",
       "Read(**/*.keystore)",
       "Read(**/*.p12)",
@@ -47,23 +53,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/md_formatter.sh\""
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
             "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/dart_formatter.sh\"",
             "timeout": 30
-          }
-        ]
-      },
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [
+          },
+          {
+            "type": "command",
+            "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/md_formatter.sh\""
+          },
           {
             "type": "command",
             "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/newline_enforcer.sh\""
@@ -73,20 +69,11 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash|Run",
+        "matcher": "Bash|Run|Read|View|Edit|Write|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/env_file_guard.sh\""
-          }
-        ]
-      },
-      {
-        "matcher": "Read|View|Edit|Write|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/env_file_guard.sh\""
+            "command": "ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0; bash \"$ROOT/.claude/hooks/secrets_guard.sh\""
           }
         ]
       }
