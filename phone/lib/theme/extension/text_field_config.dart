@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/common/common.dart';
+import 'package:theme_schema/models/common/common.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';
 import 'package:webtrit_phone/theme/styles/styles.dart';
 

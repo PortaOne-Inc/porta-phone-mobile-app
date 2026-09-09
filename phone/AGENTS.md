@@ -87,10 +87,10 @@ Full guide, wrapper choice and the traps: [`docs/accessibility.md`](docs/accessi
 ```
 lib/        → app (features/, theme/, repositories/, models/, blocs/, l10n/)
 packages/   → shared libs (must NOT import from lib/)
-  webtrit_appearance_theme/  pure Dart theme DTOs
+  theme_schema/  pure Dart theme DTOs
   data/app_database/         Drift DB + DAOs
-  webtrit_api/               REST client
-  webtrit_signaling/         WebSocket signaling
+  api/               REST client
+  signaling/         WebSocket signaling
   webtrit_callkeep/          native call UI (external repo)
 ```
 

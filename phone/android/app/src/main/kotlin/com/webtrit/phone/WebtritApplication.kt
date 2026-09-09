@@ -5,7 +5,7 @@ import com.webtrit.callkeep.WebtritCallkeep
 import com.webtrit.signaling_service.SignalingForegroundService
 
 /// App-level seam that wires together two independent Flutter plugins:
-/// [webtrit_signaling_service_android] and [webtrit_callkeep_android].
+/// [signaling_service_android] and [webtrit_callkeep_android].
 ///
 /// The signaling foreground-service engine is created with `automaticallyRegisterPlugins = false`
 /// so that audio/WebRTC plugins do not initialize on a background engine. As a consequence

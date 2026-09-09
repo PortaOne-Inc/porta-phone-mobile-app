@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/theme_page_config.dart';
+import 'package:theme_schema/models/theme_page_config.dart';
 import 'package:webtrit_phone/features/cdrs/features/number_cdrs_log/view/number_cdrs_screen_style.dart';
 import 'package:webtrit_phone/features/cdrs/features/number_cdrs_log/view/number_cdrs_screen_styles.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';

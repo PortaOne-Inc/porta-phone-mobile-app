@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_schema/json_schema.dart';
-import 'package:webtrit_appearance_theme/webtrit_appearance_theme.dart';
+import 'package:theme_schema/theme_schema.dart';
 
 /// Every theme document the app ships validates against the published schema.
 ///

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/extensions/extensions.dart';
 

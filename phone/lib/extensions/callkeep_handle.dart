@@ -1,5 +1,5 @@
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_phone_number/webtrit_phone_number.dart';
+import 'package:phone_number/phone_number.dart';
 
 extension CallkeepHandleExtension on CallkeepHandle {
   String normalizedValue() {

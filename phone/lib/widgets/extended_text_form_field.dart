@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:webtrit_phone_number/webtrit_phone_number.dart';
+import 'package:phone_number/phone_number.dart';
 
 class ExtendedTextFormField extends StatelessWidget {
   const ExtendedTextFormField({

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/l10n/app_localizations.g.mapper.dart';

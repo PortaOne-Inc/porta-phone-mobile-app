@@ -1,4 +1,4 @@
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 abstract class ContactsRemoteDataSource {
   Future<List<UserContact>> getContacts();

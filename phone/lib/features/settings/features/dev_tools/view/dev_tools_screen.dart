@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_route/auto_route.dart';
 
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart' show WebtritSignalingService;
+import 'package:signaling_service/signaling_service.dart' show WebtritSignalingService;
 
 import 'package:webtrit_phone/features/settings/widgets/widgets.dart';
 import 'package:webtrit_phone/l10n/l10n.dart';

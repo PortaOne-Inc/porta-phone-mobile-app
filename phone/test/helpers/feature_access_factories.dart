@@ -1,6 +1,6 @@
 import 'package:mocktail/mocktail.dart';
 import 'package:pub_semver/pub_semver.dart';
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/models/models.dart';

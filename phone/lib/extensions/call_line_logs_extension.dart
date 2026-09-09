@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 // TODO: Add unit tests
 extension CallLineLogsExtension on Iterable<Line?> {

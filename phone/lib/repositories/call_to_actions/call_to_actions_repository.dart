@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/app/session/session.dart';

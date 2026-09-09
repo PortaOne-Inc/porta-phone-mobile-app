@@ -150,7 +150,7 @@ The presence badge style flows through the standard theme pipeline:
   `busyColor`, `iconColor`) and
   `registeredBadge` (`sizeFactor`, `registeredColor`, `unregisteredColor`);
 - parsed by `PresenceBadgeStyleConfig` in
-  `packages/webtrit_appearance_theme/lib/models/common/leading_avatar_style_config.dart`;
+  `packages/theme_schema/lib/models/common/leading_avatar_style_config.dart`;
 - mapped in `lib/theme/factory/styles/leading_avatar_style_factory.dart`
   into `PresenceBadgeStyle` (`lib/theme/styles/presence_badge_style.dart`).
 

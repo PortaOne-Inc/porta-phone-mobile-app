@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:intl/intl.dart';
-import 'package:webtrit_api/webtrit_api.dart' show AppType;
+import 'package:api/api.dart' show AppType;
 
 import 'package:webtrit_phone/features/settings/features/sessions/widgets/session_tile.dart';
 import 'package:webtrit_phone/l10n/app_localizations.g.dart';

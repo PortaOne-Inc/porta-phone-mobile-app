@@ -1,6 +1,6 @@
 import 'package:webtrit_phone/models/models.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 class SignalingDialogInfoMapper {
   static DialogInfo fromSignaling(SignalingDialogInfo data) {

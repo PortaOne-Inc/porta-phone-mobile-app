@@ -4,7 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart' as ws;
+import 'package:signaling/signaling.dart' as ws;
 
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/features/call/call.dart';

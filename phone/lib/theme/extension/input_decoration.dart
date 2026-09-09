@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';
 
 /// The default font size for auxiliary text, such as helper and error messages.

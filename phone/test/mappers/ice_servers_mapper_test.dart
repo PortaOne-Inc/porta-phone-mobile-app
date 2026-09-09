@@ -1,7 +1,7 @@
 import 'package:clock/clock.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_api/webtrit_api.dart' as api;
+import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/mappers/mappers.dart';
 

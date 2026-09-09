@@ -62,7 +62,7 @@ Login, contacts, and audio+video calls (WebRTC + signaling over `wss`).
 
 ## Architecture notes
 
-- Signaling: federated `webtrit_signaling_service_web` package runs the WebSocket
+- Signaling: federated `signaling_service_web` package runs the WebSocket
   signaling in the main isolate (same model as iOS), since web has no background
   service.
 - Database: `IsolateDatabase.openWeb()` opens the drift `WasmDatabase` directly

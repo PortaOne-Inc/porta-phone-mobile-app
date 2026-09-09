@@ -4,12 +4,12 @@ publish_to: 'none'
 
 # Dart pub workspace - used by Melos v7 for package discovery
 workspace:
-  - packages/webtrit_api
-  - packages/webtrit_phone_number
-  - packages/webtrit_signaling
+  - packages/api
+  - packages/phone_number
+  - packages/signaling
   - packages/ssl_certificates
   - packages/store_info_extractor
-  - packages/webtrit_appearance_theme
+  - packages/theme_schema
   - packages/device_auto_rotate
   - packages/data/app_database
   - packages/_http_client
@@ -127,21 +127,21 @@ dependencies:
     path: ./packages/ssl_certificates
   store_info_extractor:
     path: ./packages/store_info_extractor
-  webtrit_api:
-    path: ./packages/webtrit_api
-  webtrit_appearance_theme:
-    path: ./packages/webtrit_appearance_theme
+  api:
+    path: ./packages/api
+  theme_schema:
+    path: ./packages/theme_schema
   webtrit_callkeep:
     # develop tracks the local working copy of callkeep for co-development.
     # On release branches this is pinned to a callkeep tag (see docs/release_versioning.md).
     # Never back-merge a git ref onto develop - keep this a path here (enforced by callkeep-path-guard).
     path: ../callkeep/webtrit_callkeep
-  webtrit_phone_number:
-    path: ./packages/webtrit_phone_number
-  webtrit_signaling:
-    path: ./packages/webtrit_signaling
-  webtrit_signaling_service:
-    path: ./packages/webtrit_signaling_service/webtrit_signaling_service
+  phone_number:
+    path: ./packages/phone_number
+  signaling:
+    path: ./packages/signaling
+  signaling_service:
+    path: ./packages/signaling_service/signaling_service
 
   # Git forks, sorted by name.
   # TODO: temporary fork pin. Switch back to a pub.dev version constraint once

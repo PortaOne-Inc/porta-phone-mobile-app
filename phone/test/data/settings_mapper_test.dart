@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pub_semver/pub_semver.dart';
-import 'package:webtrit_appearance_theme/webtrit_appearance_theme.dart';
+import 'package:theme_schema/theme_schema.dart';
 
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/models/models.dart';

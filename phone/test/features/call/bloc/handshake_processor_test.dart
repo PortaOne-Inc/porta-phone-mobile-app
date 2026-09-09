@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/features/call/utils/handshake_processor.dart';
 import 'package:webtrit_phone/models/models.dart';

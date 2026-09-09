@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/app/notifications/models/notification.dart';
 import 'package:webtrit_phone/app/notifications/models/error_field.dart';

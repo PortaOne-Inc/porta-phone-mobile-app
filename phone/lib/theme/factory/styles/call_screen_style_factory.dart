@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:logging/logging.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 
 import 'package:webtrit_phone/features/features.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';

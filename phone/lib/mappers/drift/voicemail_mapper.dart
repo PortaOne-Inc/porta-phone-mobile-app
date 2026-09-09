@@ -1,4 +1,4 @@
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/models/models.dart';

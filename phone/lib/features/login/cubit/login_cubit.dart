@@ -9,7 +9,7 @@ import 'package:logging/logging.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 import 'package:webtrit_phone/app/notifications/notifications.dart';
 import 'package:webtrit_phone/data/data.dart';

@@ -1,6 +1,6 @@
 import 'package:logging/logging.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/utils/crashlytics_utils.dart';
 import 'package:webtrit_phone/app/notifications/models/notification.dart';

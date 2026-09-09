@@ -11,9 +11,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import 'package:webtrit_phone/extensions/extensions.dart';
 import 'package:webtrit_phone/utils/utils.dart';
