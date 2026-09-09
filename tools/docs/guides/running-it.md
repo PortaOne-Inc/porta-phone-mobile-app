@@ -32,6 +32,6 @@ Two more jobs run beside them: a spell check, and `verify-version`, which runs
 the version test with `--run-skipped` so the number the CLI reports and the one
 in `pubspec.yaml` cannot drift apart.
 
-One path dependency survives resolution: `webtrit_appearance_theme`, which the
+One path dependency survives resolution: `theme_schema`, which the
 theme step reads to decide light and dark. It lives in the phone repository, so
 CI checks that out beside this one.

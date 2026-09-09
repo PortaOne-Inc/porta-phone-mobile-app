@@ -5,8 +5,8 @@ import 'package:logging/logging.dart';
 
 import 'package:ssl_certificates/ssl_certificates.dart' show TrustedCertificates;
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling/webtrit_signaling.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling/signaling.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 import 'package:webtrit_phone/data/data.dart';
 import 'package:webtrit_phone/models/models.dart';

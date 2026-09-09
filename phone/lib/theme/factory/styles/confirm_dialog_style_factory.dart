@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:webtrit_appearance_theme/models/theme_widget_config.dart';
+import 'package:theme_schema/models/theme_widget_config.dart';
 
 import 'package:webtrit_phone/theme/extension/extension.dart';
 import 'package:webtrit_phone/widgets/confirm_dialog.dart';

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:webtrit_api/webtrit_api.dart' show AppType;
+import 'package:api/api.dart' show AppType;
 
 /// One of the account's active sessions, as shown on the sessions screen.
 class ActiveSession extends Equatable {

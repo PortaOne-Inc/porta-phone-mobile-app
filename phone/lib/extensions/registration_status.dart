@@ -1,4 +1,4 @@
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 extension RegisterStatusX on RegistrationStatus {
   bool get isRegistering => this == RegistrationStatus.registering;

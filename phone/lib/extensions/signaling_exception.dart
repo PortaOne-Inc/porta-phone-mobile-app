@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 import 'package:webtrit_phone/app/notifications/notifications.dart';
 import 'package:webtrit_phone/l10n/l10n.dart';

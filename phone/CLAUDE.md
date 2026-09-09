@@ -5,16 +5,16 @@
 
 ## Package Docs
 
-@packages/webtrit_api/AGENTS.md
-@packages/webtrit_signaling/AGENTS.md
+@packages/api/AGENTS.md
+@packages/signaling/AGENTS.md
 @packages/data/CLAUDE.md
-@packages/webtrit_appearance_theme/AGENTS.md
+@packages/theme_schema/AGENTS.md
 @packages/_http_client/AGENTS.md
 @packages/_web_socket_channel/AGENTS.md
 @packages/ssl_certificates/CLAUDE.md
 @packages/store_info_extractor/AGENTS.md
 @packages/device_auto_rotate/AGENTS.md
-@packages/webtrit_phone_number/AGENTS.md
+@packages/phone_number/AGENTS.md
 
 ## Gotchas
 
@@ -25,6 +25,6 @@
 - **Card not Container**: elevation/shadow → `Card`, not `Container + BoxShadow`.
 - **Schema migration**: `dart run bin/create_new_schema_dump_and_test_migration.dart` after any Drift table change.
 - **Theming steps**: DTO → codegen → JSON assets → bridge → extension (all 5 steps when adding a theme property).
-- **Theme schema root**: a new ROOT DTO in `webtrit_appearance_theme` also needs a `jsonSchema` static in the class plus an entry in `bin/print_json_schema.dart` — the generated constant is private to its library, so without the static the schema is unreachable. A root with a union or an enum below it wraps that constant in `assembleUnions`/`assembleEnums` and is `static final`; see the package AGENTS.md. Nested types need nothing (they land in the root's `$defs`).
-- **Theme contract rules**: the schema is generated from fields on the source class, so five DTO shapes break it — a non-empty collection default (crashes generation for the whole library), a new `JsonConverter`, a freezed union, state on a freezed impl instead of the class, and `createJsonSchema` without a `jsonSchema` member. `packages/webtrit_appearance_theme/test/contract_rules_test.dart` fails by name with what to do instead; the rules table is in that package's AGENTS.md.
+- **Theme schema root**: a new ROOT DTO in `theme_schema` also needs a `jsonSchema` static in the class plus an entry in `bin/print_json_schema.dart` — the generated constant is private to its library, so without the static the schema is unreachable. A root with a union or an enum below it wraps that constant in `assembleUnions`/`assembleEnums` and is `static final`; see the package AGENTS.md. Nested types need nothing (they land in the root's `$defs`).
+- **Theme contract rules**: the schema is generated from fields on the source class, so five DTO shapes break it — a non-empty collection default (crashes generation for the whole library), a new `JsonConverter`, a freezed union, state on a freezed impl instead of the class, and `createJsonSchema` without a `jsonSchema` member. `packages/theme_schema/test/contract_rules_test.dart` fails by name with what to do instead; the rules table is in that package's AGENTS.md.
 - **Optional Android features**: no build flavors - deep links and the SMS call trigger are manifest fragments switched by `dart_define.json` (see docs/optional_features.md).

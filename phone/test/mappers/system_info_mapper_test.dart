@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:pub_semver/pub_semver.dart';
-import 'package:webtrit_api/webtrit_api.dart' as api;
+import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/mappers/mappers.dart';
 import 'package:webtrit_phone/models/models.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart' show WebtritSignalingService;
+import 'package:signaling_service/signaling_service.dart' show WebtritSignalingService;
 
 import 'package:webtrit_phone/blocs/app/app_bloc.dart';
 import 'package:webtrit_phone/l10n/l10n.dart';

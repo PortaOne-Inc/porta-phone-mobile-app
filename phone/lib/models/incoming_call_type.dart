@@ -1,4 +1,4 @@
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart';
+import 'package:signaling_service/signaling_service.dart';
 
 /// How the app learns about an incoming call - and, as a consequence, where the
 /// signaling connection lives on Android.

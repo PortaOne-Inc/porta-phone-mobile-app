@@ -40,7 +40,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart run tool/docs_gate.dart
 
-  # One path dependency survives: `webtrit_appearance_theme`, which the theme
+  # One path dependency survives: `theme_schema`, which the theme
   # step reads to decide light and dark. It lives in the phone repository,
   # which is public, so the job simply lays it out beside this one - no
   # credentials anywhere in the checks.

@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-import 'package:webtrit_phone_number/webtrit_phone_number.dart';
+import 'package:phone_number/phone_number.dart';
 
 class PhoneNormalizingFormatter extends TextInputFormatter {
   static final _nonDialableChars = RegExp(r'[^0-9*#+]');

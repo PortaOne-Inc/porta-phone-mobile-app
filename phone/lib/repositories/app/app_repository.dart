@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 
 class AppRepository {
   AppRepository({required WebtritApiClient webtritApiClient, required String token})

@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 
-import 'package:webtrit_api/webtrit_api.dart' as api;
+import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/extensions/string.dart';
 import 'package:webtrit_phone/models/models.dart';

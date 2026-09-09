@@ -23,7 +23,7 @@ Commands: `lib/src/commands/`
 - **No `print()`** — all output goes through the injected `Logger` from `mason_logger`.
 - **No `exit()` in commands** — return exit codes from `run()` instead.
 - **Local dependencies** — `data` package lives at `../webtrit_phone_configurator/packages/data`
-  and `webtrit_appearance_theme` at `../webtrit_phone/packages/webtrit_appearance_theme`.
+  and `theme_schema` at `../webtrit_phone/packages/theme_schema`.
   Both must be present locally for `dart pub get` to succeed.
 - **Callbacks must be single-expression** — multi-line callback bodies must be extracted to private
   methods. This is enforced by code review and lefthook pre-commit.

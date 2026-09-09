@@ -1,0 +1,15 @@
+builders:
+  schema_tables:
+    import: "package:theme_schema/builder.dart"
+    builder_factories: ["schemaTablesBuilder"]
+    build_extensions:
+      {"$lib$": ["schema/enum_properties.g.dart", "schema/union_variants.g.dart"]}
+    auto_apply: none
+    build_to: source
+    runs_before: ["json_serializable:json_serializable"]
+
+targets:
+  $default:
+    builders:
+      theme_schema:schema_tables:
+        enabled: true

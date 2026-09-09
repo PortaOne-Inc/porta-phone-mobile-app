@@ -41,7 +41,7 @@ to fetch them again.
 
 | Piece | Where | Role |
 |-------|-------|------|
-| `getUserIceServers` | `packages/webtrit_api/lib/src/webtrit_api_client.dart` | the request; declared an optional endpoint, so a core without it fails quietly instead of logging a server error |
+| `getUserIceServers` | `packages/api/lib/src/api_client.dart` | the request; declared an optional endpoint, so a core without it fails quietly instead of logging a server error |
 | `IceServersConfig` | [`../lib/models/ice_servers_config.dart`](../lib/models/ice_servers_config.dart) | the servers, already in `RTCIceServer` shape, plus the single instant their credentials expire |
 | `IceServersRepository` | [`../lib/repositories/ice_servers/`](../lib/repositories/ice_servers/) | fetch, cache, renew, and the fallback |
 | `CoreSupport.supportsBundledIceServers` | [`../lib/utils/core_support.dart`](../lib/utils/core_support.dart) | the capability flag, read from `core.ice_servers_configured` |

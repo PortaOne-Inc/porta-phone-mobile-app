@@ -23,7 +23,7 @@ Last reviewed: 2026-08-13
 - `lib/models/active_session.dart` - `ActiveSession`, the domain model.
 - `lib/mappers/api/active_session_mapper.dart` - `api.UserSession` ->
   `ActiveSession`.
-- `packages/webtrit_api` - `getUserSessions` / `deleteUserSession` and the
+- `packages/api` - `getUserSessions` / `deleteUserSession` and the
   `UserSession` DTO.
 
 ## Backend contract
@@ -108,7 +108,7 @@ that cannot load.
 
 ## Tests
 
-- `packages/webtrit_api/test/webtrit_api_test.dart` - the two endpoints,
+- `packages/api/test/api_test.dart` - the two endpoints,
   including an unknown session status and the 404 `session_not_found` body, plus
   the `User-Agent` header being sent (and omitted when the app provides none).
 - `test/data/app_metadata_provider_test.dart` - the User-Agent format and that

@@ -87,7 +87,7 @@ broadcast stream. Knows the WebSocket protocol — nothing about the app.
 - Active calls or call state
 - Whether reconnect should happen at all — it only provides `recommendedReconnectDelay`
 
-**Public API (`SignalingModuleImpl` from `webtrit_signaling_service_platform_interface`):**
+**Public API (`SignalingModuleImpl` from `signaling_service_platform_interface`):**
 
 ```dart
 SignalingModuleImpl({

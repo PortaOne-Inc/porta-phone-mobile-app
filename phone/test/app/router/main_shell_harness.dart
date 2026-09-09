@@ -25,7 +25,7 @@ import 'package:pub_semver/pub_semver.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:ssl_certificates/ssl_certificates.dart';
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart' show SignalingModule, SignalingModuleEvent;
+import 'package:signaling_service/signaling_service.dart' show SignalingModule, SignalingModuleEvent;
 
 import 'package:webtrit_phone/app/notifications/notifications.dart';
 import 'package:webtrit_phone/app/router/app_router.dart';

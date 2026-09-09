@@ -1,4 +1,4 @@
-import 'package:webtrit_signaling/webtrit_signaling.dart';
+import 'package:signaling/signaling.dart';
 
 class SignalingHangupFailure implements Exception {
   SignalingHangupFailure(this.code);

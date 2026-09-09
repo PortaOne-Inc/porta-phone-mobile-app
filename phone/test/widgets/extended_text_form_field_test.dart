@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_phone_number/webtrit_phone_number.dart';
+import 'package:phone_number/phone_number.dart';
 
 import 'package:webtrit_phone/widgets/widgets.dart';
 

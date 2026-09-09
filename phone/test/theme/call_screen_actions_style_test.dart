@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:webtrit_appearance_theme/models/models.dart';
+import 'package:theme_schema/models/models.dart';
 import 'package:webtrit_phone/features/call/view/call_screen_style.dart';
 import 'package:webtrit_phone/theme/extension/extension.dart';
 import 'package:webtrit_phone/theme/factory/styles/call_screen_style_factory.dart';

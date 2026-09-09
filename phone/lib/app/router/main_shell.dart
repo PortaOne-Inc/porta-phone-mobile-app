@@ -6,9 +6,9 @@ import 'package:logging/logging.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:provider/provider.dart';
 
-import 'package:webtrit_api/webtrit_api.dart';
+import 'package:api/api.dart';
 import 'package:webtrit_callkeep/webtrit_callkeep.dart';
-import 'package:webtrit_signaling_service/webtrit_signaling_service.dart' show SignalingModule, SignalingServiceConfig;
+import 'package:signaling_service/signaling_service.dart' show SignalingModule, SignalingServiceConfig;
 
 import 'package:webtrit_phone/app/assets.gen.dart';
 import 'package:webtrit_phone/app/notifications/notifications.dart';

@@ -1,4 +1,4 @@
-import 'package:webtrit_api/webtrit_api.dart' show WebtritApiClient, UnauthorizedException;
+import 'package:api/api.dart' show WebtritApiClient, UnauthorizedException;
 
 import 'package:webtrit_phone/app/session/session.dart';
 import 'package:webtrit_phone/mappers/mappers.dart';
