@@ -173,12 +173,17 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        resValue "string", "APP_NAME", dartDefine.WEBTRIT_APP_NAME
-        // Referenced by the deep-link intent filter, so it is defined only alongside it.
+        // Substituted into the manifest, which is the only thing that reads either of them.
+        // A string resource would be the wrong shape: nothing looks them up at runtime, and a
+        // resource has to be declared, generated and then referenced to say what a placeholder
+        // says in one line.
+        manifestPlaceholders["appName"] = dartDefine.WEBTRIT_APP_NAME
+        // Named alongside the intent filter that carries it, so the fragment and the value it
+        // needs are switched on together.
         if (deeplinksEnabled) {
             // Trimmed, like the switch above: a domain with stray whitespace would produce an
             // intent filter that can never verify, so deep links would silently open a browser.
-            resValue "string", "APP_LINK_DOMAIN", appLinkDomain.trim()
+            manifestPlaceholders["appLinkDomain"] = appLinkDomain.trim()
         }
         testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: "true"

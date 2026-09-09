@@ -46,7 +46,7 @@
         </intent>
     </queries>
     <application
-        android:label="@string/APP_NAME"
+        android:label="${appName}"
         android:name=".WebtritApplication"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
