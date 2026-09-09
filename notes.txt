@@ -2,7 +2,7 @@
 update snippet:
 
 git subtree pull --prefix=callkeep {original_sources}/webtrit_callkeep develop
-git subtree pull --prefix=phone_tools {original_sources}/webtrit_phone_tools develop
+git subtree pull --prefix=tools {original_sources}/webtrit_phone_tools develop
 git subtree pull --prefix=analysis {original_sources}/webtrit_analysis main
 
 

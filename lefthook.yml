@@ -1,5 +1,5 @@
 # The repository keeps one lefthook config, because lefthook reads only the one at
-# the root. The three this replaces sat in phone/, callkeep/ and phone_tools/,
+# the root. The three this replaces sat in phone/, callkeep/ and tools/,
 # which were roots of repositories of their own before the subtree merge. Nothing
 # has read them since, so none of the rules they carried were being enforced.
 #
@@ -25,8 +25,8 @@ pre-commit:
       run: dart format --output=none --set-exit-if-changed {staged_files}
 
     tools-format:
-      root: phone_tools/
-      glob: "phone_tools/**/*.dart"
+      root: tools/
+      glob: "tools/**/*.dart"
       exclude: ["*.g.dart", "*.freezed.dart", "*.gr.dart"]
       run: dart format --output=none --set-exit-if-changed {staged_files}
 
@@ -58,7 +58,7 @@ pre-push:
   parallel: false
   commands:
     commit-subjects:
-      run: bash tool/scripts/commit-subject-check.sh
+      run: bash scripts/commit-subject-check.sh
 
     phone-semantics:
       root: phone/
@@ -81,13 +81,13 @@ pre-push:
       run: flutter test
 
     tools-analyze:
-      root: phone_tools/
-      glob: "phone_tools/**"
+      root: tools/
+      glob: "tools/**"
       run: dart analyze
 
     tools-test:
-      root: phone_tools/
-      glob: "phone_tools/**"
+      root: tools/
+      glob: "tools/**"
       run: dart test
 
     callkeep-analyze:

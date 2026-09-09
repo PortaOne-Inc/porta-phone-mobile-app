@@ -8,7 +8,7 @@
   from the git root - hooks, lefthook, the scripts under `tool/` - is configured
   at this level, and a copy inside a package is read by nothing.
 - **Each package still owns its own rules.** `phone/CLAUDE.md`,
-  `callkeep/CLAUDE.md` and `phone_tools/CLAUDE.md` load when you work in those
+  `callkeep/CLAUDE.md` and `tools/CLAUDE.md` load when you work in those
   directories; nothing here replaces them.
 - **`callkeep/` and `analysis/` are mirrored to GitHub**, so their `.github/`
   workflows stay where they are - a workflow only runs from the root of the
