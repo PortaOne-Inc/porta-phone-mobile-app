@@ -20,6 +20,9 @@ abstract class VoicemailRepository implements Refreshable {
   ///
   /// Additionally, any existing cached voicemails are immediately emitted to the stream,
   /// triggering all active [watchVoicemails] listeners before the remote fetch completes.
+  /// Concurrent callers share one completion after all required writes. A failed
+  /// attempt preserves its original error and stack even if cache fallback fails.
+  /// Once the feature is known to be unavailable, later calls need no remote work.
   Future<void> fetchVoicemails({String? localeCode});
 
   /// Removes a voicemail with the specified [messageId] from both the remote server and the local database.
@@ -85,17 +88,9 @@ class VoicemailRepositoryImpl
   StreamController<List<Voicemail>>? _updatesController;
   StreamSubscription? _databaseSubscription;
 
-  /// A [Completer] used to coordinate access to the ongoing [fetchVoicemails] operation.
-  ///
-  /// When [fetchVoicemails] is in progress, this completer is non-null and its [future]
-  /// can be awaited to ensure that no other operations (such as updating or deleting voicemails)
-  /// interfere with the fetch process.
-  ///
-  /// Once the fetch completes—successfully or with an error—the completer is completed
-  /// and reset to `null`.
-  ///
-  /// This mechanism helps to enforce sequential consistency across local/remote voicemail state updates.
-  Completer<void>? _fetchingCompleter;
+  // Fetch callers and mutations awaiting a fetch observe the same outcome on
+  // every path, without a separately completed coordination future.
+  Future<void>? _fetching;
   bool _featureSupported = true;
 
   @override
@@ -107,12 +102,10 @@ class VoicemailRepositoryImpl
   void _initialize() {
     _updatesController = StreamController<List<Voicemail>>.broadcast(onListen: _onListen, onCancel: _onCancel);
 
-    unawaited(
-      fetchVoicemails().catchError(
-        (Object e) {},
-        test: (e) => e is VoicemailNotConfiguredException || e is EndpointNotSupportedException,
-      ),
-    );
+    // The eager fetch has no awaiting owner. Its error is already logged or
+    // routed to SessionGuard; ignoring this detached observation does not change
+    // the shared future's failure for polling or UI callers joining the fetch.
+    fetchVoicemails().ignore();
   }
 
   void _onListen() {
@@ -126,35 +119,16 @@ class VoicemailRepositoryImpl
     _databaseSubscription?.cancel();
   }
 
-  /// Fetches the latest voicemails from the remote server and synchronizes them with the local database.
-  ///
-  /// If a fetch is already in progress, this method returns the same [Future] to avoid duplicate requests
-  /// and ensure data consistency. This is coordinated using an internal [_fetchingCompleter].
-  ///
-  /// ## Behavior:
-  /// - Immediately emits any cached voicemails from the local database to [watchVoicemails] listeners.
-  /// - Then fetches the voicemail list from the remote server using [getUserVoicemailList].
-  /// - For each remote item, retrieves detailed metadata using [getUserVoicemail],
-  ///   and stores it in the local database via [insertOrUpdateVoicemail].
-  ///
-  /// On completion, listeners subscribed to [watchVoicemails] will receive updated data.
-  /// If an error occurs during remote fetching, the [_fetchingCompleter] completes with error
-  /// and the exception is rethrown to the caller.
-  ///
-  /// [localeCode] – optional locale parameter to localize API responses.
-  ///
-  /// Throws an exception if the remote request fails.
   @override
-  Future<void> fetchVoicemails({String? localeCode}) async {
-    if (!_featureSupported) return;
+  Future<void> fetchVoicemails({String? localeCode}) {
+    final fetching = _fetching;
+    if (fetching != null) return fetching;
+    if (!_featureSupported) return Future.value();
 
-    if (_fetchingCompleter?.isCompleted == false) {
-      return _fetchingCompleter!.future;
-    }
+    return _fetching = _fetchVoicemails(localeCode: localeCode).whenComplete(() => _fetching = null);
+  }
 
-    _fetchingCompleter = Completer<void>();
-    _fetchingCompleter!.future.ignore();
-
+  Future<void> _fetchVoicemails({String? localeCode}) async {
     try {
       /// Do not emit unknown status to show updating state, because it leads to UI flicker on SettingsScreen
       /// especially on android if user checks status bar and app changes its lifecycle from innactive to resumed (WT-1424)
@@ -171,8 +145,6 @@ class VoicemailRepositoryImpl
           voicemailToDrift(item, details, _webtritApiClient.getVoicemailAttachmentUrl(item.id)),
         );
       }
-
-      _fetchingCompleter?.complete();
     } on UnauthorizedException catch (e) {
       _sessionGuard.onUnauthorized(e);
       rethrow;
@@ -181,13 +153,15 @@ class VoicemailRepositoryImpl
       _logger.warning('Failed to fetch voicemails', e, isExpected ? null : st);
       if (isExpected) _featureSupported = false;
 
-      /// Revert to the actual cached status from database on failure
-      await _emitCachedVoicemails();
+      // Cache fallback is for presentation, not evidence of a successful cycle.
+      // A secondary read failure must not replace the original refresh failure.
+      try {
+        await _emitCachedVoicemails();
+      } catch (cacheError, cacheStack) {
+        _logger.warning('Failed to emit cached voicemails after refresh failure', cacheError, cacheStack);
+      }
 
-      _fetchingCompleter?.completeError(e, st);
       rethrow;
-    } finally {
-      _fetchingCompleter = null;
     }
   }
 
@@ -215,8 +189,8 @@ class VoicemailRepositoryImpl
   /// [localeCode] – optional locale code for the API request.
   @override
   Future<void> removeVoicemail(String messageId, {String? localeCode}) async {
-    if (_fetchingCompleter != null) {
-      await _fetchingCompleter!.future;
+    if (_fetching != null) {
+      await _fetching;
     }
 
     try {
@@ -249,8 +223,8 @@ class VoicemailRepositoryImpl
   /// This approach guarantees that local state is reset even if remote sync is partially successful.
   @override
   Future<void> removeAllVoicemails() async {
-    if (_fetchingCompleter != null) {
-      await _fetchingCompleter!.future;
+    if (_fetching != null) {
+      await _fetching;
     }
 
     final allVoicemails = await _appDatabase.voicemailDao.getAllVoicemails();
@@ -282,8 +256,8 @@ class VoicemailRepositoryImpl
   /// [localeCode] – optional locale code for the API request.
   @override
   Future<void> updateVoicemailSeenStatus(String messageId, bool seen, {String? localeCode}) async {
-    if (_fetchingCompleter != null) {
-      await _fetchingCompleter!.future;
+    if (_fetching != null) {
+      await _fetching;
     }
 
     final previous = await _appDatabase.voicemailDao.getVoicemailById((messageId));
@@ -346,8 +320,8 @@ class VoicemailRepositoryImpl
 
   @override
   Future<void> removeMultipleVoicemails(List<String> messagesIds) async {
-    if (_fetchingCompleter != null) {
-      await _fetchingCompleter!.future;
+    if (_fetching != null) {
+      await _fetching;
     }
 
     for (final messageId in messagesIds) {

@@ -1,5 +1,8 @@
 # Integration Test Commands
 
+Commands for host integration suites and native Patrol scenarios.
+Last reviewed: 2026-09-10.
+
 ## Prerequisite: provision patrol
 
 `patrol` is intentionally NOT a committed dependency. It weak-links `XCTest`, and
@@ -94,6 +97,35 @@ fvm exec patrol test \
 HTTP and the failure before a preferences write are controlled. Successful
 writes use the native preferences plugin; the original `system-info` key is
 restored afterwards. See [coverage](integration_test_coverage.md#background-polling---system-info-persistence).
+
+## Run the voicemail refresh guards
+
+From `phone/`, the unit and host integration suites need no device or Patrol:
+
+```bash
+fvm flutter test --no-pub \
+  test/repository/voicemail_refresh_contract_test.dart \
+  test/repository/voicemail_repository_integration_test.dart
+```
+
+For the native scenarios, provision Patrol and apply the temporary
+`clearPackageData: "false"` setting from the
+[User Repository instructions](#run-the-user-repository-refresh-guards):
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/voicemail_repository_refresh_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+The tests create and remove their own temporary SQLite database; they never
+open the application's database or need an account, backend or call companion.
+HTTP and cache-boundary faults are controlled. Restore the runner setting and
+remove the temporary Patrol dependency afterwards without committing either.
+See [coverage](integration_test_coverage.md#background-polling---voicemail-refresh).
 
 ## Run the polling guards
 
