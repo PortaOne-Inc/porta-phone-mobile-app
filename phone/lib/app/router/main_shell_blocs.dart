@@ -155,6 +155,7 @@ class MainShellBlocs extends StatelessWidget {
             // The feature may be disabled for this session, in which case no
             // CDR refresh is requested after a call.
             final cdrsSync = context.readOrNull<CdrsSync>();
+            final userInfoSync = context.read<UserInfoSync>();
 
             final peerConnectionManager = PeerConnectionManager(
               // The deployment's own STUN/TURN servers, resolved per connection so
@@ -218,7 +219,7 @@ class MainShellBlocs extends StatelessWidget {
               sendPresenceSettings: featureAccess.sipPresenceConfig.hybridPresenceSupport,
               callPullVideoStrategy: featureAccess.callConfig.capabilities.callPullVideoStrategy,
               peerMessageSupported: featureAccess.callConfig.capabilities.isPeerMessageEnabled,
-              onCallEnded: cdrsSync?.requestPostCallRefresh,
+              onCallEnded: () => _onCallEnded(cdrsSync, userInfoSync),
               onDiagnosticReportRequested: (id, error) => diagnosticService.request(
                 DiagnosticType.androidCallkeepOnly,
                 extras: {'callId': id, 'error': error.name},
@@ -269,7 +270,10 @@ class MainShellBlocs extends StatelessWidget {
         builder: (context) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider(lazy: false, create: (_) => UserInfoCubit(context.read<UserRepository>())),
+              BlocProvider(
+                lazy: false,
+                create: (_) => UserInfoCubit(context.read<UserRepository>(), syncRunner: context.read<UserInfoSync>()),
+              ),
               BlocProvider(
                 lazy: false,
                 create: (_) => SessionStatusCubit(
@@ -323,4 +327,12 @@ class MainShellBlocs extends StatelessWidget {
       ),
     );
   }
+}
+
+/// A finished call changes both the history and the balance, so both owners
+/// get the same post-call request; the CDR one is absent when call history is
+/// disabled for the session.
+void _onCallEnded(CdrsSync? cdrsSync, UserInfoSync userInfoSync) {
+  cdrsSync?.requestPostCallRefresh();
+  userInfoSync.requestPostCallRefresh();
 }

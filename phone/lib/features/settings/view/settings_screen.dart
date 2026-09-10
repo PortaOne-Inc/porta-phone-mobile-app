@@ -229,9 +229,15 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+  /// The pull refetches the registration status and the user record together;
+  /// the record is what carries the balance, which otherwise only the polling
+  /// timer would update. One snack bar covers a failure of either.
   Future<void> _onRefresh(BuildContext context) async {
-    final succeeded = await context.read<RegisterStatusCubit>().fetchStatus();
-    if (!succeeded && context.mounted) {
+    final results = await Future.wait([
+      context.read<RegisterStatusCubit>().fetchStatus(),
+      context.read<UserInfoCubit>().refresh(),
+    ]);
+    if (results.contains(false) && context.mounted) {
       context.showErrorSnackBar(context.l10n.settings_registerStatusSnackBar_requestFailed);
     }
   }

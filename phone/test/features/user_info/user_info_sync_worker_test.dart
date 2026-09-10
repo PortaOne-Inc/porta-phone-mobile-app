@@ -238,7 +238,7 @@ void main() {
   });
 
   group('UserInfoSync', () {
-    test('owns one registration and releases both owned parts', () async {
+    test('owns one registration and forwards call-ended refresh requests', () async {
       final syncWorker = _MockUserInfoSyncWorker();
       final pollingService = _MockPollingService();
       final task = _MockPollingTaskHandle();
@@ -262,6 +262,9 @@ void main() {
 
       await sync.runNow();
       verify(() => task.runNow()).called(1);
+
+      sync.requestPostCallRefresh();
+      verify(() => task.invalidate(after: const Duration(seconds: 1))).called(1);
 
       await sync.dispose();
       await sync.dispose();

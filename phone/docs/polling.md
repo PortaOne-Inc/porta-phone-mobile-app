@@ -887,12 +887,18 @@ still resolves and renders the records.
 ### User info
 
 `UserInfoSyncWorker` delegates persistence to `UserRepository.storeInfo()` and
-`UserInfoSync` uses the standard owner with no domain method yet. The
-registration moved out of the `PollingService` constructor list so the task is
-reachable through the owner's narrow capabilities; nothing calls `runNow()` or
-invalidation yet, so scheduled behaviour is unchanged. The repository keeps the
-cache, the gateway and the `getAndListen()` stream. Its own `refresh()` is a
-temporary leftover until the follow-up removes it. Tests:
+`UserInfoSync` uses the standard owner. The registration lives outside the
+`PollingService` constructor list so the task is reachable through the owner's
+narrow capabilities: `UserInfoCubit` receives the `PollingTaskRunner` and its
+`refresh()` backs the Settings pull gesture, so a pull joins a scheduled cycle
+instead of starting a second request; `UserInfoSync.requestPostCallRefresh()`
+is invoked from the same call-ended hook as the CDR owner, with a one-second
+delay so the backend has charged the call and the balance on screen reflects
+it without waiting for the next tick. Foreground and reconnect already run the
+leading refresh. The repository keeps the cache, the gateway and the
+`getAndListen()` stream. Its own `refresh()` is a temporary leftover until the
+follow-up removes it. Tests: `test/features/user_info/user_info_cubit_test.dart`
+and the Settings pull cases in `test/features/settings/settings_refresh_test.dart`,
 `test/features/user_info/user_info_sync_worker_test.dart`, the host suite
 `test/repository/user_repository_integration_test.dart` and both Patrol suites
 bind `harness.worker`; `test/app/router/main_shell_polling_config_test.dart`

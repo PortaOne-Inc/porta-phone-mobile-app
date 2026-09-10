@@ -16,9 +16,14 @@ Contacts and CDR synchronization follow this rule.
 
 `lib/features/settings/view/settings_screen.dart`
 
-Pulling the list down calls `RegisterStatusCubit.fetchStatus()` and nothing
-else: the account details and the session status keep arriving on their own
-streams, and a failed fetch is reported with a snack bar. The list sits behind
+Pulling the list down refetches two things together: the registration status
+through `RegisterStatusCubit.fetchStatus()`, and the user record through
+`UserInfoCubit.refresh()`, which runs the shared user-info polling task
+(`UserInfoSync`) and therefore joins a scheduled cycle instead of starting a
+second request. The record is what carries the balance, so before this the
+pull could not update it - only the polling timer could. The refreshed record
+and the session status still arrive on their own streams; a failure of either
+fetch is reported with one snack bar. The list sits behind
 a translucent app bar, so the indicator is pushed down by the same offset the
 list is padded with (`edgeOffset`), otherwise the spinner appears under the bar.
 

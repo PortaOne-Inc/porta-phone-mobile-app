@@ -76,6 +76,7 @@ void main() {
     when(() => sessionStatusCubit.state).thenReturn(const SessionStatusState());
     when(() => registerStatusCubit.state).thenReturn(const RegisterStatus(value: true));
     when(() => registerStatusCubit.fetchStatus()).thenAnswer((_) async => true);
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => true);
   });
 
   Widget wrapScreen() {
@@ -145,6 +146,36 @@ void main() {
 
   testWidgets('a failed refresh explains itself', (tester) async {
     when(() => registerStatusCubit.fetchStatus()).thenAnswer((_) async => false);
+
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
+  testWidgets('pulling the list down also refetches the user record', (tester) async {
+    // The record carries the balance; before this the pull could not update it.
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    verify(() => userInfoCubit.refresh()).called(1);
+  });
+
+  testWidgets('a failed user record fetch explains itself too', (tester) async {
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => false);
+
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
+  testWidgets('both fetches failing still show one snack bar, not two', (tester) async {
+    when(() => registerStatusCubit.fetchStatus()).thenAnswer((_) async => false);
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => false);
 
     await tester.pumpWidget(wrapScreen());
 
