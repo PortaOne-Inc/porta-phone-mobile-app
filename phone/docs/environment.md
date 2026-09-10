@@ -44,6 +44,11 @@ maintainability and enabling tools to parse configuration reliably.
 - `_WEBTRIT_APP_REMOTE_LOGZIO_LOGGING_URL` – Logz.io remote logging endpoint (optional).
 - `_WEBTRIT_APP_REMOTE_LOGZIO_LOGGING_TOKEN` – Logz.io auth token.
 - `_WEBTRIT_APP_REMOTE_LOGZIO_LOGGING_BUFFER_SIZE` – Logz.io log buffer size.
+- `WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS` - Application polling retry cap in
+  positive whole seconds (default: **900**). A longer task interval remains the
+  minimum delay. Invalid values fall back safely; the shell reads this value
+  when creating the polling service, not on each tick. See
+  [polling cap configuration](polling.md#application-cap-configuration).
 
 ### Environment
 

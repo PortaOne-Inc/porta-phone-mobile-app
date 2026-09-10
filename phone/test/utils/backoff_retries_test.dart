@@ -23,5 +23,33 @@ void main() {
         expect(delay, cap, reason: '$errors consecutive errors must stay at the cap');
       }
     });
+
+    for (final seconds in [300, 600, 1200]) {
+      test('a ${seconds}s base is never shortened by the default 300s cap', () {
+        final interval = Duration(seconds: seconds);
+        for (final errors in [0, 1, 2, 31, 100]) {
+          expect(backoff.next(errors, interval), interval);
+        }
+      });
+    }
+
+    test('an explicit cap below the base cannot shorten the interval', () {
+      const policy = ExponentialBackoff(max: Duration(minutes: 15));
+      const interval = Duration(minutes: 10);
+
+      expect(policy.next(1, interval), const Duration(minutes: 15));
+      expect(policy.next(1, interval, max: const Duration(minutes: 5)), interval);
+      expect(policy.next(100, interval, max: const Duration(minutes: 5)), interval);
+    });
+
+    test('a larger cap allows growth and success restores the base', () {
+      const interval = Duration(minutes: 5);
+      const cap = Duration(minutes: 15);
+
+      expect(backoff.next(1, interval, max: cap), const Duration(minutes: 10));
+      expect(backoff.next(2, interval, max: cap), cap);
+      expect(backoff.next(100, interval, max: cap), cap);
+      expect(backoff.next(0, interval, max: cap), interval);
+    });
   });
 }

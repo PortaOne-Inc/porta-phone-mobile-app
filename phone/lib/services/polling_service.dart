@@ -23,8 +23,8 @@ final _logger = Logger('PollingService');
 ///   single fresh connectivity check (shared across all listeners for that cycle).
 /// - [jitterMaxMs] — maximum jitter in milliseconds added to intervals/backoff
 ///   to stagger calls (set to 0 in tests for determinism).
-/// - [maxBackoff] — maximum delay applied when exponential backoff is triggered
-///   due to repeated errors (caps the backoff growth).
+/// - [maxBackoff] - caps exponential backoff growth before jitter is added,
+///   but never shortens the task's base interval.
 class PollingOptions {
   const PollingOptions({
     this.pauseInBackground = true,
@@ -50,7 +50,9 @@ class PollingOptions {
   /// Max random jitter (ms).
   final int jitterMaxMs;
 
-  /// Maximum backoff duration when errors accumulate.
+  /// Retry cap before jitter; a longer base interval takes precedence.
+  /// The shell supplies its application-configured cap. Direct construction
+  /// retains the standalone 5-minute default.
   final Duration maxBackoff;
 }
 

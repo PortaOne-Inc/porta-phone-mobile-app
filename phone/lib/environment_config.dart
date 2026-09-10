@@ -211,6 +211,18 @@ class EnvironmentConfig {
   static String? get CONNECTIVITY_CHECK_URL =>
       _env.stringOrNull(CONNECTIVITY_CHECK_URL__NAME, _CONNECTIVITY_CHECK_URL_ENV);
 
+  static const POLLING_MAX_BACKOFF_SECONDS__NAME = 'WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS';
+
+  /// Application-wide retry cap, read when the shell creates its polling service.
+  /// Invalid/non-positive build values fall back to 900 seconds; invalid runtime
+  /// overrides fall back to that validated build value. A task's base interval
+  /// remains a floor even when it exceeds this cap.
+  static int get POLLING_MAX_BACKOFF_SECONDS {
+    const defaultSeconds = 900;
+    const compileTime = int.fromEnvironment(POLLING_MAX_BACKOFF_SECONDS__NAME, defaultValue: defaultSeconds);
+    return _pollingSeconds(POLLING_MAX_BACKOFF_SECONDS__NAME, compileTime > 0 ? compileTime : defaultSeconds);
+  }
+
   static const USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME = 'WEBTRIT_APP_USER_REPOSITORY_POLLING_INTERVAL_SECONDS';
   static int get USER_REPOSITORY_POLLING_INTERVAL_SECONDS => _pollingSeconds(
     USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,

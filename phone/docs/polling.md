@@ -333,8 +333,9 @@ This prevents a slow request from accumulating timer callbacks. The computed
 delay is:
 
 ```text
+effective cap = max(base interval, maxBackoff)
 0 failures: base interval + jitter
-1+ failures: min(base interval * 2 ^ failures, maxBackoff) + jitter
+1+ failures: min(base interval * 2 ^ failures, effective cap) + jitter
 ```
 
 With a 5-second interval and zero jitter:
@@ -346,15 +347,65 @@ With a 5-second interval and zero jitter:
 | 2 | 20 s |
 | 3 | 40 s |
 
-The default cap is 5 minutes. The default jitter adds 0 through 399 ms so tasks
-with equal intervals do not continually hit the backend together. A successful
-cycle resets the failure count. A manually started failure leaves the current
-automatic count unchanged.
+The application's default cap is 15 minutes (900 seconds), configured by
+`WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS`. The default jitter adds 0 through
+399 ms after the cap is applied, so the final delay can exceed the cap by that
+small amount. A successful cycle resets the failure count. A manually started
+failure leaves the current automatic count unchanged.
+
+The base interval takes precedence when it equals or exceeds the configured
+cap. For example, a 600-second base with a 300-second cap still waits 600 seconds
+after a failure, rather than speeding up to 300 seconds. This floor prevents
+faster retries; it does not create additional backoff headroom. To slow a task
+below its normal cadence, configure a cap greater than its base interval.
 
 Changing an interval, stopping timers, or manually resetting cadence increments
 a schedule generation. Timer continuations that crossed an asynchronous
 reachability check under an older generation cannot re-arm themselves. This is
 the structural stale-tick guard; there is no time-window duplicate suppression.
+
+### Application cap configuration
+
+`MainShellServices` reads `EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS` when
+creating `PollingService` and supplies it through `PollingOptions.maxBackoff`.
+The scheduler and `ExponentialBackoff` have no environment dependency.
+
+Set the cap with a dart define, for example:
+
+```text
+--dart-define=WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS=1800
+```
+
+The value is a positive integer in seconds. A missing, malformed or
+non-positive build value falls back to 900. Runtime overrides applied through
+`EnvironmentConfig.applyOverrides` take precedence; invalid overrides fall
+back to the validated build value. Apply overrides before the shell creates
+the service. Updating them later does not change its existing options or
+reschedule active tasks; a newly created service reads the new value.
+
+With the application default and zero jitter:
+
+| Base interval | After 1 failure | After 2 failures | After more failures | After success |
+|---:|---:|---:|---:|---:|
+| 300 s | 600 s | 900 s | 900 s | 300 s |
+| 600 s | 900 s | 900 s | 900 s | 600 s |
+| 1200 s | 1200 s | 1200 s | 1200 s | 1200 s |
+
+This leaves normal polling intervals unchanged and gives 300-second tasks
+room to slow down during an outage. The tradeoff is a longer wait for the next
+automatic attempt after backend recovery: up to the current capped delay,
+plus jitter, unless a manual refresh, reconnect or foreground resume triggers
+work sooner. A base interval above the cap still takes precedence.
+
+The [configuration tests](../test/environment_config_test.dart) cover value
+resolution and validation. The
+[shell tests](../test/app/router/main_shell_polling_config_test.dart) exercise
+actual service creation, default/overridden caps, creation-time snapshotting
+and recovery. The
+[scheduler tests](../test/services/polling_service_test.dart) verify exact
+failure/recovery deadlines with zero jitter, while the
+[backoff tests](../test/utils/backoff_retries_test.dart) cover the base floor
+and explicit cap overrides.
 
 ## Connectivity and application lifecycle
 
@@ -397,7 +448,11 @@ repository error returned while the network is unavailable.
 | `reachabilityTtl` | 30 s | Reuses recent reachability evidence |
 | `leadingRefreshRequiresVerify` | `true` | Requires reachability before a group-leading refresh |
 | `jitterMaxMs` | 400 ms | Adds a random non-negative delay below this bound |
-| `maxBackoff` | 5 min | Caps exponential failure backoff |
+| `maxBackoff` | 5 min standalone; 15 min in the app | Caps exponential failure backoff without going below the base interval |
+
+The table lists `PollingOptions` constructor defaults. The shell explicitly
+overrides `maxBackoff` with the application configuration above; direct service
+construction retains its existing 5-minute fallback.
 
 Tests normally inject zero jitter and a deterministic backoff policy. Production
 code should keep jitter unless synchronized backend load is desired and has been
@@ -494,10 +549,9 @@ handles a failed prefill as non-fatal to the already valid session. The
 main-shell route guard still verifies cache readiness before constructing its
 providers. This caller-side fallback does not hide a polling refresh failure.
 
-System Info's default 300-second interval already equals the default backoff
-cap, so failed cycles do not increase that production delay further. Tests use
-shorter intervals to verify failure accounting and recovery without changing
-the scheduler policy. The
+System Info's default 300-second interval backs off to 600 and then 900 seconds
+with the application's default cap. Repository tests use shorter intervals to
+verify failure accounting and recovery. The
 [Patrol guard](../patrol_test/system_info_repository_refresh_test.dart) verifies
 the failed-write and recovery path with native preferences and controlled HTTP.
 
@@ -518,8 +572,9 @@ rethrown. Polling does not perform logout or classify HTTP errors.
 An unconfigured mailbox or unsupported endpoint fails the attempted cycle and
 sets `isActive` to false. Callers joining that still-running fetch receive its
 failure; later direct calls need no work, and polling unregisters the inactive
-listener. Like System Info, voicemail's default 300-second interval is already
-at the backoff cap; tests use shorter intervals to prove accounting and recovery.
+listener. Like System Info, voicemail's default 300-second interval backs off
+to 600 and then 900 seconds with the application's default cap. Repository tests
+use shorter intervals to prove accounting and recovery.
 
 The [unit contract tests](../test/repository/voicemail_refresh_contract_test.dart)
 cover shared completion, mutation waiters, eager-fetch failures, inactivity and
@@ -582,8 +637,9 @@ The [Patrol guards](../patrol_test/sip_subscriptions_repository_refresh_test.dar
 reuse the harness with an isolated database file for pull backoff and saved-edit
 recovery. See [coverage](integration_test_coverage.md#background-polling---sip-subscriptions-refresh)
 and [commands](integration_test_commands.md#run-the-sip-subscriptions-refresh-guards).
-Like Favorites, the default 300-second interval equals the backoff cap; these
-tests use shorter intervals and do not change that scheduler policy.
+Like Favorites, the default 300-second interval backs off to 600 and then 900
+seconds with the application's default cap. These repository tests use shorter
+intervals; application configuration is covered separately by the shell tests.
 
 Repository migrations should be separate review units. They may need feature
 error-stream preservation, session handling, or domain-specific fallback

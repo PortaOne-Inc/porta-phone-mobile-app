@@ -91,6 +91,7 @@ abstract class BackoffPolicy {
 }
 
 /// Exponential backoff: delay doubles with each error until capped.
+/// The base interval is a floor, even when the configured cap is smaller.
 ///
 /// Examples (base=5s):
 /// - 0 errors -> 5s
@@ -106,6 +107,8 @@ class ExponentialBackoff implements BackoffPolicy {
   Duration next(int consecutiveErrors, Duration base, {Duration? max}) {
     if (consecutiveErrors <= 0) return base;
     final cap = max ?? this.max;
+    // A longer configured interval must not become a faster retry on failure.
+    if (base >= cap) return base;
     // Clamp the exponent: an unbounded shift overflows into a negative
     // duration past 62 errors, which would fire the timer immediately.
     final factor = 1 << consecutiveErrors.clamp(0, 30); // 2^n
