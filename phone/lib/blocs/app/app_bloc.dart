@@ -170,7 +170,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   Future<void> _onLoggedIn(AppLoggedIn event, Emitter<AppState> emit) async {
     final systemInfo = event.systemInfo;
     if (systemInfo != null) {
-      systemInfoRepository.preload(systemInfo);
+      try {
+        await systemInfoRepository.preload(systemInfo);
+      } catch (e, st) {
+        // Preload is an optimization for an already valid session. The route
+        // guard still checks cache readiness before building the main shell.
+        _logger.warning('System info preload failed; leaving cache readiness to the route guard', e, st);
+      }
     }
 
     // Persist session to storage (syncs disk)

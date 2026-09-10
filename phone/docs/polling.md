@@ -455,7 +455,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | Listener | Status | Current behavior |
 |---|---|---|
 | `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
-| `SystemInfoRepository` | Needs migration | Rethrows remote failures but swallows cache-write failures |
+| `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
 | `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
 | `VoicemailRepository` | Needs migration | Usually rethrows; error-reporting and shared-future paths have gaps |
@@ -481,9 +481,25 @@ see [coverage](integration_test_coverage.md#background-polling---user-repository
 and [run commands](integration_test_commands.md#run-the-user-repository-refresh-guards).
 
 In [System Info](../lib/repositories/system_info/system_info_repository.dart),
-`refresh()` awaits `_updateSystemInfo()`, but that helper catches a failed
-`setSystemInfo()` and completes normally. Polling therefore records success
-even when persistence fails.
+`refresh()` awaits both the remote fetch and cache write, then publishes the
+persisted snapshot on `infoStream`. Write failures retain their original error
+and stack, with no data-stream update. `preload()` and network-backed
+`getSystemInfo()` calls share this persistence contract; cache-only reads and
+cache-first hits still need no remote work. The
+[integration tests](../test/repository/system_info_repository_integration_test.dart)
+cover these entrypoints, cache/stream ordering, failures and retry recovery.
+
+The [login owner](../lib/blocs/app/app_bloc.dart) awaits `preload()` and explicitly
+handles a failed prefill as non-fatal to the already valid session. The
+main-shell route guard still verifies cache readiness before constructing its
+providers. This caller-side fallback does not hide a polling refresh failure.
+
+System Info's default 300-second interval already equals the default backoff
+cap, so failed cycles do not increase that production delay further. Tests use
+shorter intervals to verify failure accounting and recovery without changing
+the scheduler policy. The
+[Patrol guard](../patrol_test/system_info_repository_refresh_test.dart) verifies
+the failed-write and recovery path with native preferences and controlled HTTP.
 
 In [Voicemail](../lib/repositories/voicemail/voicemail_repository.dart), a failed
 `_emitCachedVoicemails()` inside the error handler replaces the original cycle

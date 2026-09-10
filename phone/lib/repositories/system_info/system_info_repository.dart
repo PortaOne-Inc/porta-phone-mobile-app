@@ -22,12 +22,16 @@ enum FetchPolicy {
 }
 
 abstract interface class SystemInfoRepository implements Refreshable, Disposable {
-  /// A broadcast stream that emits updated [WebtritSystemInfo] whenever
-  /// a successful network fetch occurs or the local cache is updated.
+  /// A broadcast stream of successfully persisted system-info snapshots.
+  ///
+  /// Fetch and persistence failures are returned to the caller, not emitted
+  /// on this data stream. A failed write does not publish an update.
   Stream<WebtritSystemInfo> get infoStream;
 
   /// The [fetchPolicy] determines whether to use cached data, fetch from the network,
   /// or only use the cache. Typically used during login or initial setup flows.
+  /// Network-backed reads await persistence and propagate fetch/write failures.
+  /// Cache hits do not write or emit a new snapshot.
   Future<WebtritSystemInfo?> getSystemInfo({FetchPolicy fetchPolicy = FetchPolicy.cacheFirst});
 
   /// Returns cached system info explicitly.
@@ -40,8 +44,9 @@ abstract interface class SystemInfoRepository implements Refreshable, Disposable
   /// Preloads the repository with fresh data obtained from an external source
   /// (e.g., during the login flow).
   ///
-  /// This updates the local cache and emits the new value to [infoStream],
+  /// Awaits the cache write before emitting the new value to [infoStream],
   /// preventing unnecessary network requests immediately after navigation.
+  /// Persistence failures propagate to the caller with their original stack.
   Future<void> preload(WebtritSystemInfo info);
 
   // TODO: Consider extracting this into a dedicated provider (e.g. `CoreUrlProvider`)
@@ -65,13 +70,13 @@ class SystemInfoRepositoryImpl implements SystemInfoRepository {
   final _controller = StreamController<WebtritSystemInfo>.broadcast();
 
   Future<void> _updateSystemInfo(WebtritSystemInfo info) async {
-    _controller.add(info);
-
     try {
       await localDatasource.setSystemInfo(info);
     } catch (e, s) {
       _logger.warning('Failed to save system info locally', e, s);
+      rethrow;
     }
+    _controller.add(info);
   }
 
   @override
@@ -184,6 +189,10 @@ class SystemInfoRepositoryImpl implements SystemInfoRepository {
   @override
   bool get isActive => true;
 
+  /// Fetches and persists one snapshot before publishing it to listeners.
+  ///
+  /// Remote and persistence failures retain their original error and stack
+  /// trace so polling can record the failed cycle and apply its retry policy.
   @override
   Future<void> refresh() async {
     _logger.info('Background refresh started');

@@ -70,6 +70,31 @@ after each scenario. With the runner setting above, `--no-uninstall` also keeps
 the existing installation and its unrelated data.
 See [coverage and boundaries](integration_test_coverage.md#background-polling---user-repository-refresh).
 
+## Run the system-info refresh guard
+
+The host integration suite runs without Patrol:
+
+```bash
+fvm flutter test --no-pub test/repository/system_info_repository_integration_test.dart
+```
+
+For the native scenario, use the same provisioning, pinned SDK and temporary
+`clearPackageData: "false"` setting described in the
+[User Repository instructions](#run-the-user-repository-refresh-guards):
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/system_info_repository_refresh_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+HTTP and the failure before a preferences write are controlled. Successful
+writes use the native preferences plugin; the original `system-info` key is
+restored afterwards. See [coverage](integration_test_coverage.md#background-polling---system-info-persistence).
+
 ## Run the polling guards
 
 From the repository root, run the connectivity ordering, connect lifecycle, and

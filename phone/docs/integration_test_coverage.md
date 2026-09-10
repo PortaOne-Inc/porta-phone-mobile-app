@@ -263,6 +263,37 @@ do not simulate a device storage failure.
 
 ---
 
+## Background Polling - System Info Persistence
+
+**File:** [system_info_repository_refresh_test.dart](../patrol_test/system_info_repository_refresh_test.dart)
+
+The native scenario composes the real repository, remote/local datasources,
+API client, mappers, preferences plugin and polling service. The client factory
+returns that test client; HTTP and a hook before the preferences write are
+controlled. The hook is not a simulation of native filesystem failure.
+
+1. Return HTTP 200 but fail the cache-write boundary. The task must report the
+   original failure while keeping the old cache and leaving `infoStream` silent.
+2. Allow the automatic retry after two seconds (one-second test base interval).
+   Hold persistence and verify the successful HTTP response has not published
+   data or completed the cycle yet.
+3. Release the write, await success and one data update, then reload native
+   preferences to verify that the new snapshot was actually stored.
+
+The scenario restores the prior `system-info` preference in teardown. No login,
+backend credentials or connectivity toggles are needed. Use the same
+[safe runner configuration](integration_test_commands.md#run-the-system-info-refresh-guard)
+as the User Repository guard.
+
+The [host integration suite](../test/repository/system_info_repository_integration_test.dart)
+also covers `preload()`, network-only/cache-first fetches, original write errors
+and stacks, remote HTTP 503 failures, 20/40/10-second retry/recovery cadence in
+virtual time, and unchanged cache-only behavior. The
+[AppBloc tests](../test/blocs/app/app_compatibility_gate_test.dart) verify that
+login awaits preload and handles its failure without discarding the valid session.
+
+---
+
 ## Background Polling - Connectivity Probe Ordering
 
 **File:** `patrol_test/connectivity_probe_ordering_test.dart`
