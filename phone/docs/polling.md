@@ -458,7 +458,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
 | `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
-| `VoicemailRepository` | Needs migration | Usually rethrows; error-reporting and shared-future paths have gaps |
+| `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
 | `FavoritesRepository` | Needs migration | Remote sync helpers log and swallow failures |
 | `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
@@ -501,12 +501,35 @@ the scheduler policy. The
 [Patrol guard](../patrol_test/system_info_repository_refresh_test.dart) verifies
 the failed-write and recovery path with native preferences and controlled HTTP.
 
-In [Voicemail](../lib/repositories/voicemail/voicemail_repository.dart), a failed
-`_emitCachedVoicemails()` inside the error handler replaces the original cycle
-error and skips completion of the shared future. The 401 handler also rethrows
-without completing `_fetchingCompleter`. A `refresh()` that joins either fetch
-can remain pending after the initiating call fails. These existing paths need
-original-error preservation and completion for every caller.
+In [Voicemail](../lib/repositories/voicemail/voicemail_repository.dart), `refresh()`
+and direct `fetchVoicemails()` calls share one future covering the list request,
+detail requests and required SQLite writes. Mutations waiting for that fetch
+observe the same outcome. Every caller receives the original error and stack,
+including on 401 and when re-emitting cached data also fails. Persisted rows
+remain available to the UI; this fallback never turns a failed cycle into success.
+Writes remain per item, not an all-or-nothing batch transaction.
+
+The constructor retains its eager fetch and handles its detached observation;
+joining polling/UI callers still receive the failed future. The
+[composition root](../lib/app/router/main_shell_repositories.dart) supplies the
+session guard, so `UnauthorizedException` is routed once per fetch before being
+rethrown. Polling does not perform logout or classify HTTP errors.
+
+An unconfigured mailbox or unsupported endpoint fails the attempted cycle and
+sets `isActive` to false. Callers joining that still-running fetch receive its
+failure; later direct calls need no work, and polling unregisters the inactive
+listener. Like System Info, voicemail's default 300-second interval is already
+at the backoff cap; tests use shorter intervals to prove accounting and recovery.
+
+The [unit contract tests](../test/repository/voicemail_refresh_contract_test.dart)
+cover shared completion, mutation waiters, eager-fetch failures, inactivity and
+20/40/10-second retry recovery. The
+[host integration suite](../test/repository/voicemail_repository_integration_test.dart)
+uses the real API mapping and SQLite. The
+[Patrol guards](../patrol_test/voicemail_repository_refresh_test.dart) check shared
+503/401 failures and delayed-write recovery on-device with an isolated database.
+See [coverage](integration_test_coverage.md#background-polling---voicemail-refresh)
+and [commands](integration_test_commands.md#run-the-voicemail-refresh-guards).
 
 Repository migrations should be separate review units. They may need feature
 error-stream preservation, session handling, or domain-specific fallback

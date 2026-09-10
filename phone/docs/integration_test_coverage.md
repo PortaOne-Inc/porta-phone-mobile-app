@@ -263,6 +263,37 @@ do not simulate a device storage failure.
 
 ---
 
+## Background Polling - Voicemail Refresh
+
+**File:** [voicemail_repository_refresh_test.dart](../patrol_test/voicemail_repository_refresh_test.dart)
+
+Two component-integration guards compose the real API client, voicemail
+repository/mappers, polling service and file-backed SQLite on the device.
+HTTP responses, connectivity eligibility and cache-boundary faults are controlled;
+these are not live-backend E2E, OS connectivity or physical disk-failure tests.
+
+1. An automatic HTTP 503 fails both polling and direct-fetch joiners with the
+   same error and stack, even when cache fallback also fails. The cached row
+   survives. The retry starts after two seconds with a one-second test interval;
+   the cycle remains running until the gated SQLite write finishes.
+2. HTTP 401 releases both a polling joiner and a waiting delete with the same
+   failure, calls a recording `SessionGuard` once, and leaves the cached row
+   untouched. This verifies guard routing, not the full application logout flow.
+
+Each scenario uses an isolated temporary database and removes it in teardown.
+The application's database is never opened. Use the
+[safe runner configuration](integration_test_commands.md#run-the-voicemail-refresh-guards)
+to retain unrelated application data.
+
+The [host integration suite](../test/repository/voicemail_repository_integration_test.dart)
+also covers failed detail requests, failed writes, delayed persistence and
+unsupported/unconfigured voicemail. The
+[unit contract suite](../test/repository/voicemail_refresh_contract_test.dart)
+covers every waiting mutation, eager-fetch error ownership, inactive no-work
+and exact 20/40/10-second backoff recovery in virtual time.
+
+---
+
 ## Background Polling - System Info Persistence
 
 **File:** [system_info_repository_refresh_test.dart](../patrol_test/system_info_repository_refresh_test.dart)
