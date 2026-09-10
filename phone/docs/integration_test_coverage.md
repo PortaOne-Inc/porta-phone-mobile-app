@@ -325,6 +325,36 @@ mutations and exact backoff recovery with virtual time.
 
 ---
 
+## Background Polling - SIP Subscriptions Refresh
+
+**File:** [sip_subscriptions_repository_refresh_test.dart](../patrol_test/sip_subscriptions_repository_refresh_test.dart)
+
+Two component-integration guards compose the real API client, mapping,
+repository, polling service and isolated file-backed SQLite. HTTP responses
+and connectivity eligibility are controlled; no account, live backend, app
+bootstrap, OS network toggle or application database is involved.
+
+1. Two HTTP 503 pulls retain cached subscriptions and delay automatic retries
+   by two and four seconds with a one-second test base and zero jitter.
+   Recovery persists the new snapshot, restores the base cadence, and sends
+   the ETag on a later GET; `304` preserves the stored subscriptions.
+2. A local upsert survives an immediate failed batch sync and retains a durable
+   outbox entry. A failing polling cycle increments its attempt count; a later
+   backed-off success drains the outbox and persists the server snapshot.
+
+The [host integration suite](../test/repository/sip_subscriptions_repository_integration_test.dart)
+also covers 401/429, malformed payloads, and deletion of a presence subscription
+with its resolved contact user ID preserved across retries. The
+[unit contract tests](../test/repository/sip_subscriptions_repository_test.dart)
+cover injected write/acknowledgement failures, original errors and stacks,
+secondary bookkeeping failures, disabled sync and exact virtual-time backoff.
+They do not simulate a physical disk failure or change the production backoff cap.
+
+Each native scenario removes only its own temporary database. Follow the
+[safe runner instructions](integration_test_commands.md#run-the-sip-subscriptions-refresh-guards).
+
+---
+
 ## Background Polling - System Info Persistence
 
 **File:** [system_info_repository_refresh_test.dart](../patrol_test/system_info_repository_refresh_test.dart)

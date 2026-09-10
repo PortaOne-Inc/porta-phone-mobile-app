@@ -156,6 +156,34 @@ database, or alter OS connectivity. Restore the runner setting and temporary
 Patrol dependency after the run. See
 [coverage](integration_test_coverage.md#background-polling---favorites-refresh).
 
+## Run the SIP subscriptions refresh guards
+
+The host suites need no device or Patrol:
+
+```bash
+fvm flutter test --no-pub \
+  test/repository/sip_subscriptions_repository_test.dart \
+  test/repository/sip_subscriptions_repository_integration_test.dart
+```
+
+For the native scenarios, provision Patrol and temporarily set
+`clearPackageData: "false"` following the
+[User Repository instructions](#run-the-user-repository-refresh-guards):
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/sip_subscriptions_repository_refresh_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+The scenarios use controlled HTTP/connectivity and a temporary SQLite file,
+not the app's database. No login, backend credentials or network toggles are
+needed. Restore the temporary Patrol dependency and runner setting after the
+run. See [coverage](integration_test_coverage.md#background-polling---sip-subscriptions-refresh).
+
 ## Run the polling guards
 
 From the repository root, run the connectivity ordering, connect lifecycle, and

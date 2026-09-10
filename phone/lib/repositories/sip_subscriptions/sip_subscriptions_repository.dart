@@ -21,6 +21,10 @@ abstract class SipSubscriptionsRepository {
   Future<void> remove(SipSubscriptionType type, String number, {String? contactUserId});
 }
 
+/// Persists local edits and their outbox entries before best-effort sync.
+///
+/// A subsequent sync failure does not fail a saved edit. In contrast, [refresh]
+/// reports the full sync outcome, including remote and local persistence errors.
 class SipSubscriptionsRepositorySyncableImpl implements SipSubscriptionsRepository, Refreshable {
   SipSubscriptionsRepositorySyncableImpl({
     required SipSubscriptionsLocalDataSource localDataSource,
@@ -64,7 +68,7 @@ class SipSubscriptionsRepositorySyncableImpl implements SipSubscriptionsReposito
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
@@ -94,53 +98,64 @@ class SipSubscriptionsRepositorySyncableImpl implements SipSubscriptionsReposito
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
-  Future<void> refresh() => _maybeSync();
+  Future<void> refresh() async {
+    if (!remoteSyncEnabled) return;
 
-  Future<void> _maybeSync() async {
+    try {
+      final outbox = await _localRepository.getAllOutboxActions();
+      if (outbox.isEmpty) {
+        await _pullRemoteSubscriptions();
+      } else {
+        await _pushPullChanges(outbox);
+      }
+    } catch (e, s) {
+      _logger.warning('Failed to refresh sip subscriptions', e, s);
+      rethrow;
+    }
+  }
+
+  Future<void> _maybeSyncAfterEdit() async {
     if (remoteSyncEnabled == false) return;
     if ((await _connectivityService.checkConnection()) == false) return;
 
-    final outbox = await _localRepository.getAllOutboxActions();
-    if (outbox.isEmpty) {
-      await _pullRemoteSubscriptions();
-    } else {
-      await _pushPullChanges(outbox);
+    try {
+      await refresh();
+    } catch (_) {
+      // The edit and its outbox entry are already persisted. Refresh logs the
+      // failure; a later polling cycle retries without failing the local edit.
     }
   }
 
   Future<void> _pullRemoteSubscriptions() async {
-    final remoteRepository = _remoteRepository;
-
-    try {
-      final result = await remoteRepository.getSipSubscriptions(ifNoneMatch: _etag);
-      if (result.notModified) {
-        _logger.fine('Sip subscriptions not modified since last sync');
-        return;
-      }
-
-      await _localRepository.batchReplace(result.items, removePrevious: true);
-      _etag = result.etag;
-    } catch (e, s) {
-      _logger.warning('Failed to pull remote sip subscriptions', e, s);
+    final result = await _remoteRepository.getSipSubscriptions(ifNoneMatch: _etag);
+    if (result.notModified) {
+      _logger.fine('Sip subscriptions not modified since last sync');
+      return;
     }
+
+    await _localRepository.batchReplace(result.items, removePrevious: true);
+    _etag = result.etag;
   }
 
   Future<void> _pushPullChanges(List<SipSubscriptionOutboxAction> outbox) async {
-    final remoteRepository = _remoteRepository;
-
     _logger.info('Syncing ${outbox.length} sip subscription changes from outbox');
     try {
-      final result = await remoteRepository.batchSyncSipSubscriptions(outbox);
+      final result = await _remoteRepository.batchSyncSipSubscriptions(outbox);
       await Future.forEach(outbox, _localRepository.removeOutboxAction);
       await _localRepository.batchReplace(result.items, removePrevious: true);
       _etag = result.etag;
-    } catch (e, s) {
-      await _handleOutboxSyncFailure(outbox);
-      _logger.warning('Failed to sync sip subscriptions outbox', e, s);
+    } catch (_) {
+      try {
+        await _handleOutboxSyncFailure(outbox);
+      } catch (e, s) {
+        // Failure bookkeeping must not replace the original sync error.
+        _logger.warning('Failed to record sip subscriptions outbox attempt', e, s);
+      }
+      rethrow;
     }
   }
 

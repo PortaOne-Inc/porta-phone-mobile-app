@@ -461,7 +461,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
 | `FavoritesRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
-| `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `SipSubscriptionsRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
 | `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
 
 In [User Info](../lib/repositories/user_info/user_repository.dart), `refresh()`
@@ -556,6 +556,34 @@ that harness with isolated file-backed SQLite on the device to verify automatic
 pull backoff and saved-edit/outbox recovery. See
 [coverage](integration_test_coverage.md#background-polling---favorites-refresh)
 and [commands](integration_test_commands.md#run-the-favorites-refresh-guards).
+
+In [SIP subscriptions](../lib/repositories/sip_subscriptions/sip_subscriptions_repository.dart),
+`refresh()` has the same strict boundary as Favorites: it awaits the outbox read,
+remote pull or batch sync, and local persistence, then rethrows the original
+failure and stack. Secondary outbox bookkeeping failures are logged separately.
+Only completed persistence advances the ETag; `304` and disabled remote sync
+are successful no-work outcomes.
+
+Local upsert and remove still persist the edit and outbox first, then await
+best-effort sync with a connectivity preflight. A sync failure does not fail
+the saved edit; a local mutation or initial outbox write failure still does.
+Removal retains its contact-user-ID lookup before deleting the local row.
+Polling invokes strict refresh without a repository connectivity gate. The
+existing attempt limit, direct post-edit sync path and non-atomic outbox
+acknowledgement are unchanged; this is not a worker or concurrency migration.
+
+The [contract tests](../test/repository/sip_subscriptions_repository_test.dart)
+cover original failures, bookkeeping, ETag/write ordering, local edits and
+automatic 20/40/10-second backoff recovery. The
+[host integration tests](../test/repository/sip_subscriptions_repository_integration_test.dart)
+exercise real API mapping and SQLite with 401/429/503 responses, `304`, invalid
+payloads, and durable upsert/delete retries including the resolved contact ID.
+The [Patrol guards](../patrol_test/sip_subscriptions_repository_refresh_test.dart)
+reuse the harness with an isolated database file for pull backoff and saved-edit
+recovery. See [coverage](integration_test_coverage.md#background-polling---sip-subscriptions-refresh)
+and [commands](integration_test_commands.md#run-the-sip-subscriptions-refresh-guards).
+Like Favorites, the default 300-second interval equals the backoff cap; these
+tests use shorter intervals and do not change that scheduler policy.
 
 Repository migrations should be separate review units. They may need feature
 error-stream preservation, session handling, or domain-specific fallback
