@@ -38,6 +38,7 @@ class MainShellServices extends StatelessWidget {
           create: (context) => PollingService(
             connectivityService: context.read<ConnectivityService>(),
             registrations: _pollingRegistrations(context),
+            options: PollingOptions(maxBackoff: Duration(seconds: EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS)),
           ),
           dispose: (context, service) => service.dispose(),
           lazy: false,

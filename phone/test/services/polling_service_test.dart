@@ -1013,6 +1013,32 @@ void main() {
       });
     });
 
+    test('a 900-second cap gives a 300-second task backoff headroom and resets on success', () {
+      fakeAsync((async) {
+        connectivity.setConnected(true);
+        final listener = MockRefreshableRepository()..failTimes = 3;
+        service = PollingService(
+          connectivityService: connectivity,
+          options: const PollingOptions(jitterMaxMs: 0, maxBackoff: Duration(seconds: 900)),
+        );
+        final handle = service.register(
+          PollingRegistration(listener: listener, interval: const Duration(seconds: 300)),
+        );
+        async.flushMicrotasks();
+        expect(listener.callCount, 1);
+        expect(handle.state.phase, PollingTaskPhase.failed);
+
+        var calls = 1;
+        for (final seconds in [600, 900, 900, 300]) {
+          async.elapse(Duration(seconds: seconds - 1));
+          expect(listener.callCount, calls);
+          async.elapse(const Duration(seconds: 1));
+          expect(listener.callCount, ++calls);
+          expect(handle.state.phase, calls <= 3 ? PollingTaskPhase.failed : PollingTaskPhase.succeeded);
+        }
+      });
+    });
+
     test('normal no-work completion succeeds and resets automatic backoff', () {
       fakeAsync((async) {
         connectivity.setConnected(true);

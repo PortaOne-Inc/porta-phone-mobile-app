@@ -102,6 +102,36 @@ void main() {
       expect(EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS, 10);
     });
 
+    group('polling backoff cap', () {
+      const name = EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS__NAME;
+      // Run this group with --dart-define=$name=<value> as well to exercise
+      // build-time parsing, including malformed and non-positive values.
+      const configured = int.fromEnvironment('WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS', defaultValue: 900);
+      const fallback = configured > 0 ? configured : 900;
+
+      test('uses the positive build value or the 900-second default', () {
+        expect(name, 'WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS');
+        expect(EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS, fallback);
+      });
+
+      test('positive runtime values win and clearing restores the build value', () {
+        for (final seconds in [1, 300, 1800]) {
+          EnvironmentConfig.applyOverrides({name: '$seconds'});
+          expect(EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS, seconds);
+        }
+
+        EnvironmentConfig.clearOverrides();
+        expect(EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS, fallback);
+      });
+
+      for (final invalid in ['', 'abc', '1.5', '0', '-5']) {
+        test('invalid runtime value "$invalid" falls back to the validated build value', () {
+          EnvironmentConfig.applyOverrides({name: invalid});
+          expect(EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS, fallback);
+        });
+      }
+    });
+
     test('APP_LINK_DOMAIN is trimmed, so it matches the host the build put in the manifest', () {
       const name = EnvironmentConfig.APP_LINK_DOMAIN__NAME;
 
