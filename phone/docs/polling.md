@@ -333,8 +333,9 @@ This prevents a slow request from accumulating timer callbacks. The computed
 delay is:
 
 ```text
+effective cap = max(base interval, maxBackoff)
 0 failures: base interval + jitter
-1+ failures: min(base interval * 2 ^ failures, maxBackoff) + jitter
+1+ failures: min(base interval * 2 ^ failures, effective cap) + jitter
 ```
 
 With a 5-second interval and zero jitter:
@@ -350,6 +351,12 @@ The default cap is 5 minutes. The default jitter adds 0 through 399 ms so tasks
 with equal intervals do not continually hit the backend together. A successful
 cycle resets the failure count. A manually started failure leaves the current
 automatic count unchanged.
+
+The base interval takes precedence when it equals or exceeds the configured
+cap. For example, a 600-second base with a 300-second cap still waits 600 seconds
+after a failure, rather than speeding up to 300 seconds. This floor prevents
+faster retries; it does not create additional backoff headroom. To slow a task
+below its normal cadence, configure a cap greater than its base interval.
 
 Changing an interval, stopping timers, or manually resetting cadence increments
 a schedule generation. Timer continuations that crossed an asynchronous
