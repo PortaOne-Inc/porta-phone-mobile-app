@@ -90,10 +90,28 @@ class ExternalContactsSyncWorker implements PollingWorker {
   /// Merges into the local store, retrying transient database errors a few
   /// times with a short backoff before giving up on this cycle.
   Future<void> _syncWithRetry(List<ExternalContact> contacts) async {
-    await _storeRetries.execute(
-      (_) => _contactsRepository.syncExternalContacts(contacts),
-      shouldRetry: (e, attempt) => attempt < 3 && !_disposed,
-    );
+    AsyncError? lastFailure;
+
+    Future<bool> store(int attempt) async {
+      try {
+        await _contactsRepository.syncExternalContacts(contacts);
+        return true;
+      } catch (error, stackTrace) {
+        lastFailure = AsyncError(error, stackTrace);
+        rethrow;
+      }
+    }
+
+    final stored = await _storeRetries.execute<bool>(store, shouldRetry: (e, attempt) => attempt < 3 && !_disposed);
+    if (stored == true) return;
+
+    // BackoffRetries returns null on cancellation, including after a failed
+    // write. Only a completed write may advance _lastSynced or report success.
+    final failure = lastFailure;
+    if (failure != null) {
+      Error.throwWithStackTrace(failure.error, failure.stackTrace);
+    }
+    throw StateError('External contacts sync was cancelled before persistence.');
   }
 
   bool _disposed = false;

@@ -456,7 +456,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 |---|---|---|
 | `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
 | `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
-| `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
+| `ExternalContactsSyncWorker` | Conforms | Awaits persistence and preserves write failures when retries are cancelled |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
@@ -621,12 +621,27 @@ remote gateway, filter out the current user, and merge changed data into the
 local store. The worker is the polling listener; the remote repository is a
 fetch-only gateway and cannot start a second schedule.
 
+Local writes retain their bounded retries within the cycle. If disposal
+cancels those retries, the worker throws the last write error with its original
+stack instead of treating the retry helper's nullable result as success. If
+cancellation prevents a required write from starting, the cycle fails with
+`StateError`. A write already in flight can still succeed; disposal does not
+roll it back. Only successful persistence advances the worker's unchanged-data
+snapshot.
+
 `ExternalContactsSync` owns the worker and its registration. The external tab
 calls its feature BLoC refresh action. The BLoC receives
 `PollingTaskStateSource` and `PollingTaskRunner`, maps the cycle into feature
 state, and invokes `runNow()`. The full handle remains private to the standard
 owner. A pull during an automatic cycle therefore joins it instead of starting
 a second download.
+
+Unregistering during a cycle keeps task state terminal (`stopped`), but joined
+manual callers still receive the real cycle outcome. The tests in
+[`external_contacts_sync_worker_test.dart`](../test/features/contacts/external_contacts_sync_worker_test.dart)
+cover these disposal races and verify automatic backoff after exhausted write
+retries, recovery, and the unchanged-data shortcut. They use controlled
+repositories and time, not a native storage failure or a live backend.
 
 ### CDR
 
