@@ -57,6 +57,15 @@ maintainability and enabling tools to parse configuration reliably.
   runtime values use the validated build value; invalid/negative build values
   use 30. The shell snapshots it when creating the polling service. See
   [leading refresh freshness](polling.md#leading-refresh-freshness).
+- `WEBTRIT_APP_EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS` - Contacts
+  poll interval in positive whole seconds when hybrid presence is off (default:
+  **300**). Here the fetch is the presence source, so it stays fairly fresh.
+- `WEBTRIT_APP_EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS` -
+  Contacts poll interval in positive whole seconds when hybrid presence is on
+  (default: **1800**). Presence rides the SIP channel, so this fetch only
+  refreshes the directory and can run far less often. The shell picks between the
+  two at registration from the deployment's presence mode. Invalid values fall
+  back safely. See [contacts presence interval](polling.md#contacts-presence-interval).
 
 ### Environment
 

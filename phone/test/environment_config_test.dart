@@ -102,6 +102,57 @@ void main() {
       expect(EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS, 10);
     });
 
+    group('external contacts polling interval by presence mode', () {
+      const offName = EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME;
+      const onName = EnvironmentConfig.EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS__NAME;
+      // Run this group with --dart-define=<name>=0 and =-1 as well: a non-positive
+      // build value must clamp to the code default, never reach the scheduler as
+      // a zero delay.
+      const offConfigured = int.fromEnvironment(offName, defaultValue: 300);
+      const onConfigured = int.fromEnvironment(onName, defaultValue: 1800);
+      final offFallback = offConfigured > 0 ? offConfigured : 300;
+      final onFallback = onConfigured > 0 ? onConfigured : 1800;
+
+      test('the two env names are the documented keys', () {
+        expect(offName, 'WEBTRIT_APP_EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS');
+        expect(onName, 'WEBTRIT_APP_EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS');
+      });
+
+      test('a non-positive build value clamps to the positive code default', () {
+        // Under a plain run both are the defaults; under --dart-define=...=0 or
+        // -1 the getters must still be positive and equal the fallback.
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS, offFallback);
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS, greaterThan(0));
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS, onFallback);
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS, greaterThan(0));
+      });
+
+      test('presence-off interval honours a positive override and rejects a non-positive one', () {
+        EnvironmentConfig.applyOverrides({offName: '120'});
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS, 120);
+
+        EnvironmentConfig.applyOverrides({offName: '0'});
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS, offFallback);
+      });
+
+      test('hybrid-presence interval honours a positive override and rejects a non-positive one', () {
+        EnvironmentConfig.applyOverrides({onName: '3600'});
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS, 3600);
+
+        EnvironmentConfig.applyOverrides({onName: '-1'});
+        expect(EnvironmentConfig.EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS, onFallback);
+      });
+
+      test('the selector picks the interval for the presence mode', () {
+        expect(EnvironmentConfig.externalContactsPollingSeconds(hybridPresence: false), offFallback);
+        expect(EnvironmentConfig.externalContactsPollingSeconds(hybridPresence: true), onFallback);
+
+        EnvironmentConfig.applyOverrides({offName: '90', onName: '2400'});
+        expect(EnvironmentConfig.externalContactsPollingSeconds(hybridPresence: false), 90);
+        expect(EnvironmentConfig.externalContactsPollingSeconds(hybridPresence: true), 2400);
+      });
+    });
+
     group('polling backoff cap', () {
       const name = EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS__NAME;
       // Run this group with --dart-define=$name=<value> as well to exercise

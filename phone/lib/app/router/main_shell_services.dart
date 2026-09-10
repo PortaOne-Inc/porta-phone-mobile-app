@@ -129,10 +129,13 @@ class MainShellServices extends StatelessWidget {
       externalContactsRepository: context.read<ExternalContactsRepository>(),
       contactsRepository: context.read<ContactsRepository>(),
     );
+    // Hybrid presence serves the badge from the SIP channel, so the contacts fetch is
+    // directory-only and polls slowly; otherwise the fetch is the presence source.
+    final hybridPresence = context.read<FeatureAccess>().sipPresenceConfig.hybridPresenceSupport;
     return ExternalContactsSync(
       worker: worker,
       pollingService: context.read<PollingService>(),
-      interval: Duration(seconds: EnvironmentConfig.EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS),
+      interval: Duration(seconds: EnvironmentConfig.externalContactsPollingSeconds(hybridPresence: hybridPresence)),
     );
   }
 
