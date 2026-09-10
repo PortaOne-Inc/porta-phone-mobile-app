@@ -10,6 +10,8 @@ import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 import 'package:webtrit_phone/services/services.dart';
 
+import '../../mocks/fake_connectivity_service.dart';
+
 class MockUserRepository extends Mock implements UserRepository {}
 
 class MockExternalContactsRepository extends Mock implements ExternalContactsRepository {}
@@ -48,6 +50,7 @@ final _contactOther = ExternalContact(
 );
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() => registerFallbackValue(FakePollingRegistration()));
 
   late MockUserRepository userRepository;
@@ -152,33 +155,115 @@ void main() {
       });
     });
 
-    test('transient store errors are retried within one cycle', () {
+    test('a write failure propagates immediately without local retries', () {
       fakeAsync((async) {
+        final error = Exception('store unavailable');
+        final stack = StackTrace.fromString('failed store attempt');
         var attempts = 0;
-        when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) async {
+        when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) {
           attempts++;
-          if (attempts < 3) throw Exception('transient');
+          return Future<void>.error(error, stack);
         });
 
-        var completed = false;
-        worker.refresh().then((_) => completed = true);
-        async.elapse(const Duration(seconds: 5));
+        AsyncError? failure;
+        worker.refresh().then<void>(
+          (_) => fail('a failed write must not complete successfully'),
+          onError: (Object error, StackTrace stack) => failure = AsyncError(error, stack),
+        );
+        async.flushMicrotasks();
 
-        expect(completed, isTrue);
-        expect(attempts, 3);
+        expect(failure?.error, same(error));
+        expect(failure?.stackTrace, same(stack));
+        expect(attempts, 1);
+
+        async.elapse(const Duration(minutes: 1));
+        expect(attempts, 1, reason: 'only a new polling cycle may retry a failed write');
       });
     });
 
-    test('a persistently failing store fails the cycle after the retries', () {
-      fakeAsync((async) {
-        when(() => contactsRepository.syncExternalContacts(any())).thenThrow(Exception('broken'));
+    test('the next cycle writes previously failed data and then skips unchanged data', () async {
+      final error = Exception('store unavailable');
+      when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) => Future<void>.error(error));
 
-        Object? failure;
-        worker.refresh().catchError((Object e) => failure = e);
-        async.elapse(const Duration(seconds: 10));
+      await expectLater(worker.refresh(), throwsA(same(error)));
+      verify(() => contactsRepository.syncExternalContacts(any())).called(1);
 
-        expect(failure, isException);
+      when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) async {});
+      await worker.refresh();
+      verify(() => contactsRepository.syncExternalContacts(any())).called(1);
+
+      await worker.refresh();
+      verifyNever(() => contactsRepository.syncExternalContacts(any()));
+      verify(() => externalContactsRepository.fetchContacts()).called(3);
+    });
+
+    test('disposal while waiting for user info prevents a new write', () async {
+      final pendingUser = Completer<UserInfo>();
+      final userRequested = Completer<void>();
+      when(() => userRepository.getLocalInfo()).thenReturn(null);
+      when(() => userRepository.getAndListen()).thenAnswer((_) {
+        userRequested.complete();
+        return pendingUser.future.asStream();
       });
+
+      final failure = expectLater(worker.refresh(), throwsStateError);
+      await userRequested.future;
+      await worker.dispose();
+      pendingUser.complete(_testUser);
+
+      await failure;
+      verifyNever(() => contactsRepository.syncExternalContacts(any()));
+    });
+
+    test('a pending write failure still propagates after disposal', () async {
+      final pendingWrite = Completer<void>();
+      final writeStarted = Completer<void>();
+      final error = Exception('pending write failed');
+      final stack = StackTrace.fromString('pending store attempt');
+      when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) {
+        writeStarted.complete();
+        return pendingWrite.future;
+      });
+
+      final outcome = worker.refresh().then<AsyncError?>((_) => null, onError: AsyncError.new);
+      await writeStarted.future;
+      await worker.dispose();
+      pendingWrite.completeError(error, stack);
+
+      final failure = await outcome;
+      expect(failure?.error, same(error));
+      expect(failure?.stackTrace, same(stack));
+      verify(() => contactsRepository.syncExternalContacts(any())).called(1);
+    });
+
+    test('disposal before the required write does not report success', () async {
+      final pendingFetch = Completer<List<ExternalContact>>();
+      when(() => externalContactsRepository.fetchContacts()).thenAnswer((_) => pendingFetch.future);
+
+      final outcome = worker.refresh();
+      final failure = expectLater(outcome, throwsStateError);
+      await worker.dispose();
+      pendingFetch.complete([_contactOther]);
+
+      await failure;
+      verifyNever(() => contactsRepository.syncExternalContacts(any()));
+    });
+
+    test('a successful pending write remains successful after disposal', () async {
+      final pendingWrite = Completer<void>();
+      final writeStarted = Completer<void>();
+      when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) {
+        writeStarted.complete();
+        return pendingWrite.future;
+      });
+
+      final outcome = worker.refresh();
+      await writeStarted.future;
+      await worker.dispose();
+      pendingWrite.complete();
+
+      await outcome;
+      verify(() => contactsRepository.syncExternalContacts(any())).called(1);
     });
 
     test('refresh after disposal is rejected before fetching', () async {
@@ -192,6 +277,96 @@ void main() {
   });
 
   group('ExternalContactsSync', () {
+    test('a joined manual caller receives the write failure after owner disposal', () {
+      fakeAsync((async) {
+        final connectivity = FakeConnectivityService(initialConnected: true);
+        final polling = PollingService(
+          connectivityService: connectivity,
+          registrations: [],
+          options: const PollingOptions(jitterMaxMs: 0),
+        );
+        addTearDown(polling.dispose);
+        addTearDown(connectivity.dispose);
+        final error = Exception('store unavailable');
+        final stack = StackTrace.fromString('joined store attempt');
+        final pendingWrite = Completer<void>();
+        when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) => pendingWrite.future);
+        final sync = ExternalContactsSync(
+          worker: worker,
+          pollingService: polling,
+          interval: const Duration(minutes: 1),
+        );
+
+        async.flushMicrotasks();
+        expect(sync.state.phase, PollingTaskPhase.running);
+        AsyncError? failure;
+        var succeeded = false;
+        sync.runNow().then<void>(
+          (_) => succeeded = true,
+          onError: (Object error, StackTrace stack) => failure = AsyncError(error, stack),
+        );
+        unawaited(sync.dispose());
+        pendingWrite.completeError(error, stack);
+        async.elapse(const Duration(minutes: 5));
+
+        expect(succeeded, isFalse);
+        expect(failure?.error, same(error));
+        expect(failure?.stackTrace, same(stack));
+        expect(sync.state.phase, PollingTaskPhase.stopped, reason: 'late completion must not revive the task');
+        verify(() => externalContactsRepository.fetchContacts()).called(1);
+        verify(() => contactsRepository.syncExternalContacts(any())).called(1);
+      });
+    });
+
+    test('a failed write backs off the next cycle and recovery restores normal cadence', () {
+      fakeAsync((async) {
+        final connectivity = FakeConnectivityService(initialConnected: true);
+        final polling = PollingService(
+          connectivityService: connectivity,
+          registrations: [],
+          options: const PollingOptions(jitterMaxMs: 0),
+        );
+        addTearDown(polling.dispose);
+        addTearDown(connectivity.dispose);
+        final error = Exception('store unavailable');
+        final stack = StackTrace.fromString('failed store attempt');
+        var writes = 0;
+        var shouldFail = true;
+        when(() => contactsRepository.syncExternalContacts(any())).thenAnswer((_) {
+          writes++;
+          return shouldFail ? Future<void>.error(error, stack) : Future<void>.value();
+        });
+        final sync = ExternalContactsSync(
+          worker: worker,
+          pollingService: polling,
+          interval: const Duration(minutes: 1),
+        );
+        addTearDown(sync.dispose);
+
+        async.flushMicrotasks();
+        expect(writes, 1);
+        expect(sync.state.phase, PollingTaskPhase.failed);
+        expect(sync.state.error, same(error));
+        expect(sync.state.stackTrace, same(stack));
+
+        shouldFail = false;
+        async.elapse(const Duration(seconds: 119));
+        verify(() => externalContactsRepository.fetchContacts()).called(1);
+        expect(writes, 1, reason: 'failed persistence must not use the normal 60-second interval or retry locally');
+
+        async.elapse(const Duration(seconds: 1));
+        expect(sync.state.phase, PollingTaskPhase.succeeded);
+        expect(writes, 2, reason: 'failed data must not have been cached as already synced');
+        verify(() => externalContactsRepository.fetchContacts()).called(1);
+
+        async.elapse(const Duration(seconds: 59));
+        verifyNever(() => externalContactsRepository.fetchContacts());
+        async.elapse(const Duration(seconds: 1));
+        verify(() => externalContactsRepository.fetchContacts()).called(1);
+        expect(writes, 2, reason: 'a successfully persisted unchanged list needs no new write');
+      });
+    });
+
     test('registers its worker and releases both owned parts', () async {
       final syncWorker = MockExternalContactsSyncWorker();
       final pollingService = MockPollingService();
