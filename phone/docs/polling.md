@@ -1,7 +1,7 @@
 # Background polling
 
 `PollingService` coordinates periodic, lifecycle-triggered, and manual refreshes without overlapping work for the same registration.
-Last reviewed: 2026-09-07.
+Last reviewed: 2026-09-10.
 
 ## Scope and current status
 
@@ -97,6 +97,41 @@ manual runNow() -------------------------------------------+        |
 
 Only the cycle runner invokes `Refreshable.refresh()`. It publishes state,
 records the result, and completes the future shared by manual callers.
+
+### Refresh completion contract
+
+`Refreshable.refresh()` returns `Future<void>` because the scheduler needs two
+outcomes, not a repository-specific result type:
+
+| Domain outcome | `Future<void>` | Task phase | Automatic backoff |
+|---|---|---|---|
+| Required work completed, including persistence | Completes normally | `succeeded` | Reset |
+| Domain policy proves remote work is not required | Completes normally | `succeeded` | Reset |
+| Attempted work failed | Throws the original error and stack trace | `failed` | Incremented |
+| `isActive == false` | `refresh()` is not called | `stopped` | Not applicable |
+
+The `Refreshable` or `PollingWorker` owns the domain decision about whether the
+cycle requires work. `PollingService` does not inspect repository data or infer
+business success. It only maps normal completion or a thrown failure into task
+state and scheduling policy.
+
+Normal no-work completion is appropriate when the listener can prove that the
+cycle has nothing to do, for example because a cached value is still fresh, a
+successful conditional request returned not-modified, or there are no domain
+changes to persist. It is not appropriate when an attempted request timed out,
+returned a server error, lost its socket, or when persistence failed. Cached or
+fallback data may still be usable after such a failure, but the attempt must
+throw so polling can observe the backend health.
+
+Logging, reporting to Crashlytics, or publishing an error to a feature stream
+is additional reporting. It must not replace the thrown failure. A permanently
+disabled task uses `isActive == false` or is not registered; temporary offline
+state is owned by the service connectivity gate.
+
+Success and deliberate no-work are intentionally indistinguishable to
+`PollingService`: both reset backoff and publish `succeeded`. If a future policy
+needs to schedule those outcomes differently, add an explicit result type then;
+do not infer the distinction from logs, cache state, or exception classes.
 
 ### Trigger behavior
 
@@ -408,6 +443,75 @@ overridden by the matching dart-define.
 All environment interval values must be positive. A missing, invalid, or
 non-positive runtime override falls back to its compile-time default.
 
+### Refresh contract migration audit
+
+This table tracks the current contract status of the registrations above.
+The initial audit used `master` commit `0aee08a3c`; entries include subsequent
+migrations, reviewed on 2026-09-10.
+"Needs migration" means at least one path violates the completion contract:
+it hides a failure as success, replaces the original error, or leaves a joined
+refresh future incomplete. Recheck these paths when migrating each listener.
+
+| Listener | Status | Current behavior |
+|---|---|---|
+| `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
+| `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
+| `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
+| `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
+| `VoicemailRepository` | Needs migration | Usually rethrows; error-reporting and shared-future paths have gaps |
+| `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
+| `FavoritesRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
+
+In [User Info](../lib/repositories/user_info/user_repository.dart), `refresh()`
+awaits both the remote fetch and any required cache write. An unchanged snapshot
+completes without a write or duplicate update. `getAndListen()` exposes cached
+data and persisted updates; refresh failures reach polling through the returned
+future without being added to the data stream. The
+[repository tests](../test/repository/user_repository_test.dart) cover both
+failure sources, stream preservation, persistence ordering, and automatic
+backoff recovery with the real repository registered in `PollingService`.
+The [host integration tests](../test/repository/user_repository_integration_test.dart)
+extend this through the real API client, datasources and mappers with controlled
+HTTP and an in-memory preferences backend. The
+[Patrol guard](../patrol_test/user_repository_refresh_test.dart) additionally
+checks backoff recovery and session-rejection routing with native preferences;
+see [coverage](integration_test_coverage.md#background-polling---user-repository-refresh)
+and [run commands](integration_test_commands.md#run-the-user-repository-refresh-guards).
+
+In [System Info](../lib/repositories/system_info/system_info_repository.dart),
+`refresh()` awaits both the remote fetch and cache write, then publishes the
+persisted snapshot on `infoStream`. Write failures retain their original error
+and stack, with no data-stream update. `preload()` and network-backed
+`getSystemInfo()` calls share this persistence contract; cache-only reads and
+cache-first hits still need no remote work. The
+[integration tests](../test/repository/system_info_repository_integration_test.dart)
+cover these entrypoints, cache/stream ordering, failures and retry recovery.
+
+The [login owner](../lib/blocs/app/app_bloc.dart) awaits `preload()` and explicitly
+handles a failed prefill as non-fatal to the already valid session. The
+main-shell route guard still verifies cache readiness before constructing its
+providers. This caller-side fallback does not hide a polling refresh failure.
+
+System Info's default 300-second interval already equals the default backoff
+cap, so failed cycles do not increase that production delay further. Tests use
+shorter intervals to verify failure accounting and recovery without changing
+the scheduler policy. The
+[Patrol guard](../patrol_test/system_info_repository_refresh_test.dart) verifies
+the failed-write and recovery path with native preferences and controlled HTTP.
+
+In [Voicemail](../lib/repositories/voicemail/voicemail_repository.dart), a failed
+`_emitCachedVoicemails()` inside the error handler replaces the original cycle
+error and skips completion of the shared future. The 401 handler also rethrows
+without completing `_fetchingCompleter`. A `refresh()` that joins either fetch
+can remain pending after the initiating call fails. These existing paths need
+original-error preservation and completion for every caller.
+
+Repository migrations should be separate review units. They may need feature
+error-stream preservation, session handling, or domain-specific fallback
+decisions that do not belong in the polling contract itself.
+
 ICE server ticks have additional repository-level renewal rules; see
 [`ice_servers.md`](ice_servers.md). `PollingService` does not inspect those
 rules, it only invokes the repository contract.
@@ -419,7 +523,9 @@ Use this checklist:
 1. Decide whether the cycle belongs naturally to one repository. If it does,
    implement `Refreshable`; if it coordinates several dependencies, implement
    the worker pattern from [`polling_workers.md`](polling_workers.md).
-2. Make `refresh()` return the real completion and error of one attempt.
+2. Make `refresh()` return the real completion and original failure of one
+   attempt. A deliberate no-work decision may complete normally; an attempted
+   failure must not.
 3. Override `isActive` only for a permanent end of useful polling.
 4. Add a positive environment interval when deployments need configuration.
 5. Register the same listener instance at the composition boundary.

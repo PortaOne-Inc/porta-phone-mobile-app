@@ -1,10 +1,11 @@
 # Integration Test Coverage
 
-All tests live in the `patrol_test/` directory and are built on the [Patrol](https://patrol.dev/) framework.
+The native scenarios below live in `patrol_test/` and use [Patrol](https://patrol.dev/).
+Companion host integration suites are linked where available and run in ordinary `flutter test`.
 App-flow tests bootstrap the full app and log in or reuse an existing session.
 Focused native-integration guards may construct only the services under test.
 Every test tears down its device state.
-Last reviewed: 2026-09-06.
+Last reviewed: 2026-09-10.
 
 ---
 
@@ -227,6 +228,69 @@ Three independent tests — each skipped automatically if the required credentia
 7. Place an outgoing call to contact A by tapping their recents tile.
 8. Verify order: contact A first (outgoing, `Icons.call_made`), contact B second (incoming), contact A third (incoming).
 9. Verify contact names are displayed correctly throughout.
+
+---
+
+## Background Polling - User Repository Refresh
+
+**File:** [user_repository_refresh_test.dart](../patrol_test/user_repository_refresh_test.dart)
+
+Two focused native-integration tests compose the real `UserRepository`, API
+client, remote/local datasources, mappers, preferences plugin and `PollingService`.
+Only HTTP responses and connectivity eligibility are controlled. They do not
+bootstrap the full app, log in, contact a backend or toggle device connectivity.
+
+1. Two HTTP 503 responses retain the cached user and delay automatic retries
+   by 2 and 4 seconds with a one-second test interval and zero jitter. Recovery
+   persists the mapped user, emits one data update and restores the base cadence.
+   Reloading native preferences verifies the value beyond the in-memory cache.
+2. HTTP 401 `token_invalid` reaches a recording `SessionGuard` and the manual
+   caller as a failed task, without overwriting the native cache or retrying HTTP.
+   This verifies guard routing, not the full app logout flow.
+
+Teardown restores the previous `user-info` preference and disposes the polling
+service. To retain unrelated application data, follow the
+[runner configuration and no-uninstall instructions](integration_test_commands.md#run-the-user-repository-refresh-guards).
+
+The companion [host integration suite](../test/repository/user_repository_integration_test.dart)
+runs in ordinary `flutter test`/CI with an in-memory preferences backend. It also
+covers HTTP 429, transport retry exhaustion, original timeout/stack propagation,
+`session_missing`, `user_not_found`, invalid payloads and cache replay. Exact
+20/40/10-second scheduling assertions use virtual time. Existing
+[repository unit tests](../test/repository/user_repository_test.dart) cover
+injected persistence failures and delayed-write completion; these native tests
+do not simulate a device storage failure.
+
+---
+
+## Background Polling - System Info Persistence
+
+**File:** [system_info_repository_refresh_test.dart](../patrol_test/system_info_repository_refresh_test.dart)
+
+The native scenario composes the real repository, remote/local datasources,
+API client, mappers, preferences plugin and polling service. The client factory
+returns that test client; HTTP and a hook before the preferences write are
+controlled. The hook is not a simulation of native filesystem failure.
+
+1. Return HTTP 200 but fail the cache-write boundary. The task must report the
+   original failure while keeping the old cache and leaving `infoStream` silent.
+2. Allow the automatic retry after two seconds (one-second test base interval).
+   Hold persistence and verify the successful HTTP response has not published
+   data or completed the cycle yet.
+3. Release the write, await success and one data update, then reload native
+   preferences to verify that the new snapshot was actually stored.
+
+The scenario restores the prior `system-info` preference in teardown. No login,
+backend credentials or connectivity toggles are needed. Use the same
+[safe runner configuration](integration_test_commands.md#run-the-system-info-refresh-guard)
+as the User Repository guard.
+
+The [host integration suite](../test/repository/system_info_repository_integration_test.dart)
+also covers `preload()`, network-only/cache-first fetches, original write errors
+and stacks, remote HTTP 503 failures, 20/40/10-second retry/recovery cadence in
+virtual time, and unchanged cache-only behavior. The
+[AppBloc tests](../test/blocs/app/app_compatibility_gate_test.dart) verify that
+login awaits preload and handles its failure without discarding the valid session.
 
 ---
 

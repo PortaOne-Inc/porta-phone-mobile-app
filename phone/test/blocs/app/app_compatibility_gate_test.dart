@@ -68,6 +68,7 @@ void main() {
     when(() => localeRepository.getLocale()).thenReturn(const Locale('en'));
     when(() => userAgreementStatusRepository.getUserAgreementStatus()).thenReturn(AgreementStatus.accepted);
     when(() => contactsAgreementStatusRepository.getContactsAgreementStatus()).thenReturn(AgreementStatus.accepted);
+    when(() => appInfo.identifier).thenReturn('integration-install');
 
     when(() => systemInfoRepository.infoStream).thenAnswer((_) => infoStreamController.stream);
     when(() => systemInfoRepository.getSystemInfo(fetchPolicy: any(named: 'fetchPolicy')))
@@ -143,5 +144,50 @@ void main() {
 
     expect(compatible.compareToReevaluate(gated), isFalse);
     expect(compatible.compareToReevaluate(compatible), isTrue);
+  });
+
+  group('login system-info preload', () {
+    const session = Session(coreUrl: 'https://core.example.com', token: 'token', userId: 'user');
+
+    for (final fails in [false, true]) {
+      test('waits for preload ${fails ? 'failure' : 'success'} before saving the session', () async {
+        final info = _systemInfo();
+        final preload = Completer<void>();
+        when(() => systemInfoRepository.preload(info)).thenAnswer((_) => preload.future);
+        when(() => sessionRepository.save(session)).thenAnswer((_) async {});
+        final bloc = buildBloc('1.16.6');
+        addTearDown(bloc.close);
+        bloc.add(AppLoggedIn(session: session, systemInfo: info));
+
+        try {
+          await pumpEventQueue();
+          expect(bloc.state.status, AppLifecycleStatus.unauthenticated);
+          verifyNever(() => sessionRepository.save(session));
+        } finally {
+          if (fails) {
+            preload.completeError(StateError('cache write failed'));
+          } else {
+            preload.complete();
+          }
+          await pumpEventQueue();
+        }
+
+        verify(() => sessionRepository.save(session)).called(1);
+        expect(bloc.state.status, AppLifecycleStatus.authenticated);
+        expect(bloc.state.session, session);
+      });
+    }
+
+    test('login without a supplied system-info snapshot still saves the session', () async {
+      when(() => sessionRepository.save(session)).thenAnswer((_) async {});
+      final bloc = buildBloc('1.16.6');
+      addTearDown(bloc.close);
+
+      bloc.add(const AppLoggedIn(session: session));
+      await pumpEventQueue();
+
+      verify(() => sessionRepository.save(session)).called(1);
+      expect(bloc.state.status, AppLifecycleStatus.authenticated);
+    });
   });
 }

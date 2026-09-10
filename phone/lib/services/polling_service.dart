@@ -473,7 +473,9 @@ class PollingService with WidgetsBindingObserver implements Disposable {
   }
 
   /// The only path that invokes [Refreshable.refresh]. It publishes state and
-  /// gives all manual callers the same in-flight future.
+  /// gives all manual callers the same in-flight future. Normal completion,
+  /// including a domain-approved no-work attempt, is success. A thrown error is
+  /// failure and preserves the original error and stack trace.
   Future<void> _runRefreshCycle(Refreshable listener, _PollingConfig config, {required _PollingTrigger trigger}) {
     final inFlight = config.inFlight;
     if (inFlight != null) return inFlight;
