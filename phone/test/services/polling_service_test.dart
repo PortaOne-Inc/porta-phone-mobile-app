@@ -559,6 +559,35 @@ void main() {
       });
     });
 
+    test('failure preserves the original error and stack trace', () {
+      fakeAsync((async) {
+        final error = StateError('refresh failed');
+        final stackTrace = StackTrace.fromString('refresh stack');
+        final task = _RefreshContractRepository()..failNext(error, stackTrace);
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
+
+        Object? reportedError;
+        StackTrace? reportedStackTrace;
+        unawaited(
+          handle.runNow().then<void>(
+            (_) {},
+            onError: (Object caughtError, StackTrace caughtStackTrace) {
+              reportedError = caughtError;
+              reportedStackTrace = caughtStackTrace;
+            },
+          ),
+        );
+        async.flushMicrotasks();
+
+        expect(reportedError, same(error));
+        expect(reportedStackTrace, same(stackTrace));
+        expect(handle.state.phase, PollingTaskPhase.failed);
+        expect(handle.state.error, same(error));
+        expect(handle.state.stackTrace, same(stackTrace));
+      });
+    });
+
     test('manual refresh invalidates a periodic tick waiting on reachability', () {
       fakeAsync((async) {
         connectivity.setConnected(true);
@@ -959,6 +988,40 @@ void main() {
       });
     });
 
+    test('normal no-work completion succeeds and resets automatic backoff', () {
+      fakeAsync((async) {
+        connectivity.setConnected(true);
+
+        final task = _RefreshContractRepository()..failNext(StateError('first failure'), StackTrace.current);
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
+
+        async.flushMicrotasks();
+        expect(task.callCount, 1);
+        expect(task.remoteWorkCount, 1);
+        expect(task.failures.length, 0);
+
+        task.remoteWorkRequired = false;
+        async.elapse(const Duration(seconds: 2, milliseconds: 1));
+        expect(task.callCount, 2, reason: 'first automatic failure doubles the base interval');
+        expect(task.remoteWorkCount, 1, reason: 'the second cycle deliberately performs no remote work');
+        expect(handle.state.phase, PollingTaskPhase.succeeded);
+
+        task
+          ..remoteWorkRequired = true
+          ..failNext(StateError('second failure'), StackTrace.current);
+        async.elapse(const Duration(seconds: 1, milliseconds: 1));
+        expect(task.callCount, 3, reason: 'normal no-work completion resets cadence to the base interval');
+        expect(handle.state.phase, PollingTaskPhase.failed);
+
+        async.elapse(const Duration(seconds: 1));
+        expect(task.callCount, 3, reason: 'the new failure applies first-level backoff');
+
+        async.elapse(const Duration(seconds: 1, milliseconds: 1));
+        expect(task.callCount, 4, reason: 'backoff restarted at two seconds instead of continuing at four');
+      });
+    });
+
     // Verifies that when a listener becomes inactive (isActive = false) it is
     // automatically unregistered on the next polling tick and never called again.
     test('listener becoming inactive is unregistered on next tick', () {
@@ -1055,4 +1118,26 @@ class _ControlledRefreshableRepository extends MockRefreshableRepository {
   void fail(Object error) => _cycle.completeError(error);
 
   void prepareNextCycle() => _cycle = Completer<void>();
+}
+
+class _RefreshContractRepository extends MockRefreshableRepository {
+  bool remoteWorkRequired = true;
+  int remoteWorkCount = 0;
+  final List<(Object, StackTrace)> failures = [];
+
+  void failNext(Object error, StackTrace stackTrace) => failures.add((error, stackTrace));
+
+  @override
+  Future<void> refresh() {
+    calls++;
+    if (!remoteWorkRequired) return Future.value();
+
+    remoteWorkCount++;
+    if (failures.isNotEmpty) {
+      final (error, stackTrace) = failures.removeAt(0);
+      return Future.error(error, stackTrace);
+    }
+
+    return Future.value();
+  }
 }
