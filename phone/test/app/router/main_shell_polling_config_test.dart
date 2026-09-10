@@ -76,13 +76,14 @@ void main() {
       final delays = override == null ? [600, 900, 900, 900, 300] : [600, 1200, 1800, 1800, 300];
       var calls = 1;
       for (final seconds in delays) {
-        // Production jitter adds 0..399 ms. Check on either side of the
-        // deadline relative to the actual previous call, avoiding drift from
-        // accumulating the slack used by earlier pumps.
+        // Check on either side of the full production delay, including its
+        // proportional jitter, relative to the actual previous call. This
+        // avoids accumulating the slack used by earlier pumps.
         final beforeDeadline = task.callTimestamps.last.add(Duration(seconds: seconds - 1));
         await tester.pump(beforeDeadline.difference(tester.binding.clock.now()));
         expect(task.callCount, calls);
-        await tester.pump(const Duration(seconds: 2));
+        final maximumJitter = Duration(milliseconds: (seconds * 1000 * 0.1).round());
+        await tester.pump(const Duration(seconds: 1) + maximumJitter);
         expect(task.callCount, ++calls);
       }
 

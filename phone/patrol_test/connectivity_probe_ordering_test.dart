@@ -44,7 +44,7 @@ void main() {
       connectivityService: connectivityService,
       registrations: [PollingRegistration(listener: refreshable, interval: _pollingInterval)],
       options: const PollingOptions(
-        jitterMaxMs: 0,
+        jitterRatio: 0,
         verifyReachabilityOnTick: false,
         leadingRefreshRequiresVerify: false,
       ),

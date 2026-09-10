@@ -308,7 +308,7 @@ void main() {
         });
         final polling = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
         addTearDown(polling.dispose);
         final task = polling.register(PollingRegistration(listener: repository, interval: const Duration(seconds: 10)));

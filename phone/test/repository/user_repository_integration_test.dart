@@ -162,7 +162,7 @@ void main() {
 PollingTaskHandle _register(UserRepository repository, {bool connected = true}) {
   final connectivity = FakeConnectivityService(initialConnected: connected);
   addTearDown(connectivity.dispose);
-  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
   addTearDown(polling.dispose);
   return polling.register(PollingRegistration(listener: repository, interval: _interval));
 }

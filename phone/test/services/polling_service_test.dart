@@ -115,7 +115,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -145,7 +145,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -172,7 +172,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -202,7 +202,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -227,7 +227,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0, reachabilityTtl: Duration(seconds: 15)),
+          options: const PollingOptions(jitterRatio: 0, reachabilityTtl: Duration(seconds: 15)),
         );
 
         async.flushMicrotasks();
@@ -270,7 +270,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -300,7 +300,7 @@ void main() {
           options: const PollingOptions(
             verifyReachabilityOnTick: true,
             reachabilityTtl: Duration(seconds: 10),
-            jitterMaxMs: 0,
+            jitterRatio: 0,
           ),
         );
 
@@ -363,7 +363,7 @@ void main() {
     test('registering while online runs a leading refresh for the new task', () {
       fakeAsync((async) {
         connectivity.setConnected(true);
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         async.flushMicrotasks();
 
         final task = MockRefreshableRepository();
@@ -377,7 +377,7 @@ void main() {
 
     test('offline boot publishes a replaying waiting-for-connectivity state', () {
       fakeAsync((async) {
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final task = MockRefreshableRepository();
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 10)));
 
@@ -401,7 +401,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 10))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 10)));
         async.flushMicrotasks();
@@ -459,7 +459,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 10)));
 
         async.flushMicrotasks();
@@ -483,7 +483,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
 
         async.flushMicrotasks();
@@ -524,7 +524,7 @@ void main() {
     test('manual caller joining a scheduled failure receives it and keeps scheduled backoff', () {
       fakeAsync((async) {
         final task = _ControlledRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
         async.flushMicrotasks();
 
@@ -564,7 +564,7 @@ void main() {
         final error = StateError('refresh failed');
         final stackTrace = StackTrace.fromString('refresh stack');
         final task = _RefreshContractRepository()..failNext(error, stackTrace);
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
 
         Object? reportedError;
@@ -595,7 +595,7 @@ void main() {
         final task = MockRefreshableRepository();
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0, reachabilityTtl: Duration(seconds: 1)),
+          options: const PollingOptions(jitterRatio: 0, reachabilityTtl: Duration(seconds: 1)),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 10)));
 
@@ -625,7 +625,7 @@ void main() {
         final task = MockRefreshableRepository();
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(pauseInBackground: true, jitterMaxMs: 0),
+          options: const PollingOptions(pauseInBackground: true, jitterRatio: 0),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
@@ -648,7 +648,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 10)));
 
         async.flushMicrotasks();
@@ -674,7 +674,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
         async.flushMicrotasks();
@@ -699,7 +699,7 @@ void main() {
         final task = MockRefreshableRepository();
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0, reachabilityTtl: Duration(seconds: 1)),
+          options: const PollingOptions(jitterRatio: 0, reachabilityTtl: Duration(seconds: 1)),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
@@ -730,7 +730,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository(workTime: const Duration(seconds: 5));
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
         async.flushMicrotasks();
@@ -753,7 +753,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
         async.flushMicrotasks();
@@ -773,7 +773,7 @@ void main() {
     test('offline invalidation remains pending until reconnect', () {
       fakeAsync((async) {
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
         async.flushMicrotasks();
 
@@ -797,7 +797,7 @@ void main() {
         final task = MockRefreshableRepository();
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(pauseInBackground: true, jitterMaxMs: 0),
+          options: const PollingOptions(pauseInBackground: true, jitterRatio: 0),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
@@ -825,7 +825,7 @@ void main() {
         final task = MockRefreshableRepository(workTime: const Duration(seconds: 2));
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(pauseInBackground: true, jitterMaxMs: 0),
+          options: const PollingOptions(pauseInBackground: true, jitterRatio: 0),
         );
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
@@ -858,7 +858,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
 
         async.flushMicrotasks();
@@ -883,7 +883,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = MockRefreshableRepository();
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(minutes: 1)));
 
         async.flushMicrotasks();
@@ -974,7 +974,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 1))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -994,7 +994,7 @@ void main() {
         final listener = MockRefreshableRepository()..failTimes = 2;
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0, maxBackoff: Duration(seconds: 300)),
+          options: const PollingOptions(jitterRatio: 0, maxBackoff: Duration(seconds: 300)),
         );
         final handle = service.register(
           PollingRegistration(listener: listener, interval: const Duration(seconds: 600)),
@@ -1019,7 +1019,7 @@ void main() {
         final listener = MockRefreshableRepository()..failTimes = 3;
         service = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0, maxBackoff: Duration(seconds: 900)),
+          options: const PollingOptions(jitterRatio: 0, maxBackoff: Duration(seconds: 900)),
         );
         final handle = service.register(
           PollingRegistration(listener: listener, interval: const Duration(seconds: 300)),
@@ -1044,7 +1044,7 @@ void main() {
         connectivity.setConnected(true);
 
         final task = _RefreshContractRepository()..failNext(StateError('first failure'), StackTrace.current);
-        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+        service = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
         final handle = service.register(PollingRegistration(listener: task, interval: const Duration(seconds: 1)));
 
         async.flushMicrotasks();
@@ -1083,7 +1083,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 5))],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
 
         async.flushMicrotasks();
@@ -1112,7 +1112,7 @@ void main() {
         service = PollingService(
           connectivityService: connectivity,
           registrations: [PollingRegistration(listener: task, interval: const Duration(seconds: 60))],
-          options: const PollingOptions(pauseInBackground: true, jitterMaxMs: 0),
+          options: const PollingOptions(pauseInBackground: true, jitterRatio: 0),
         );
 
         async.flushMicrotasks();

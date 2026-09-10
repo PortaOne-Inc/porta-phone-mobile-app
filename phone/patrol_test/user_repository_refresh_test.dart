@@ -105,7 +105,7 @@ Future<UserRepositoryIntegrationHarness> _createHarness() async {
 PollingTaskHandle _register(UserRepository repository, {required bool connected}) {
   final connectivity = FakeConnectivityService(initialConnected: connected);
   addTearDown(connectivity.dispose);
-  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
   addTearDown(polling.dispose);
   return polling.register(PollingRegistration(listener: repository, interval: const Duration(seconds: 1)));
 }

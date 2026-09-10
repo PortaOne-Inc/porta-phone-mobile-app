@@ -283,7 +283,7 @@ void main() {
         final polling = PollingService(
           connectivityService: connectivity,
           registrations: [],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
         addTearDown(polling.dispose);
         addTearDown(connectivity.dispose);
@@ -324,7 +324,7 @@ void main() {
         final polling = PollingService(
           connectivityService: connectivity,
           registrations: [],
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
         addTearDown(polling.dispose);
         addTearDown(connectivity.dispose);

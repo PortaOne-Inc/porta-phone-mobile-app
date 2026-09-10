@@ -21,7 +21,7 @@ final _logger = Logger('PollingService');
 /// - [reachabilityTtl] — TTL for the reachability cache.
 /// - [leadingRefreshRequiresVerify] — if `true`, boot/resume/reconnect runs a
 ///   single fresh connectivity check (shared across all listeners for that cycle).
-/// - [jitterMaxMs] — maximum jitter in milliseconds added to intervals/backoff
+/// - [jitterRatio] — maximum jitter as a fraction of each interval/backoff
 ///   to stagger calls (set to 0 in tests for determinism).
 /// - [maxBackoff] - caps exponential backoff growth before jitter is added,
 ///   but never shortens the task's base interval.
@@ -31,7 +31,7 @@ class PollingOptions {
     this.verifyReachabilityOnTick = true,
     this.reachabilityTtl = const Duration(seconds: 30),
     this.leadingRefreshRequiresVerify = true,
-    this.jitterMaxMs = 400,
+    this.jitterRatio = 0.1,
     this.maxBackoff = const Duration(minutes: 5),
   });
 
@@ -47,8 +47,8 @@ class PollingOptions {
   /// If true, leading refresh (on boot/connect/resume) verifies reachability freshly.
   final bool leadingRefreshRequiresVerify;
 
-  /// Max random jitter (ms).
-  final int jitterMaxMs;
+  /// Maximum random jitter as a fraction of the computed delay.
+  final double jitterRatio;
 
   /// Retry cap before jitter; a longer base interval takes precedence.
   /// The shell supplies its application-configured cap. Direct construction
@@ -84,7 +84,7 @@ class PollingService with WidgetsBindingObserver implements Disposable {
     BackoffPolicy? backoff,
   }) : _connectivityService = connectivityService,
        _options = options,
-       _jitter = jitter ?? RandomJitter(maxMs: options.jitterMaxMs),
+       _jitter = jitter ?? RandomJitter(maxRatio: options.jitterRatio),
        _backoff = backoff ?? const ExponentialBackoff(),
        _reachability = TtlCache<bool>(ttl: options.reachabilityTtl) {
     _connectivitySub = _connectivityService.connectionStream.listen(_handleConnectivityChange);

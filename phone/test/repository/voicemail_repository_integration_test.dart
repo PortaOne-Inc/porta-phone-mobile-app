@@ -159,7 +159,7 @@ Future<(Object, StackTrace)> _failure(Future<void> future) => future.then<(Objec
 PollingTaskHandle _register(VoicemailRepositoryIntegrationHarness harness) {
   final connectivity = FakeConnectivityService(initialConnected: true);
   addTearDown(connectivity.dispose);
-  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+  final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
   addTearDown(polling.dispose);
   return polling.register(PollingRegistration(listener: harness.repository, interval: const Duration(seconds: 10)));
 }

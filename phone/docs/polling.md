@@ -348,10 +348,11 @@ With a 5-second interval and zero jitter:
 | 3 | 40 s |
 
 The application's default cap is 15 minutes (900 seconds), configured by
-`WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS`. The default jitter adds 0 through
-399 ms after the cap is applied, so the final delay can exceed the cap by that
-small amount. A successful cycle resets the failure count. A manually started
-failure leaves the current automatic count unchanged.
+`WEBTRIT_APP_POLLING_MAX_BACKOFF_SECONDS`. The default jitter adds a random
+non-negative delay below 10% of the computed delay after the cap is applied,
+so the final delay can exceed the cap by up to roughly 10%. A successful cycle
+resets the failure count. A manually started failure leaves the current
+automatic count unchanged.
 
 The base interval takes precedence when it equals or exceeds the configured
 cap. For example, a 600-second base with a 300-second cap still waits 600 seconds
@@ -447,7 +448,7 @@ repository error returned while the network is unavailable.
 | `verifyReachabilityOnTick` | `true` | Checks reachability before periodic work, subject to the TTL cache |
 | `reachabilityTtl` | 30 s | Reuses recent reachability evidence |
 | `leadingRefreshRequiresVerify` | `true` | Requires reachability before a group-leading refresh |
-| `jitterMaxMs` | 400 ms | Adds a random non-negative delay below this bound |
+| `jitterRatio` | `0.1` | Adds a random non-negative delay below this fraction of the computed delay |
 | `maxBackoff` | 5 min standalone; 15 min in the app | Caps exponential failure backoff without going below the base interval |
 
 The table lists `PollingOptions` constructor defaults. The shell explicitly
