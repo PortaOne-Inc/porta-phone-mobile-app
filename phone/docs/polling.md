@@ -472,6 +472,13 @@ future without being added to the data stream. The
 [repository tests](../test/repository/user_repository_test.dart) cover both
 failure sources, stream preservation, persistence ordering, and automatic
 backoff recovery with the real repository registered in `PollingService`.
+The [host integration tests](../test/repository/user_repository_integration_test.dart)
+extend this through the real API client, datasources and mappers with controlled
+HTTP and an in-memory preferences backend. The
+[Patrol guard](../patrol_test/user_repository_refresh_test.dart) additionally
+checks backoff recovery and session-rejection routing with native preferences;
+see [coverage](integration_test_coverage.md#background-polling---user-repository-refresh)
+and [run commands](integration_test_commands.md#run-the-user-repository-refresh-guards).
 
 In [System Info](../lib/repositories/system_info/system_info_repository.dart),
 `refresh()` awaits `_updateSystemInfo()`, but that helper catches a failed

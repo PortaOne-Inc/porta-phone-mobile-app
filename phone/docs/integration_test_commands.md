@@ -37,6 +37,39 @@ To specify a test file, use the `-t` option:
 patrol build -t patrol_test/call_and_recent_test.dart ...
 ```
 
+## Run the user repository refresh guards
+
+The host integration suite needs neither Patrol nor a device:
+
+```bash
+fvm flutter test --no-pub test/repository/user_repository_integration_test.dart
+```
+
+For native persistence coverage, provision Patrol as described above and run
+from the `phone/` directory using FVM. Ensure `android/local.properties` also
+points `flutter.sdk` to the pinned SDK, because Patrol invokes Gradle directly.
+
+Before running on a device whose app data must be retained, temporarily set
+`testInstrumentationRunnerArguments clearPackageData: "false"` in
+`android/app/build.gradle` and restore it afterwards. The default is `"true"`:
+`--no-uninstall` alone does not stop Android Test Orchestrator from clearing data.
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/user_repository_refresh_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+These focused tests use controlled HTTP responses with the real API client and
+native preferences. No credentials, local Core, call companion or integration
+environment file are needed. The previous `user-info` preference is restored
+after each scenario. With the runner setting above, `--no-uninstall` also keeps
+the existing installation and its unrelated data.
+See [coverage and boundaries](integration_test_coverage.md#background-polling---user-repository-refresh).
+
 ## Run the polling guards
 
 From the repository root, run the connectivity ordering, connect lifecycle, and
