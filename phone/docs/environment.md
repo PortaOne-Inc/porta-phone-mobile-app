@@ -3,6 +3,8 @@
 This file describes environment variables and Dart define variables used in the WebTrit application
 configuration.
 
+Last reviewed: 2026-09-10.
+
 ### Naming Convention
 
 To ensure clarity and consistency across configuration parameters, the following naming conventions
@@ -49,6 +51,12 @@ maintainability and enabling tools to parse configuration reliably.
   minimum delay. Invalid values fall back safely; the shell reads this value
   when creating the polling service, not on each tick. See
   [polling cap configuration](polling.md#application-cap-configuration).
+- `WEBTRIT_APP_POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS` - Leading refresh
+  freshness cap in non-negative whole seconds (default: **30**; **0 disables**).
+  Each task uses the smaller of its interval and this cap. Invalid/negative
+  runtime values use the validated build value; invalid/negative build values
+  use 30. The shell snapshots it when creating the polling service. See
+  [leading refresh freshness](polling.md#leading-refresh-freshness).
 
 ### Environment
 

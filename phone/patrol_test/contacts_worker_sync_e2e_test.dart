@@ -23,7 +23,7 @@ import 'subsequences/with_network_disabled.dart';
 // One wait policy for the whole file.
 const _connectSettle = Duration(seconds: 6);
 const _searchSettle = Duration(seconds: 2);
-const _backgroundDwell = Duration(seconds: 3);
+const _backgroundDwell = Duration(seconds: 4);
 const _networkSettle = Duration(seconds: 3);
 const _offlinePullTimeout = Duration(seconds: 30);
 const _recoveryTimeout = Duration(seconds: 40);
@@ -39,34 +39,20 @@ const _recoveryTimeout = Duration(seconds: 40);
 ///    by the worker's unit tests.
 /// 3. A pull-to-refresh runs exactly one fetch and its indicator closes
 ///    when the cycle ends.
-/// 4. A resume from background runs exactly one leading fetch.
+/// 4. An aged resume from background runs exactly one leading fetch.
 /// 5. A pull while offline does not hang the indicator, and the sync
 ///    recovers with a single fetch once the network returns.
 void main() {
-  const contactName =
-      IntegrationTestEnvironmentConfig.EXT_CONTACT_A_UNIQUE_NAME;
-  const contactNumber =
-      IntegrationTestEnvironmentConfig.EXT_CONTACT_A_UNIQUE_NUMBER;
+  const contactName = IntegrationTestEnvironmentConfig.EXT_CONTACT_A_UNIQUE_NAME;
+  const contactNumber = IntegrationTestEnvironmentConfig.EXT_CONTACT_A_UNIQUE_NUMBER;
   const ownNumber = IntegrationTestEnvironmentConfig.ACCOUNT_MAIN_NUMBER;
 
   patrolTest('the contacts sync worker drives every contact flow', ($) async {
     // Unset defines degrade to empty strings and would make the search
     // phases pass without testing anything - fail loudly instead.
-    expect(
-      contactName,
-      isNotEmpty,
-      reason: 'EXT_CONTACT_A_UNIQUE_NAME must be configured',
-    );
-    expect(
-      contactNumber,
-      isNotEmpty,
-      reason: 'EXT_CONTACT_A_UNIQUE_NUMBER must be configured',
-    );
-    expect(
-      ownNumber,
-      isNotEmpty,
-      reason: 'ACCOUNT_MAIN_NUMBER must be configured',
-    );
+    expect(contactName, isNotEmpty, reason: 'EXT_CONTACT_A_UNIQUE_NAME must be configured');
+    expect(contactNumber, isNotEmpty, reason: 'EXT_CONTACT_A_UNIQUE_NUMBER must be configured');
+    expect(ownNumber, isNotEmpty, reason: 'ACCOUNT_MAIN_NUMBER must be configured');
     // The exact-count assertions below assume no periodic tick can land
     // inside a phase window; state the dependency instead of betting on it.
     expect(
@@ -75,6 +61,9 @@ void main() {
       reason: 'the phase windows assume the contacts polling interval stays above them',
     );
 
+    // Exercise aged leading refreshes with a short, explicit test cap.
+    EnvironmentConfig.applyOverrides({EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME: '3'});
+    addTearDown(EnvironmentConfig.clearOverrides);
     final dependencies = await bootstrap();
     final apiLog = ApiRequestLog()..start();
     addTearDown(apiLog.stop);
@@ -86,11 +75,7 @@ void main() {
     await tolerateSmallRenderOverflows(() => _login($));
     await pumpFor(_connectSettle, $);
 
-    expectSingleConnectFetch(
-      apiLog.requestsFor('/user/contacts'),
-      'fresh login',
-      'the contact list',
-    );
+    expectSingleConnectFetch(apiLog.requestsFor('/user/contacts'), 'fresh login', 'the contact list');
     expect(
       apiLog.retriedFor('/user/contacts'),
       isEmpty,
@@ -104,9 +89,7 @@ void main() {
     await openContactsSearch($);
     await $(contactsSearchInputKey).enterText(contactNumber);
     await pumpFor(_searchSettle, $);
-    await $(contactsExtContactTileKey)
-        .containing(RegExp(RegExp.escape(contactName)))
-        .waitUntilVisible();
+    await $(contactsExtContactTileKey).containing(RegExp(RegExp.escape(contactName))).waitUntilVisible();
     await $(contactsSearchInputClearKey).tap();
 
     await $(contactsSearchInputKey).enterText(ownNumber);
@@ -143,11 +126,7 @@ void main() {
     await $.platformAutomator.mobile.openApp();
     await $.waitUntilVisible($(AppShell));
     await pumpFor(_connectSettle, $);
-    expectSingleConnectFetch(
-      apiLog.requestsFor('/user/contacts', since: backgroundedAt),
-      'resume',
-      'the contact list',
-    );
+    expectSingleConnectFetch(apiLog.requestsFor('/user/contacts', since: backgroundedAt), 'resume', 'the contact list');
 
     // Phase 5: a pull while offline must not hang, and the network's return
     // brings exactly one recovering fetch.
@@ -193,8 +172,7 @@ Future<DateTime> _pullWhileOffline(PatrolIntegrationTester $) async {
     // The offline fetch may walk its full transport retry chain before
     // failing, which takes longer than an online cycle.
     closeTimeout: _offlinePullTimeout,
-    closeReason:
-        'the pull indicator must close even when the fetch fails offline',
+    closeReason: 'the pull indicator must close even when the fetch fails offline',
   );
   return DateTime.now();
 }

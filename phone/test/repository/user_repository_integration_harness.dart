@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:http/http.dart' as http;
@@ -38,6 +40,7 @@ class UserRepositoryIntegrationHarness {
   );
 
   final sessionGuard = _RecordingSessionGuard();
+  final _assertionZone = Zone.current;
   final requests = <http.Request>[];
   late final api.WebtritApiClient client;
   late final UserLocalDatasourcePrefsImpl local;
@@ -47,12 +50,18 @@ class UserRepositoryIntegrationHarness {
   Future<http.Response> Function(http.Request) respond = (_) async => successResponse();
 
   Future<http.Response> _respond(http.Request request) {
-    // Timer-driven requests can arrive while a native test is pumping frames.
+    // Native lifecycle callbacks enter through Flutter's binding zone. Keep
+    // assertions in the test zone while response timers retain their caller's
+    // zone, including FakeAsync in the host integration suite.
+    _assertionZone.run(() => _expectUserRequest(request));
+    requests.add(request);
+    return respond(request);
+  }
+
+  void _expectUserRequest(http.Request request) {
     expectSync(request.method.toUpperCase(), 'GET');
     expectSync(request.url, Uri.parse('https://refresh.test/api/v1/user'));
     expectSync(request.headers['authorization'], 'Bearer integration-token');
-    requests.add(request);
-    return respond(request);
   }
 
   Future<void> dispose() async {

@@ -139,15 +139,61 @@ do not infer the distinction from logs, cache state, or exception classes.
 |---|---|---|---|---|
 | Boot or reconnect | Uses the connectivity result that caused the transition | Does not overlap it | Logged; increments automatic backoff | Arms the next periodic tick |
 | Foreground resume | Performs one fresh check shared by all registrations | Does not overlap it | Logged; increments automatic backoff | Arms the next periodic tick |
-| Periodic tick | Uses the TTL cache or performs a check | Skips the refresh | Logged; increments automatic backoff | Computes the next fixed delay |
+| Periodic tick | Uses the TTL cache or performs a check | Joins the current cycle | Logged; increments automatic backoff | Computes the next fixed delay |
 | `runNow()` | No service-level preflight | Joins the same future | Returned to the caller | Re-arms one full computed delay after completion |
 | `invalidate()` deadline | Uses the TTL cache or performs a check | Waits for an older cycle, then runs once | Logged; increments automatic backoff | Re-arms from the invalidated cycle |
 
 A group-leading cycle is used for boot, reconnect, resume, and adding a new
 registration while polling is active. It performs at most one reachability
 check, then offers a leading refresh to every current registration. Adding one
-task can therefore refresh the existing group as well; it is not a new-task-only
-callback.
+task can therefore refresh stale members of the existing group as well; fresh
+members keep their existing periodic deadline.
+
+### Leading refresh freshness
+
+Before an automatic leading refresh, the service uses:
+
+```text
+minAge = min(task.interval, leadingRefreshMinAgeCap)
+fresh = last completed cycle succeeded AND 0 <= now - lastSuccessAt < minAge
+```
+
+The age starts at successful completion, including domain-approved no-work.
+Registration time does not establish freshness. The last completed outcome is
+tracked separately from the transient `running` and `waitingForConnectivity`
+phases, so a failure after success remains eligible even at equal timestamps.
+A negative age after a clock rollback is treated as stale.
+
+Boot, reconnect, resume, and group-leading after registration skip fresh tasks.
+The check occurs after reachability verification, immediately before invocation.
+Inactive tasks are unregistered, and an in-flight refresh is joined without
+starting a duplicate. Tasks with no success or a latest failure remain eligible.
+A due invalidation bypasses freshness and retains its trailing-cycle guarantee;
+a deferred invalidation keeps its original deadline. `runNow()` and periodic
+ticks bypass this gate entirely.
+
+A skipped leading refresh preserves an active timer or re-arms a paused timer
+for its remaining delay. The stored deadline includes the jitter already sampled
+for that tick. A real refresh establishes a new deadline from completion, even
+if it finishes while offline/backgrounded. An overdue deadline causes one
+eligible attempt, without replaying missed ticks. Interval changes reset the
+periodic deadline. Restoring connectivity for a fresh task restores its previous
+completed state without fabricating a new success timestamp or resetting backoff.
+
+With interval 10 seconds, cap 30 seconds, and zero jitter, successful refreshes
+stay at 0, 10, 20, 30 seconds despite flaps every 6 seconds. The cap is a
+suppression threshold, not a timer: reaching it does not trigger work by itself.
+Repeated failures are not throttled by this gate; a long-interval task can still
+refresh every cap seconds if reconnects keep arriving.
+
+`MainShellServices` snapshots
+`WEBTRIT_APP_POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS` when creating the service
+and passes it as `PollingOptions.leadingRefreshMinAgeCap`. Both defaults are
+30 seconds. Non-negative whole seconds are accepted; **0 disables the gate**.
+Malformed or negative runtime overrides use the validated build value;
+malformed or negative build values fall back to 30 seconds. Runtime override
+changes affect newly created services only. Backoff and jitter do not enlarge
+the freshness threshold.
 
 Automatic triggers never create an overlapping refresh. `runNow()` has stronger
 semantics: when a cycle already exists, it joins that cycle and returns its
@@ -363,7 +409,8 @@ below its normal cadence, configure a cap greater than its base interval.
 Changing an interval, stopping timers, or manually resetting cadence increments
 a schedule generation. Timer continuations that crossed an asynchronous
 reachability check under an older generation cannot re-arm themselves. This is
-the structural stale-tick guard; there is no time-window duplicate suppression.
+the structural stale-tick guard. The leading-only freshness gate described above
+additionally suppresses refreshes of recently successful tasks.
 
 ### Application cap configuration
 
@@ -421,7 +468,7 @@ enough: `wifi -> none -> wifi` repeats the same value and would otherwise let
 the first Wi-Fi probe publish after the second one. This latest-event-wins rule
 is owned by the producer so every stream consumer receives ordered evidence.
 
-- An offline transition cancels automatic schedules.
+- An offline transition cancels timers while retaining their periodic deadlines.
 - An online transition starts a group-leading cycle.
 - Repeated reports of the same connectivity state do not start another leading
   cycle.
@@ -434,7 +481,8 @@ With the default `pauseInBackground: true`, moving to the background cancels
 automatic schedules. Resuming while connected performs a fresh shared
 reachability check and starts a group-leading cycle. Neither an offline event nor
 a background transition cancels a repository future that is already running;
-the service only prevents new automatic work.
+the service only prevents new automatic work. Fresh tasks skip leading refresh
+and resume their retained periodic deadline.
 
 `runNow()` is independent of `_isConnected` and foreground state. The owner must
 only expose it where an explicit refresh makes sense, and must handle the
@@ -448,11 +496,12 @@ repository error returned while the network is unavailable.
 | `verifyReachabilityOnTick` | `true` | Checks reachability before periodic work, subject to the TTL cache |
 | `reachabilityTtl` | 30 s | Reuses recent reachability evidence |
 | `leadingRefreshRequiresVerify` | `true` | Requires reachability before a group-leading refresh |
+| `leadingRefreshMinAgeCap` | 30 s | Skips leading refresh after success for min(interval, cap); 0 disables |
 | `jitterRatio` | `0.1` | Adds a random non-negative delay below this fraction of the computed delay |
 | `maxBackoff` | 5 min standalone; 15 min in the app | Caps exponential failure backoff without going below the base interval |
 
 The table lists `PollingOptions` constructor defaults. The shell explicitly
-overrides `maxBackoff` with the application configuration above; direct service
+overrides `maxBackoff` and `leadingRefreshMinAgeCap` with application configuration; direct service
 construction retains its existing 5-minute fallback.
 
 Tests normally inject zero jitter and a deterministic backoff policy. Production
@@ -712,12 +761,20 @@ The on-device invariants live in:
 - `patrol_test/contacts_worker_sync_e2e_test.dart`;
 - `patrol_test/cdr_sync_pagination_e2e_test.dart`.
 
+The native freshness suite (`patrol_test/polling_freshness_test.dart`) exercises
+real 10-second timers with 6-second flaps, Android network recovery and
+background/resume, explicit refreshes, failure recovery, in-flight invalidation,
+and a disabled cap. It checks the real API/repository/native-preferences path
+with controlled HTTP and prints request/completion timing traces.
+
 The connectivity-ordering guard drives a real OS network flap, forces the older
 probe to finish last, and verifies that the periodic schedule survives. The
-connect invariant asserts one user-info request for login, resume, and network
-recovery. The Contacts test covers the worker-driven flow from login through UI
-data, self-filtering, manual refresh, resume, offline failure, and network
-recovery. The CDR pagination test verifies the initial polling registration and
+connect invariant asserts one user-info request for login, aged resume, and aged
+network recovery, using a 3-second test freshness cap. Service tests in
+`test/services/polling_freshness_test.dart` cover fresh skips, preserved deadlines,
+6-second flaps with a 10-second interval, failures, and explicit invalidations. The Contacts test covers the worker-driven flow from login through UI
+data, self-filtering, manual refresh, aged resume, offline failure, and network
+recovery (also using a 3-second test freshness cap). The CDR pagination test verifies the initial polling registration and
 a three-page finite sync cycle against the local Core and SIP adapter.
 See [`integration_test_commands.md`](integration_test_commands.md) for setup and
 commands, and [`integration_test_coverage.md`](integration_test_coverage.md) for

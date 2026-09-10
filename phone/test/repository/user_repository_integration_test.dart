@@ -50,6 +50,12 @@ void main() {
     expect(harness.sessionGuard.errors, isEmpty);
   });
 
+  test('native lifecycle callbacks can refresh outside the test zone', () async {
+    await Zone.root.run(harness.repository.refresh);
+    expect(harness.requests, hasLength(1));
+    expect(harness.local.getInfo(), UserRepositoryIntegrationHarness.updatedUser);
+  });
+
   for (final status in [429, 503]) {
     test('HTTP $status failures back off without transport retries, then recover', () {
       fakeAsync((async) {

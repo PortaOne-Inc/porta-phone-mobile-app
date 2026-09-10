@@ -132,6 +132,36 @@ void main() {
       }
     });
 
+    group('leading refresh min-age cap', () {
+      const name = EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME;
+      const configured = int.fromEnvironment(
+        'WEBTRIT_APP_POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS',
+        defaultValue: 30,
+      );
+      const fallback = configured >= 0 ? configured : 30;
+
+      test('uses a non-negative build value or the 30-second default', () {
+        expect(name, 'WEBTRIT_APP_POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS');
+        expect(EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS, fallback);
+      });
+
+      test('runtime values include zero to disable the gate', () {
+        for (final seconds in [0, 5, 60]) {
+          EnvironmentConfig.applyOverrides({name: '$seconds'});
+          expect(EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS, seconds);
+        }
+        EnvironmentConfig.clearOverrides();
+        expect(EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS, fallback);
+      });
+
+      for (final invalid in ['', 'abc', '1.5', '-5']) {
+        test('invalid runtime value "$invalid" uses the validated build value', () {
+          EnvironmentConfig.applyOverrides({name: invalid});
+          expect(EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS, fallback);
+        });
+      }
+    });
+
     test('APP_LINK_DOMAIN is trimmed, so it matches the host the build put in the manifest', () {
       const name = EnvironmentConfig.APP_LINK_DOMAIN__NAME;
 

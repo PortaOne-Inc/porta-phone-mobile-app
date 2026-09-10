@@ -4,6 +4,7 @@ import 'package:patrol/patrol.dart';
 
 import 'package:webtrit_phone/app/router/app_shell.dart';
 import 'package:webtrit_phone/bootstrap.dart';
+import 'package:webtrit_phone/environment_config.dart';
 
 import 'components/api_request_log.dart';
 import 'components/integration_test_environment_config.dart';
@@ -14,7 +15,7 @@ import 'subsequences/pump_root_and_wait_until_visible.dart';
 import 'subsequences/wait_until.dart';
 import 'subsequences/with_network_disabled.dart';
 
-/// Verifies the connect invariant: every "app connect" event - fresh login,
+/// Verifies the connect invariant: each aged "app connect" event - fresh login,
 /// resume from background, network recovery - fires the user info request
 /// exactly once, with no transport retries and no back-to-back duplicates.
 ///
@@ -25,9 +26,12 @@ import 'subsequences/with_network_disabled.dart';
 /// Contacts uses the same lifecycle but is deliberately covered by the
 /// separate worker-sync E2E, keeping this guard focused on user info.
 void main() {
-  patrolTest('each connect event fires the user info request exactly once', ($) async {
+  patrolTest('each aged connect event fires the user info request exactly once', ($) async {
     // Phase 1: fresh login. From app start until the main shell settles there
     // must be exactly one user info request.
+    // Exercise aged leading refreshes with a short, explicit test cap.
+    EnvironmentConfig.applyOverrides({EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME: '3'});
+    addTearDown(EnvironmentConfig.clearOverrides);
     final dependencies = await bootstrap();
     // Subscribe only after bootstrap: AppLogger.init inside it clears all
     // root logger listeners, which would silently drop an earlier oracle.
@@ -47,7 +51,7 @@ void main() {
     await $.platformAutomator.mobile.pressHome();
     // No pumping while backgrounded: frames are paused and $.pump() never
     // returns, but plain timers keep running in the isolate.
-    await Future<void>.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(const Duration(seconds: 4));
     final backgroundedAt = DateTime.now();
     await $.platformAutomator.mobile.openApp();
     await $.waitUntilVisible($(AppShell));

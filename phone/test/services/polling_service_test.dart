@@ -618,7 +618,7 @@ void main() {
       });
     });
 
-    test('resume remains authoritative immediately after a manual refresh', () {
+    test('resume skips a task refreshed successfully by a recent manual cycle', () {
       fakeAsync((async) {
         connectivity.setConnected(true);
 
@@ -639,7 +639,7 @@ void main() {
         service.didChangeAppLifecycleState(AppLifecycleState.paused);
         service.didChangeAppLifecycleState(AppLifecycleState.resumed);
         async.flushMicrotasks();
-        expect(task.callCount, 3, reason: 'resume must not be suppressed by a recent manual cycle');
+        expect(task.callCount, 2, reason: 'a successful manual cycle provides freshness for resume');
       });
     });
 
