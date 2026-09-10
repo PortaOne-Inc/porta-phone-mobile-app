@@ -409,12 +409,57 @@ deterministic. No account credentials are required.
 
 ---
 
+## Background Polling - Leading Refresh Freshness
+
+**File:** `patrol_test/polling_freshness_test.dart`
+
+**Verifies:** The leading-only freshness gate across the real scheduler, API
+mapping, UserRepository and native preferences on Android. Successful requests
+include a response delay, so deadlines are checked against completion.
+
+1. With a 10-second interval, send connectivity flaps every 6 seconds through a
+   controlled stream. Observe four successful HTTP requests and require every
+   periodic start to remain 9.9-12 seconds after the previous completion.
+2. Toggle Android Wi-Fi/cellular through Patrol and observe the real
+   `ConnectivityServiceImpl` stream. A fresh recovery restores the completed
+   state without another request; recovery after the 30-second cap requests
+   once. No requests run during the offline wait.
+3. Press Home and reopen the app, recording actual Flutter lifecycle events.
+   A fresh resume skips the request; an aged resume triggers exactly one.
+4. A manual 503 after success must not suppress reconnect recovery. `runNow`,
+   a deferred invalidation at its deadline, and an invalidation due while offline
+   all bypass freshness, without duplicate or early requests.
+5. Hold HTTP responses across an offline interval. A trailing invalidation
+   survives the in-flight request, and an old request start does not override
+   freshness established by its recent completion.
+6. Read a zero cap from environment overrides when constructing the service.
+   Reconnects continue refreshing even after the override changes to 120.
+
+Each scenario reopens native preferences to verify the persisted user record;
+teardown restores the previous key. Request and completion traces provide the
+actual timing evidence. The suite uses no fake clock. Only scenarios 2 and 3
+change Android network/lifecycle state; scenario 1 controls events to produce
+repeatable 6-second flaps. HTTP responses and liveness answers are controlled:
+this verifies scheduling and persistence, not a live backend or internet health.
+Shell-specific env wiring is additionally covered by
+`test/app/router/main_shell_polling_config_test.dart`.
+
+Native lifecycle callbacks enter outside the test zone. The shared User
+integration harness runs HTTP assertions in its captured test zone, while
+response timers stay in their caller's zone. A host regression test invokes
+refresh through `Zone.root` to keep native resume from failing inside the mock
+with `OutsideTestException`.
+
+---
+
 ## Background Polling - Connect Invariant
 
 **File:** `patrol_test/polling_connect_invariant_test.dart`
 
-**Verifies:** Fresh login, foreground resume, and network recovery each produce
+**Verifies:** Fresh login, aged foreground resume, and aged network recovery each produce
 exactly one user-info request, without a retry or a back-to-back duplicate.
+The test sets the leading freshness cap to 3 seconds and backgrounds for 4 seconds;
+fresh skips and periodic deadline preservation are covered by service unit tests.
 
 **Steps:**
 1. Bootstrap and log in, capture API client request logs, and assert one `/user` request.
@@ -442,7 +487,8 @@ and excludes the signed-in number.
 3. Search by number and verify the signed-in number is absent while the known
    external contact remains discoverable.
 4. Pull the list down and assert one request and a completed refresh indicator.
-5. Background and reopen the app, then assert one request after resume.
+5. Background for 4 seconds and reopen the app, then assert one request after
+   aged resume (the test sets the leading freshness cap to 3 seconds).
 6. Pull while offline and verify the refresh indicator still completes.
 7. Restore connectivity and assert one recovery request.
 

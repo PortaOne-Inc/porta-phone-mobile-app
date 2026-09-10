@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -34,36 +35,7 @@ void main() {
       const name = EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS__NAME;
       if (override != null) EnvironmentConfig.applyOverrides({name: '$override'});
 
-      final connectivity = FakeConnectivityService();
-      addTearDown(connectivity.dispose);
-      final userRepository = _UserRepository();
-      final systemInfoRepository = _SystemInfoRepository();
-      when(() => userRepository.isActive).thenReturn(false);
-      when(() => systemInfoRepository.isActive).thenReturn(false);
-      late PollingService polling;
-
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            Provider<FeatureAccess>.value(value: featureAccessFor(createMockSystemInfo())),
-            Provider<ConnectivityService>.value(value: connectivity),
-            Provider<UserRepository>.value(value: userRepository),
-            Provider<SystemInfoRepository>.value(value: systemInfoRepository),
-            Provider<CallerIdSettingsRepository>.value(value: _CallerIdSettingsRepository()),
-            Provider<FavoritesRepository>.value(value: _FavoritesRepository()),
-            Provider<SipSubscriptionsRepository>.value(value: _SipSubscriptionsRepository()),
-            Provider<IceServersRepository>.value(value: _IceServersRepository()),
-          ],
-          child: MainShellServices(
-            child: Builder(
-              builder: (context) {
-                polling = context.read<PollingService>();
-                return const SizedBox.shrink();
-              },
-            ),
-          ),
-        ),
-      );
+      final (connectivity, polling) = await _pumpShell(tester);
 
       final task = MockRefreshableRepository(now: tester.binding.clock.now)..failTimes = 4;
       polling.register(PollingRegistration(listener: task, interval: const Duration(seconds: 300)));
@@ -92,4 +64,72 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+  for (final override in <int?>[null, 5, 0]) {
+    testWidgets('shell snapshots leading min-age cap ${override ?? 'default 30'}s', (tester) async {
+      await withClock(Clock(tester.binding.clock.now), () async {
+        const name = EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME;
+        EnvironmentConfig.applyOverrides(override == null ? {} : {name: '$override'});
+        final (connectivity, polling) = await _pumpShell(tester);
+        final task = MockRefreshableRepository();
+        polling.register(PollingRegistration(listener: task, interval: const Duration(minutes: 5)));
+        connectivity.setConnected(true);
+        await tester.pump();
+        expect(task.calls, 1);
+        EnvironmentConfig.applyOverrides({name: '120'});
+        final cap = override ?? 30;
+        if (cap > 0) {
+          await tester.pump(Duration(seconds: cap) - const Duration(milliseconds: 1));
+          connectivity.setConnected(false);
+          await tester.pump();
+          connectivity.setConnected(true);
+          await tester.pump();
+          expect(task.calls, 1);
+          await tester.pump(const Duration(milliseconds: 1));
+        }
+        connectivity.setConnected(false);
+        await tester.pump();
+        connectivity.setConnected(true);
+        await tester.pump();
+        expect(task.calls, 2);
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+      });
+    });
+  }
+}
+
+Future<(FakeConnectivityService, PollingService)> _pumpShell(WidgetTester tester) async {
+  final connectivity = FakeConnectivityService();
+  addTearDown(connectivity.dispose);
+  final userRepository = _UserRepository();
+  final systemInfoRepository = _SystemInfoRepository();
+  when(() => userRepository.isActive).thenReturn(false);
+  when(() => systemInfoRepository.isActive).thenReturn(false);
+  late PollingService polling;
+
+  await tester.pumpWidget(
+    MultiProvider(
+      providers: [
+        Provider<FeatureAccess>.value(value: featureAccessFor(createMockSystemInfo())),
+        Provider<ConnectivityService>.value(value: connectivity),
+        Provider<UserRepository>.value(value: userRepository),
+        Provider<SystemInfoRepository>.value(value: systemInfoRepository),
+        Provider<CallerIdSettingsRepository>.value(value: _CallerIdSettingsRepository()),
+        Provider<FavoritesRepository>.value(value: _FavoritesRepository()),
+        Provider<SipSubscriptionsRepository>.value(value: _SipSubscriptionsRepository()),
+        Provider<IceServersRepository>.value(value: _IceServersRepository()),
+      ],
+      child: MainShellServices(
+        child: Builder(
+          builder: (context) {
+            polling = context.read<PollingService>();
+            return const SizedBox.shrink();
+          },
+        ),
+      ),
+    ),
+  );
+
+  return (connectivity, polling);
 }

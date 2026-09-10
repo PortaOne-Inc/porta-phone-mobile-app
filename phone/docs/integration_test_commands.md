@@ -184,6 +184,34 @@ not the app's database. No login, backend credentials or network toggles are
 needed. Restore the temporary Patrol dependency and runner setting after the
 run. See [coverage](integration_test_coverage.md#background-polling---sip-subscriptions-refresh).
 
+## Run the polling freshness guards on Android
+
+Provision Patrol and temporarily use `clearPackageData: "false"` as described
+in the [User Repository instructions](#run-the-user-repository-refresh-guards).
+Use the USB device ID, since the suite disables Wi-Fi and cellular service.
+From `phone/`:
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/polling_freshness_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json \
+  --show-flutter-logs
+```
+
+No credentials, backend, call companion, or integration environment file are
+needed. The suite uses the real API client, UserRepository and native
+preferences with controlled HTTP responses. It restores the `user-info` key
+and enables Wi-Fi/cellular in teardown. Start with both transports enabled.
+Real Android transport and Home/resume scenarios complement the precise
+6-second flap scenario, which controls connectivity events but uses real time.
+`freshness_trace` lines report request and successful-completion timestamps in
+milliseconds relative to the first request. Restore the temporary dependency
+and runner changes afterwards. See
+[coverage and boundaries](integration_test_coverage.md#background-polling---leading-refresh-freshness).
+
 ## Run the polling guards
 
 From the repository root, run the connectivity ordering, connect lifecycle, and

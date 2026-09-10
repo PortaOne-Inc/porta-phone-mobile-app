@@ -223,6 +223,23 @@ class EnvironmentConfig {
     return _pollingSeconds(POLLING_MAX_BACKOFF_SECONDS__NAME, compileTime > 0 ? compileTime : defaultSeconds);
   }
 
+  static const POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME =
+      'WEBTRIT_APP_POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS';
+
+  /// Freshness cap for leading refresh, snapshotted when the shell is created.
+  /// Zero disables the gate. Invalid/negative overrides use the validated build
+  /// value; invalid/negative build values use the 30-second default.
+  static int get POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS {
+    const defaultSeconds = 30;
+    const compileTime = int.fromEnvironment(
+      POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME,
+      defaultValue: defaultSeconds,
+    );
+    const fallback = compileTime >= 0 ? compileTime : defaultSeconds;
+    final seconds = _env.integer(POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME, fallback);
+    return seconds >= 0 ? seconds : fallback;
+  }
+
   static const USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME = 'WEBTRIT_APP_USER_REPOSITORY_POLLING_INTERVAL_SECONDS';
   static int get USER_REPOSITORY_POLLING_INTERVAL_SECONDS => _pollingSeconds(
     USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,
