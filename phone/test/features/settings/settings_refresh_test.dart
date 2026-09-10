@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -76,6 +78,7 @@ void main() {
     when(() => sessionStatusCubit.state).thenReturn(const SessionStatusState());
     when(() => registerStatusCubit.state).thenReturn(const RegisterStatus(value: true));
     when(() => registerStatusCubit.fetchStatus()).thenAnswer((_) async => true);
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => true);
   });
 
   Widget wrapScreen() {
@@ -150,6 +153,70 @@ void main() {
 
     await pullDown(tester);
 
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
+  testWidgets('pulling the list down also refetches the user record', (tester) async {
+    // The record carries the balance; before this the pull could not update it.
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    verify(() => userInfoCubit.refresh()).called(1);
+  });
+
+  testWidgets('a failed user record fetch explains itself too', (tester) async {
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => false);
+
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
+  testWidgets('both fetches failing still show one snack bar, not two', (tester) async {
+    when(() => registerStatusCubit.fetchStatus()).thenAnswer((_) async => false);
+    when(() => userInfoCubit.refresh()).thenAnswer((_) async => false);
+
+    await tester.pumpWidget(wrapScreen());
+
+    await pullDown(tester);
+
+    expect(find.byType(SnackBar), findsOneWidget);
+  });
+
+  testWidgets('the indicator stays up until the user record cycle completes', (tester) async {
+    // The gesture must wait for the polling task, not for the request to be
+    // merely started; an early completion would hide a fetch still in flight.
+    final cycle = Completer<bool>();
+    when(() => userInfoCubit.refresh()).thenAnswer((_) => cycle.future);
+    await tester.pumpWidget(wrapScreen());
+
+    await tester.fling(find.byType(ListView), const Offset(0, 400), 1000);
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.byType(RefreshProgressIndicator), findsOneWidget);
+    expect(find.byType(SnackBar), findsNothing);
+
+    cycle.complete(true);
+    await tester.pumpAndSettle();
+    expect(find.byType(RefreshProgressIndicator), findsNothing);
+    expect(find.byType(SnackBar), findsNothing);
+  });
+
+  testWidgets('a user record cycle that fails after a while still explains itself', (tester) async {
+    final cycle = Completer<bool>();
+    when(() => userInfoCubit.refresh()).thenAnswer((_) => cycle.future);
+    await tester.pumpWidget(wrapScreen());
+
+    await tester.fling(find.byType(ListView), const Offset(0, 400), 1000);
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 1));
+    expect(find.byType(SnackBar), findsNothing);
+
+    cycle.complete(false);
+    await tester.pumpAndSettle();
     expect(find.byType(SnackBar), findsOneWidget);
   });
 }

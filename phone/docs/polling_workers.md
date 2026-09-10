@@ -360,7 +360,7 @@ capabilities, not different worker patterns:
 |---|---|---|---|---|
 | External Contacts | `ExternalContactsSyncWorker` | `ExternalContactsSync` | State + manual run through `ContactsExternalTabBloc` | None |
 | CDR | `CdrsSyncWorker` | `CdrsSync` | State for every CDR list; manual run for Full and Missed lists | `requestPostCallRefresh()` |
-| User info | `UserInfoSyncWorker` | `UserInfoSync` | None yet (no consumer receives a capability) | None yet |
+| User info | `UserInfoSyncWorker` | `UserInfoSync` | Manual run through `UserInfoCubit` (Settings pull) | `requestPostCallRefresh()` |
 
 ### External Contacts
 
@@ -382,11 +382,13 @@ has no pull-to-refresh action.
 
 `UserInfoSyncWorker` implements the finite cycle over `UserRepository` - fetch,
 compare with the cache, `storeInfo()` when changed - and `UserInfoSync` uses the
-standard owner. The migration is preparatory: it moves the registration out of
-the `PollingService` constructor list so the task becomes reachable, and it adds
-no capability consumer or domain method yet. The repository keeps the cache,
-the gateway and the change stream; its own `refresh()` and `Refreshable`
-conformance are a temporary leftover until the follow-up change removes them.
+standard owner. The registration lives outside the `PollingService` constructor
+list so the task is reachable: `UserInfoCubit` receives `PollingTaskRunner` for
+the Settings pull, and `requestPostCallRefresh()` is wired to the same
+call-ended hook as `CdrsSync`, because a finished call changes both the history
+and the balance. The repository keeps the cache, the gateway and the change
+stream; its own `refresh()` and `Refreshable` conformance are a temporary
+leftover until the follow-up change removes them.
 
 ## Non-goals
 
