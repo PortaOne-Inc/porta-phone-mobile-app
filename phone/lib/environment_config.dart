@@ -253,12 +253,48 @@ class EnvironmentConfig {
     const int.fromEnvironment(SYSTEM_INFO_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME, defaultValue: 300),
   );
 
+  /// Contacts poll when the badge presence comes from the contacts payload itself
+  /// (hybrid presence off): the poll is the presence source, so it stays fairly fresh.
+  /// A non-positive build value would become a zero delay and a request storm, so it
+  /// falls back to 300 seconds like the backoff cap does.
   static const EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME =
       'WEBTRIT_APP_EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS';
-  static int get EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS => _pollingSeconds(
-    EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,
-    const int.fromEnvironment(EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME, defaultValue: 60),
-  );
+  static int get EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS {
+    const defaultSeconds = 300;
+    const compileTime = int.fromEnvironment(
+      EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,
+      defaultValue: defaultSeconds,
+    );
+    return _pollingSeconds(
+      EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,
+      compileTime > 0 ? compileTime : defaultSeconds,
+    );
+  }
+
+  /// Contacts poll when hybrid presence is on: presence rides the SIP channel and the
+  /// badge ignores the contacts payload, so this fetch only refreshes the directory
+  /// (names/numbers, which change rarely) and can run much less often. A non-positive
+  /// build value falls back to 1800 seconds for the same reason as above.
+  static const EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS__NAME =
+      'WEBTRIT_APP_EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS';
+  static int get EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS {
+    const defaultSeconds = 1800;
+    const compileTime = int.fromEnvironment(
+      EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS__NAME,
+      defaultValue: defaultSeconds,
+    );
+    return _pollingSeconds(
+      EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS__NAME,
+      compileTime > 0 ? compileTime : defaultSeconds,
+    );
+  }
+
+  /// Resolves the contacts polling interval for the deployment's presence mode.
+  /// With hybrid presence the contacts payload's registration status is unused, so the
+  /// directory can be polled slowly; without it the poll is the presence source.
+  static int externalContactsPollingSeconds({required bool hybridPresence}) => hybridPresence
+      ? EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS
+      : EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS;
 
   static const CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME = 'WEBTRIT_APP_CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS';
   static int get CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS => _pollingSeconds(

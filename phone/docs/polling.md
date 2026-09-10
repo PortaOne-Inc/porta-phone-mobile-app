@@ -537,7 +537,7 @@ overridden by the matching dart-define.
 |---|---:|---|
 | `UserRepository` | 10 s | Always |
 | `SystemInfoRepository` | 300 s | Always |
-| `ExternalContactsSyncWorker` | 60 s | Core supports extensions |
+| `ExternalContactsSyncWorker` | 300 s / 1800 s | Core supports extensions; 1800 s when hybrid presence is on, 300 s when off (see [Contacts presence interval](#contacts-presence-interval)) |
 | `CdrsSyncWorker` | 10 s | Call history is enabled for the session |
 | `VoicemailRepository` | 300 s | Voicemail is available for the session |
 | `CallerIdSettingsRepository` | 300 s | Remote implementation is active |
@@ -800,9 +800,10 @@ This replaces the legacy short write retries retained from the old sync BLoC.
 Native DB contention is handled below the worker by the shared Drift server
 and WAL/busy-timeout configuration. If a write still fails, cached contacts
 remain visible until a later successful cycle; an empty list shows failure,
-and a failed manual refresh shows an error notification. With the default
-60-second base interval, the first automatic failure schedules the next cycle
-after 120 seconds plus jitter, subject to connectivity and lifecycle gating.
+and a failed manual refresh shows an error notification. The first automatic
+failure schedules the next cycle after roughly twice the base interval plus
+jitter, subject to connectivity and lifecycle gating; the base interval depends
+on the presence mode (see below).
 
 Disposal before a required write starts fails the cycle with `StateError`.
 A write already in flight may finish, and its actual result still reaches the
@@ -821,6 +822,25 @@ manual callers still receive the real cycle outcome. The tests in
 cover these disposal races, immediate write failures without local retries,
 automatic backoff, recovery, and the unchanged-data shortcut. They use controlled
 repositories and time, not a native storage failure or a live backend.
+
+#### Contacts presence interval
+
+The base interval is chosen once at registration from the deployment's presence
+mode (`FeatureAccess.sipPresenceConfig.hybridPresenceSupport`), which is the same
+flag `AvatarStatusBadge` reads:
+
+- **hybrid presence on** - the badge takes registration state from the SIP presence
+  channel and ignores the contacts payload, so this fetch only refreshes the
+  directory (names and numbers, which change rarely). Default interval **1800s**
+  (`WEBTRIT_APP_EXTERNAL_CONTACTS_HYBRID_PRESENCE_POLLING_INTERVAL_SECONDS`).
+- **hybrid presence off** - the contacts payload's registration status is the
+  presence source, so the fetch stays fairly fresh. Default interval **300s**
+  (`WEBTRIT_APP_EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS`).
+
+The presence snapshot is pinned for the session, so the interval is fixed for the
+session and needs no mid-session re-registration. `EnvironmentConfig
+.externalContactsPollingSeconds` resolves the value; the 1800s default is expected
+to become a cheap conditional poll once contacts gain a cached copy and an ETag.
 
 ### CDR
 
