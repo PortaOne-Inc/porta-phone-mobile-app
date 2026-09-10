@@ -7,7 +7,6 @@ import 'package:logging/logging.dart';
 import 'package:webtrit_phone/models/models.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 import 'package:webtrit_phone/services/services.dart';
-import 'package:webtrit_phone/utils/utils.dart';
 
 final _logger = Logger('ExternalContactsSyncWorker');
 
@@ -42,8 +41,6 @@ class ExternalContactsSyncWorker implements PollingWorker {
   final ExternalContactsRepository _externalContactsRepository;
   final ContactsRepository _contactsRepository;
 
-  final _storeRetries = BackoffRetries(initialDelay: const Duration(seconds: 1));
-
   /// The list the last successful cycle merged, so a cycle that fetched the
   /// same data again skips the store transaction: rewriting an unchanged
   /// table would re-fire every contacts watcher and rebuild the screens on
@@ -57,6 +54,7 @@ class ExternalContactsSyncWorker implements PollingWorker {
   ///
   /// Errors are logged with their stack trace and rethrown so [PollingService]
   /// can apply scheduled backoff or complete a manual caller with the failure.
+  /// Changed data is written once per cycle; retries belong to polling.
   @override
   Future<void> refresh() async {
     if (_disposed) {
@@ -78,22 +76,18 @@ class ExternalContactsSyncWorker implements PollingWorker {
           .toList();
 
       if (!listEquals(filteredContacts, _lastSynced)) {
-        await _syncWithRetry(filteredContacts);
+        // Fetching contacts or waiting for user info may outlive the worker.
+        // Do not start a new write after disposal; already-started I/O may finish.
+        if (_disposed) {
+          throw StateError('Cannot persist contacts after worker disposal.');
+        }
+        await _contactsRepository.syncExternalContacts(filteredContacts);
         _lastSynced = List.unmodifiable(filteredContacts);
       }
     } catch (error, stackTrace) {
       _logger.warning('refresh failed', error, stackTrace);
       rethrow;
     }
-  }
-
-  /// Merges into the local store, retrying transient database errors a few
-  /// times with a short backoff before giving up on this cycle.
-  Future<void> _syncWithRetry(List<ExternalContact> contacts) async {
-    await _storeRetries.execute(
-      (_) => _contactsRepository.syncExternalContacts(contacts),
-      shouldRetry: (e, attempt) => attempt < 3 && !_disposed,
-    );
   }
 
   bool _disposed = false;
@@ -105,7 +99,6 @@ class ExternalContactsSyncWorker implements PollingWorker {
     }
 
     _disposed = true;
-    _storeRetries.cancel();
     return Future<void>.value();
   }
 }

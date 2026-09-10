@@ -456,7 +456,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 |---|---|---|
 | `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
 | `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
-| `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
+| `ExternalContactsSyncWorker` | Conforms | Writes once per cycle and rethrows failures; polling owns the next attempt |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
@@ -621,12 +621,38 @@ remote gateway, filter out the current user, and merge changed data into the
 local store. The worker is the polling listener; the remote repository is a
 fetch-only gateway and cannot start a second schedule.
 
+Changed data is written once per cycle, without a worker-owned retry loop.
+A failed write immediately fails the cycle with its original error and stack.
+Only successful persistence advances the worker's unchanged-data snapshot, so
+the next cycle fetches again and retries persistence even if the remote list
+has not changed. Automatic failures use polling backoff; a manually started
+failure does not increase it.
+
+This replaces the legacy short write retries retained from the old sync BLoC.
+Native DB contention is handled below the worker by the shared Drift server
+and WAL/busy-timeout configuration. If a write still fails, cached contacts
+remain visible until a later successful cycle; an empty list shows failure,
+and a failed manual refresh shows an error notification. With the default
+60-second base interval, the first automatic failure schedules the next cycle
+after 120 seconds plus jitter, subject to connectivity and lifecycle gating.
+
+Disposal before a required write starts fails the cycle with `StateError`.
+A write already in flight may finish, and its actual result still reaches the
+caller; disposal does not cancel or roll back that write.
+
 `ExternalContactsSync` owns the worker and its registration. The external tab
 calls its feature BLoC refresh action. The BLoC receives
 `PollingTaskStateSource` and `PollingTaskRunner`, maps the cycle into feature
 state, and invokes `runNow()`. The full handle remains private to the standard
 owner. A pull during an automatic cycle therefore joins it instead of starting
 a second download.
+
+Unregistering during a cycle keeps task state terminal (`stopped`), but joined
+manual callers still receive the real cycle outcome. The tests in
+[`external_contacts_sync_worker_test.dart`](../test/features/contacts/external_contacts_sync_worker_test.dart)
+cover these disposal races, immediate write failures without local retries,
+automatic backoff, recovery, and the unchanged-data shortcut. They use controlled
+repositories and time, not a native storage failure or a live backend.
 
 ### CDR
 
