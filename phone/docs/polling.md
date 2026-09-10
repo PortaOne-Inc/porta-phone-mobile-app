@@ -1,7 +1,7 @@
 # Background polling
 
 `PollingService` coordinates periodic, lifecycle-triggered, and manual refreshes without overlapping work for the same registration.
-Last reviewed: 2026-09-07.
+Last reviewed: 2026-09-10.
 
 ## Scope and current status
 
@@ -97,6 +97,41 @@ manual runNow() -------------------------------------------+        |
 
 Only the cycle runner invokes `Refreshable.refresh()`. It publishes state,
 records the result, and completes the future shared by manual callers.
+
+### Refresh completion contract
+
+`Refreshable.refresh()` returns `Future<void>` because the scheduler needs two
+outcomes, not a repository-specific result type:
+
+| Domain outcome | `Future<void>` | Task phase | Automatic backoff |
+|---|---|---|---|
+| Required work completed, including persistence | Completes normally | `succeeded` | Reset |
+| Domain policy proves remote work is not required | Completes normally | `succeeded` | Reset |
+| Attempted work failed | Throws the original error and stack trace | `failed` | Incremented |
+| `isActive == false` | `refresh()` is not called | `stopped` | Not applicable |
+
+The `Refreshable` or `PollingWorker` owns the domain decision about whether the
+cycle requires work. `PollingService` does not inspect repository data or infer
+business success. It only maps normal completion or a thrown failure into task
+state and scheduling policy.
+
+Normal no-work completion is appropriate when the listener can prove that the
+cycle has nothing to do, for example because a cached value is still fresh, a
+successful conditional request returned not-modified, or there are no domain
+changes to persist. It is not appropriate when an attempted request timed out,
+returned a server error, lost its socket, or when persistence failed. Cached or
+fallback data may still be usable after such a failure, but the attempt must
+throw so polling can observe the backend health.
+
+Logging, reporting to Crashlytics, or publishing an error to a feature stream
+is additional reporting. It must not replace the thrown failure. A permanently
+disabled task uses `isActive == false` or is not registered; temporary offline
+state is owned by the service connectivity gate.
+
+Success and deliberate no-work are intentionally indistinguishable to
+`PollingService`: both reset backoff and publish `succeeded`. If a future policy
+needs to schedule those outcomes differently, add an explicit result type then;
+do not infer the distinction from logs, cache state, or exception classes.
 
 ### Trigger behavior
 
@@ -408,6 +443,28 @@ overridden by the matching dart-define.
 All environment interval values must be positive. A missing, invalid, or
 non-positive runtime override falls back to its compile-time default.
 
+### Refresh contract migration audit
+
+This table records behavior on `master`; it does not change repository behavior
+in this groundwork change. "Needs migration" means an attempted failure can
+currently complete normally, so `PollingService` records a false success.
+
+| Listener | Status | Current behavior |
+|---|---|---|
+| `UserRepository` | Needs migration | Logs and swallows refresh failures |
+| `SystemInfoRepository` | Conforms | Logs and rethrows refresh failures |
+| `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
+| `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
+| `VoicemailRepository` | Conforms | Propagates fetch and persistence failures |
+| `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
+| `FavoritesRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
+
+Repository migrations should be separate review units. They may need feature
+error-stream preservation, session handling, or domain-specific fallback
+decisions that do not belong in the polling contract itself.
+
 ICE server ticks have additional repository-level renewal rules; see
 [`ice_servers.md`](ice_servers.md). `PollingService` does not inspect those
 rules, it only invokes the repository contract.
@@ -419,7 +476,9 @@ Use this checklist:
 1. Decide whether the cycle belongs naturally to one repository. If it does,
    implement `Refreshable`; if it coordinates several dependencies, implement
    the worker pattern from [`polling_workers.md`](polling_workers.md).
-2. Make `refresh()` return the real completion and error of one attempt.
+2. Make `refresh()` return the real completion and original failure of one
+   attempt. A deliberate no-work decision may complete normally; an attempted
+   failure must not.
 3. Override `isActive` only for a permanent end of useful polling.
 4. Add a positive environment interval when deployments need configuration.
 5. Register the same listener instance at the composition boundary.
