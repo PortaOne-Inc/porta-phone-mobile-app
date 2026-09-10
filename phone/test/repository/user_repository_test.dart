@@ -161,7 +161,7 @@ void main() {
         final connectivity = FakeConnectivityService(initialConnected: true);
         final polling = PollingService(
           connectivityService: connectivity,
-          options: const PollingOptions(jitterMaxMs: 0),
+          options: const PollingOptions(jitterRatio: 0),
         );
         final task = polling.register(PollingRegistration(listener: repository, interval: const Duration(seconds: 10)));
         addTearDown(polling.dispose);

@@ -8,20 +8,26 @@ abstract class Jitter {
 
 /// Adds a random jitter to a [Duration].
 ///
-/// The jitter is a random value between 0 and [maxMs] milliseconds.
+/// The jitter is a random value from zero up to [maxRatio] of the base
+/// duration.
 class RandomJitter implements Jitter {
-  /// Creates a [RandomJitter] with an optional [maxMs] (default is 400).
-  RandomJitter({this.maxMs = 400}) : _rand = Random();
+  /// Creates a [RandomJitter] with an optional [maxRatio] (default is 10%).
+  RandomJitter({this.maxRatio = 0.1, Random? random})
+    : assert(maxRatio >= 0 && maxRatio.isFinite),
+      _rand = random ?? Random();
 
-  /// The maximum jitter in milliseconds.
-  final int maxMs;
+  /// The maximum jitter as a fraction of the base duration.
+  final double maxRatio;
 
   /// The random number generator.
   final Random _rand;
 
-  /// Returns [base] plus a random jitter up to [maxMs] milliseconds.
+  /// Returns [base] plus a random jitter below [maxRatio] of [base].
   @override
-  Duration add(Duration base) => maxMs <= 0 ? base : base + Duration(milliseconds: _rand.nextInt(maxMs));
+  Duration add(Duration base) {
+    final maxJitterMs = (base.inMilliseconds * maxRatio).round();
+    return maxJitterMs <= 0 ? base : base + Duration(milliseconds: _rand.nextInt(maxJitterMs));
+  }
 }
 
 /// Does not add any jitter to a [Duration].

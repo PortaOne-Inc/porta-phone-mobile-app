@@ -124,7 +124,7 @@ PollingTaskHandle _register(FavoritesRepositoryIntegrationHarness harness) {
   harness.connectivity.setConnected(true);
   final polling = PollingService(
     connectivityService: harness.connectivity,
-    options: const PollingOptions(jitterMaxMs: 0),
+    options: const PollingOptions(jitterRatio: 0),
   );
   addTearDown(polling.dispose);
   return polling.register(PollingRegistration(listener: harness.repository, interval: const Duration(seconds: 1)));

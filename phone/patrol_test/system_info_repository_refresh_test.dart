@@ -40,7 +40,7 @@ void main() {
     addTearDown(subscription.cancel);
     final connectivity = FakeConnectivityService(initialConnected: true);
     addTearDown(connectivity.dispose);
-    final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterMaxMs: 0));
+    final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
     addTearDown(polling.dispose);
     final task = polling.register(
       PollingRegistration(listener: harness.repository, interval: const Duration(seconds: 1)),
