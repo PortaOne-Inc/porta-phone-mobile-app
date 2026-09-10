@@ -5,7 +5,6 @@ import 'package:pigeon/pigeon.dart';
 @ConfigurePigeon(
   PigeonOptions(
     dartOut: 'lib/src/common/callkeep.pigeon.dart',
-    dartTestOut: 'test/src/common/test_callkeep.pigeon.dart',
     kotlinOut: 'android/src/main/kotlin/com/webtrit/callkeep/Generated.kt',
     kotlinOptions: KotlinOptions(package: 'com.webtrit.callkeep'),
   ),
