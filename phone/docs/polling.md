@@ -445,15 +445,16 @@ non-positive runtime override falls back to its compile-time default.
 
 ### Refresh contract migration audit
 
-This audit covers the registrations above at `master` commit `0aee08a3c`,
-reviewed on 2026-09-10. Repository behavior is unchanged by this groundwork.
+This table tracks the current contract status of the registrations above.
+The initial audit used `master` commit `0aee08a3c`; entries include subsequent
+migrations, reviewed on 2026-09-10.
 "Needs migration" means at least one path violates the completion contract:
 it hides a failure as success, replaces the original error, or leaves a joined
 refresh future incomplete. Recheck these paths when migrating each listener.
 
 | Listener | Status | Current behavior |
 |---|---|---|
-| `UserRepository` | Needs migration | Logs and swallows refresh failures |
+| `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
 | `SystemInfoRepository` | Needs migration | Rethrows remote failures but swallows cache-write failures |
 | `ExternalContactsSyncWorker` | Conforms | Awaits persistence, logs, and rethrows |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
@@ -462,6 +463,15 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `FavoritesRepository` | Needs migration | Remote sync helpers log and swallow failures |
 | `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
 | `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
+
+In [User Info](../lib/repositories/user_info/user_repository.dart), `refresh()`
+awaits both the remote fetch and any required cache write. An unchanged snapshot
+completes without a write or duplicate update. `getAndListen()` exposes cached
+data and persisted updates; refresh failures reach polling through the returned
+future without being added to the data stream. The
+[repository tests](../test/repository/user_repository_test.dart) cover both
+failure sources, stream preservation, persistence ordering, and automatic
+backoff recovery with the real repository registered in `PollingService`.
 
 In [System Info](../lib/repositories/system_info/system_info_repository.dart),
 `refresh()` awaits `_updateSystemInfo()`, but that helper catches a failed
