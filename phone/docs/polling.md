@@ -460,7 +460,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
-| `FavoritesRepository` | Needs migration | Remote sync helpers log and swallow failures |
+| `FavoritesRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
 | `SipSubscriptionsRepository` | Needs migration | Remote sync helpers log and swallow failures |
 | `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
 
@@ -530,6 +530,32 @@ uses the real API mapping and SQLite. The
 503/401 failures and delayed-write recovery on-device with an isolated database.
 See [coverage](integration_test_coverage.md#background-polling---voicemail-refresh)
 and [commands](integration_test_commands.md#run-the-voicemail-refresh-guards).
+
+In [Favorites](../lib/repositories/favorites/favorites_repository.dart),
+`refresh()` awaits the outbox read, remote pull or batch sync, and required local
+writes. It logs and rethrows the original error and stack. An error while
+recording a failed outbox attempt is logged separately and never replaces the
+sync failure. The ETag advances only after local persistence succeeds; a `304`
+or disabled remote sync completes normally without replacing local rows.
+
+Local add, remove and reorder operations still persist the edit and its outbox
+entry first. These writes must succeed. Their subsequent opportunistic sync
+checks connectivity and treats refresh failures as non-fatal to the saved edit.
+Polling calls the strict `refresh()` directly and owns its connectivity gate
+and automatic retry delay. This change does not alter the existing outbox
+attempt limit or make local writes and outbox acknowledgement atomic.
+
+The [Favorites contract tests](../test/repository/favorites_repository_test.dart)
+cover original errors, secondary bookkeeping failures, persistence and ETag
+ordering, local-edit behavior, and automatic 20/40/10-second backoff recovery.
+The [host integration tests](../test/repository/favorites_repository_integration_test.dart)
+exercise the real API client, mapping and SQLite with controlled HTTP, including
+401/429/503 failures, durable outbox retries, recovery, and `304` responses.
+The [Patrol guards](../patrol_test/favorites_repository_refresh_test.dart) reuse
+that harness with isolated file-backed SQLite on the device to verify automatic
+pull backoff and saved-edit/outbox recovery. See
+[coverage](integration_test_coverage.md#background-polling---favorites-refresh)
+and [commands](integration_test_commands.md#run-the-favorites-refresh-guards).
 
 Repository migrations should be separate review units. They may need feature
 error-stream preservation, session handling, or domain-specific fallback

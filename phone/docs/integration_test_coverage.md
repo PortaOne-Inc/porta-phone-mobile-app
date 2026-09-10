@@ -294,6 +294,37 @@ and exact 20/40/10-second backoff recovery in virtual time.
 
 ---
 
+## Background Polling - Favorites Refresh
+
+**File:** [favorites_repository_refresh_test.dart](../patrol_test/favorites_repository_refresh_test.dart)
+
+Two component-integration guards use the real repository, API client/mapping,
+polling and isolated file-backed SQLite on the device. HTTP responses and
+connectivity eligibility are controlled; these are not live-backend E2E or OS
+connectivity/disk-failure tests.
+
+1. Two failed HTTP 503 pulls preserve the cached favorite and delay automatic
+   retries by two and four seconds with a one-second test interval. Recovery
+   persists the response, restores the base cadence and sends an ETag on the
+   next GET; a `304` leaves the stored snapshot intact.
+2. A local add succeeds despite a failed immediate batch sync and leaves a
+   durable outbox action. An automatic retry fails as a task and increases the
+   entry's attempt count. A later backed-off success drains the outbox and
+   writes the server snapshot to SQLite.
+
+Each scenario removes only its own temporary database in teardown. Follow the
+[safe runner instructions](integration_test_commands.md#run-the-favorites-refresh-guards)
+to preserve unrelated application data.
+
+The [host integration suite](../test/repository/favorites_repository_integration_test.dart)
+shares the same API/SQLite harness and additionally covers 401/429, invalid
+payloads and request-body mapping. The
+[contract tests](../test/repository/favorites_repository_test.dart) cover
+original errors/stacks, persistence ordering, bookkeeping failures, local
+mutations and exact backoff recovery with virtual time.
+
+---
+
 ## Background Polling - System Info Persistence
 
 **File:** [system_info_repository_refresh_test.dart](../patrol_test/system_info_repository_refresh_test.dart)

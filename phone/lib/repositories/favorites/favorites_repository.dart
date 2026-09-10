@@ -29,7 +29,16 @@ abstract class FavoritesRepository {
   Future<void> shift(Favorite favorite, int position);
 }
 
+/// Persists local edits and their outbox entries before best-effort sync.
+///
+/// A subsequent sync failure does not fail a saved edit. In contrast, [refresh]
+/// reports the full sync outcome, including remote and local persistence errors.
 class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshable {
+  // TODO: In a follow-up, move sync into FavoritesSyncWorker/FavoritesSync
+  // using docs/polling_workers.md. Keep local edits/outbox here and route all
+  // sync triggers through one polling task. Invalidate for committed local
+  // edits, not retry bookkeeping. Outbox acknowledgement and remote snapshot
+  // writes must preserve newer local edits made while a request was in flight.
   FavoritesRepositorySyncableImpl({
     required FavoritesLocalDataSource localDataSource,
     required FavoritesRemoteDataSource remoteDataSource,
@@ -78,7 +87,7 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
@@ -104,7 +113,7 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
@@ -122,7 +131,7 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
@@ -143,14 +152,28 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
       replacePrevAction: true,
     );
 
-    await _maybeSync();
+    await _maybeSyncAfterEdit();
   }
 
   @override
   bool get isActive => true;
 
   @override
-  Future<void> refresh() => _maybeSync();
+  Future<void> refresh() async {
+    if (!remoteSyncEnabled) return;
+
+    try {
+      final outbox = await _localRepository.getAllOutboxActions();
+      if (outbox.isEmpty) {
+        await _pullRemoteFavorites();
+      } else {
+        await _pushPullChanges(outbox);
+      }
+    } catch (e, s) {
+      _logger.warning('Failed to refresh favorites', e, s);
+      rethrow;
+    }
+  }
 
   FavoriteSourceType _favoriteSourceTypeFromContact(ContactSourceType sourceType) {
     return switch (sourceType) {
@@ -159,31 +182,27 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
     };
   }
 
-  Future<void> _maybeSync() async {
+  Future<void> _maybeSyncAfterEdit() async {
     if (remoteSyncEnabled == false) return;
     if ((await _connectivityService.checkConnection()) == false) return;
 
-    final outbox = await _localRepository.getAllOutboxActions();
-    if (outbox.isEmpty) {
-      await _pullRemoteFavorites();
-    } else {
-      await _pushPullChanges(outbox);
+    try {
+      await refresh();
+    } catch (_) {
+      // The edit and its outbox entry are already persisted. Refresh logs the
+      // failure; a later polling cycle retries without failing the local edit.
     }
   }
 
   Future<void> _pullRemoteFavorites() async {
-    try {
-      final result = await _remoteRepository.getFavorites(ifNoneMatch: _etag);
-      if (result.notModified) {
-        _logger.fine('Favorites not modified since last sync');
-        return;
-      }
-
-      await _localRepository.batchReplace(result.items, removePrevious: true);
-      _etag = result.etag;
-    } catch (e, s) {
-      _logger.warning('Failed to pull remote data', e, s);
+    final result = await _remoteRepository.getFavorites(ifNoneMatch: _etag);
+    if (result.notModified) {
+      _logger.fine('Favorites not modified since last sync');
+      return;
     }
+
+    await _localRepository.batchReplace(result.items, removePrevious: true);
+    _etag = result.etag;
   }
 
   Future<void> _pushPullChanges(List<FavoriteOutboxAction> outbox) async {
@@ -193,9 +212,14 @@ class FavoritesRepositorySyncableImpl implements FavoritesRepository, Refreshabl
       await Future.forEach(outbox, _localRepository.removeOutboxAction);
       await _localRepository.batchReplace(result.items, removePrevious: true);
       _etag = result.etag;
-    } catch (e, s) {
-      await _handleOutboxSyncFailure(outbox);
-      _logger.warning('Failed to sync favorites outbox', e, s);
+    } catch (_) {
+      try {
+        await _handleOutboxSyncFailure(outbox);
+      } catch (e, s) {
+        // Failure bookkeeping must not replace the original sync error.
+        _logger.warning('Failed to record favorites outbox attempt', e, s);
+      }
+      rethrow;
     }
   }
 
