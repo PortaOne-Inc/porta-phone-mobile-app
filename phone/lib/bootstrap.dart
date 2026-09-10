@@ -44,8 +44,19 @@ import 'services/services.dart';
 // Dart isolates do not share memory -- each background isolate gets its own instance.
 IsolateContext? _isolateContext;
 
+/// A source of the [AppThemes] the app starts on. See [bootstrap].
+typedef AppThemesLoader = Future<AppThemes> Function();
+
 Future<AppDependencies> bootstrap({
   FirebaseIntegration firebase = const FirebaseIntegrationEnabled(),
+  // Where the theme, feature config and embedded pages come from. Standalone
+  // reads the bundled documents; a host that embeds the app (the theme
+  // configurator's realtime preview) has no bundle of its own to read them
+  // from and holds the documents it wants drawn anyway, so it passes them in.
+  // Unlike [configurePresentation], this also decides the FeatureAccess
+  // bootstrap itself uses for permissions, metadata, logging and call
+  // integration.
+  AppThemesLoader loadAppThemes = AppThemes.init,
   AppPresentationConfigBuilder? configurePresentation,
   StartupTrace? startupTrace,
 }) async {
@@ -56,7 +67,13 @@ Future<AppDependencies> bootstrap({
   final trace = startupTrace ?? StartupTrace.disabled();
 
   try {
-    return await _bootstrap(deps: deps, firebase: firebase, configurePresentation: configurePresentation, trace: trace);
+    return await _bootstrap(
+      deps: deps,
+      firebase: firebase,
+      loadAppThemes: loadAppThemes,
+      configurePresentation: configurePresentation,
+      trace: trace,
+    );
   } catch (error, stackTrace) {
     await deps.abort();
     Error.throwWithStackTrace(error, stackTrace);
@@ -66,6 +83,7 @@ Future<AppDependencies> bootstrap({
 Future<AppDependencies> _bootstrap({
   required AppDependenciesBuilder deps,
   required FirebaseIntegration firebase,
+  required AppThemesLoader loadAppThemes,
   required AppPresentationConfigBuilder? configurePresentation,
   required StartupTrace trace,
 }) async {
@@ -80,7 +98,7 @@ Future<AppDependencies> _bootstrap({
   // Independent roots start together. Nothing is registered until every
   // operation settles, so a partial wave can roll its successful resources
   // back without making completion order define application ownership order.
-  final roots = await _initializeRoots(firebase: firebase, trace: trace);
+  final roots = await _initializeRoots(firebase: firebase, loadAppThemes: loadAppThemes, trace: trace);
   final packageInfo = deps.share(roots.packageInfo);
   final appInfo = deps.share(roots.appInfo);
   final deviceInfo = deps.share(roots.deviceInfo);
@@ -313,14 +331,18 @@ typedef _BootstrapRoots = ({
   DefaultRemoteCacheConfigService remoteCacheConfigService,
 });
 
-Future<_BootstrapRoots> _initializeRoots({required FirebaseIntegration firebase, required StartupTrace trace}) async {
+Future<_BootstrapRoots> _initializeRoots({
+  required FirebaseIntegration firebase,
+  required AppThemesLoader loadAppThemes,
+  required StartupTrace trace,
+}) async {
   final packageInfo = StartupOperation(trace.measure('package-info', PackageInfoFactory.init));
   final appInfo = StartupOperation(trace.measure('app-info', () => AppInfo.init(firebase.appIdProvider)));
   final deviceInfo = StartupOperation(trace.measure('device-info', DeviceInfoFactory.init));
   final secureStorage = StartupOperation(trace.measure('secure-storage', SecureStorageImpl.init));
   final appPreferences = StartupOperation(trace.measure('app-preferences', AppPreferencesImpl.init));
   final appCertificates = StartupOperation(trace.measure('app-certificates', AppCertificates.init));
-  final appThemes = StartupOperation(trace.measure('app-themes', AppThemes.init));
+  final appThemes = StartupOperation(trace.measure('app-themes', loadAppThemes));
   final remoteCacheConfigService = StartupOperation(
     trace.measure('remote-config-cache', DefaultRemoteCacheConfigService.init),
   );

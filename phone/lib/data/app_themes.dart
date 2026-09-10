@@ -8,7 +8,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:webtrit_phone/app/assets.gen.dart';
 import 'package:webtrit_phone/theme/theme.dart';
 
+/// What the app renders and may do: its theme, its feature config and the
+/// pages it embeds.
+///
+/// Standalone, all three are read from the bundled `assets/themes/` documents
+/// by [init]. A host that embeds the app (the theme configurator's realtime
+/// preview) has no such bundle - its bundle carries this package's assets under
+/// `packages/webtrit_phone/`, where the catalogue paths do not reach - and
+/// holds the documents it wants drawn anyway, so it builds one with
+/// [AppThemes.new] and hands it to `bootstrap` instead.
 class AppThemes {
+  const AppThemes({required this.values, required this.appConfig, required this.embeddedResources});
+
+  /// Reads the bundled documents. The default `bootstrap` source.
   static Future<AppThemes> init() async {
     final themeColorSchemeLightConfigJson = await _getJson(Assets.themes.originalColorSchemeLightConfig);
     final themeColorSchemeDarkConfigJson = await _getJson(Assets.themes.originalColorSchemeDarkConfig);
@@ -52,14 +64,12 @@ class AppThemes {
     // work and hide a broken generated asset, so production builds fail fast.
     GoogleFonts.config.allowRuntimeFetching = false;
 
-    return AppThemes._(themes, appConfig, embeddedResources);
+    return AppThemes(values: themes, appConfig: appConfig, embeddedResources: embeddedResources);
   }
 
   static Future<dynamic> _getJson(String path) async {
     return jsonDecode(await rootBundle.loadString(path));
   }
-
-  AppThemes._(this.values, this.appConfig, this.embeddedResources);
 
   final List<AppTheme> values;
   final AppConfig appConfig;
