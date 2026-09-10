@@ -127,6 +127,35 @@ HTTP and cache-boundary faults are controlled. Restore the runner setting and
 remove the temporary Patrol dependency afterwards without committing either.
 See [coverage](integration_test_coverage.md#background-polling---voicemail-refresh).
 
+## Run the favorites refresh guards
+
+The host suites need no device or Patrol:
+
+```bash
+fvm flutter test --no-pub \
+  test/repository/favorites_repository_test.dart \
+  test/repository/favorites_repository_integration_test.dart
+```
+
+For the native scenarios, provision Patrol and temporarily set
+`clearPackageData: "false"` as described in the
+[User Repository instructions](#run-the-user-repository-refresh-guards):
+
+```bash
+fvm exec patrol test \
+  -t patrol_test/favorites_repository_refresh_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+The tests use their own temporary file-backed SQLite database and controlled
+HTTP/connectivity. They do not log in, contact a live backend, open the app's
+database, or alter OS connectivity. Restore the runner setting and temporary
+Patrol dependency after the run. See
+[coverage](integration_test_coverage.md#background-polling---favorites-refresh).
+
 ## Run the polling guards
 
 From the repository root, run the connectivity ordering, connect lifecycle, and
