@@ -1,7 +1,7 @@
 # Polling worker pattern
 
 The polling worker pattern separates one finite feature sync cycle from its scheduling and lifecycle ownership.
-Last reviewed: 2026-09-07.
+Last reviewed: 2026-09-10.
 
 ## Scope
 
@@ -132,6 +132,13 @@ These rules make completion meaningful. When `refresh()` completes, the
 scheduler and every joined manual caller know that the complete cycle is done.
 When it fails, `PollingService` can publish the failure and apply the correct
 automatic backoff policy.
+
+A worker may also complete normally without remote work when its domain policy
+proves that the cycle has nothing to do. A fresh cache, a successful
+not-modified response, or an empty change set are examples. A timeout, server
+error, socket error, or persistence error is still a failed attempt even when
+cached or fallback data remains usable, and must be rethrown. The general result
+contract and ownership table are documented in [`polling.md`](polling.md).
 
 ### Dependencies
 
