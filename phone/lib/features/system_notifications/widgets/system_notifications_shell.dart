@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/app/router/app_router.dart';
 import 'package:webtrit_phone/data/feature_access.dart';
-import 'package:webtrit_phone/environment_config.dart';
 import 'package:webtrit_phone/features/features.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 
@@ -28,7 +27,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   late final feature = featureAccess.systemNotificationsConfig;
 
   SystemNotificationsPushService? pushService;
-  SystemNotificationsSyncWorker? syncWorker;
   SystemNotificationsOutboxWorker? outboxWorker;
 
   @override
@@ -58,11 +56,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
         producePush: pushSupported == false,
       )..init();
 
-      syncWorker ??= SystemNotificationsSyncWorker(
-        localRepository,
-        remoteRepository,
-        pollingInterval: Duration(seconds: EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS),
-      )..init();
       outboxWorker ??= SystemNotificationsOutboxWorker(localRepository, remoteRepository)..init();
       if (pushSupported == false) SystemNotificationBackgroundWorker.dispatchTask();
     }
@@ -70,9 +63,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
     if (featureEnabled == false) {
       pushService?.dispose();
       pushService = null;
-
-      syncWorker?.dispose();
-      syncWorker = null;
 
       outboxWorker?.dispose();
       outboxWorker = null;
@@ -90,7 +80,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   @override
   void dispose() {
     pushService?.dispose();
-    syncWorker?.dispose();
     outboxWorker?.dispose();
     SystemNotificationBackgroundWorker.cancelTask();
     super.dispose();

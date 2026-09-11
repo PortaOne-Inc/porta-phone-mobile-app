@@ -36,6 +36,10 @@ class _IceServersRepository extends Fake implements IceServersRepository {}
 
 class _ExternalContactsRepository extends Mock implements ExternalContactsRepository {}
 
+class _SystemNotificationsLocalRepository extends Mock implements SystemNotificationsLocalRepository {}
+
+class _SystemNotificationsRemoteRepository extends Mock implements SystemNotificationsRemoteRepository {}
+
 class _ContactsRepository extends Mock implements ContactsRepository {}
 
 final _userInfo = UserInfo(
@@ -58,6 +62,27 @@ FeatureAccess _featureAccessWithContacts({required bool hybridPresence}) {
   final snapshot = MockRemoteConfigSnapshot();
   when(() => snapshot.getBool(any())).thenReturn(null);
   when(() => snapshot.getBool(FeatureOverridesFactory.hybridPresenceEnabledKey)).thenReturn(hybridPresence);
+
+  return FeatureAccess.create(
+    createMockAppConfig(),
+    [createMockTermsResource()],
+    CoreSupportFactory.create(systemInfo),
+    systemInfo,
+    FeatureOverridesFactory.create(snapshot),
+  );
+}
+
+/// A session whose core does or does not offer system notifications: the one
+/// input the notifications registration reads.
+FeatureAccess _featureAccessWithSystemNotifications({required bool supported}) {
+  final systemInfo = MockWebtritSystemInfo();
+  final adapterInfo = MockAdapterInfo();
+  when(() => adapterInfo.supported).thenReturn(supported ? [kSystemNotificationsFeatureFlag] : []);
+  when(() => systemInfo.adapter).thenReturn(adapterInfo);
+  when(() => systemInfo.core).thenReturn(CoreInfo(version: Version(0, 28, 0)));
+
+  final snapshot = MockRemoteConfigSnapshot();
+  when(() => snapshot.getBool(any())).thenReturn(null);
 
   return FeatureAccess.create(
     createMockAppConfig(),
@@ -108,6 +133,63 @@ void main() {
       final maximumJitter = Duration(milliseconds: (expectedSeconds * 1000 * 0.1).round());
       await tester.pump(const Duration(seconds: 2) + maximumJitter);
       verify(() => externalContacts.fetchContacts()).called(1);
+
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  for (final supported in <bool>[true, false]) {
+    testWidgets('shell ${supported ? 'polls' : 'does not poll'} system notifications when the core '
+        '${supported ? 'offers' : 'omits'} them', (tester) async {
+      final featureAccess = _featureAccessWithSystemNotifications(supported: supported);
+      expect(featureAccess.systemNotificationsConfig.systemNotificationsSupport, supported);
+
+      final local = _SystemNotificationsLocalRepository();
+      final remote = _SystemNotificationsRemoteRepository();
+      // An empty store: the first cycle fetches history rather than updates.
+      when(() => local.getLastUpdate()).thenAnswer((_) async => null);
+      when(
+        () => local.upsertNotifications(
+          any(),
+          silent: any(named: 'silent'),
+          initialData: any(named: 'initialData'),
+        ),
+      ).thenAnswer((_) async {});
+      when(() => remote.getHistory(limit: any(named: 'limit'))).thenAnswer((_) async => const <SystemNotification>[]);
+
+      final (connectivity, _) = await _pumpShell(
+        tester,
+        featureAccess: featureAccess,
+        userInfo: _userInfo,
+        extraProviders: [
+          Provider<SystemNotificationsLocalRepository>.value(value: local),
+          Provider<SystemNotificationsRemoteRepository>.value(value: remote),
+        ],
+      );
+
+      connectivity.setConnected(true);
+      await tester.pump();
+
+      if (!supported) {
+        // No registration at all, so the feature costs nothing when the core
+        // does not offer it - not even the leading refresh on connect.
+        verifyNever(() => remote.getHistory(limit: any(named: 'limit')));
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+        return;
+      }
+
+      verify(() => remote.getHistory(limit: any(named: 'limit'))).called(1);
+
+      final seconds = EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS;
+      await tester.pump(Duration(seconds: seconds - 2));
+      verifyNever(() => remote.getHistory(limit: any(named: 'limit')));
+      final maximumJitter = Duration(milliseconds: (seconds * 1000 * 0.1).round());
+      await tester.pump(const Duration(seconds: 2) + maximumJitter);
+      verify(() => remote.getHistory(limit: any(named: 'limit'))).called(1);
 
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();

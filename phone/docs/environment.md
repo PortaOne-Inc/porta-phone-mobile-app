@@ -88,8 +88,10 @@ maintainability and enabling tools to parse configuration reliably.
   the refresh of the call history and the user record, in positive whole seconds
   (default: **1**), so the backend has published the CDR and charged the call.
 - `WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS` - System
-  notifications sync interval in positive whole seconds (default: **10**). That
-  sync still runs its own loop outside the polling service.
+  notifications sync interval in positive whole seconds (default: **10**). The
+  sync is a polling task like the others, so it pauses in the background and
+  backs off on failure; the outbox that sends read receipts still runs its own
+  loop.
 
 ### Environment
 
