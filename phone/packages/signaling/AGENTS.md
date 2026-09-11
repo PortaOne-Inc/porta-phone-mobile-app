@@ -33,8 +33,12 @@ await client.disconnect();
 ```
 Event / Request
 ├── SessionEvent / SessionRequest  (field: transaction)
-│   └── RegisteringEvent, RegisteredEvent, UnregisteredEvent, RegistrationFailedEvent…
-└── LineEvent / LineRequest        (field: line)
+│   ├── RegisteringEvent, RegisteredEvent, UnregisteredEvent, RegistrationFailedEvent…
+│   └── Conference* (WT-783): ConferenceOfferEvent, ConferenceUpdatedEvent, …
+│       MergeRequest, ConferenceAddRequest, ConferenceMuteRequest, …
+│       Session-level even when they carry `line`: there it is a participant
+│       index, not an address. Never register them as LineEvent/LineRequest.
+└── LineEvent / LineRequest        (field: line, an address)
     ├── IceTrickleEvent, IceHangupEvent, TransferEvent…
     └── CallEvent / CallRequest    (field: callId)
         ├── IncomingCallEvent, CallingEvent, RingingEvent, AcceptedEvent, HangupEvent…
@@ -57,7 +61,7 @@ or disconnect.
 
 | Kind | JSON key | Class | Direction |
 |------|----------|-------|-----------|
-| Handshake | `handshake` | `StateHandshake`, `KeepaliveHandshake` | Server → Client |
+| Handshake | `handshake` | `StateHandshake` (with `conference: ConferenceInfo?`), `KeepaliveHandshake` | Server → Client |
 | Event | `event` | `SessionEvent`, `LineEvent`, `CallEvent` | Server → Client |
 | Response | `response` | `AckResponse`, `ErrorResponse` | Server → Client |
 
