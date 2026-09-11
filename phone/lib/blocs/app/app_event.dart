@@ -18,6 +18,13 @@ enum AppLogoutReason {
   /// cleanup since the remote user record is already gone.
   userNotFound,
 
+  /// The core could not be reached while the session had no system info to
+  /// build the main shell from. The server said nothing, so the session may
+  /// well still be valid: only local data is cleared, never the remote
+  /// session. Ending the session here is what lets the user reach the login
+  /// screen, which is the only place a different core can be entered.
+  coreUnreachable,
+
   /// The self-care password expired or was changed (403 password_change_required),
   /// detected after the signaling session was dropped. The server already
   /// terminated the session, so only local cleanup is required.

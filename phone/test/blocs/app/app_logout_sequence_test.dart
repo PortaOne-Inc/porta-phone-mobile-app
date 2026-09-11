@@ -106,6 +106,36 @@ void main() {
     expect(bloc.state.logoutReason, AppLogoutReason.serverRejection);
   });
 
+  for (final (reason, revokes) in <(AppLogoutReason, bool)>[
+    (AppLogoutReason.userRequest, true),
+    (AppLogoutReason.serverRejection, true),
+    (AppLogoutReason.sessionMissed, false),
+    (AppLogoutReason.userNotFound, false),
+    // The core never answered, so nothing says the session is invalid. Revoking
+    // it would end a session that is very likely still good, and a core that
+    // comes back should find the user able to sign in again without one.
+    (AppLogoutReason.coreUnreachable, false),
+  ]) {
+    test('${reason.name} ${revokes ? 'revokes' : 'leaves'} the remote session', () async {
+      final bloc = buildBloc();
+      addTearDown(bloc.close);
+
+      bloc.add(AppLogoutRequested(reason: reason));
+      await pumpEventQueue();
+      bloc.add(const AppCleanupRequested());
+      await pumpEventQueue();
+
+      expect(bloc.state.status, AppLifecycleStatus.unauthenticated);
+      // Local cleanup happens whatever the reason.
+      verify(() => userSessionCleanupResolver.resolve()).called(1);
+      if (revokes) {
+        verify(() => sessionRepository.revokeSession(any())).called(1);
+      } else {
+        verifyNever(() => sessionRepository.revokeSession(any()));
+      }
+    });
+  }
+
   test('a logout arriving after the session is gone does not re-enter teardown', () async {
     final bloc = buildBloc();
     addTearDown(bloc.close);

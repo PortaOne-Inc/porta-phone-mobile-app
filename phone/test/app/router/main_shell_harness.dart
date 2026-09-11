@@ -163,6 +163,7 @@ WebtritSystemInfo systemInfoWithSupported(List<String> supported) {
 /// Call once from the test file's `setUpAll`.
 void registerHarnessFallbacks() {
   registerFallbackValue(FetchPolicy.cacheFirst);
+  registerFallbackValue(const AppLogoutRequested());
   registerFallbackValue(Permission.camera);
   registerFallbackValue(DiagnosticType.androidCallkeepOnly);
 }
