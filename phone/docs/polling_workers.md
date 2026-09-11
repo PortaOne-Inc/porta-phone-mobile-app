@@ -361,6 +361,7 @@ capabilities, not different worker patterns:
 | External Contacts | `ExternalContactsSyncWorker` | `ExternalContactsSync` | State + manual run through `ContactsExternalTabBloc` | None |
 | CDR | `CdrsSyncWorker` | `CdrsSync` | State for every CDR list; manual run for Full and Missed lists | `requestPostCallRefresh()` |
 | User info | `UserInfoSyncWorker` | `UserInfoSync` | Manual run through `UserInfoCubit` (Settings pull) | `requestPostCallRefresh()` |
+| System notifications | `SystemNotificationsSyncWorker` | `SystemNotificationsSync` | None | None |
 
 ### External Contacts
 
@@ -388,6 +389,17 @@ the Settings pull, and `requestPostCallRefresh()` is wired to the same
 call-ended hook as `CdrsSync`, because a finished call changes both the history
 and the balance. The repository keeps the cache, the gateway and the change
 stream, and is not `Refreshable` itself, so the cycle has exactly one owner.
+
+### System notifications
+
+The plainest of the four: the worker implements the timestamp-paged cycle and the
+owner adds nothing, because the feature has neither a pull-to-refresh nor a domain
+trigger. It is worth reading as the minimum the pattern costs - a worker, an owner
+subclass with an empty body, and a gated `Provider` at the composition root.
+What the migration removed is the rest: a `while` loop with its own
+`Connectivity()` check, its own delay, and a `catch` that logged every failure and
+carried on, which is why the feature never backed off and never paused in the
+background. See [polling.md](polling.md#system-notifications) for the cycle itself.
 
 ## Non-goals
 

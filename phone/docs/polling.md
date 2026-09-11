@@ -540,6 +540,7 @@ overridden by the matching dart-define.
 | `SystemInfoRepository` | 300 s | Always |
 | `ExternalContactsSyncWorker` | 300 s / 1800 s | Core supports extensions; 1800 s when hybrid presence is on, 300 s when off (see [Contacts presence interval](#contacts-presence-interval)) |
 | `CdrsSyncWorker` | 300 s | Call history is enabled for the session |
+| `SystemNotificationsSyncWorker` (via `SystemNotificationsSync`) | 10 s | Core offers system notifications and the app configuration allows them |
 | `VoicemailRepository` | 300 s | Voicemail is available for the session |
 | `CallerIdSettingsRepository` | 300 s | Remote implementation is active |
 | `FavoritesRepository` | 300 s | Syncable implementation is active |
@@ -564,6 +565,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
 | `ExternalContactsSyncWorker` | Conforms | Writes once per cycle and rethrows failures; polling owns the next attempt |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
+| `SystemNotificationsSyncWorker` | Conforms | Awaits history or the drained updates and rethrows; keeps no cross-cycle state |
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
 | `FavoritesRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
@@ -908,6 +910,33 @@ asserts the owner registration at the user interval and that the shell fetches
 once per cycle, so a second registration would be visible.
 `test/repository/user_repository_test.dart` covers the store itself - the
 replay, the persist-before-publish order and a failed write.
+
+### System notifications
+
+`SystemNotificationsSyncWorker` implements the cycle and `SystemNotificationsSync`
+is the standard owner with no extra capability: the feature has no pull-to-refresh
+and no domain trigger, so scheduling is the only thing that runs it. A cycle takes
+one branch - the initial history when the local store has no anchor, otherwise
+every update since that anchor - and never both, so a first load stays one bounded
+request.
+
+Two properties of the endpoint shape the cycle. It pages by timestamp rather than
+by page number, so the anchor is advanced from the newest record of each full page,
+and a full page that cannot advance it ends the cycle instead of being fetched
+forever. And an absent local anchor is what marks a load as history: it is passed
+to the store as `initialData`, which suppresses one local push per record. That
+marker is deliberately read from the store rather than counted in the worker - an
+in-memory flag is lost whenever the worker is rebuilt, and a first load would then
+push its whole history at the user.
+
+The registration lives in `main_shell_services.dart` behind the feature gate, so a
+deployment without system notifications registers nothing. `SystemNotificationsShell`
+keeps the push service, the outbox worker and the background task; the outbox still
+runs a loop of its own. Tests:
+`test/features/system_notifications/system_notifications_sync_worker_test.dart`
+covers the cycle, the paging, the termination guard and the failure contract;
+`test/app/router/main_shell_polling_config_test.dart` asserts the registration at
+the configured interval and that a core without the feature registers nothing.
 
 ## Non-goals
 

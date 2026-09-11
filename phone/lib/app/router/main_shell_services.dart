@@ -57,6 +57,12 @@ class MainShellServices extends StatelessWidget {
           ),
         if (featureAccess.bottomMenuConfig.getTabEnabled<RecentsBottomMenuTab>()?.supportsCallHistory == true)
           Provider<CdrsSync>(create: _createCdrsSync, dispose: (context, sync) => sync.dispose(), lazy: false),
+        if (featureAccess.systemNotificationsConfig.systemNotificationsSupport)
+          Provider<SystemNotificationsSync>(
+            create: _createSystemNotificationsSync,
+            dispose: (context, sync) => sync.dispose(),
+            lazy: false,
+          ),
       ],
       child: child,
     );
@@ -156,6 +162,18 @@ class MainShellServices extends StatelessWidget {
       pollingService: context.read<PollingService>(),
       interval: Duration(seconds: EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS),
       postCallRefreshDelay: Duration(seconds: EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS),
+    );
+  }
+
+  SystemNotificationsSync _createSystemNotificationsSync(BuildContext context) {
+    final worker = SystemNotificationsSyncWorker(
+      context.read<SystemNotificationsLocalRepository>(),
+      context.read<SystemNotificationsRemoteRepository>(),
+    );
+    return SystemNotificationsSync(
+      worker: worker,
+      pollingService: context.read<PollingService>(),
+      interval: Duration(seconds: EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS),
     );
   }
 
