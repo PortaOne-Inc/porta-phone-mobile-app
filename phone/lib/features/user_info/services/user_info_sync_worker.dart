@@ -10,7 +10,16 @@ const _postCallRefreshDelay = Duration(seconds: 1);
 /// use the same polling task, so they share one lifecycle, single-flight
 /// boundary, and backoff policy.
 final class UserInfoSync extends PollingWorkerOwner<UserInfoSyncWorker> {
-  UserInfoSync({required super.worker, required super.pollingService, required super.interval});
+  UserInfoSync({
+    required super.worker,
+    required super.pollingService,
+    required super.interval,
+    this.postCallRefreshDelay = _postCallRefreshDelay,
+  });
+
+  /// How long after a call ends the refresh is requested; the shell supplies
+  /// the configured value, tests and direct construction keep the default.
+  final Duration postCallRefreshDelay;
 
   /// Requests one refresh once the backend has had time to charge the call, so
   /// the balance on screen reflects it without waiting for the next tick.
@@ -18,7 +27,7 @@ final class UserInfoSync extends PollingWorkerOwner<UserInfoSyncWorker> {
   /// Repeated call-ended events use the task's trailing-edge debounce instead
   /// of cancelling and recreating the polling schedule.
   void requestPostCallRefresh() {
-    invalidatePollingTask(after: _postCallRefreshDelay);
+    invalidatePollingTask(after: postCallRefreshDelay);
   }
 }
 

@@ -183,6 +183,88 @@ void main() {
       }
     });
 
+    group('polling reachability ttl', () {
+      const name = EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS__NAME;
+      const configured = int.fromEnvironment('WEBTRIT_APP_POLLING_REACHABILITY_TTL_SECONDS', defaultValue: 30);
+      final fallback = configured > 0 ? configured : 30;
+
+      test('uses the positive build value or the 30-second default', () {
+        expect(name, 'WEBTRIT_APP_POLLING_REACHABILITY_TTL_SECONDS');
+        expect(EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS, fallback);
+      });
+
+      test('a positive runtime value wins and a non-positive one falls back', () {
+        EnvironmentConfig.applyOverrides({name: '5'});
+        expect(EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS, 5);
+        EnvironmentConfig.applyOverrides({name: '0'});
+        expect(EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS, fallback);
+      });
+    });
+
+    group('polling jitter percent', () {
+      const name = EnvironmentConfig.POLLING_JITTER_PERCENT__NAME;
+      const configured = int.fromEnvironment('WEBTRIT_APP_POLLING_JITTER_PERCENT', defaultValue: 10);
+      final fallback = configured >= 0 && configured <= 100 ? configured : 10;
+
+      test('uses the in-range build value or the 10 percent default', () {
+        expect(name, 'WEBTRIT_APP_POLLING_JITTER_PERCENT');
+        expect(EnvironmentConfig.POLLING_JITTER_PERCENT, fallback);
+      });
+
+      test('runtime values include zero to disable jitter', () {
+        for (final percent in [0, 5, 100]) {
+          EnvironmentConfig.applyOverrides({name: '$percent'});
+          expect(EnvironmentConfig.POLLING_JITTER_PERCENT, percent);
+        }
+      });
+
+      for (final invalid in ['', 'abc', '1.5', '-1', '101']) {
+        test('invalid runtime value "$invalid" uses the validated build value', () {
+          EnvironmentConfig.applyOverrides({name: invalid});
+          expect(EnvironmentConfig.POLLING_JITTER_PERCENT, fallback);
+        });
+      }
+    });
+
+    group('post-call refresh delay', () {
+      const name = EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS__NAME;
+      const configured = int.fromEnvironment('WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS', defaultValue: 1);
+      final fallback = configured > 0 ? configured : 1;
+
+      test('uses the positive build value or the 1-second default', () {
+        expect(name, 'WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS');
+        expect(EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS, fallback);
+      });
+
+      test('a positive runtime value wins and a non-positive one falls back', () {
+        EnvironmentConfig.applyOverrides({name: '3'});
+        expect(EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS, 3);
+        EnvironmentConfig.applyOverrides({name: '-2'});
+        expect(EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS, fallback);
+      });
+    });
+
+    group('system notifications polling interval', () {
+      const name = EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME;
+      const configured = int.fromEnvironment(
+        'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS',
+        defaultValue: 10,
+      );
+      final fallback = configured > 0 ? configured : 10;
+
+      test('uses the positive build value or the 10-second default', () {
+        expect(name, 'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS');
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS, fallback);
+      });
+
+      test('a positive runtime value wins and a non-positive one falls back', () {
+        EnvironmentConfig.applyOverrides({name: '60'});
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS, 60);
+        EnvironmentConfig.applyOverrides({name: '0'});
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS, fallback);
+      });
+    });
+
     group('leading refresh min-age cap', () {
       const name = EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME;
       const configured = int.fromEnvironment(

@@ -103,8 +103,9 @@ older pages through `CdrsListCubit.fetchHistory()`.
 The local-recents screen cannot be refreshed by hand and has nothing remote to
 refresh: its list is written by the app itself and watched live.
 
-Ending a call invalidates the same polling task with a one-second delay so the
-backend can publish the CDR. Repeated call-ended events use trailing-edge
+Ending a call invalidates the same polling task after a short delay (default one
+second, `WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS`) so the backend can publish
+the CDR. Repeated call-ended events use trailing-edge
 debounce, and the refresh cannot overlap the periodic cycle.
 
 An empty cache keeps its initial loader while the first remote cycle is

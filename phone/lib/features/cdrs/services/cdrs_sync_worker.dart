@@ -14,14 +14,23 @@ const _postCallRefreshDelay = Duration(seconds: 1);
 /// Scheduled refreshes and call-ended invalidations use the same polling task,
 /// so they share one lifecycle, single-flight boundary, and backoff policy.
 final class CdrsSync extends PollingWorkerOwner<CdrsSyncWorker> {
-  CdrsSync({required super.worker, required super.pollingService, required super.interval});
+  CdrsSync({
+    required super.worker,
+    required super.pollingService,
+    required super.interval,
+    this.postCallRefreshDelay = _postCallRefreshDelay,
+  });
+
+  /// How long after a call ends the refresh is requested; the shell supplies
+  /// the configured value, tests and direct construction keep the default.
+  final Duration postCallRefreshDelay;
 
   /// Requests one refresh after the backend has had time to publish the CDR.
   ///
   /// Repeated call-ended events use the task's trailing-edge debounce instead
   /// of cancelling and recreating the polling schedule.
   void requestPostCallRefresh() {
-    invalidatePollingTask(after: _postCallRefreshDelay);
+    invalidatePollingTask(after: postCallRefreshDelay);
   }
 }
 

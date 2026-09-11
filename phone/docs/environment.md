@@ -66,6 +66,19 @@ maintainability and enabling tools to parse configuration reliably.
   refreshes the directory and can run far less often. The shell picks between the
   two at registration from the deployment's presence mode. Invalid values fall
   back safely. See [contacts presence interval](polling.md#contacts-presence-interval).
+- `WEBTRIT_APP_POLLING_REACHABILITY_TTL_SECONDS` - How long a reachability probe
+  result is reused before the polling service probes the check URL again, in
+  positive whole seconds (default: **30**). Together with the task intervals this
+  sets the observed health-check rate. Invalid values fall back safely.
+- `WEBTRIT_APP_POLLING_JITTER_PERCENT` - Maximum random delay added to every
+  computed polling delay, as a whole percent of that delay (default: **10**;
+  **0 disables**; 0..100). Out-of-range values fall back safely.
+- `WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS` - Delay between a call ending and
+  the refresh of the call history and the user record, in positive whole seconds
+  (default: **1**), so the backend has published the CDR and charged the call.
+- `WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS` - System
+  notifications sync interval in positive whole seconds (default: **10**). That
+  sync still runs its own loop outside the polling service.
 
 ### Environment
 

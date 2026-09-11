@@ -240,6 +240,59 @@ class EnvironmentConfig {
     return seconds >= 0 ? seconds : fallback;
   }
 
+  /// Reachability probe cache in positive whole seconds. A tick within this
+  /// window reuses the last probe instead of hitting the check URL again, which
+  /// is what turns the task intervals into the observed health-check rate. A
+  /// non-positive build value falls back to 30 seconds.
+  static const POLLING_REACHABILITY_TTL_SECONDS__NAME = 'WEBTRIT_APP_POLLING_REACHABILITY_TTL_SECONDS';
+  static int get POLLING_REACHABILITY_TTL_SECONDS {
+    const defaultSeconds = 30;
+    const compileTime = int.fromEnvironment(POLLING_REACHABILITY_TTL_SECONDS__NAME, defaultValue: defaultSeconds);
+    return _pollingSeconds(POLLING_REACHABILITY_TTL_SECONDS__NAME, compileTime > 0 ? compileTime : defaultSeconds);
+  }
+
+  /// Maximum jitter added to every computed polling delay, as a whole percent
+  /// of that delay (0..100). Spreads clients that reconnect together; 0
+  /// disables it. Out-of-range values fall back to 10.
+  static const POLLING_JITTER_PERCENT__NAME = 'WEBTRIT_APP_POLLING_JITTER_PERCENT';
+  static int get POLLING_JITTER_PERCENT {
+    const defaultPercent = 10;
+    const compileTime = int.fromEnvironment(POLLING_JITTER_PERCENT__NAME, defaultValue: defaultPercent);
+    final build = _isPercent(compileTime) ? compileTime : defaultPercent;
+    final runtime = _env.integer(POLLING_JITTER_PERCENT__NAME, build);
+    return _isPercent(runtime) ? runtime : build;
+  }
+
+  static bool _isPercent(int value) => value >= 0 && value <= 100;
+
+  /// Delay between a call ending and the refresh of what it changed (call
+  /// history, balance), in positive whole seconds: the backend needs a moment
+  /// to publish the CDR and charge the call. A non-positive build value falls
+  /// back to 1 second.
+  static const POST_CALL_REFRESH_DELAY_SECONDS__NAME = 'WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS';
+  static int get POST_CALL_REFRESH_DELAY_SECONDS {
+    const defaultSeconds = 1;
+    const compileTime = int.fromEnvironment(POST_CALL_REFRESH_DELAY_SECONDS__NAME, defaultValue: defaultSeconds);
+    return _pollingSeconds(POST_CALL_REFRESH_DELAY_SECONDS__NAME, compileTime > 0 ? compileTime : defaultSeconds);
+  }
+
+  /// System notifications sync interval in positive whole seconds. That sync
+  /// still runs its own loop outside the polling service. A non-positive build
+  /// value falls back to 10 seconds.
+  static const SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME =
+      'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS';
+  static int get SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS {
+    const defaultSeconds = 10;
+    const compileTime = int.fromEnvironment(
+      SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME,
+      defaultValue: defaultSeconds,
+    );
+    return _pollingSeconds(
+      SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME,
+      compileTime > 0 ? compileTime : defaultSeconds,
+    );
+  }
+
   static const USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME = 'WEBTRIT_APP_USER_REPOSITORY_POLLING_INTERVAL_SECONDS';
   static int get USER_REPOSITORY_POLLING_INTERVAL_SECONDS => _pollingSeconds(
     USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME,
