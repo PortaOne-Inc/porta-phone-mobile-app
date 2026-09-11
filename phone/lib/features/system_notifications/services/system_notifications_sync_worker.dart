@@ -43,11 +43,10 @@ class SystemNotificationsSyncWorker implements PollingWorker {
   /// apply retry or backoff policy.
   @override
   Future<void> refresh() async {
-    if (_disposed) {
-      throw StateError('Cannot refresh a disposed system notifications sync worker.');
-    }
+    _ensureActive();
 
     final lastUpdate = await localRepo.getLastUpdate();
+    _ensureActive();
 
     if (lastUpdate == null) {
       await _refreshInitialHistory();
@@ -58,6 +57,7 @@ class SystemNotificationsSyncWorker implements PollingWorker {
 
   Future<void> _refreshInitialHistory() async {
     final notifications = await remoteRepo.getHistory(limit: pageSize);
+    _ensureActive();
     _logger.fine('Initial notifications fetched: ${notifications.length}');
 
     // An absent local anchor is the durable marker of a first load, so the
@@ -67,6 +67,7 @@ class SystemNotificationsSyncWorker implements PollingWorker {
     // in memory is lost whenever the worker is rebuilt, and then a first load
     // pushes its whole history at the user.
     await localRepo.upsertNotifications(notifications.reversed.toList(), initialData: true);
+    _ensureActive();
   }
 
   Future<void> _refreshUpdatesSince(DateTime lastUpdate) async {
@@ -74,8 +75,10 @@ class SystemNotificationsSyncWorker implements PollingWorker {
 
     while (true) {
       final updates = await remoteRepo.getUpdates(since: since, limit: pageSize);
+      _ensureActive();
       _logger.fine('Updates fetched since $since: ${updates.length}');
       await localRepo.upsertNotifications(updates);
+      _ensureActive();
 
       if (updates.length < pageSize) break;
 
@@ -91,6 +94,14 @@ class SystemNotificationsSyncWorker implements PollingWorker {
 
   DateTime _newestUpdate(List<SystemNotification> notifications) =>
       notifications.map((notification) => notification.updatedAt).reduce((a, b) => a.isAfter(b) ? a : b);
+
+  // In-flight I/O cannot be cancelled, but a retired worker must not start
+  // another request or write after an async boundary.
+  void _ensureActive() {
+    if (_disposed) {
+      throw StateError('Cannot refresh a disposed system notifications sync worker.');
+    }
+  }
 
   bool _disposed = false;
 

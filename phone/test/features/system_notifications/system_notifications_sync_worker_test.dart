@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:mocktail/mocktail.dart';
@@ -196,6 +198,78 @@ void main() {
 
       await expectLater(worker.refresh(), throwsStateError);
       verifyNever(() => localRepository.getLastUpdate());
+    });
+
+    test('disposal while reading the anchor prevents a remote request', () async {
+      final anchor = Completer<DateTime?>();
+      when(() => localRepository.getLastUpdate()).thenAnswer((_) => anchor.future);
+      final cycle = worker.refresh();
+      final outcome = expectLater(cycle, throwsStateError);
+
+      await worker.dispose();
+      anchor.complete(null);
+      await outcome;
+
+      verifyNoMoreInteractions(remoteRepository);
+    });
+
+    for (final initialHistory in [true, false]) {
+      test('disposal during ${initialHistory ? 'history' : 'updates'} fetch prevents persistence', () async {
+        final response = Completer<List<SystemNotification>>();
+        final started = Completer<void>();
+        final anchor = DateTime.utc(2026, 1, 1);
+        when(() => localRepository.getLastUpdate()).thenAnswer((_) async => initialHistory ? null : anchor);
+        Future<List<SystemNotification>> fetch(Invocation _) {
+          started.complete();
+          return response.future;
+        }
+
+        if (initialHistory) {
+          when(() => remoteRepository.getHistory(limit: 2)).thenAnswer(fetch);
+        } else {
+          when(() => remoteRepository.getUpdates(since: anchor, limit: 2)).thenAnswer(fetch);
+        }
+        final cycle = worker.refresh();
+        final outcome = expectLater(cycle, throwsStateError);
+        await started.future;
+
+        await worker.dispose();
+        response.complete([_notification(1, 1), _notification(2, 2)]);
+        await outcome;
+
+        verifyNever(
+          () => localRepository.upsertNotifications(
+            any(),
+            silent: any(named: 'silent'),
+            initialData: any(named: 'initialData'),
+          ),
+        );
+        if (!initialHistory) {
+          verify(() => remoteRepository.getUpdates(since: any(named: 'since'), limit: 2)).called(1);
+        }
+      });
+    }
+
+    test('disposal during a page write prevents fetching the next page', () async {
+      final persisted = Completer<void>();
+      final started = Completer<void>();
+      final anchor = DateTime.utc(2026, 1, 1);
+      when(() => localRepository.getLastUpdate()).thenAnswer((_) async => anchor);
+      when(() => remoteRepository.getUpdates(since: any(named: 'since'), limit: 2))
+          .thenAnswer((_) async => [_notification(1, 1), _notification(2, 2)]);
+      when(() => localRepository.upsertNotifications(any())).thenAnswer((_) {
+        started.complete();
+        return persisted.future;
+      });
+      final cycle = worker.refresh();
+      final outcome = expectLater(cycle, throwsStateError);
+      await started.future;
+
+      await worker.dispose();
+      persisted.complete();
+      await outcome;
+
+      verify(() => remoteRepository.getUpdates(since: any(named: 'since'), limit: 2)).called(1);
     });
 
     test('disposal is idempotent', () async {

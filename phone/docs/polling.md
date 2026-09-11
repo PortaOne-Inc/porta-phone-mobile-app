@@ -920,6 +920,12 @@ one branch - the initial history when the local store has no anchor, otherwise
 every update since that anchor - and never both, so a first load stays one bounded
 request.
 
+Disposal rejects later refreshes and checks the worker's lifetime after every
+await. An HTTP response arriving after disposal cannot start a store write,
+and completing an already-started write cannot fetch another page. An I/O
+operation already in progress is not cancelled; the retired cycle reports
+`StateError` instead of success.
+
 Two properties of the endpoint shape the cycle. It pages by timestamp rather than
 by page number, so the anchor is advanced from the newest record of each full page,
 and a full page that cannot advance it ends the cycle instead of being fetched
