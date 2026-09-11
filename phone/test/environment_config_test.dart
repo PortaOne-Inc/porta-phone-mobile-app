@@ -83,10 +83,10 @@ void main() {
       const name = EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS__NAME;
 
       EnvironmentConfig.applyOverrides({name: '0'});
-      expect(EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS, 10);
+      expect(EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS, 900);
 
       EnvironmentConfig.applyOverrides({name: '-5'});
-      expect(EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS, 10);
+      expect(EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS, 900);
 
       EnvironmentConfig.applyOverrides({name: '30'});
       expect(EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS, 30);
@@ -99,7 +99,7 @@ void main() {
       expect(EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS, 25);
 
       EnvironmentConfig.applyOverrides({name: '0'});
-      expect(EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS, 10);
+      expect(EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS, 300);
     });
 
     group('external contacts polling interval by presence mode', () {

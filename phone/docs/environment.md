@@ -3,7 +3,7 @@
 This file describes environment variables and Dart define variables used in the WebTrit application
 configuration.
 
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-11.
 
 ### Naming Convention
 
@@ -57,6 +57,17 @@ maintainability and enabling tools to parse configuration reliably.
   runtime values use the validated build value; invalid/negative build values
   use 30. The shell snapshots it when creating the polling service. See
   [leading refresh freshness](polling.md#leading-refresh-freshness).
+- `WEBTRIT_APP_USER_REPOSITORY_POLLING_INTERVAL_SECONDS` - User record poll
+  interval in positive whole seconds (default: **900**). The record (balance,
+  numbers, SIP credentials) changes on events the app already sees, so the
+  timer is only a safety net: foreground, reconnect, the Settings pull and a
+  finished call refresh it on their own. See
+  [data refresh](data_refresh.md).
+- `WEBTRIT_APP_CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS` - Call history poll
+  interval in positive whole seconds (default: **300**). New records appear
+  after calls, and a finished call already refreshes the list (see
+  `WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS`), so the timer only catches
+  calls made elsewhere. Paused in the background like every polled task.
 - `WEBTRIT_APP_EXTERNAL_CONTACTS_REPOSITORY_POLLING_INTERVAL_SECONDS` - Contacts
   poll interval in positive whole seconds when hybrid presence is off (default:
   **300**). Here the fetch is the presence source, so it stays fairly fresh.

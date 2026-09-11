@@ -536,10 +536,10 @@ overridden by the matching dart-define.
 
 | Polling listener | Default interval | Condition |
 |---|---:|---|
-| `UserInfoSyncWorker` (via `UserInfoSync`) | 10 s | Always |
+| `UserInfoSyncWorker` (via `UserInfoSync`) | 900 s | Always |
 | `SystemInfoRepository` | 300 s | Always |
 | `ExternalContactsSyncWorker` | 300 s / 1800 s | Core supports extensions; 1800 s when hybrid presence is on, 300 s when off (see [Contacts presence interval](#contacts-presence-interval)) |
-| `CdrsSyncWorker` | 10 s | Call history is enabled for the session |
+| `CdrsSyncWorker` | 300 s | Call history is enabled for the session |
 | `VoicemailRepository` | 300 s | Voicemail is available for the session |
 | `CallerIdSettingsRepository` | 300 s | Remote implementation is active |
 | `FavoritesRepository` | 300 s | Syncable implementation is active |
