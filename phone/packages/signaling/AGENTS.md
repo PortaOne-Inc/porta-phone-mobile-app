@@ -47,6 +47,13 @@ Event / Request
 
 Polymorphic deserialization uses decoder maps keyed by the `type` JSON field — no `if/switch`.
 
+**Conference protocol.** The wire-level specification of every
+`merge` / `conference_*` request, response and event, the handshake `conference`
+block, refusal reasons, sequences and the client's local obligations is
+[`docs/conference_protocol.md`](docs/conference_protocol.md). It is self-contained
+and written from the Core implementation; read it before touching any
+`Conference*` class, and update it in the same change when the wire format moves.
+
 ## Key Internals
 
 **Transaction pattern** — `execute(Request)` creates a `Transaction` (auto-generated ID, 10s
