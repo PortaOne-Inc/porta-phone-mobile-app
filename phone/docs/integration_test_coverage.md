@@ -236,7 +236,8 @@ Three independent tests — each skipped automatically if the required credentia
 **File:** [user_repository_refresh_test.dart](../patrol_test/user_repository_refresh_test.dart)
 
 Two focused native-integration tests compose the real `UserRepository`, API
-client, remote/local datasources, mappers, preferences plugin and `PollingService`.
+client, remote/local datasources, mappers, preferences plugin and `PollingService`,
+with `UserInfoSyncWorker` registered as the polling listener over that repository.
 Only HTTP responses and connectivity eligibility are controlled. They do not
 bootstrap the full app, log in, contact a backend or toggle device connectivity.
 
@@ -256,10 +257,11 @@ The companion [host integration suite](../test/repository/user_repository_integr
 runs in ordinary `flutter test`/CI with an in-memory preferences backend. It also
 covers HTTP 429, transport retry exhaustion, original timeout/stack propagation,
 `session_missing`, `user_not_found`, invalid payloads and cache replay. Exact
-20/40/10-second scheduling assertions use virtual time. Existing
-[repository unit tests](../test/repository/user_repository_test.dart) cover
-injected persistence failures and delayed-write completion; these native tests
-do not simulate a device storage failure.
+20/40/10-second scheduling assertions use virtual time. The
+[worker unit tests](../test/features/user_info/user_info_sync_worker_test.dart)
+cover injected persistence failures and delayed-write completion through the
+worker over the real repository; these native tests do not simulate a device
+storage failure.
 
 ---
 
@@ -414,7 +416,8 @@ deterministic. No account credentials are required.
 **File:** `patrol_test/polling_freshness_test.dart`
 
 **Verifies:** The leading-only freshness gate across the real scheduler, API
-mapping, UserRepository and native preferences on Android. Successful requests
+mapping, `UserInfoSyncWorker` over `UserRepository`, and native preferences on
+Android. Successful requests
 include a response delay, so deadlines are checked against completion.
 
 1. With a 10-second interval, send connectivity flaps every 6 seconds through a

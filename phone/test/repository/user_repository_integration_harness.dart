@@ -9,6 +9,7 @@ import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/app/session/session_guard.dart';
 import 'package:webtrit_phone/data/app_preferences.dart';
+import 'package:webtrit_phone/features/user_info/user_info.dart';
 import 'package:webtrit_phone/repositories/user_info/user_repository.dart';
 
 /// Real repository, datasources and API mapping with only HTTP controlled.
@@ -20,6 +21,7 @@ class UserRepositoryIntegrationHarness {
     local = UserLocalDatasourcePrefsImpl(preferences);
     remote = UserRemoteDatasourceApiImpl(client, 'integration-token', sessionGuard: sessionGuard);
     repository = UserRepository(remoteDatasource: remote, localDatasource: local);
+    worker = UserInfoSyncWorker(userRepository: repository);
   }
 
   static const cachedUser = UserInfo(
@@ -46,6 +48,7 @@ class UserRepositoryIntegrationHarness {
   late final UserLocalDatasourcePrefsImpl local;
   late final UserRemoteDatasourceApiImpl remote;
   late final UserRepository repository;
+  late final UserInfoSyncWorker worker;
 
   Future<http.Response> Function(http.Request) respond = (_) async => successResponse();
 
@@ -65,6 +68,7 @@ class UserRepositoryIntegrationHarness {
   }
 
   Future<void> dispose() async {
+    await worker.dispose();
     await remote.dispose();
     client.close();
   }

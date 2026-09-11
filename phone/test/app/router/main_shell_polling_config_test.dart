@@ -69,6 +69,7 @@ FeatureAccess _featureAccessWithContacts({required bool hybridPresence}) {
 }
 
 void main() {
+  setUpAll(() => registerFallbackValue(_userInfo));
   tearDown(EnvironmentConfig.clearOverrides);
 
   for (final (hybridPresence, expectedSeconds) in <(bool, int)>[(true, 1800), (false, 300)]) {
@@ -113,6 +114,31 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('shell polls user info through its owner at the user interval', (tester) async {
+    final userRepository = _UserRepository();
+    final (connectivity, _) = await _pumpShell(tester, userRepositoryMock: userRepository);
+
+    // Exactly one registration: the constructor list must not carry /user beside
+    // the owner (see the unstubbed refresh() note in _pumpShell).
+    connectivity.setConnected(true);
+    await tester.pump();
+    verify(() => userRepository.getRemoteInfo()).called(1);
+    // A stray direct registration would run the repository's own refresh();
+    // polling backoff absorbs its failure, so count the call itself.
+    verifyNever(() => userRepository.refresh());
+
+    final seconds = EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS;
+    await tester.pump(Duration(seconds: seconds - 2));
+    verifyNever(() => userRepository.getRemoteInfo());
+    final maximumJitter = Duration(milliseconds: (seconds * 1000 * 0.1).round());
+    await tester.pump(const Duration(seconds: 2) + maximumJitter);
+    verify(() => userRepository.getRemoteInfo()).called(1);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
 
   for (final override in <int?>[null, 1800]) {
     testWidgets('shell uses ${override ?? 'default 900'}s cap and snapshots it at creation', (tester) async {
@@ -193,13 +219,20 @@ Future<(FakeConnectivityService, PollingService)> _pumpShell(
   UserInfo? userInfo,
   List<SingleChildWidget> extraProviders = const [],
   bool readContactsSync = false,
+  _UserRepository? userRepositoryMock,
 }) async {
   final connectivity = FakeConnectivityService();
   addTearDown(connectivity.dispose);
-  final userRepository = _UserRepository();
+  final userRepository = userRepositoryMock ?? _UserRepository();
   final systemInfoRepository = _SystemInfoRepository();
-  when(() => userRepository.isActive).thenReturn(false);
+  // The user task is owned by UserInfoSync and runs the worker cycle against
+  // this mock. refresh() is deliberately left unstubbed: the repository must
+  // not be registered directly any more, and the one-registration test
+  // asserts it is never called (the service would swallow its failure).
+  when(() => userRepository.isActive).thenReturn(true);
   when(() => userRepository.getLocalInfo()).thenReturn(userInfo);
+  when(() => userRepository.getRemoteInfo()).thenAnswer((_) async => _userInfo);
+  when(() => userRepository.storeInfo(any())).thenAnswer((_) async {});
   when(() => systemInfoRepository.isActive).thenReturn(false);
   late PollingService polling;
 

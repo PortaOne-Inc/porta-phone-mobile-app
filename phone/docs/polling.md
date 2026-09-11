@@ -1,7 +1,7 @@
 # Background polling
 
 `PollingService` coordinates periodic, lifecycle-triggered, and manual refreshes without overlapping work for the same registration.
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-11.
 
 ## Scope and current status
 
@@ -24,9 +24,9 @@ capability it needs instead of the ownership handle, another timer, or a
 parallel call to the same work.
 
 Most app registrations are still supplied through the `PollingService`
-constructor because no consumer needs their handles. External Contacts and CDR
-use the worker pattern: their `*Sync` owners retain private registrations and
-expose only narrow capabilities or domain methods.
+constructor because no consumer needs their handles. External Contacts, CDR and
+User info use the worker pattern: their `*Sync` owners retain private
+registrations and expose only narrow capabilities or domain methods.
 
 UI pull-to-refresh behavior is a separate concern. See
 [`data_refresh.md`](data_refresh.md) for the screens and gestures that expose it.
@@ -535,7 +535,7 @@ overridden by the matching dart-define.
 
 | Polling listener | Default interval | Condition |
 |---|---:|---|
-| `UserRepository` | 10 s | Always |
+| `UserInfoSyncWorker` (via `UserInfoSync`) | 10 s | Always |
 | `SystemInfoRepository` | 300 s | Always |
 | `ExternalContactsSyncWorker` | 300 s / 1800 s | Core supports extensions; 1800 s when hybrid presence is on, 300 s when off (see [Contacts presence interval](#contacts-presence-interval)) |
 | `CdrsSyncWorker` | 10 s | Call history is enabled for the session |
@@ -559,7 +559,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 
 | Listener | Status | Current behavior |
 |---|---|---|
-| `UserRepository` | Conforms | Awaits changed-data persistence before publishing; logs and rethrows failures |
+| `UserInfoSyncWorker` | Conforms | Fetches, compares, and stores through `UserRepository.storeInfo()`, which persists before publishing; failures propagate with their original stack |
 | `SystemInfoRepository` | Conforms | Awaits persistence before publishing; rethrows remote and cache-write failures |
 | `ExternalContactsSyncWorker` | Conforms | Writes once per cycle and rethrows failures; polling owns the next attempt |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
@@ -569,14 +569,21 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `SipSubscriptionsRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
 | `IceServersRepository` | Needs migration | A failed remote fetch returns the fallback normally |
 
-In [User Info](../lib/repositories/user_info/user_repository.dart), `refresh()`
-awaits both the remote fetch and any required cache write. An unchanged snapshot
-completes without a write or duplicate update. `getAndListen()` exposes cached
-data and persisted updates; refresh failures reach polling through the returned
-future without being added to the data stream. The
-[repository tests](../test/repository/user_repository_test.dart) cover both
-failure sources, stream preservation, persistence ordering, and automatic
-backoff recovery with the real repository registered in `PollingService`.
+For User info the polling listener is
+[`UserInfoSyncWorker`](../lib/features/user_info/services/user_info_sync_worker.dart),
+owned by `UserInfoSync`. One cycle fetches the remote snapshot, compares it with
+the cache, and stores a changed one through
+[`UserRepository.storeInfo()`](../lib/repositories/user_info/user_repository.dart),
+which awaits the cache write before publishing. An unchanged snapshot completes
+without a write or duplicate update. `getAndListen()` exposes cached data and
+persisted updates; refresh failures reach polling through the worker's returned
+future without being added to the data stream. The repository's own `refresh()`
+is no longer registered anywhere and is kept only until the follow-up change
+removes it. The
+[worker tests](../test/features/user_info/user_info_sync_worker_test.dart) cover
+both failure sources, stream preservation, persistence ordering, and automatic
+backoff recovery with the worker registered in a real `PollingService` over the
+real repository.
 The [host integration tests](../test/repository/user_repository_integration_test.dart)
 extend this through the real API client, datasources and mappers with controlled
 HTTP and an in-memory preferences backend. The
@@ -876,6 +883,21 @@ initial loader immediately on that state, including when the screen subscribes
 after the offline transition. A slow online cycle remains `running`, so it does
 not incorrectly flash an empty state. The next successful repository cycle
 still resolves and renders the records.
+
+### User info
+
+`UserInfoSyncWorker` delegates persistence to `UserRepository.storeInfo()` and
+`UserInfoSync` uses the standard owner with no domain method yet. The
+registration moved out of the `PollingService` constructor list so the task is
+reachable through the owner's narrow capabilities; nothing calls `runNow()` or
+invalidation yet, so scheduled behaviour is unchanged. The repository keeps the
+cache, the gateway and the `getAndListen()` stream. Its own `refresh()` is a
+temporary leftover until the follow-up removes it. Tests:
+`test/features/user_info/user_info_sync_worker_test.dart`, the host suite
+`test/repository/user_repository_integration_test.dart` and both Patrol suites
+bind `harness.worker`; `test/app/router/main_shell_polling_config_test.dart`
+asserts the owner registration at the user interval and that the repository's
+`refresh()` is never invoked by the shell.
 
 ## Non-goals
 

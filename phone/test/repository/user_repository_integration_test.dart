@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/data/app_preferences.dart';
+import 'package:webtrit_phone/features/user_info/user_info.dart';
 import 'package:webtrit_phone/repositories/user_info/user_repository.dart';
 import 'package:webtrit_phone/services/polling_service.dart';
 import 'package:webtrit_phone/services/polling_task_handle.dart';
@@ -36,8 +37,8 @@ void main() {
     addTearDown(subscription.cancel);
     await pumpEventQueue();
 
-    await harness.repository.refresh();
-    await harness.repository.refresh();
+    await harness.worker.refresh();
+    await harness.worker.refresh();
     await pumpEventQueue();
 
     final preferences = await SharedPreferences.getInstance();
@@ -51,7 +52,7 @@ void main() {
   });
 
   test('native lifecycle callbacks can refresh outside the test zone', () async {
-    await Zone.root.run(harness.repository.refresh);
+    await Zone.root.run(harness.worker.refresh);
     expect(harness.requests, hasLength(1));
     expect(harness.local.getInfo(), UserRepositoryIntegrationHarness.updatedUser);
   });
@@ -67,7 +68,7 @@ void main() {
         final subscription = harness.repository.getAndListen().listen(updates.add, onError: streamErrors.add);
         try {
           async.flushMicrotasks();
-          final task = _register(harness.repository);
+          final task = _register(harness.worker);
           async.flushMicrotasks();
 
           expect(task.state.phase, PollingTaskPhase.failed);
@@ -109,7 +110,7 @@ void main() {
       final error = TimeoutException('controlled transport timeout');
       final stack = StackTrace.fromString('HTTP transport origin');
       harness.respond = (_) => Future<http.Response>.error(error, stack);
-      final task = _register(harness.repository);
+      final task = _register(harness.worker);
       async.flushMicrotasks();
 
       expect(harness.requests, hasLength(1));
@@ -140,7 +141,7 @@ void main() {
   ]) {
     test('${rejection.code} reaches the session guard and manual caller as the same failed cycle', () async {
       harness.respond = (_) async => http.Response('{"code":"${rejection.code}"}', rejection.status);
-      final task = _register(harness.repository, connected: false);
+      final task = _register(harness.worker, connected: false);
 
       await expectLater(task.runNow(), throwsA(rejection.type));
 
@@ -154,7 +155,7 @@ void main() {
 
   test('invalid user payload fails mapping without replacing the cache', () async {
     harness.respond = (_) async => http.Response('{"numbers":42}', 200);
-    final task = _register(harness.repository, connected: false);
+    final task = _register(harness.worker, connected: false);
 
     await expectLater(task.runNow(), throwsA(isA<TypeError>()));
 
@@ -165,10 +166,10 @@ void main() {
   });
 }
 
-PollingTaskHandle _register(UserRepository repository, {bool connected = true}) {
+PollingTaskHandle _register(UserInfoSyncWorker worker, {bool connected = true}) {
   final connectivity = FakeConnectivityService(initialConnected: connected);
   addTearDown(connectivity.dispose);
   final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
   addTearDown(polling.dispose);
-  return polling.register(PollingRegistration(listener: repository, interval: _interval));
+  return polling.register(PollingRegistration(listener: worker, interval: _interval));
 }

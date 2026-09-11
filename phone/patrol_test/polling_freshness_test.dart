@@ -254,7 +254,7 @@ class _Fixture {
       connectivityService: fixture.connectivity,
       options: PollingOptions(jitterRatio: 0, leadingRefreshMinAgeCap: cap),
     );
-    fixture.handle = fixture.polling.register(PollingRegistration(listener: harness.repository, interval: interval));
+    fixture.handle = fixture.polling.register(PollingRegistration(listener: harness.worker, interval: interval));
     fixture.subscription = fixture.handle.states.listen(fixture.recordState);
     return fixture;
   }
