@@ -541,6 +541,7 @@ overridden by the matching dart-define.
 | `ExternalContactsSyncWorker` | 300 s / 1800 s | Core supports extensions; 1800 s when hybrid presence is on, 300 s when off (see [Contacts presence interval](#contacts-presence-interval)) |
 | `CdrsSyncWorker` | 300 s | Call history is enabled for the session |
 | `SystemNotificationsSyncWorker` (via `SystemNotificationsSync`) | 10 s | Core offers system notifications and the app configuration allows them |
+| `SystemNotificationsOutboxWorker` (via `SystemNotificationsOutbox`) | 300 s | Same gate as the sync; the interval is a safety net, a read receipt asks for a send at once |
 | `VoicemailRepository` | 300 s | Voicemail is available for the session |
 | `CallerIdSettingsRepository` | 300 s | Remote implementation is active |
 | `FavoritesRepository` | 300 s | Syncable implementation is active |
@@ -566,6 +567,7 @@ refresh future incomplete. Recheck these paths when migrating each listener.
 | `ExternalContactsSyncWorker` | Conforms | Writes once per cycle and rethrows failures; polling owns the next attempt |
 | `CdrsSyncWorker` | Conforms | Awaits the full sync cycle and rethrows |
 | `SystemNotificationsSyncWorker` | Conforms | Awaits history or the drained updates and rethrows; keeps no cross-cycle state |
+| `SystemNotificationsOutboxWorker` | Conforms | Attempts every queued entry, then rethrows the first failure with its original stack |
 | `VoicemailRepository` | Conforms | Shares one fetch future; preserves original failures even when cache fallback fails |
 | `CallerIdSettingsRepository` | Needs migration | `sync()` logs and swallows failures |
 | `FavoritesRepository` | Conforms | Refresh rethrows sync failures; persisted local edits retain best-effort sync |
@@ -913,6 +915,9 @@ replay, the persist-before-publish order and a failed write.
 
 ### System notifications
 
+The feature's own page, covering both directions and the on-demand path end to end,
+is [`features/system_notifications.md`](features/system_notifications.md).
+
 `SystemNotificationsSyncWorker` implements the cycle and `SystemNotificationsSync`
 is the standard owner with no extra capability: the feature has no pull-to-refresh
 and no domain trigger, so scheduling is the only thing that runs it. A cycle takes
@@ -940,8 +945,7 @@ per-worker initialization policy; this marker is not persisted across sessions.
 
 The registration lives in `main_shell_services.dart` behind the feature gate, so a
 deployment without system notifications registers nothing. `SystemNotificationsShell`
-keeps the push service, the outbox worker and the background task; the outbox still
-runs a loop of its own. Tests:
+keeps the push service and the background task. Tests:
 `test/features/system_notifications/system_notifications_sync_worker_test.dart`
 covers the cycle, the paging, disposal races and the failure contract;
 `test/features/system_notifications/system_notifications_sync_push_test.dart`
@@ -955,6 +959,43 @@ policy, including late responses after database cleanup. See the
 [native run instructions](integration_test_commands.md#run-system-notification-sync-regressions);
 `test/app/router/main_shell_polling_config_test.dart` asserts the registration at
 the configured interval and that a core without the feature registers nothing.
+
+### System notifications outbox
+
+The write half of the same feature, and the one place in polling where the work is
+queued rather than fetched. Marking a notification as read writes an outbox row and
+returns, so the tap survives being offline and being killed; `SystemNotificationsOutboxWorker`
+is what sends the queue. One cycle attempts every pending entry once. A failing entry
+does not stop the others - the cycle walks the whole queue and then rethrows the first
+failure with its original stack trace, so one poisoned entry cannot hold up the rest
+while polling still backs off on a real error.
+
+`SystemNotificationsOutbox.requestFlush()` is called by `SystemNotificationsScreenCubit`
+right after the row is written, so the ordinary case is sent promptly and the interval
+only has to catch what an earlier session left behind - which is why it is 300 seconds
+rather than the sync's 10.
+
+A flush runs the cycle whether or not the task is backing off, which is deliberate: a
+receipt the user has just produced should not wait out a backoff window that an
+unrelated entry caused. It is therefore asked for on the task's trailing-edge debounce
+(one second) rather than immediately, so reading through a screenful of notifications
+is one cycle instead of one request per tap - which is what would otherwise arrive at a
+backend that is already refusing them.
+
+A failed send leaves its entry exactly as it was, and nothing counts attempts. The
+old worker abandoned an entry after five, which a one-second loop spent in about six
+seconds - but a count is the wrong unit here whatever the loop does, because anything
+may trigger a cycle: scrolling a list of unread notifications asks for a flush per
+tap, and those flushes would spend the attempts of an unrelated entry that is failing.
+Retry pacing and giving up belong to `PollingService`, which is the point of the
+migration, so a receipt is retried for as long as polling retries it. The queue is
+emptied by success instead: an entry is dropped when the sync worker brings its
+notification back with `seen` set, including when another device sent it.
+`SnOutboxState.failed` is no longer written by the app. Tests:
+`test/features/system_notifications/system_notifications_outbox_worker_test.dart`
+covers the drain, the partial failure, twenty failed cycles leaving an entry intact,
+the confirmations and disposal at every boundary; `test/app/router/main_shell_polling_config_test.dart` asserts the
+registration runs on its own interval rather than the sync's.
 
 ## Non-goals
 
