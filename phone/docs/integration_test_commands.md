@@ -260,8 +260,8 @@ patrol test -t patrol_test/cdr_sync_pagination_e2e_test.dart \
   --dart-define=WEBTRIT_APP_CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS=300
 ```
 
-The longer CDR interval isolates the pull-driven request window from the next
-automatic tick. The scenario still uses the app-owned polling registration;
+Pinning the CDR interval isolates the pull-driven request window from the next
+automatic tick whatever the build default is. The scenario still uses the app-owned polling registration;
 only its periodic test cadence changes.
 
 ## Deploy to Firebase Test Lab
