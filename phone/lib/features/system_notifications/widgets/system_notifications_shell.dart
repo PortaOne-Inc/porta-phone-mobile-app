@@ -19,7 +19,6 @@ class SystemNotificationsShell extends StatefulWidget {
 
 class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   late final localRepository = context.read<SystemNotificationsLocalRepository>();
-  late final remoteRepository = context.read<SystemNotificationsRemoteRepository>();
   late final remotePushRepository = context.read<RemotePushRepository>();
   late final localPushRepository = context.read<LocalPushRepository>();
 
@@ -31,39 +30,37 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   @override
   void initState() {
     super.initState();
-
-    /// Start feature watcher
-    Future.doWhile(() async {
-      if (!mounted) return false;
-      upsertServices();
-      return await Future.delayed(const Duration(seconds: 1), () => true);
-    });
+    _startServices();
   }
 
-  /// Actively checks the system notificaitons feature flags
-  /// and init or dispose them on the fly accordingly to configuration
-  void upsertServices() {
-    final featureEnabled = feature.systemNotificationsSupport;
-    final pushSupported = feature.systemNotificationsPushSupport;
-
-    if (featureEnabled == true) {
-      pushService ??= SystemNotificationsPushService(
-        remotePushRepository,
-        localPushRepository,
-        localRepository,
-        openNotifications: openNotificationsScreen,
-        producePush: pushSupported == false,
-      )..init();
-
-      if (pushSupported == false) SystemNotificationBackgroundWorker.dispatchTask();
-    }
-
-    if (featureEnabled == false) {
-      pushService?.dispose();
-      pushService = null;
-
+  /// Starts what this session's configuration asks for.
+  ///
+  /// Read once, because the configuration cannot move underneath: [MainShell]
+  /// pins one [FeatureAccess] snapshot for the whole session, and this widget
+  /// captures it - and the flags read off it - when it mounts. This used to be
+  /// re-evaluated every second in case they changed, which they could not; the
+  /// loop only kept a timer alive for as long as the session lasted.
+  void _startServices() {
+    if (!feature.systemNotificationsSupport) {
+      // A session that had the feature on may have left the periodic task
+      // scheduled, and it outlives the process that scheduled it.
       SystemNotificationBackgroundWorker.cancelTask();
+      return;
     }
+
+    // Without server-side push the app produces the notification locally, and
+    // the background task is what fetches one while the app is not running.
+    final producePush = !feature.systemNotificationsPushSupport;
+
+    pushService = SystemNotificationsPushService(
+      remotePushRepository,
+      localPushRepository,
+      localRepository,
+      openNotifications: openNotificationsScreen,
+      producePush: producePush,
+    )..init();
+
+    if (producePush) SystemNotificationBackgroundWorker.dispatchTask();
   }
 
   void openNotificationsScreen() {

@@ -28,8 +28,9 @@ deployment without the feature registers neither.
 Two other pieces are not polling tasks and are unaffected by any of this:
 `SystemNotificationsPushService` (turns a stored notification into a local
 push) and `SystemNotificationBackgroundWorker` (a Workmanager task that syncs
-while the app is not running). Both are still started by
-`SystemNotificationsShell`.
+while the app is not running). Both are started by `SystemNotificationsShell`,
+once, when it mounts: `MainShell` pins one `FeatureAccess` snapshot for the
+whole session, so the flags the shell reads cannot change while it is up.
 
 ## PollingService responsibilities
 
