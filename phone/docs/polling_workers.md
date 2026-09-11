@@ -362,6 +362,7 @@ capabilities, not different worker patterns:
 | CDR | `CdrsSyncWorker` | `CdrsSync` | State for every CDR list; manual run for Full and Missed lists | `requestPostCallRefresh()` |
 | User info | `UserInfoSyncWorker` | `UserInfoSync` | Manual run through `UserInfoCubit` (Settings pull) | `requestPostCallRefresh()` |
 | System notifications | `SystemNotificationsSyncWorker` | `SystemNotificationsSync` | None | None |
+| System notifications outbox | `SystemNotificationsOutboxWorker` | `SystemNotificationsOutbox` | None | `requestFlush()` |
 
 ### External Contacts
 
@@ -400,6 +401,16 @@ What the migration removed is the rest: a `while` loop with its own
 `Connectivity()` check, its own delay, and a `catch` that logged every failure and
 carried on, which is why the feature never backed off and never paused in the
 background. See [polling.md](polling.md#system-notifications) for the cycle itself.
+
+### System notifications outbox
+
+The one migrated feature whose cycle sends rather than fetches, and the clearest use
+of a domain capability: `requestFlush()` is called the moment a read receipt is
+queued, so the interval is a safety net rather than the delivery mechanism. It is the
+same shape as `requestPostCallRefresh()`, and worth copying whenever a feature writes
+through an outbox table - the queue is what makes the action survive being offline,
+and the owner is what makes it leave promptly. See
+[polling.md](polling.md#system-notifications-outbox).
 
 ## Non-goals
 
