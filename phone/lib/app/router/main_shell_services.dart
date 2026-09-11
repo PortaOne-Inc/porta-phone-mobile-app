@@ -46,6 +46,7 @@ class MainShellServices extends StatelessWidget {
           dispose: (context, service) => service.dispose(),
           lazy: false,
         ),
+        Provider<UserInfoSync>(create: _createUserInfoSync, dispose: (context, sync) => sync.dispose(), lazy: false),
         if (featureAccess.coreSupport.supportsExtensions)
           Provider<ExternalContactsSync>(
             create: _createExternalContactsSync,
@@ -66,7 +67,8 @@ class MainShellServices extends StatelessWidget {
   /// - the polling interval at which it should be triggered.
   ///
   /// Current registrations:
-  /// - [UserRepository]: polled every 10 seconds to keep user data up to date.
+  /// - [UserInfoSyncWorker]: registered through its standard owner so the task is
+  ///   reachable without exposing lifecycle control.
   /// - [SystemInfoRepository]: polled every 5 minutes to refresh system information.
   /// - [ExternalContactsSyncWorker]: registered through its standard owner so
   ///   state and manual refresh share one task without exposing lifecycle control.
@@ -87,10 +89,6 @@ class MainShellServices extends StatelessWidget {
     final iceServersRepository = context.read<IceServersRepository>();
 
     return [
-      PollingRegistration(
-        listener: context.read<UserRepository>(),
-        interval: Duration(seconds: EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS),
-      ),
       PollingRegistration(
         listener: context.read<SystemInfoRepository>(),
         interval: Duration(seconds: EnvironmentConfig.SYSTEM_INFO_REPOSITORY_POLLING_INTERVAL_SECONDS),
@@ -121,6 +119,15 @@ class MainShellServices extends StatelessWidget {
           interval: Duration(seconds: EnvironmentConfig.ICE_SERVERS_REPOSITORY_POLLING_INTERVAL_SECONDS),
         ),
     ];
+  }
+
+  UserInfoSync _createUserInfoSync(BuildContext context) {
+    final worker = UserInfoSyncWorker(userRepository: context.read<UserRepository>());
+    return UserInfoSync(
+      worker: worker,
+      pollingService: context.read<PollingService>(),
+      interval: Duration(seconds: EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS),
+    );
   }
 
   ExternalContactsSync _createExternalContactsSync(BuildContext context) {

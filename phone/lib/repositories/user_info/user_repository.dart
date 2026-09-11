@@ -57,6 +57,10 @@ class UserRepository implements Refreshable {
 
   /// Fetches one snapshot and awaits persistence before publishing changes.
   ///
+  /// No longer registered with polling: `UserInfoSyncWorker` owns the cycle and
+  /// runs it through [storeInfo]. Kept temporarily as a compatibility path until
+  /// the follow-up change removes it together with [isActive].
+  ///
   /// Unchanged data needs no write. Failures retain their original error and
   /// stack trace so the caller can observe the failed attempt and apply backoff.
   @override

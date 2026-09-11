@@ -1,7 +1,7 @@
 # Polling worker pattern
 
 The polling worker pattern separates one finite feature sync cycle from its scheduling and lifecycle ownership.
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-11.
 
 ## Scope
 
@@ -360,6 +360,7 @@ capabilities, not different worker patterns:
 |---|---|---|---|---|
 | External Contacts | `ExternalContactsSyncWorker` | `ExternalContactsSync` | State + manual run through `ContactsExternalTabBloc` | None |
 | CDR | `CdrsSyncWorker` | `CdrsSync` | State for every CDR list; manual run for Full and Missed lists | `requestPostCallRefresh()` |
+| User info | `UserInfoSyncWorker` | `UserInfoSync` | None yet (no consumer receives a capability) | None yet |
 
 ### External Contacts
 
@@ -376,6 +377,16 @@ uses the standard owner. CDR-specific post-call invalidation belongs on
 narrow capabilities above. Full and Missed list cubits receive state and
 runner capabilities. The per-number cubit receives only task state because it
 has no pull-to-refresh action.
+
+### User info
+
+`UserInfoSyncWorker` implements the finite cycle over `UserRepository` - fetch,
+compare with the cache, `storeInfo()` when changed - and `UserInfoSync` uses the
+standard owner. The migration is preparatory: it moves the registration out of
+the `PollingService` constructor list so the task becomes reachable, and it adds
+no capability consumer or domain method yet. The repository keeps the cache,
+the gateway and the change stream; its own `refresh()` and `Refreshable`
+conformance are a temporary leftover until the follow-up change removes them.
 
 ## Non-goals
 
