@@ -74,18 +74,46 @@ void main() {
       );
     });
 
-    test('keeps marking an empty store as initial data across cycles', () async {
-      // The remote history can come back empty, leaving the store without an
-      // anchor. The next cycle is still a first load, so its bulk must not
-      // produce a push per record.
+    test('an empty successful sync makes later history eligible for push', () async {
       when(() => localRepository.getLastUpdate()).thenAnswer((_) async => null);
       when(() => remoteRepository.getHistory(limit: 2)).thenAnswer((_) async => []);
 
       await worker.refresh();
       await worker.refresh();
+      final notification = _notification(1, 1);
+      when(() => remoteRepository.getHistory(limit: 2)).thenAnswer((_) async => [notification]);
+      await worker.refresh();
 
-      verify(() => localRepository.upsertNotifications([], initialData: true)).called(2);
+      verifyInOrder([
+        () => localRepository.upsertNotifications([], initialData: true),
+        () => localRepository.upsertNotifications([], initialData: false),
+        () => localRepository.upsertNotifications([notification], initialData: false),
+      ]);
     });
+
+    for (final failureSource in ['history', 'persistence']) {
+      test('an initial $failureSource failure keeps the retry silent', () async {
+        final notification = _notification(1, 1);
+        when(() => localRepository.getLastUpdate()).thenAnswer((_) async => null);
+        when(() => remoteRepository.getHistory(limit: 2)).thenAnswer((_) async => [notification]);
+        if (failureSource == 'history') {
+          when(() => remoteRepository.getHistory(limit: 2)).thenAnswer((_) async => throw StateError('fetch failed'));
+        } else {
+          when(() => localRepository.upsertNotifications(any(), initialData: any(named: 'initialData')))
+              .thenAnswer((_) async => throw StateError('write failed'));
+        }
+        await expectLater(worker.refresh(), throwsStateError);
+        clearInteractions(localRepository);
+        when(() => remoteRepository.getHistory(limit: 2)).thenAnswer((_) async => [notification]);
+        when(() => localRepository.upsertNotifications(any(), initialData: any(named: 'initialData')))
+            .thenAnswer((_) async {});
+
+        await worker.refresh();
+
+        verify(() => localRepository.upsertNotifications([notification], initialData: true)).called(1);
+        verifyNever(() => localRepository.upsertNotifications(any(), initialData: false));
+      });
+    }
 
     test('fetches updates from the stored anchor and stops after a partial page', () async {
       final lastUpdate = DateTime.utc(2026, 1, 1);

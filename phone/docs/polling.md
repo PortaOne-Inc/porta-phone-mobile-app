@@ -929,18 +929,25 @@ operation already in progress is not cancelled; the retired cycle reports
 Two properties of the endpoint shape the cycle. It pages by timestamp rather than
 by page number, so the anchor is advanced from the newest record of each full page,
 and a full page that cannot advance it ends the cycle instead of being fetched
-forever. And an absent local anchor is what marks a load as history: it is passed
-to the store as `initialData`, which suppresses one local push per record. That
-marker is deliberately read from the store rather than counted in the worker - an
-in-memory flag is lost whenever the worker is rebuilt, and a first load would then
-push its whole history at the user.
+forever. The local anchor selects history versus updates; it does not say
+whether an empty first sync has already succeeded. The worker remembers a
+successful cycle for its own lifetime, including an empty history response.
+Only history loaded before that first success is stored as `initialData`,
+suppressing local pushes for the initial bulk and its retries. Notifications
+arriving after a successful empty load are news and may produce a local push.
+A new worker starts with no completed cycle, matching the previous loop's
+per-worker initialization policy; this marker is not persisted across sessions.
 
 The registration lives in `main_shell_services.dart` behind the feature gate, so a
 deployment without system notifications registers nothing. `SystemNotificationsShell`
 keeps the push service, the outbox worker and the background task; the outbox still
 runs a loop of its own. Tests:
 `test/features/system_notifications/system_notifications_sync_worker_test.dart`
-covers the cycle, the paging, the termination guard and the failure contract;
+covers the cycle, the paging, disposal races and the failure contract;
+`test/features/system_notifications/system_notifications_sync_push_test.dart`
+uses an in-memory Drift store and the real push service to verify that history
+is silent and later notifications can produce pushes, including after an empty
+first sync;
 `test/app/router/main_shell_polling_config_test.dart` asserts the registration at
 the configured interval and that a core without the feature registers nothing.
 

@@ -53,6 +53,7 @@ class SystemNotificationsSyncWorker implements PollingWorker {
     } else {
       await _refreshUpdatesSince(lastUpdate);
     }
+    _hasCompletedSync = true;
   }
 
   Future<void> _refreshInitialHistory() async {
@@ -60,13 +61,10 @@ class SystemNotificationsSyncWorker implements PollingWorker {
     _ensureActive();
     _logger.fine('Initial notifications fetched: ${notifications.length}');
 
-    // An absent local anchor is the durable marker of a first load, so the
-    // bulk it brings is history rather than news and must not produce a push
-    // per record. The store is the source of truth for that, which is why the
-    // worker keeps no "have I already synced" flag of its own: one that lives
-    // in memory is lost whenever the worker is rebuilt, and then a first load
-    // pushes its whole history at the user.
-    await localRepo.upsertNotifications(notifications.reversed.toList(), initialData: true);
+    // An empty successful load leaves no timestamp in the store. Remember it
+    // for this worker's lifetime so notifications arriving later are news,
+    // while the first history load (including retries) stays silent.
+    await localRepo.upsertNotifications(notifications.reversed.toList(), initialData: !_hasCompletedSync);
     _ensureActive();
   }
 
@@ -103,6 +101,7 @@ class SystemNotificationsSyncWorker implements PollingWorker {
     }
   }
 
+  bool _hasCompletedSync = false;
   bool _disposed = false;
 
   @override
