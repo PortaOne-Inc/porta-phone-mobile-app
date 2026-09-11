@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:api/api.dart' as api;
 
 import 'package:webtrit_phone/data/app_preferences.dart';
+import 'package:webtrit_phone/features/user_info/user_info.dart';
 import 'package:webtrit_phone/repositories/user_info/user_repository.dart';
 import 'package:webtrit_phone/services/polling_service.dart';
 import 'package:webtrit_phone/services/polling_task_handle.dart';
@@ -33,7 +34,7 @@ void main() {
           ? http.Response('adapter unavailable', 503)
           : UserRepositoryIntegrationHarness.successResponse();
     };
-    final task = _register(harness.repository, connected: true);
+    final task = _register(harness.worker, connected: true);
     await _waitForPhase($, task, PollingTaskPhase.failed);
     final firstFailureAt = task.state.lastFailureAt!;
     expect(task.state.error, isA<api.RequestFailure>().having((e) => e.statusCode, 'status', 503));
@@ -75,7 +76,7 @@ void main() {
   patrolTest('a rejected user session fails refresh and retains the native cache', ($) async {
     final harness = await _createHarness();
     harness.respond = (_) async => http.Response('{"code":"token_invalid"}', 401);
-    final task = _register(harness.repository, connected: false);
+    final task = _register(harness.worker, connected: false);
 
     await expectLater(task.runNow(), throwsA(isA<api.UnauthorizedException>()));
 
@@ -102,12 +103,12 @@ Future<UserRepositoryIntegrationHarness> _createHarness() async {
   return harness;
 }
 
-PollingTaskHandle _register(UserRepository repository, {required bool connected}) {
+PollingTaskHandle _register(UserInfoSyncWorker worker, {required bool connected}) {
   final connectivity = FakeConnectivityService(initialConnected: connected);
   addTearDown(connectivity.dispose);
   final polling = PollingService(connectivityService: connectivity, options: const PollingOptions(jitterRatio: 0));
   addTearDown(polling.dispose);
-  return polling.register(PollingRegistration(listener: repository, interval: const Duration(seconds: 1)));
+  return polling.register(PollingRegistration(listener: worker, interval: const Duration(seconds: 1)));
 }
 
 Future<void> _waitForPhase(PatrolIntegrationTester $, PollingTaskHandle task, PollingTaskPhase phase) async {
