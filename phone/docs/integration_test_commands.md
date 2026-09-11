@@ -40,6 +40,18 @@ To specify a test file, use the `-t` option:
 patrol build -t patrol_test/call_and_recent_test.dart ...
 ```
 
+## Run the unreachable-core recovery scenario
+
+```bash
+tool/scripts/patrol_e2e_run_local_android.sh patrol_test/core_unreachable_recovery_test.dart
+```
+
+The scenario writes its own session and core URL into native storage, so no
+credentials or live backend are needed - the core it points at is a closed port.
+It is deliberately destructive: reaching login means the session ended and local
+application data was cleared, so the device has to be signed in again afterwards.
+Do not run it on a device holding a session you need.
+
 ## Run the user repository refresh guards
 
 The host integration suite needs neither Patrol nor a device:

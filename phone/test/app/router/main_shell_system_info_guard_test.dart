@@ -107,25 +107,46 @@ void main() {
 
   bool wasSentToLogin() => router.replacements.any((routes) => routes.first is LoginRouterPageRoute);
 
+  bool wasSentToTeardown() => router.replacements.any((routes) => routes.first is TeardownScreenPageRoute);
+
   group('main shell guard without cached system info', () {
-    test('sends the user back to login when the value cannot be fetched', () async {
+    test('ends the session when the value cannot be fetched', () async {
       when(() => systemInfoRepository.getSystemInfo(fetchPolicy: any(named: 'fetchPolicy')))
           .thenThrow(Exception('no network'));
 
       await buildRouter().onMainShellRouteGuardNavigation(resolver, router);
 
       expect(resolver.resolutions, [false]);
-      expect(wasSentToLogin(), isTrue);
+      verify(() => appBloc.add(const AppLogoutRequested(reason: AppLogoutReason.coreUnreachable))).called(1);
+      // Routing to login instead is what spun between the two guards: the
+      // login guard sends a logged-in session straight back here.
+      expect(wasSentToLogin(), isFalse);
+      // And the stack must not be left empty: refusing the navigation
+      // without replacing it ends the session behind a white screen.
+      expect(wasSentToTeardown(), isTrue);
     });
 
-    test('sends the user back to login when the core answers without it', () async {
+    test('ends the session when the core answers without it', () async {
       when(() => systemInfoRepository.getSystemInfo(fetchPolicy: any(named: 'fetchPolicy')))
           .thenAnswer((_) async => null);
 
       await buildRouter().onMainShellRouteGuardNavigation(resolver, router);
 
       expect(resolver.resolutions, [false]);
-      expect(wasSentToLogin(), isTrue);
+      verify(() => appBloc.add(const AppLogoutRequested(reason: AppLogoutReason.coreUnreachable))).called(1);
+      expect(wasSentToLogin(), isFalse);
+      // And the stack must not be left empty: refusing the navigation
+      // without replacing it ends the session behind a white screen.
+      expect(wasSentToTeardown(), isTrue);
+    });
+
+    test('leaves the session alone when the value is there', () async {
+      when(() => systemInfoRepository.getSystemInfo(fetchPolicy: any(named: 'fetchPolicy')))
+          .thenAnswer((_) async => systemInfoWithSupported(const []));
+
+      await buildRouter().onMainShellRouteGuardNavigation(resolver, router);
+
+      verifyNever(() => appBloc.add(any(that: isA<AppLogoutRequested>())));
     });
 
     test('keeps the user signed in when the value is refetched', () async {

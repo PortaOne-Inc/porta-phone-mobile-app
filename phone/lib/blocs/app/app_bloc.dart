@@ -234,8 +234,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
     // Determine if we should attempt to revoke the session on the server.
     // We skip this for 'sessionMissed' because the socket error (4201)
-    // guarantees the session is already terminated, and for 'userNotFound'
-    // because the account no longer exists (the revoke would just 404 again).
+    // guarantees the session is already terminated, for 'userNotFound'
+    // because the account no longer exists (the revoke would just 404 again),
+    // and for 'coreUnreachable' because the core never answered: the session
+    // may still be valid, and a core that comes back should find it intact.
     final shouldRevokeRemote = reason == AppLogoutReason.userRequest || reason == AppLogoutReason.serverRejection;
 
     if (shouldRevokeRemote && currentSession.isLoggedIn) {

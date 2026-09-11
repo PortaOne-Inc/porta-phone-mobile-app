@@ -2,7 +2,7 @@
 
 What the app spends before its first frame, measured rather than assumed, and what is
 worth attacking next.
-Last reviewed: 2026-08-24.
+Last reviewed: 2026-09-11.
 
 ## How this was measured
 
@@ -73,6 +73,14 @@ other, which is exactly what happened when the keychain read was taken out of th
 waits for the cached system info and, if the session is read lazily, for the session too.
 Making the first frame arrive earlier without giving that window something to show only
 replaces the system splash with the app's own empty background.
+
+If that wait cannot end - no cached system info and a core that will not answer - the
+guard ends the session (`AppLogoutReason.coreUnreachable`) rather than routing to login.
+Routing there does not settle: the login guard sends a logged-in session straight back,
+so the two guards swap routes indefinitely and neither screen is built. Ending the
+session is also the only way out for the user, because the login screen is where a
+different core is entered. Local data is cleared; the remote session is left alone,
+since the core never answered and may well still hold a valid one.
 
 ## What was tried
 

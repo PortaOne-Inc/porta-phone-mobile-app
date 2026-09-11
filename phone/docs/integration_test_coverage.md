@@ -265,6 +265,43 @@ storage failure.
 
 ---
 
+## Startup - An Unreachable Core With No Cache
+
+**File:** [core_unreachable_recovery_test.dart](../test/app/router/core_unreachable_recovery_test.dart)
+
+A host suite over the real system-info pipeline (repository, datasources,
+mapper and API client against a refusing HTTP client), the real `AppBloc`
+teardown sequence and the real route guards. Only the session, cleanup and
+agreement repositories are mocked.
+
+The state under test is the one a storage move leaves behind: the session
+survives, the system-info cache does not. It is harmless while the core
+answers - the next fetch refills the cache - and it is the one state the main
+shell cannot be built from when the core does not.
+
+1. An authenticated start with an empty cache reaches the network, is refused,
+   and ends the session with `AppLogoutReason.coreUnreachable`: the teardown
+   screen replaces the stack, local cleanup runs, the remote session is left
+   alone, and the teardown guard hands the user to login - where another core
+   can be entered. Routing to login directly instead is what used to spin
+   between the two guards on a white screen; leaving the stack unreplaced is
+   the same white screen with the session ending behind it.
+2. The same dead core with a cached value signs nobody out: the guard reads the
+   cache, never reaches the network, and the session stays authenticated.
+3. A second guard pass while the teardown runs does not start another one.
+
+The device counterpart is
+[core_unreachable_recovery_test.dart](../patrol_test/core_unreachable_recovery_test.dart):
+it seeds native storage with a session pointing at a port nothing listens on and
+no cached system info, boots the real app, and waits for the login screen. It
+drives the real navigator, which is what the host suite cannot stand in for -
+`replaceAll` returning is not the same thing as a screen being on the display,
+and that gap is exactly where the first attempt at this fix left a white screen.
+DESTRUCTIVE: it signs the device out and clears local application data, so run
+it on a device whose session you are willing to lose.
+
+---
+
 ## Background Polling - Voicemail Refresh
 
 **File:** [voicemail_repository_refresh_test.dart](../patrol_test/voicemail_repository_refresh_test.dart)

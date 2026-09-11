@@ -312,6 +312,31 @@ class AppRouter extends RootStackRouter {
     ),
   ];
 
+  /// Ends the session when the shell cannot be built for want of system info.
+  ///
+  /// Sending the user to the login route instead would not settle: the login
+  /// guard bounces a logged-in session straight back here, so the two guards
+  /// swap routes forever and neither screen is ever built - a white screen,
+  /// one failed request per lap. Nothing resolves that on its own either,
+  /// because the cache stays empty while the core is unreachable and the
+  /// session stays valid while nobody ends it.
+  ///
+  /// Ending it is also the only way out for the user: the login screen is
+  /// where a different core is entered, and a reachable core is what the app
+  /// is missing. The reason keeps the remote session intact - the core never
+  /// answered, so there is nothing to say it is no longer valid.
+  ///
+  /// The teardown screen is put up in the same breath, and not as a courtesy:
+  /// refusing this navigation without replacing the stack leaves a cold start
+  /// with no route at all, which is the white screen again - the session ends
+  /// underneath it and nothing is ever built. The teardown route carries the
+  /// user onward on its own once the sequence finishes.
+  void _endSessionWithoutSystemInfo(NavigationResolver resolver, StackRouter router) {
+    resolver.next(false);
+    _appBloc.add(const AppLogoutRequested(reason: AppLogoutReason.coreUnreachable));
+    router.replaceAll([const TeardownScreenPageRoute()]);
+  }
+
   void onLoginScreenPageRouteGuardNavigation(NavigationResolver resolver, StackRouter router) {
     _logger.fine(_onNavigationLoggerMessage('onLoginScreenPageRouteGuardNavigation', resolver));
 
@@ -424,15 +449,13 @@ class AppRouter extends RootStackRouter {
     try {
       final systemInfo = await _systemInfoRepository.getSystemInfo(fetchPolicy: FetchPolicy.cacheFirst);
       if (systemInfo == null) {
-        _logger.warning('onMainShellRouteGuardNavigation: system info unavailable, redirecting to login');
-        resolver.next(false);
-        router.replaceAll([LoginRouterPageRoute(launchEmbeddedData: _launchEmbeddedData)]);
+        _logger.warning('onMainShellRouteGuardNavigation: system info unavailable, ending the session');
+        _endSessionWithoutSystemInfo(resolver, router);
         return;
       }
     } catch (e, s) {
       _logger.severe('onMainShellRouteGuardNavigation: failed to load system info', e, s);
-      resolver.next(false);
-      router.replaceAll([LoginRouterPageRoute(launchEmbeddedData: _launchEmbeddedData)]);
+      _endSessionWithoutSystemInfo(resolver, router);
       return;
     }
 
