@@ -8,6 +8,7 @@ import 'package:webtrit_callkeep/webtrit_callkeep.dart';
 
 import 'package:webtrit_phone/app/constants.dart';
 import 'package:webtrit_phone/app/notifications/notifications.dart';
+import 'package:webtrit_phone/app/router/post_call_refresh.dart';
 import 'package:webtrit_phone/app/session/session.dart';
 import 'package:webtrit_phone/blocs/blocs.dart';
 import 'package:webtrit_phone/data/data.dart';
@@ -155,6 +156,7 @@ class MainShellBlocs extends StatelessWidget {
             // The feature may be disabled for this session, in which case no
             // CDR refresh is requested after a call.
             final cdrsSync = context.readOrNull<CdrsSync>();
+            final userInfoSync = context.read<UserInfoSync>();
 
             final peerConnectionManager = PeerConnectionManager(
               // The deployment's own STUN/TURN servers, resolved per connection so
@@ -218,7 +220,7 @@ class MainShellBlocs extends StatelessWidget {
               sendPresenceSettings: featureAccess.sipPresenceConfig.hybridPresenceSupport,
               callPullVideoStrategy: featureAccess.callConfig.capabilities.callPullVideoStrategy,
               peerMessageSupported: featureAccess.callConfig.capabilities.isPeerMessageEnabled,
-              onCallEnded: cdrsSync?.requestPostCallRefresh,
+              onCallEnded: PostCallRefresh(userInfoSync: userInfoSync, cdrsSync: cdrsSync).call,
               onDiagnosticReportRequested: (id, error) => diagnosticService.request(
                 DiagnosticType.androidCallkeepOnly,
                 extras: {'callId': id, 'error': error.name},
@@ -269,7 +271,10 @@ class MainShellBlocs extends StatelessWidget {
         builder: (context) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider(lazy: false, create: (_) => UserInfoCubit(context.read<UserRepository>())),
+              BlocProvider(
+                lazy: false,
+                create: (_) => UserInfoCubit(context.read<UserRepository>(), syncRunner: context.read<UserInfoSync>()),
+              ),
               BlocProvider(
                 lazy: false,
                 create: (_) => SessionStatusCubit(

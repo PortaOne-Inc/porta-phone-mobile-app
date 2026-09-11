@@ -1,7 +1,7 @@
 # Refreshing data by hand
 
 How a user asks a list in the app to fetch again, screen by screen.
-Last reviewed: 2026-09-06.
+Last reviewed: 2026-09-11.
 
 The rule: refreshing is a pull on the list. A screen that can be refreshed
 carries no refresh control in its app bar.
@@ -10,15 +10,20 @@ This page describes UI behavior. The shared scheduler, task handles, and the
 boundary between automatic and manual execution are documented in
 [`polling.md`](polling.md). A manual fetch for a data source that is also polled
 must use the same task capability to avoid a parallel refresh path. External
-Contacts and CDR synchronization follow this rule.
+Contacts, CDR and User info synchronization follow this rule.
 
 ## My account (settings)
 
 `lib/features/settings/view/settings_screen.dart`
 
-Pulling the list down calls `RegisterStatusCubit.fetchStatus()` and nothing
-else: the account details and the session status keep arriving on their own
-streams, and a failed fetch is reported with a snack bar. The list sits behind
+Pulling the list down refetches two things together: the registration status
+through `RegisterStatusCubit.fetchStatus()`, and the user record through
+`UserInfoCubit.refresh()`, which runs the shared user-info polling task
+(`UserInfoSync`) and therefore joins a scheduled cycle instead of starting a
+second request. The record is what carries the balance, so before this the
+pull could not update it - only the polling timer could. The refreshed record
+and the session status still arrive on their own streams; a failure of either
+fetch is reported with one snack bar. The list sits behind
 a translucent app bar, so the indicator is pushed down by the same offset the
 list is padded with (`edgeOffset`), otherwise the spinner appears under the bar.
 

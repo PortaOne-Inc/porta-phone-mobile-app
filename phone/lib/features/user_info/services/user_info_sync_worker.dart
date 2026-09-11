@@ -1,13 +1,25 @@
 import 'package:webtrit_phone/repositories/repositories.dart';
 import 'package:webtrit_phone/services/services.dart';
 
+/// The charge for a finished call lands after the hangup, like its CDR does.
+const _postCallRefreshDelay = Duration(seconds: 1);
+
 /// Owns the user-info worker and its polling registration.
 ///
-/// The owner carries no domain trigger yet: scheduled refreshes reach the
-/// worker through the standard registration, and consumers receive only the
-/// narrow task capabilities.
+/// Scheduled refreshes, the Settings pull gesture, and call-ended invalidations
+/// use the same polling task, so they share one lifecycle, single-flight
+/// boundary, and backoff policy.
 final class UserInfoSync extends PollingWorkerOwner<UserInfoSyncWorker> {
   UserInfoSync({required super.worker, required super.pollingService, required super.interval});
+
+  /// Requests one refresh once the backend has had time to charge the call, so
+  /// the balance on screen reflects it without waiting for the next tick.
+  ///
+  /// Repeated call-ended events use the task's trailing-edge debounce instead
+  /// of cancelling and recreating the polling schedule.
+  void requestPostCallRefresh() {
+    invalidatePollingTask(after: _postCallRefreshDelay);
+  }
 }
 
 /// Synchronizes the user record (balance, numbers, credentials) into the
