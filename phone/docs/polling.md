@@ -948,6 +948,11 @@ covers the cycle, the paging, disposal races and the failure contract;
 uses an in-memory Drift store and the real push service to verify that history
 is silent and later notifications can produce pushes, including after an empty
 first sync;
+`test/features/system_notifications/system_notifications_integration_test.dart`
+and `patrol_test/system_notifications_sync_test.dart` share seven regression
+scenarios with real API mapping, owner teardown, file-backed SQLite and push
+policy, including late responses after database cleanup. See the
+[native run instructions](integration_test_commands.md#run-system-notification-sync-regressions);
 `test/app/router/main_shell_polling_config_test.dart` asserts the registration at
 the configured interval and that a core without the feature registers nothing.
 

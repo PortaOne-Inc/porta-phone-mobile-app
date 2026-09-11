@@ -1,7 +1,7 @@
 # Integration Test Commands
 
 Commands for host integration suites and native Patrol scenarios.
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-11.
 
 ## Prerequisite: provision patrol
 
@@ -280,3 +280,31 @@ Starts the [pjsua Companion](../packages/pjsua_companion/README.md) server autom
 ```bash
 ./tool/scripts/patrol_e2e_run_local_android.sh <testfile(optional)>
 ```
+
+## Run system notification sync regressions
+
+The same seven scenarios run on the host and on a native device:
+
+```bash
+fvm flutter test --no-pub test/features/system_notifications/system_notifications_integration_test.dart
+
+fvm exec patrol test \
+  -t patrol_test/system_notifications_sync_test.dart \
+  --device DEVICE_ID \
+  --no-uninstall \
+  --no-tree-shake-icons \
+  --dart-define-from-file=dart_define.json
+```
+
+Provision Patrol and temporarily set `clearPackageData: "false"` as described
+in [the user repository instructions](#run-the-user-repository-refresh-guards).
+Restore the dependency files, runner configuration and any device settings
+changed for testing afterwards.
+
+Each scenario creates and deletes its own SQLite file in the device temporary
+directory. It uses the real API client, notification repositories, polling owner
+and push service. HTTP and the native push repository are controlled; no account,
+live backend or notification permission is needed. Push assertions verify the
+request to display, not an Android notification drawer entry. The logout race
+invokes owner disposal and database cleanup directly rather than driving logout UI.
+See [coverage](integration_test_coverage.md#system-notifications---sync-regressions).

@@ -5,7 +5,7 @@ Companion host integration suites are linked where available and run in ordinary
 App-flow tests bootstrap the full app and log in or reuse an existing session.
 Focused native-integration guards may construct only the services under test.
 Every test tears down its device state.
-Last reviewed: 2026-09-10.
+Last reviewed: 2026-09-11.
 
 ---
 
@@ -552,3 +552,30 @@ before updating local state.
 **Steps:**
 1. Bootstrap the app.
 2. Wait until `AppShell` is visible.
+
+## System notifications - sync regressions
+
+**Native entrypoint:** `patrol_test/system_notifications_sync_test.dart`.
+**Shared host suite:** `test/features/system_notifications/system_notifications_integration_test.dart`.
+**Harness:** `test/features/system_notifications/system_notifications_integration_harness.dart`.
+
+Seven scenarios exercise the real API mapping, polling owner, file-backed SQLite
+and notification push policy:
+
+- Empty and populated successful initial loads stay silent. The next notification
+  is persisted and requested as a local push only when `producePush` is enabled
+  (four combinations). API paths, timestamp anchors and payloads are checked.
+- A 503 during initialization leaves no success timestamp. Retried history stays
+  silent; a later update is persisted and delivered.
+- Disposal followed by database cleanup while history or a full updates page is
+  in flight rejects the retired cycle. The late response cannot restore rows,
+  emit a local push or fetch the next page. The polling owner remains stopped.
+
+These are component integration tests, not full app or live backend tests. HTTP,
+connectivity eligibility and native notification delivery are controlled. They do
+not exercise the logout screen, FCM, Android permissions or notification drawer.
+Manual owner runs make the race deterministic; timer/backoff behavior is covered
+by the separate polling suites. Isolated database files are deleted on teardown.
+
+Verified on 2026-09-11: Pixel 9 (Android 17), 7/7 Patrol scenarios passed.
+The host system-notifications module also passed all 30 tests.
