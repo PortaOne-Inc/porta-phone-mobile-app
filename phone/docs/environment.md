@@ -90,8 +90,11 @@ maintainability and enabling tools to parse configuration reliably.
 - `WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS` - System
   notifications sync interval in positive whole seconds (default: **10**). The
   sync is a polling task like the others, so it pauses in the background and
-  backs off on failure; the outbox that sends read receipts still runs its own
-  loop.
+  backs off on failure.
+- `WEBTRIT_APP_SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS` - How
+  often the queue of read receipts is sent, in positive whole seconds
+  (default: **300**). This is only a safety net for what a previous session
+  left behind: marking a notification as read asks for a send right away.
 
 ### Environment
 

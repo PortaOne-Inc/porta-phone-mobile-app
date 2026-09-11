@@ -94,7 +94,12 @@ FeatureAccess _featureAccessWithSystemNotifications({required bool supported}) {
 }
 
 void main() {
-  setUpAll(() => registerFallbackValue(_userInfo));
+  setUpAll(() {
+    registerFallbackValue(_userInfo);
+    registerFallbackValue(SnOutboxActionType.seen);
+    registerFallbackValue(<SnOutboxState>[]);
+    registerFallbackValue(const SystemNotificationOutboxEntry(notificationId: 0, actionType: SnOutboxActionType.seen));
+  });
   tearDown(EnvironmentConfig.clearOverrides);
 
   for (final (hybridPresence, expectedSeconds) in <(bool, int)>[(true, 1800), (false, 300)]) {
@@ -158,6 +163,15 @@ void main() {
         ),
       ).thenAnswer((_) async {});
       when(() => remote.getHistory(limit: any(named: 'limit'))).thenAnswer((_) async => const <SystemNotification>[]);
+      // The same feature gate also registers the outbox, whose cycle runs on
+      // the same leading refresh; an empty queue keeps it out of the way.
+      when(() => local.eventBus).thenAnswer((_) => const Stream<SystemNotificationEvent>.empty());
+      when(
+        () => local.getOutboxNotifications(
+          actionType: any(named: 'actionType'),
+          states: any(named: 'states'),
+        ),
+      ).thenAnswer((_) async => const <SystemNotificationOutboxEntry>[]);
 
       final (connectivity, _) = await _pumpShell(
         tester,
@@ -196,6 +210,58 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('shell drains the notifications outbox on its own interval', (tester) async {
+    final featureAccess = _featureAccessWithSystemNotifications(supported: true);
+    final local = _SystemNotificationsLocalRepository();
+    final remote = _SystemNotificationsRemoteRepository();
+    const pending = SystemNotificationOutboxEntry(notificationId: 7, actionType: SnOutboxActionType.seen);
+    when(() => local.getLastUpdate()).thenAnswer((_) async => null);
+    when(
+      () => local.upsertNotifications(
+        any(),
+        silent: any(named: 'silent'),
+        initialData: any(named: 'initialData'),
+      ),
+    ).thenAnswer((_) async {});
+    when(() => remote.getHistory(limit: any(named: 'limit'))).thenAnswer((_) async => const <SystemNotification>[]);
+    when(() => local.eventBus).thenAnswer((_) => const Stream<SystemNotificationEvent>.empty());
+    when(
+      () => local.getOutboxNotifications(
+        actionType: any(named: 'actionType'),
+        states: any(named: 'states'),
+      ),
+    ).thenAnswer((_) async => const [pending]);
+    when(() => local.upsertOutboxNotification(any())).thenAnswer((_) async {});
+    when(() => remote.markSystemNotificationAsSeen(any())).thenAnswer((_) async {});
+
+    final (connectivity, _) = await _pumpShell(
+      tester,
+      featureAccess: featureAccess,
+      userInfo: _userInfo,
+      extraProviders: [
+        Provider<SystemNotificationsLocalRepository>.value(value: local),
+        Provider<SystemNotificationsRemoteRepository>.value(value: remote),
+      ],
+    );
+
+    connectivity.setConnected(true);
+    await tester.pump();
+    verify(() => remote.markSystemNotificationAsSeen(7)).called(1);
+
+    // The outbox has an interval of its own: the notifications sync ticking
+    // must not drag the queue along with it.
+    final syncSeconds = EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS;
+    final outboxSeconds = EnvironmentConfig.SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS;
+    expect(outboxSeconds, greaterThan(syncSeconds));
+    await tester.pump(Duration(seconds: syncSeconds * 2));
+    verify(() => remote.getHistory(limit: any(named: 'limit'))).called(greaterThan(0));
+    verifyNever(() => remote.markSystemNotificationAsSeen(any()));
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets('shell polls user info through its owner at the user interval', (tester) async {
     final userRepository = _UserRepository();
