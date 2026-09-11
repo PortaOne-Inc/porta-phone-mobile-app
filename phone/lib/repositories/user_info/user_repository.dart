@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:logging/logging.dart';
-
-import 'package:webtrit_phone/common/common.dart';
 import 'package:webtrit_phone/models/models.dart';
 
 import 'user_local_datasource.dart';
@@ -13,9 +10,7 @@ export 'package:webtrit_phone/models/user_info.dart';
 export 'user_local_datasource.dart';
 export 'user_remote_datasource.dart';
 
-final _logger = Logger('UserRepository');
-
-class UserRepository implements Refreshable {
+class UserRepository {
   UserRepository({required this.remoteDatasource, required this.localDatasource});
 
   final UserRemoteDatasource remoteDatasource;
@@ -24,8 +19,9 @@ class UserRepository implements Refreshable {
 
   /// Emits cached user information, then successfully persisted updates.
   ///
-  /// Refresh failures are returned by [refresh], not emitted on this stream.
-  /// With no cached value, subscribers wait for a successful refresh.
+  /// Never emits an error: a failed fetch is the concern of whoever ran it -
+  /// `UserInfoSyncWorker` owns the refresh cycle and propagates its failures.
+  /// With no cached value, subscribers wait for the first successful store.
   Stream<UserInfo> getAndListen() async* {
     final info = getLocalInfo();
     if (info != null) yield info;
@@ -50,30 +46,5 @@ class UserRepository implements Refreshable {
   Future<void> storeInfo(UserInfo info) async {
     await localDatasource.setInfo(info);
     _updatesController.add(info);
-  }
-
-  @override
-  bool get isActive => true;
-
-  /// Fetches one snapshot and awaits persistence before publishing changes.
-  ///
-  /// No longer registered with polling: `UserInfoSyncWorker` owns the cycle and
-  /// runs it through [storeInfo]. Kept temporarily as a compatibility path until
-  /// the follow-up change removes it together with [isActive].
-  ///
-  /// Unchanged data needs no write. Failures retain their original error and
-  /// stack trace so the caller can observe the failed attempt and apply backoff.
-  @override
-  Future<void> refresh() async {
-    try {
-      final oldInfo = localDatasource.getInfo();
-      final newInfo = await remoteDatasource.getInfo();
-      if (newInfo != oldInfo) {
-        await storeInfo(newInfo);
-      }
-    } catch (e, stackTrace) {
-      _logger.warning('refresh', e, stackTrace);
-      rethrow;
-    }
   }
 }

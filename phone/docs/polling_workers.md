@@ -387,8 +387,7 @@ list so the task is reachable: `UserInfoCubit` receives `PollingTaskRunner` for
 the Settings pull, and `requestPostCallRefresh()` is wired to the same
 call-ended hook as `CdrsSync`, because a finished call changes both the history
 and the balance. The repository keeps the cache, the gateway and the change
-stream; its own `refresh()` and `Refreshable` conformance are a temporary
-leftover until the follow-up change removes them.
+stream, and is not `Refreshable` itself, so the cycle has exactly one owner.
 
 ## Non-goals
 
