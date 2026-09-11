@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:webtrit_phone/app/router/app_router.dart';
 import 'package:webtrit_phone/data/feature_access.dart';
+import 'package:webtrit_phone/environment_config.dart';
 import 'package:webtrit_phone/features/features.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 
@@ -57,7 +58,11 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
         producePush: pushSupported == false,
       )..init();
 
-      syncWorker ??= SystemNotificationsSyncWorker(localRepository, remoteRepository)..init();
+      syncWorker ??= SystemNotificationsSyncWorker(
+        localRepository,
+        remoteRepository,
+        pollingInterval: Duration(seconds: EnvironmentConfig.SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS),
+      )..init();
       outboxWorker ??= SystemNotificationsOutboxWorker(localRepository, remoteRepository)..init();
       if (pushSupported == false) SystemNotificationBackgroundWorker.dispatchTask();
     }

@@ -260,6 +260,26 @@ void main() {
       verify(() => syncWorker.dispose()).called(1);
     });
 
+    test('a configured post-call delay is used instead of the default', () async {
+      final syncWorker = MockCdrsSyncWorker();
+      final pollingService = MockPollingService();
+      final task = MockPollingTaskHandle();
+      when(() => syncWorker.dispose()).thenAnswer((_) async {});
+      when(() => pollingService.register(any())).thenReturn(task);
+      when(() => task.isRegistered).thenReturn(true);
+      final sync = CdrsSync(
+        worker: syncWorker,
+        pollingService: pollingService,
+        interval: const Duration(seconds: 10),
+        postCallRefreshDelay: const Duration(seconds: 3),
+      );
+      addTearDown(sync.dispose);
+
+      sync.requestPostCallRefresh();
+
+      verify(() => task.invalidate(after: const Duration(seconds: 3))).called(1);
+    });
+
     test('ignores a late call-ended refresh after disposal', () async {
       final syncWorker = MockCdrsSyncWorker();
       final pollingService = MockPollingService();

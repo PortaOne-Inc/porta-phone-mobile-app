@@ -140,6 +140,61 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  for (final (ttl, tickProbes) in <(int, int)>[(3600, 0), (5, 3)]) {
+    testWidgets('shell snapshots reachability ttl ${ttl}s: $tickProbes probes over 3 ticks', (tester) async {
+      // Zero jitter makes the user task tick exactly every 10 s, so the probe
+      // count depends only on the configured freshness window: a one-hour cache
+      // is never refreshed by three 10 s ticks, a 5 s cache is refreshed by all.
+      // (The default value itself is covered by the environment config tests.)
+      EnvironmentConfig.applyOverrides({
+        EnvironmentConfig.POLLING_JITTER_PERCENT__NAME: '0',
+        EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS__NAME: '$ttl',
+      });
+      final userRepository = _UserRepository();
+      final (connectivity, _) = await _pumpShell(tester, userRepositoryMock: userRepository);
+
+      connectivity.setConnected(true);
+      await tester.pump();
+      final probesAfterConnect = connectivity.checkCalls;
+
+      for (var tick = 0; tick < 3; tick++) {
+        await tester.pump(const Duration(seconds: 10));
+        await tester.pump(const Duration(milliseconds: 1));
+      }
+      expect(connectivity.checkCalls - probesAfterConnect, tickProbes);
+
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  for (final (percent, window) in <(int?, Duration)>[(0, Duration.zero), (null, const Duration(seconds: 1))]) {
+    testWidgets('shell snapshots jitter ${percent ?? 'default 10'}%: tick lands within the window', (tester) async {
+      EnvironmentConfig.applyOverrides({
+        if (percent != null) EnvironmentConfig.POLLING_JITTER_PERCENT__NAME: '$percent',
+      });
+      final userRepository = _UserRepository();
+      final (connectivity, _) = await _pumpShell(tester, userRepositoryMock: userRepository);
+
+      connectivity.setConnected(true);
+      await tester.pump();
+      verify(() => userRepository.getRemoteInfo()).called(1);
+
+      // Never before the base interval; with zero jitter exactly at it, with the
+      // default within the extra 10 percent.
+      final seconds = EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS;
+      await tester.pump(Duration(seconds: seconds) - const Duration(milliseconds: 1));
+      verifyNever(() => userRepository.getRemoteInfo());
+      await tester.pump(const Duration(milliseconds: 1) + window);
+      verify(() => userRepository.getRemoteInfo()).called(1);
+
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+  }
+
   for (final override in <int?>[null, 1800]) {
     testWidgets('shell uses ${override ?? 'default 900'}s cap and snapshots it at creation', (tester) async {
       const name = EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS__NAME;

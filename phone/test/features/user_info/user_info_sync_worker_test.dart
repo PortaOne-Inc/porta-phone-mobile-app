@@ -272,5 +272,25 @@ void main() {
       verify(() => task.unregister()).called(1);
       verify(() => syncWorker.dispose()).called(1);
     });
+
+    test('a configured post-call delay is used instead of the default', () async {
+      final syncWorker = _MockUserInfoSyncWorker();
+      final pollingService = _MockPollingService();
+      final task = _MockPollingTaskHandle();
+      when(() => syncWorker.dispose()).thenAnswer((_) async {});
+      when(() => pollingService.register(any())).thenReturn(task);
+      when(() => task.isRegistered).thenReturn(true);
+      final sync = UserInfoSync(
+        worker: syncWorker,
+        pollingService: pollingService,
+        interval: const Duration(seconds: 10),
+        postCallRefreshDelay: const Duration(seconds: 3),
+      );
+      addTearDown(sync.dispose);
+
+      sync.requestPostCallRefresh();
+
+      verify(() => task.invalidate(after: const Duration(seconds: 3))).called(1);
+    });
   });
 }

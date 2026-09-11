@@ -494,15 +494,16 @@ repository error returned while the network is unavailable.
 |---|---:|---|
 | `pauseInBackground` | `true` | Stops automatic schedules outside the foreground |
 | `verifyReachabilityOnTick` | `true` | Checks reachability before periodic work, subject to the TTL cache |
-| `reachabilityTtl` | 30 s | Reuses recent reachability evidence |
+| `reachabilityTtl` | 30 s; app: `WEBTRIT_APP_POLLING_REACHABILITY_TTL_SECONDS` | Reuses recent reachability evidence |
 | `leadingRefreshRequiresVerify` | `true` | Requires reachability before a group-leading refresh |
 | `leadingRefreshMinAgeCap` | 30 s | Skips leading refresh after success for min(interval, cap); 0 disables |
-| `jitterRatio` | `0.1` | Adds a random non-negative delay below this fraction of the computed delay |
+| `jitterRatio` | `0.1`; app: `WEBTRIT_APP_POLLING_JITTER_PERCENT` / 100 | Adds a random non-negative delay below this fraction of the computed delay |
 | `maxBackoff` | 5 min standalone; 15 min in the app | Caps exponential failure backoff without going below the base interval |
 
 The table lists `PollingOptions` constructor defaults. The shell explicitly
-overrides `maxBackoff` and `leadingRefreshMinAgeCap` with application configuration; direct service
-construction retains its existing 5-minute fallback.
+overrides `maxBackoff`, `leadingRefreshMinAgeCap`, `reachabilityTtl` and `jitterRatio`
+with application configuration (see `environment.md`); direct service construction
+retains the constructor defaults.
 
 Tests normally inject zero jitter and a deterministic backoff policy. Production
 code should keep jitter unless synchronized backend load is desired and has been
@@ -892,8 +893,9 @@ still resolves and renders the records.
 narrow capabilities: `UserInfoCubit` receives the `PollingTaskRunner` and its
 `refresh()` backs the Settings pull gesture, so a pull joins a scheduled cycle
 instead of starting a second request; `UserInfoSync.requestPostCallRefresh()`
-is invoked from the same call-ended hook as the CDR owner, with a one-second
-delay so the backend has charged the call and the balance on screen reflects
+is invoked from the same call-ended hook as the CDR owner, with a delay (default
+one second, `WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS`) so the backend has
+charged the call and the balance on screen reflects
 it without waiting for the next tick. Foreground and reconnect already run the
 leading refresh. The repository keeps the cache, the gateway and the
 `getAndListen()` stream. Its own `refresh()` is a temporary leftover until the

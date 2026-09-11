@@ -41,6 +41,8 @@ class MainShellServices extends StatelessWidget {
             options: PollingOptions(
               maxBackoff: Duration(seconds: EnvironmentConfig.POLLING_MAX_BACKOFF_SECONDS),
               leadingRefreshMinAgeCap: Duration(seconds: EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS),
+              reachabilityTtl: Duration(seconds: EnvironmentConfig.POLLING_REACHABILITY_TTL_SECONDS),
+              jitterRatio: EnvironmentConfig.POLLING_JITTER_PERCENT / 100,
             ),
           ),
           dispose: (context, service) => service.dispose(),
@@ -127,6 +129,7 @@ class MainShellServices extends StatelessWidget {
       worker: worker,
       pollingService: context.read<PollingService>(),
       interval: Duration(seconds: EnvironmentConfig.USER_REPOSITORY_POLLING_INTERVAL_SECONDS),
+      postCallRefreshDelay: Duration(seconds: EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS),
     );
   }
 
@@ -152,6 +155,7 @@ class MainShellServices extends StatelessWidget {
       worker: worker,
       pollingService: context.read<PollingService>(),
       interval: Duration(seconds: EnvironmentConfig.CDRS_REPOSITORY_POLLING_INTERVAL_SECONDS),
+      postCallRefreshDelay: Duration(seconds: EnvironmentConfig.POST_CALL_REFRESH_DELAY_SECONDS),
     );
   }
 
