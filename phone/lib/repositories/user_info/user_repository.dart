@@ -16,13 +16,11 @@ export 'user_remote_datasource.dart';
 final _logger = Logger('UserRepository');
 
 class UserRepository implements Refreshable {
-  UserRepository({required this.remoteDatasource, required this.localDatasource}) {
-    _updatesController = StreamController<UserInfo>.broadcast();
-  }
+  UserRepository({required this.remoteDatasource, required this.localDatasource});
 
   final UserRemoteDatasource remoteDatasource;
   final UserLocalDatasource localDatasource;
-  late final StreamController<UserInfo> _updatesController;
+  final _updatesController = StreamController<UserInfo>.broadcast();
 
   /// Emits cached user information, then successfully persisted updates.
   ///
@@ -40,13 +38,18 @@ class UserRepository implements Refreshable {
   }
 
   /// Fetches the latest user information directly from the remote source.
-  Future<UserInfo?> getRemoteInfo() async {
-    return await remoteDatasource.getInfo();
-  }
+  Future<UserInfo> getRemoteInfo() async => remoteDatasource.getInfo();
 
   /// Retrieves the locally cached user information, if available.
   UserInfo? getLocalInfo() {
     return localDatasource.getInfo();
+  }
+
+  /// Persists [info] and only then publishes it to [getAndListen] subscribers,
+  /// so a listener never observes a snapshot the cache does not hold yet.
+  Future<void> storeInfo(UserInfo info) async {
+    await localDatasource.setInfo(info);
+    _updatesController.add(info);
   }
 
   @override
@@ -62,8 +65,7 @@ class UserRepository implements Refreshable {
       final oldInfo = localDatasource.getInfo();
       final newInfo = await remoteDatasource.getInfo();
       if (newInfo != oldInfo) {
-        await localDatasource.setInfo(newInfo);
-        _updatesController.add(newInfo);
+        await storeInfo(newInfo);
       }
     } catch (e, stackTrace) {
       _logger.warning('refresh', e, stackTrace);
