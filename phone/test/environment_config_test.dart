@@ -265,6 +265,27 @@ void main() {
       });
     });
 
+    group('system notifications outbox polling interval', () {
+      const name = EnvironmentConfig.SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS__NAME;
+      const configured = int.fromEnvironment(
+        'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS',
+        defaultValue: 300,
+      );
+      final fallback = configured > 0 ? configured : 300;
+
+      test('uses the positive build value or the 300-second default', () {
+        expect(name, 'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS');
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS, fallback);
+      });
+
+      test('a positive runtime value wins and a non-positive one falls back', () {
+        EnvironmentConfig.applyOverrides({name: '60'});
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS, 60);
+        EnvironmentConfig.applyOverrides({name: '-1'});
+        expect(EnvironmentConfig.SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS, fallback);
+      });
+    });
+
     group('leading refresh min-age cap', () {
       const name = EnvironmentConfig.POLLING_LEADING_REFRESH_MIN_AGE_CAP_SECONDS__NAME;
       const configured = int.fromEnvironment(

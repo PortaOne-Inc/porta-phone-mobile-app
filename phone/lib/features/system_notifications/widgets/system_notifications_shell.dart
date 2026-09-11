@@ -27,7 +27,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   late final feature = featureAccess.systemNotificationsConfig;
 
   SystemNotificationsPushService? pushService;
-  SystemNotificationsOutboxWorker? outboxWorker;
 
   @override
   void initState() {
@@ -56,16 +55,12 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
         producePush: pushSupported == false,
       )..init();
 
-      outboxWorker ??= SystemNotificationsOutboxWorker(localRepository, remoteRepository)..init();
       if (pushSupported == false) SystemNotificationBackgroundWorker.dispatchTask();
     }
 
     if (featureEnabled == false) {
       pushService?.dispose();
       pushService = null;
-
-      outboxWorker?.dispose();
-      outboxWorker = null;
 
       SystemNotificationBackgroundWorker.cancelTask();
     }
@@ -80,7 +75,6 @@ class _SystemNotificationsShellState extends State<SystemNotificationsShell> {
   @override
   void dispose() {
     pushService?.dispose();
-    outboxWorker?.dispose();
     SystemNotificationBackgroundWorker.cancelTask();
     super.dispose();
   }

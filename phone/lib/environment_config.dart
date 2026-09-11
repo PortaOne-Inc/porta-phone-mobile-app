@@ -276,9 +276,8 @@ class EnvironmentConfig {
     return _pollingSeconds(POST_CALL_REFRESH_DELAY_SECONDS__NAME, compileTime > 0 ? compileTime : defaultSeconds);
   }
 
-  /// System notifications sync interval in positive whole seconds. That sync
-  /// still runs its own loop outside the polling service. A non-positive build
-  /// value falls back to 10 seconds.
+  /// System notifications sync interval in positive whole seconds. A
+  /// non-positive build value falls back to 10 seconds.
   static const SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME =
       'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS';
   static int get SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS {
@@ -289,6 +288,24 @@ class EnvironmentConfig {
     );
     return _pollingSeconds(
       SYSTEM_NOTIFICATIONS_POLLING_INTERVAL_SECONDS__NAME,
+      compileTime > 0 ? compileTime : defaultSeconds,
+    );
+  }
+
+  /// How often the queue of system notification read receipts is sent, in
+  /// positive whole seconds. Queueing one asks for a send at once, so this is
+  /// only the safety net for what an earlier session left behind. A
+  /// non-positive build value falls back to 300 seconds.
+  static const SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS__NAME =
+      'WEBTRIT_APP_SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS';
+  static int get SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS {
+    const defaultSeconds = 300;
+    const compileTime = int.fromEnvironment(
+      SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS__NAME,
+      defaultValue: defaultSeconds,
+    );
+    return _pollingSeconds(
+      SYSTEM_NOTIFICATIONS_OUTBOX_POLLING_INTERVAL_SECONDS__NAME,
       compileTime > 0 ? compileTime : defaultSeconds,
     );
   }

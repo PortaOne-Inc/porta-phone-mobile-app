@@ -9,6 +9,8 @@ import 'package:webtrit_phone/models/system_notification_event.dart';
 import 'package:webtrit_phone/models/system_notification_outbox_entry.dart';
 import 'package:webtrit_phone/repositories/repositories.dart';
 
+import '../services/system_notifications_outbox_worker.dart';
+
 part 'system_notifications_screen_state.dart';
 
 final _logger = Logger('SystemNotificationsCubit');
@@ -17,11 +19,14 @@ class SystemNotificationsScreenCubit extends Cubit<SystemNotificationScreenState
   SystemNotificationsScreenCubit(
     this._systemNotificationsLocalRepository,
     this._systemNotificationsRemoteRepository, {
+    required SystemNotificationsOutbox outbox,
     this.pageSize = 50,
-  }) : super(const SystemNotificationScreenState(notifications: [], isLoading: true));
+  }) : _outbox = outbox,
+       super(const SystemNotificationScreenState(notifications: [], isLoading: true));
 
   final SystemNotificationsLocalRepository _systemNotificationsLocalRepository;
   final SystemNotificationsRemoteRepository _systemNotificationsRemoteRepository;
+  final SystemNotificationsOutbox _outbox;
   final int pageSize;
   late final StreamSubscription _eventsSub;
 
@@ -31,6 +36,9 @@ class SystemNotificationsScreenCubit extends Cubit<SystemNotificationScreenState
       actionType: SnOutboxActionType.seen,
     );
     await _systemNotificationsLocalRepository.upsertOutboxNotification(seenOutboxEntry);
+    // Queued first, so the mark survives a failed send; asking now only
+    // saves it from waiting out the safety-net interval.
+    _outbox.requestFlush();
   }
 
   Future<void> fetchHistory() async {

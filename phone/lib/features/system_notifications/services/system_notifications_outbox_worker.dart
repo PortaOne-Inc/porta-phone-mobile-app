@@ -1,103 +1,158 @@
 import 'dart:async';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:logging/logging.dart';
 
 import 'package:webtrit_phone/models/system_notification_event.dart';
 import 'package:webtrit_phone/models/system_notification_outbox_entry.dart';
 import 'package:webtrit_phone/repositories/system_notifications/system_notifications_local_repository.dart';
 import 'package:webtrit_phone/repositories/system_notifications/system_notifications_remote_repository.dart';
+import 'package:webtrit_phone/services/services.dart';
 
 final _logger = Logger('SystemNotificationsOutboxWorker');
 
-/// A worker class responsible for handling the outbox of async operations
-/// related to system notifications. This may include queuing,
-/// sending, and managing notifications that need to be delivered
-/// by the system.
-class SystemNotificationsOutboxWorker {
-  SystemNotificationsOutboxWorker(this.localRepo, this.remoteRepo, {this.pollingInterval = const Duration(seconds: 1)});
+/// How long a requested flush waits for the taps that may follow it.
+const _flushDebounce = Duration(seconds: 1);
+
+/// Owns the outbox worker and its polling registration.
+///
+/// The queue is filled by a tap, so the interval is only a safety net for what
+/// a previous session left behind; [requestFlush] carries the ordinary case.
+final class SystemNotificationsOutbox extends PollingWorkerOwner<SystemNotificationsOutboxWorker> {
+  SystemNotificationsOutbox({
+    required super.worker,
+    required super.pollingService,
+    required super.interval,
+    this.flushDebounce = _flushDebounce,
+  });
+
+  /// How long a flush waits before running, so that reading a list of
+  /// notifications is one send rather than one per tap.
+  final Duration flushDebounce;
+
+  /// Sends what the queue holds soon, instead of waiting for the next tick.
+  ///
+  /// The wait is the task's trailing-edge debounce, so reading through a
+  /// screenful of notifications collapses into a single cycle rather than
+  /// becoming one cycle per tap.
+  ///
+  /// A flush that would jump the queue while the backend is refusing it is
+  /// dropped instead. Every cycle attempts the whole queue, so once sends are
+  /// failing, one flush per tap is one request per tap per queued entry at a
+  /// backend that is already failing - which is the herd backoff exists to
+  /// prevent. The receipt is on disk either way; the retry the task has
+  /// already scheduled is the right moment for it.
+  ///
+  /// Being offline is deliberately not this case: the task then reports
+  /// [PollingTaskPhase.waitingForConnectivity], the service defers the cycle
+  /// without a request of its own, and the queue leaves on the leading refresh
+  /// that reconnecting runs.
+  void requestFlush() {
+    if (state.phase == PollingTaskPhase.failed) return;
+
+    invalidatePollingTask(after: flushDebounce);
+  }
+}
+
+/// Sends the locally queued system notification actions to the backend.
+///
+/// Marking a notification as seen is written to the outbox rather than sent
+/// from the screen, so the tap survives being offline and being killed. One
+/// [refresh] is one attempt at every pending entry; [PollingService] owns
+/// scheduling, connectivity, single-flight, and the delay between attempts.
+class SystemNotificationsOutboxWorker implements PollingWorker {
+  SystemNotificationsOutboxWorker(this.localRepo, this.remoteRepo) {
+    // The queue is reconciled against what the backend confirms, so the
+    // subscription belongs to the worker's own lifetime rather than to a
+    // separate init() a caller has to remember.
+    _confirmationsSub = localRepo.eventBus.listen(_onLocalEvent);
+  }
 
   final SystemNotificationsLocalRepository localRepo;
   final SystemNotificationsRemoteRepository remoteRepo;
-  final connectivity = Connectivity();
 
-  final Duration pollingInterval;
-  late final StreamSubscription _processingSub;
-  late final StreamSubscription _localEventSub;
+  late final StreamSubscription<SystemNotificationEvent> _confirmationsSub;
 
-  void init() {
-    _logger.info('Initializing');
-    _processingSub = _processingStream().listen(_handleProcessingEvent);
-    _localEventSub = localRepo.eventBus.listen(_handleLocalEvent);
-  }
+  @override
+  bool get isActive => !_disposed;
 
-  /// Creates continuous cancellable sequence of system notifications outbox processing.
-  /// Returns a [Stream] of logs and errors that occur during the process.
-  Stream<dynamic> _processingStream() async* {
-    while (!_disposed) {
+  /// Attempts every pending entry once and returns when the queue has been
+  /// walked.
+  ///
+  /// A failing entry does not stop the others: the cycle keeps going and then
+  /// rethrows the first failure with its original stack trace, so polling
+  /// applies backoff to a real error while the rest of the queue still drains.
+  /// A failed entry is left exactly as it was, so the next cycle retries it.
+  @override
+  Future<void> refresh() async {
+    _ensureActive();
+
+    final pending = await localRepo.getOutboxNotifications(
+      actionType: SnOutboxActionType.seen,
+      states: const [SnOutboxState.pending],
+    );
+    _ensureActive();
+
+    if (pending.isEmpty) return;
+    _logger.fine('Pending seen entries: ${pending.length}');
+
+    Object? firstError;
+    StackTrace? firstStackTrace;
+
+    for (final entry in pending) {
+      _ensureActive();
+
       try {
-        // Check connectivity before processing
-        final connectivityResult = await connectivity.checkConnectivity();
-        if (connectivityResult.every((r) => r == ConnectivityResult.none)) continue;
-
-        // Process pending outbox notifications
-        final seenEntries = await localRepo.getOutboxNotifications(
-          actionType: SnOutboxActionType.seen,
-          states: [SnOutboxState.pending],
-        );
-
-        if (seenEntries.isNotEmpty) {
-          yield 'Pending seen entries: ${seenEntries.length}';
-          for (final entry in seenEntries) {
-            try {
-              await remoteRepo.markSystemNotificationAsSeen(entry.notificationId);
-              await localRepo.upsertOutboxNotification(entry.toSent());
-              yield 'Seen notification sent: ${entry.notificationId}';
-            } catch (e, s) {
-              yield (e, s);
-              if (entry.sendAttempts > 5) {
-                await localRepo.upsertOutboxNotification(entry.toFailed());
-                yield 'Failed to send seen notification after 5 attempts: ${entry.notificationId}';
-              } else {
-                await localRepo.upsertOutboxNotification(entry.incAttempts());
-                yield 'Retrying seen notification: ${entry.notificationId}, attempt: ${entry.sendAttempts}';
-              }
-            }
-          }
-        }
+        await remoteRepo.markSystemNotificationAsSeen(entry.notificationId);
       } catch (e, s) {
-        yield (e, s);
-      } finally {
-        yield await Future.delayed(pollingInterval, () => _kRetryEventStub);
+        // The entry stays pending and untouched. Giving up belongs to nobody
+        // here: a receipt is worth retrying for as long as polling is willing
+        // to retry, and a per-entry attempt count would be spent by whatever
+        // happens to trigger a cycle - a burst of taps would abandon an entry
+        // in seconds, which is the failure this migration set out to remove.
+        _logger.warning('Sending seen notification ${entry.notificationId} failed', e, s);
+        firstError ??= e;
+        firstStackTrace ??= s;
+        continue;
       }
+
+      _ensureActive();
+      await localRepo.upsertOutboxNotification(entry.toSent());
+      _logger.fine('Seen notification sent: ${entry.notificationId}');
+    }
+
+    if (firstError != null) {
+      Error.throwWithStackTrace(firstError, firstStackTrace!);
     }
   }
 
-  void _handleProcessingEvent(dynamic event) {
-    if (event is (Object, StackTrace)) {
-      final (error, stackTrace) = event;
-      _logger.warning(error, stackTrace);
-    } else if (event == _kRetryEventStub) {
-      return;
-    } else {
-      _logger.fine(event);
-    }
-  }
-
-  void _handleLocalEvent(SystemNotificationEvent event) {
-    /// Delete seen outbox records that successfully aplied to system notification
+  /// Drops an entry the backend has confirmed.
+  ///
+  /// Confirmation arrives through the sync worker: the notification comes back
+  /// with `seen` set, which means the queued action no longer has anything to
+  /// carry - including when another device sent it.
+  void _onLocalEvent(SystemNotificationEvent event) {
+    if (_disposed) return;
     if (event is SystemNotificationUpdate && event.notification.seen) {
       localRepo.deleteOutboxNotification(event.notification.id, SnOutboxActionType.seen);
     }
   }
 
+  // In-flight I/O cannot be cancelled, but a retired worker must not start
+  // another request or write after an async boundary.
+  void _ensureActive() {
+    if (_disposed) {
+      throw StateError('Cannot refresh a disposed system notifications outbox worker.');
+    }
+  }
+
   bool _disposed = false;
 
-  Future dispose() async {
+  @override
+  Future<void> dispose() async {
+    if (_disposed) return;
+
     _logger.info('Disposing');
-    await Future.wait([_processingSub.cancel(), _localEventSub.cancel()]);
     _disposed = true;
+    await _confirmationsSub.cancel();
   }
 }
-
-const _kRetryEventStub = 'retry';
