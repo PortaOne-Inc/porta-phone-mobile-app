@@ -898,14 +898,16 @@ one second, `WEBTRIT_APP_POST_CALL_REFRESH_DELAY_SECONDS`) so the backend has
 charged the call and the balance on screen reflects
 it without waiting for the next tick. Foreground and reconnect already run the
 leading refresh. The repository keeps the cache, the gateway and the
-`getAndListen()` stream. Its own `refresh()` is a temporary leftover until the
-follow-up removes it. Tests: `test/features/user_info/user_info_cubit_test.dart`
+`getAndListen()` stream, and nothing else: it is not `Refreshable`, so the
+cycle cannot be run anywhere but through the worker. Tests: `test/features/user_info/user_info_cubit_test.dart`
 and the Settings pull cases in `test/features/settings/settings_refresh_test.dart`,
 `test/features/user_info/user_info_sync_worker_test.dart`, the host suite
 `test/repository/user_repository_integration_test.dart` and both Patrol suites
 bind `harness.worker`; `test/app/router/main_shell_polling_config_test.dart`
-asserts the owner registration at the user interval and that the repository's
-`refresh()` is never invoked by the shell.
+asserts the owner registration at the user interval and that the shell fetches
+once per cycle, so a second registration would be visible.
+`test/repository/user_repository_test.dart` covers the store itself - the
+replay, the persist-before-publish order and a failed write.
 
 ## Non-goals
 
